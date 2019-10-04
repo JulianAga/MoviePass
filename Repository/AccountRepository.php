@@ -55,25 +55,25 @@ class AccountRepository implements IAccountRepository
     private function SaveData()
     {
         $arrayToEncode = array();
-        foreach($this->accountList as $account)
+        foreach($this->accountList as $account) //recorro la lista con cuentas
         {
-            $valuesArray["id"] = $account->getId();
+            $valuesArray["id"] = $account->getId();                 //guardo todos los valores en un array
             $valuesArray["email"] = $account->getEmail();
             $valuesArray["password"] = $account->getPassword();
             $valuesArray["rol"] = $account->getRol();
             
-            $clientRepository= new ClientRepository();
+            $clientRepository= new ClientRepository();      
             
-            $client= $account->getCliente();
+            $client= $account->getCliente();        
 
-            $clientRepository->Add($client);
+            $clientRepository->Add($client);       //se guarda el cliente EN UN JSON SEPARADO DE CLIENTES
             
-            $valuesArray["cliente"] = $client->getId();
+            $valuesArray["cliente"] = $client->getId();    //se guarda el id del cliente en este atributo de la CUENTA
 
-            array_push($arrayToEncode, $valuesArray);
+            array_push($arrayToEncode, $valuesArray);   
         }
 
-        $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
+        $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);      //se guarda LA CUENTA EN EL JSON
         
         file_put_contents('Data/cuentas.json', $jsonContent);
     }
@@ -84,17 +84,17 @@ class AccountRepository implements IAccountRepository
 
         if(file_exists('Data/cuentas.json'))
         {
-            $jsonContent = file_get_contents('Data/cuentas.json');
+            $jsonContent = file_get_contents('Data/cuentas.json');  //trae los datos del json
 
-            $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
+            $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array(); //se decodifica el json
 
-            foreach($arrayToDecode as $valuesArray)
+            foreach($arrayToDecode as $valuesArray)    //se recorre el  array
             {
                 
-                $clientRepository= new ClientRepository();
-                $client=$clientRepository->GetById($valuesArray["cliente"]);
+                $clientRepository= new ClientRepository();  
+                $client=$clientRepository->GetById($valuesArray["cliente"]); //se busca en el json de clientes por el id guardado en el atributo cliente del json de CUENTAS
                 
-                $account = new Cuenta($valuesArray["email"],$valuesArray["password"],$valuesArray["rol"],$client);
+                $account = new Cuenta($valuesArray["email"],$valuesArray["password"],$valuesArray["rol"],$client); //se van creando las cuentas
 
 
                 array_push($this->accountList, $account);
