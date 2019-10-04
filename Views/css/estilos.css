@@ -1,0 +1,205 @@
+/* Fondos */
+.bg-primary { /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d34d66+0,b83368+30,793068+63,2e275d+100 */
+background: #d34d66; /* Old browsers */
+background: -moz-linear-gradient(45deg,  #d34d66 0%, #b83368 30%, #793068 63%, #2e275d 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(45deg,  #d34d66 0%,#b83368 30%,#793068 63%,#2e275d 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(45deg,  #d34d66 0%,#b83368 30%,#793068 63%,#2e275d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d34d66', endColorstr='#2e275d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+ }
+.fondo{background: url(images/fondoBody2.png) repeat-x; height: 300px;}
+.bg-secondary { background-color: #333; }
+.bg-dark { background-color: ; }
+.bg-light { background-color: ; }
+.bg-semi-light { background-color: ; }
+
+/* Colores */
+.cl-primary { color: !important; }
+.cl-secondary { color: #DDD !important; }
+.cl-light { color: !important; }
+.cl-dark { color: !important; }
+
+/* Textos */
+    /* Fuentes */
+    /* Tamaños */
+    .fn-lg    { font-size: 22px !important; }
+    .fn-md    { font-size: 16px !important; }
+    .fn-sm    { font-size: 13px !important; }
+    .fn-xs    { font-size: 12px !important; }
+    /* Transformaciones */
+    .fn-up    { text-transform: uppercase; }
+
+/* Paddings */
+.pad-none { padding: 0 !important; }
+.pad-v-xs { padding-top: !important; padding-bottom: !important; }  .pad-h-xs { padding-left: !important; padding-right: !important; }
+.pad-v-sm { padding-top: 15px !important; padding-bottom: 15px !important; }  .pad-h-sm { padding-left: 15px !important; padding-right: 15px !important; }
+.pad-v-md { padding-top: 20px !important; padding-bottom: 20px !important; }  .pad-h-md { padding-left: 20px !important; padding-right: 20px !important; }
+.pad-v-lg { padding-top: !important; padding-bottom: !important; }  .pad-h-lg { padding-left: !important; padding-right: !important; }
+.pad-b-none { padding-bottom: 0 !important; } .pad-t-none { padding-top: 0 !important; } .pad-r-none { padding-right: 0 !important; } .pad-l-none { padding-left: 0 !important; }
+
+/* Margins */
+.mar-none { margin: 0 !important; }
+.mar-v-xs { margin-top: !important; margin-bottom: !important; }    .mar-h-xs { margin-left: !important; margin-right: !important; }
+.mar-v-sm { margin-top: 15px !important; margin-bottom: 15px !important; }    .mar-h-sm { margin-left: 15px !important; margin-right: 15px !important; }
+.mar-v-md { margin-top: !important; margin-bottom: !important; }    .mar-h-md { margin-left: !important; margin-right: !important; }
+.mar-v-lg { margin-top: !important; margin-bottom: !important; }    .mar-h-lg { margin-left: !important; margin-right: !important; }
+.mar-b-none { margin-bottom: 0 !important; } .mar-t-none { margin-top: 0 !important; } .mar-r-none { margin-right: 0 !important; } .mar-l-none { margin-left: 0 !important; }
+
+/* Displays */
+.inline-block { display: inline-block; }
+.inline-flex { display: inline-flex; }
+.inherit { display: inherit; }
+
+/* Posistions */
+.fixed { position: fixed; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+
+/* Background transparencias */
+.background { background: url(klematis.jpg) repeat; border: 0px ; }
+.transbox { margin: 10px; background-color: #ffffff; border: 1px solid black; opacity: 0.6; filter: alpha(opacity=60); /* For IE8 and earlier */ }
+.transbox { margin: 5%; font-weight: bold; color: #000000; }
+
+.transparent { opacity: 0.5; }
+.tbody { border: 5px solid #ccc; opacity: 0.5; }
+.footer-pos { position:absolute;width: 100%;height: 40px; background:#6cf; }
+.transboxTEXT { margin: 5%; font-weight: bold; color: #000000; }
+
+.table-transparent { background: rgba(0,0,0,0.3) }   /* transparencia solo del fondo , resaltando los botones y texto */
+.tamañoSpinner{width: 3em;}
+
+@font-face 
+{
+    font-family:"Myriad Pro";
+    src:url(fonts/myriadpro/myriadpro.eot), 
+    url(fonts/myriadpro/myriadpro.ttf), 
+    url(fonts/myriadpro/myriadpro.woff);
+}
+
+* {
+    margin:0;
+    padding:0;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+header {
+    width:100%;
+}
+
+nav 
+{
+    width:600px;
+    margin:20px auto;
+    overflow:hidden;
+    border-radius:4px;
+    border-bottom:1px solid #555555;
+    background: #8b8b8b; 
+
+    background: -moz-linear-gradient(top,  #8b8b8b 0%, #6a6a6a 50%, #5e5e5e 51%, #717171 100%); 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#8b8b8b), color-stop(50%,#6a6a6a), color-stop(51%,#5e5e5e), color-stop(100%,#717171)); 
+    background: -webkit-linear-gradient(top,  #8b8b8b 0%,#6a6a6a 50%,#5e5e5e 51%,#717171 100%); 
+    background: -o-linear-gradient(top,  #8b8b8b 0%,#6a6a6a 50%,#5e5e5e 51%,#717171 100%); 
+    background: -ms-linear-gradient(top,  #8b8b8b 0%,#6a6a6a 50%,#5e5e5e 51%,#717171 100%); 
+    background: linear-gradient(to bottom,  #8b8b8b 0%,#6a6a6a 50%,#5e5e5e 51%,#717171 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8b8b8b', endColorstr='#717171',GradientType=0 ); 
+}
+
+.menu {
+    width:85%;
+    display:table;
+    table-layout:fixed;
+    float:left;
+    transition:all .5s ease;
+}
+
+.menu li {
+    display:table-cell;
+    overflow:hidden;
+    width:100%;
+    border-right:1px solid #5c5c5c;
+    border-left:1px solid rgba(255,255,255,.2);
+}
+
+.menu li:first-child {
+    border-left:none;
+}
+
+.menu li:first-child:hover {
+    border-left:none;
+}
+
+.menu li a {
+    color:#fff;
+    display:block;
+    font-family:"Myriad Pro";
+    font-size:14px;
+    padding:10px 0;
+    text-align:center;
+    text-decoration:none;
+    text-shadow:1px 1px 0px rgba(0,0,0,.3);
+}
+
+.menu li:hover {
+    background:rgba(0,0,0,.3);
+    border-right:1px solid transparent;
+    border-left:1px solid transparent;
+    border-bottom:none;
+}
+
+.menu li:active {
+    background:rgba(0,0,0,.3);
+    box-shadow:inset 0px 3px 2px rgba(0,0,0,1);
+}
+
+.search_bar {
+    width:15%;
+    float:left;
+    padding:7px 10px;
+    box-sizing:border-box;
+    position: relative;
+    transition:all .5s ease;
+}
+
+.search_bar input {
+    width:100%;
+    height:auto;
+    border-radius:50px;
+    border:none;
+    border-bottom:1px solid #858585;
+    padding:0px 10px 0px 25px;
+    box-sizing:border-box;
+    height:22px;
+
+    box-shadow:inset 0px 1px 3px rgba(0,0,0,.7);
+
+    background: #7e7e7e; 
+    background: -moz-linear-gradient(top,  #7e7e7e 0%, #797979 50%, #6e6e6e 51%, #767676 100%); 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7e7e7e), color-stop(50%,#797979), color-stop(51%,#6e6e6e), color-stop(100%,#767676)); 
+    background: -webkit-linear-gradient(top,  #7e7e7e 0%,#797979 50%,#6e6e6e 51%,#767676 100%); 
+    background: -o-linear-gradient(top,  #7e7e7e 0%,#797979 50%,#6e6e6e 51%,#767676 100%); 
+    background: -ms-linear-gradient(top,  #7e7e7e 0%,#797979 50%,#6e6e6e 51%,#767676 100%); 
+    background: linear-gradient(to bottom,  #7e7e7e 0%,#797979 50%,#6e6e6e 51%,#767676 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7e7e7e', endColorstr='#767676',GradientType=0 ); 
+}
+
+.search_bar input:focus {
+    background:#fff;
+    box-shadow:none;
+}
+
+.icon-house {
+    display:block;
+    position:relative;
+    top:2px;
+}
+
+.icon-search {
+    position:absolute;
+    bottom:10px;
+    left:15px;
+    color:#fff;
+    text-decoration:none;
+}
+*/

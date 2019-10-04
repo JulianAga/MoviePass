@@ -1,0 +1,143 @@
+<?php
+
+require('Vistas/header.php');
+require_once('Repository/PostsRepository.php');
+require_once('Modelos/cine.php');
+
+use Repository\PostsRepository as PostsRepository;
+use modelos\Cine as Cine;
+
+    ?>
+
+<html>
+    <body>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <main class="p-5">
+        <div class="container position-relative align-middle">
+
+        
+        <h1 style="background-color: rgba(52, 189, 235,.7)">CINEMAS</h1>
+            
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Cine</th>
+                            <th>Direccion</th>
+                            <th>Capacidad</th>
+                            <th>Valor de entrada</th>
+                            <th>Agregar Pelicula</th>
+                            <th>Agregar Funcion</th>
+                            <th>Eliminar</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                               $cines = new PostsRepository();
+                            //$categories = new CategoriesRepository();
+                            $productsArray = $cines->getAll(); ?>
+
+                                <?php foreach ($productsArray as $key => $value)
+                                {
+                                $Cine = $value;
+                                    ?>
+
+
+                            <tr>
+                            <td><input type="checkbox" name="userschecked[]" /></td>
+                                <td><?php  echo $Cine->getID(); ?></td>
+                                    
+                                <td><?php  echo $Cine->getNombre(); ?></td>
+                                <td><?php  echo $Cine->getDireccion(); ?></td>
+                                <td><?php  echo $Cine->getCapacidad(); ?></td>
+                                <!--       <td><?php // echo $Post->getDate(); ?></td> -->
+                                <td><?php  echo $Cine->getValor_entrada(); ?></td>
+                                <td><button class="btn btn-dark">+</button></td>
+                                <td><button class="btn btn-dark">+</button></td>
+                                <td><button class="btn btn-dark">-</button></td>
+
+                                
+                            </tr>
+                                <?php } ?>
+
+                    </tbody>
+                </table>
+                </div>
+            </form>
+            </div>
+
+            <!-- Esto como si no existiera -->
+            <?php if(isset($successMje) || isset($errorMje)) { ?>
+                <div class="alert <?php if(isset($successMje)) echo 'alert-success'; else echo 'alert-danger'; ?> alert-dismissible fade show mt-3" role="alert">
+                    <strong><?php if(isset($successMje)) echo $successMje; else echo $errorMje; ?></strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php } ?>
+        </div>
+    </main>
+
+    <!--
+        CREATE POSTS
+    -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Añadir cine</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Añadir cine</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form method="post" action="publish.php">
+                     <div class="form-group">
+                        <label>Id del Cine</label>
+                        <input type="text" class="form-control" name="ID" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nombre del Cine</label>
+                        <input type="text" class="form-control" name="cine" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Direccion</label>
+                        <input type="text" class="form-control" name="direccion" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Valor de Entrada</label>
+                        <input type="number" class="form-control" name="valor" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Capacidad</label>
+                        <input type="number" class="form-control" name="capacidad" required>
+                    </div>
+      
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-dark">Publicar</button>
+                    </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>
+    <?php //require(ROOT . "Vistas/footer.php"); ?>  

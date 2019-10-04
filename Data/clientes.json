@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "nombre": "leo@leo",
+        "apellido": "leo",
+        "telefono": "adm",
+        "direccion": "leo",
+        "ciudad": "adm",
+        "numeroTarjeta": "adm"
+    },
+    {
+        "id": null,
+        "nombre": "leo",
+        "apellido": "ami",
+        "telefono": "473",
+        "direccion": "palma",
+        "ciudad": "mdq",
+        "numeroTarjeta": 1234
+    }
+]
