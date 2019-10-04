@@ -125,7 +125,7 @@
 			
 			try 
 			{
-				$buscado=$this->DAOCuentas->buscarPorNombre($email);//busco si existe el email en BD
+				$buscado=$this->RepositoryCuentas->GetByEmail($email);//busco si existe el email en BD
 		    } 
 		    catch (Exception $e) 
 		    {
@@ -135,7 +135,7 @@
 			if ($buscado == null)
 			{//entra si el email buscado en BD no existe
 
-				$cliente = new \Modelos\Cliente($nombre, $apellido, $domicilio, $telefono);//creo el cliente
+				$cliente = new \Models\Cliente($nombre, $apellido, $domicilio, $telefono);//creo el cliente
 				try 
 				{
 					$clienteConID = $this->DAOCuentas->insertarDevolverID($cliente);// le paso un cliente sin id, lo guarda en BD y me devuelve el cliente con ID
@@ -147,7 +147,7 @@
 				
 				if ($pass1 == $pass2)//verifico que coincidan las pass
 				{
-					$cuentaNueva = new \Modelos\Cuenta($email, $pass1, $rol, $clienteConID->getId() );//creo la cuenta con el ID del cliente
+					$cuentaNueva = new \Models\Cuenta($email, $pass1, $rol, $clienteConID->getId() );//creo la cuenta con el ID del cliente
 					try 
 					{
 						$this->DAOCuentas->insertarCuenta($cuentaNueva);//agrego la cuenta completa a la BD
