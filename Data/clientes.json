@@ -1,12 +1,12 @@
 [
     {
-        "id": 1,
+        "id": null,
         "nombre": "leo@leo",
         "apellido": "leo",
         "telefono": "adm",
         "direccion": "leo",
         "ciudad": "adm",
-        "numeroTarjeta": "adm"
+        "numeroTarjeta": null
     },
     {
         "id": null,
@@ -15,6 +15,51 @@
         "telefono": "473",
         "direccion": "palma",
         "ciudad": "mdq",
-        "numeroTarjeta": 1234
+        "numeroTarjeta": null
+    },
+    {
+        "id": null,
+        "nombre": "leonardo",
+        "apellido": "amigorena",
+        "telefono": "4733333",
+        "direccion": "rofo",
+        "ciudad": "necochea",
+        "numeroTarjeta": null
+    },
+    {
+        "id": null,
+        "nombre": "nio",
+        "apellido": "asd",
+        "telefono": "asd",
+        "direccion": "asd",
+        "ciudad": "asd",
+        "numeroTarjeta": null
+    },
+    {
+        "id": null,
+        "nombre": "nio",
+        "apellido": "asd",
+        "telefono": "asd",
+        "direccion": "asd",
+        "ciudad": "asd",
+        "numeroTarjeta": null
+    },
+    {
+        "id": null,
+        "nombre": "nio",
+        "apellido": "asd",
+        "telefono": "asd",
+        "direccion": "asd",
+        "ciudad": "asd",
+        "numeroTarjeta": null
+    },
+    {
+        "id": 6,
+        "nombre": "nio",
+        "apellido": "asd",
+        "telefono": "asd",
+        "direccion": "asd",
+        "ciudad": "asd",
+        "numeroTarjeta": null
     }
 ]

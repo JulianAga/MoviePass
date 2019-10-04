@@ -10,12 +10,14 @@
 	{
 		
 		private $RepositoryCuentas;
+		private $RepositoryClientes;
 		
 
 		public function __construct()
 		{			
 			
 			$this->RepositoryCuentas= new AccountRepository();
+			$this->RepositoryClientes= new ClientRepository();
 			
 		}	
 
@@ -117,12 +119,9 @@
 
 		}//fin crear session**********
 
-		public function nuevo($nombre, $apellido, $domicilio,  $telefono, $email, $pass1, $pass2) 
+		public function nuevo($nombre, $apellido, $telefono,$direccion,$ciudad, $email, $pass1, $pass2) 
 		{	
 
-			var_dump("llego a nuevo");	
-			$rol='cliente';
-			
 			try 
 			{
 				$buscado=$this->RepositoryCuentas->GetByEmail($email);//busco si existe el email en BD
@@ -135,10 +134,11 @@
 			if ($buscado == null)
 			{//entra si el email buscado en BD no existe
 
-				$cliente = new \Models\Cliente($nombre, $apellido, $domicilio, $telefono);//creo el cliente
+				$cliente = new Cliente ($nombre, $apellido,$telefono, $direccion,$ciudad );//creo el cliente
+
 				try 
 				{
-					$clienteConID = $this->DAOCuentas->insertarDevolverID($cliente);// le paso un cliente sin id, lo guarda en BD y me devuelve el cliente con ID
+					$clientID = $this->RepositoryClientes->saveClienteReturnID($cliente);// le paso un cliente sin id, lo guarda en json y me devuelve el cliente con ID
 			    }
 			    catch (Exception $e) 
 			    {
@@ -147,10 +147,10 @@
 				
 				if ($pass1 == $pass2)//verifico que coincidan las pass
 				{
-					$cuentaNueva = new \Models\Cuenta($email, $pass1, $rol, $clienteConID->getId() );//creo la cuenta con el ID del cliente
+					$nuevaCuenta= new Cuenta($email,$pass1,User,$clientID);//creo la cuenta con el ID del cliente
 					try 
 					{
-						$this->DAOCuentas->insertarCuenta($cuentaNueva);//agrego la cuenta completa a la BD
+						$this->RepositoryCuentas->Add($nuevaCuenta);//agrego la cuenta completa a la BD
 						echo "<script> if(alert('Usuario Registrado !'));</script>";
 				    } 
 				    catch (Exception $e) 

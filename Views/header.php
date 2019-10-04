@@ -91,13 +91,28 @@
             <form action="<?= ROOT_VIEW ?>/Login/nuevo" method="post">
               <p class="hint-text">Completá con tus datos y registrate!</p>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="E-mail" required="required">
+                <input type="text" class="form-control" placeholder="Nombre" name="nombre" required="required">
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" placeholder="Contraseña" required="required">
+                <input type="text" class="form-control" placeholder="Apellido" name="apellido" required="required">
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" placeholder="Confirmar Contraseña" required="required">
+                <input type="text" class="form-control" placeholder="Telefono" name="telefono"required="required">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Dirección" name="direccion"required="required">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Ciudad" name="ciudad" required="required">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="E-mail" name="email" required="required">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Contraseña" name="pass1"required="required">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Confirmar Contraseña" name="pass2"required="required">
               </div>
               <div class="form-group">
                 <label class="checkbox-inline"><input type="checkbox" required="required">Acepto los <a href="#">Terminos y Condiciones</a></label>

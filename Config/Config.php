@@ -1,5 +1,7 @@
 <?php namespace Config;
 
+define("ADM", "Admin");
+define("User", "User");
 define("ROOT", dirname(__DIR__) . "/");
 //Path to your project's root folder
 define("FRONT_ROOT", "/ExerciseOne/");

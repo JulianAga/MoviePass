@@ -10,13 +10,19 @@ class ClientRepository implements IClientRepository{
 
     private $clientList = array();
 
+
+
+
+
+//***********METODOS*************
     public function GetAll()
     {
         $this->RetrieveData();
 
         return $this->clientList;
     }
-
+    //
+    //
     public function GetById($id)
     {
         $this->RetrieveData();
@@ -24,7 +30,8 @@ class ClientRepository implements IClientRepository{
         
         if(!empty($this->clientList)){
             foreach($this->clientList as $client){
-                if($client->getId() == $id){
+                if($client->getId() == $id)
+                {
                     $clientFounded = $client;
                 }
             }
@@ -35,7 +42,10 @@ class ClientRepository implements IClientRepository{
 
         return $clientFounded;
     }
-
+    //
+    //
+    //
+    //
     public function Add(Cliente $newClient)
     {
         
@@ -45,7 +55,7 @@ class ClientRepository implements IClientRepository{
 
         $this->SaveData();
     }
-
+    //
     //Json Persistence
     private function SaveData()
     {
@@ -68,7 +78,8 @@ class ClientRepository implements IClientRepository{
         
         file_put_contents('Data/clientes.json', $jsonContent);
     }
-
+    //
+    //
     private function RetrieveData()
     {
         $this->clientList = array();
@@ -92,7 +103,8 @@ class ClientRepository implements IClientRepository{
             echo 'no encuentra json';
         }
     }
-
+    //
+    //
     public function returnArray($id)
     {
         $client=$this->GetById($id);
@@ -107,7 +119,26 @@ class ClientRepository implements IClientRepository{
         
         return $clientArray;
     }
+    //
+    //
+    public function saveClienteReturnID($client)
+    {
+        var_dump("cliente"); 
+        var_dump($client->GetNombre() ); 
+        $arrayClient=$this->GetAll();//obtengo lista de todos los clientes
+             
+        $idClient=array_key_last($arrayClient);//busco la ultima posicion del array  para el ID del cliente
+        $idClient++;//sumo 1 para qe el id no pise el ultimo cliente guardado
+        
 
+        $client->setId($idClient);//asigno el ID al cliente.ACA ESTA EL PROBLEMA Q NO GUARDA EL ID
+
+        
+        $this->Add($client);//guardo el Cliente con su ID
+        
+        return $idClient;
+    
+    }//fin saveClienteReturnID
 
     /*public function arrayConvertido($client)
     {
