@@ -1,5 +1,16 @@
 <?php namespace Views
 
+
+  
+
+?>
+<?php
+
+if( isset($_SESSION['Login'])){
+  $cuenta_logueada=$_SESSION['Login'];
+  $cuenta_logueada->getEmail();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -9,13 +20,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title></title>
+
 <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="Views/css/header2.css"><!-- ARCHIVO CSS-->
+<link rel="stylesheet" href="/ExerciseOne/Views/css/header2.css"><!-- ARCHIVO CSS-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 
 
 
@@ -57,6 +71,7 @@
       </div>
     </form>
     <ul class="nav navbar-nav navbar-right ml-auto">
+     <?php  if( !isset($_SESSION['Login']) ) {  ?> 
     <!-- BOTON INICIAR SESION-->    
       <li class="nav-item">
         <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Iniciar Sesion</a>
@@ -122,11 +137,68 @@
           </li>
         </ul>
       </li>
+       <?php  } ?> 
+
+       <?php   if( isset($_SESSION['Login']) ) {  ?> 
+      
+        <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user barra"></span> 
+                        <strong></strong>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                    <ul class="dropdown-menu form-wrapper">
+                        <li>
+                            <div class="navbar-login">
+                                <div>
+                                    <div>
+                                        <p class="text-center">
+                                            <span class="glyphicon glyphicon-user barra"></span>
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="text-center"><strong><h4>Nombre Apellido</h4></strong></p>
+                                        <p class="text-left"> <?php echo $cuenta_logueada->getEmail(); ?></p>
+                                        <p>
+                                            <input type="submit" class="btn btn-primary btn-block" value="Mi Cuenta">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="navbar-login navbar-login-session">
+                                <div>
+                                  <form action="<?= ROOT_VIEW ?>/Login/cerrarSesion" method="post">
+                                    <div>
+                                        <p>
+                                            <input type="submit" class="btn btn-danger btn-block" value="Cerrar Sesion">
+                                        </p>
+                                    </div>
+                                  </form> 
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+    <?php  } ?> 
     </ul>
+        
+      
+      
   </div>
 </nav>
 </body>
-
+<!-- CSS -->
+<style>
+  .glyphicon .glyphicon-user{
+            font-size:35px;
+  }
+  
+</style>
 <!-- JS-->
 <script type="text/javascript">
   // Prevent dropdown menu from closing when click inside the form

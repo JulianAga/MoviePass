@@ -2,7 +2,7 @@
 
 require_once('Repository/IRepository.php');
     use Repository\IRepository as IRepository;
-    use modelos\Cine as Cine;
+    use models\Cine as Cine;
 
     class PostsRepository implements IRepository
     {
