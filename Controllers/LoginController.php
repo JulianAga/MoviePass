@@ -25,28 +25,39 @@
 
 		public function index()
 		{
+			
 			if(isset($_SESSION['Login']))//Si hay session:
 			{
-				if($_SESSION['Login']->getRol()=="adm")//SI ES ADMIN LO LLEVA A SU PAG (falta configurar esto)
+				
+
+				if($_SESSION['Login']->getRol()=="ADM")//SI ES ADMIN LO LLEVA A SU PAG (falta configurar esto)
 				{
 					//lo lleva al home ADM
+					
+					require(ROOT . '/Views/Adm/home_adm.php');//no esta hecho aun
+					
 				}
-				if($_SESSION['Login']->getRol()=="cliente")// SI ES CLIENTE AL HOME DE CLIENTE (falta configurar esto)
+				if($_SESSION['Login']->getRol()=="User")// SI ES CLIENTE AL HOME DE CLIENTE (falta configurar esto)
 				{
 					
 					//lo lleva al home CLIENTE
+					
+					require(ROOT . '/Views/User/home_usuario.php');
+					
 				}
 			}
 
 			else
 			{
-				require_once(ROOT . '/Views/home.php');//SI NO HAY SESSION LO LLEVA A HOME (como no hay ninguna session lo lleva al home.php como anonimo)
+				
+				require(ROOT . '/Views/home.php');//SI NO HAY SESSION LO LLEVA A HOME (como no hay ninguna session lo lleva al home.php como anonimo)
 			}
 		}//fin index-------
 
 		public function verificarSesion($emailBuscado, $passLogin) //recibo el mail y la contraseña del login
 		{
 			//session_start();
+			
 			
 			if(	!isset($_SESSION['Login']) )//entra si la sesion Login NO existe			
 			{	
@@ -93,8 +104,9 @@
 
 		public function crearSesion($cuenta)
 		{	
-										
-			$_SESSION['Login']=$cuenta;//guardo el objeto CUENTA logueada en la session			
+			//session_start();		
+			$_SESSION['Login']=$cuenta;//guardo el objeto CUENTA logueada en la session	
+
 			echo '<script language="javascript">alert("Bienvenido '.$cuenta->getEmail(). '!");</script>';
 			$this->index();
 
@@ -103,7 +115,10 @@
 
 		public function cerrarSesion()
 		{	
-			session_start();
+			
+			
+			
+			//session_start();
 			
 			if (isset($_SESSION['Login']) )//entra si existe la session
 			{	

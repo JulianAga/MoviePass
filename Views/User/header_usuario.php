@@ -1,5 +1,6 @@
 <?php namespace Usuario
 
+  //$cuentaLogueada = $_SESSION['Login'] ;
 ?>
 
 <!DOCTYPE html>
@@ -17,15 +18,16 @@
 <link rel="stylesheet" href="../../Views/css/header2.css"><!-- ARCHIVO CSS-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
  
 
- <!-- Bootstrap CSS -->
+ <!-- Bootstrap logout CSS -->
+
+
  <!-- Bootstrap CSS -->
   
- 
- 
-    
-    
 </head>
 <body>
   <nav class="navbar navbar-default navbar-expand-lg navbar-light">
@@ -63,58 +65,37 @@
         <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
       </div>
     </form>
-    <ul class="nav navbar-nav navbar-right ml-auto">
-    <!-- BOTON INICIAR SESION-->    
+    
+    
+    <ul class="nav navbar-nav navbar-right ml-auto"> <!--inicio boton cuenta logueada -->
+    <!-- BOTON cuenta logueada  -->
       <li class="nav-item">
-        <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Iniciar Sesion</a>
+      </li>
+       <!-- BOTON Usuario LOGUEADO -->
+       <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-user"></span> 
+            <strong>Usuario</strong>
+          <span class="glyphicon glyphicon-chevron-down"></span>
+        </a>
+        <!-- menu desplegable -->
         <ul class="dropdown-menu form-wrapper">         
           <li>
-            <form action="/examples/actions/confirmation.php" method="post">
-              <p class="hint-text">Logueate con tu red social:</p>
-              <div class="form-group social-btn clearfix">
-                <a href="#" class="btn btn-primary pull-left"><i class="fa fa-facebook"></i> Facebook</a>
-                <a href="#" class="btn btn-info pull-right"><i class="fa fa-twitter"></i> Twitter</a>
-              </div>
-              <div class="or-seperator"><b>o</b></div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="E-mail" required="required">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" placeholder="Contraseña" required="required">
-              </div>
-              <input type="submit" class="btn btn-primary btn-block" value="Iniciar Sesion">
-              <div class="form-footer">
-                <a href="#">Olvidaste tu Contraseña?</a>
-              </div>
+            <p class="hint-text"><strong> usuario@gmail.com</strong></p>
+            <br>
+            <form action="<?= ROOT_VIEW ?>/Login/" method="post"><!-- FALTA FUNCIONALIDAD-->
+              <input type="submit" class="btn btn-primary btn-block" value="Mi Cuenta">
+            </form>
+            <div class="or-seperator"></div>
+            <br>
+            <form action="<?= ROOT_VIEW ?>/Login/cerrarSesion" method="post">
+              <input type="submit" class="btn btn-danger btn-block" value="Cerrar Sesion">
             </form>
           </li>
         </ul>
       </li>
-      <!-- BOTON REGISTRAR-->
-      <li class="nav-item">
-        <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle get-started-btn mt-1 mb-1">Registrate</a>
-        <ul class="dropdown-menu form-wrapper">         
-          <li>
-            <form action="/examples/actions/confirmation.php" method="post">
-              <p class="hint-text">Completá con tus datos y registrate!</p>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="E-mail" required="required">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" placeholder="Contraseña" required="required">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" placeholder="Confirmar Contraseña" required="required">
-              </div>
-              <div class="form-group">
-                <label class="checkbox-inline"><input type="checkbox" required="required">Acepto los <a href="#">Terminos y Condiciones</a></label>
-              </div>
-              <input type="submit" class="btn btn-primary btn-block" value="Registrarme">
-            </form>
-          </li>
-        </ul>
-      </li>
-    </ul>
+    </ul> <!-- fin botones login register-->
+    
   </div>
 </nav>
    

@@ -230,9 +230,6 @@ body{
         .navbar .nav .btn-primary, .navbar .nav .btn-primary:active {
             display: block;
         }
-        .glyphicon .glyphicon-user {
-            font-size: 1000px;
-        }
     }
 
 

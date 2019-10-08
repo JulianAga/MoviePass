@@ -1,8 +1,8 @@
-<?php namespace Views;
+<?php namespace User;
 
 
-include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
-include_once "api/api_now.php";// incluyo la API de peliculas actuales en cartelera
+require ( CONFIG_API_PATH."API_tmdb.php");//llamado a la configuracion API the movie DB
+require (API_PATH."api_now.php");// incluyo la API de peliculas actuales en cartelera
 
 ?>
 <!DOCTYPE html>
@@ -18,16 +18,21 @@ include_once "api/api_now.php";// incluyo la API de peliculas actuales en cartel
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="Views/js/main.js"></script>
   <script src="Views/js/busqueda.js"></script>
-  <link rel="stylesheet" href="<?= CSS_PATH ?>header2.css"><!-- ARCHIVO CSS-->
+  <link rel="stylesheet" href="/ExerciseOne/Views/css/header2.css"><!-- ARCHIVO CSS-->
 
 <title>MoviePass</title>
 
   
-  <?php include_once(VIEWS_PATH."header.php"); ?>
+  
 </head>
 
-
 <body class="body_parallax"> <!-- fondo_body/body_parallax es una clase css donbde esta el archivo de la imagen de fondo y otras configuraciones del fondo, esta al final de home.php en la secion de <style>-->
+  
+    
+<header>
+  <?php include_once(VIEWS_PATH."header.php"); ?> <!-- llamado a la barra nav de home-->
+</header>
+
 
 <br> <!-- espacios en blanco -->
 <br>
@@ -87,11 +92,6 @@ include_once "api/api_now.php";// incluyo la API de peliculas actuales en cartel
   <!-- FIN Cartelera  --> 
 
   
-<footer>
-  
-</footer>
-
-
 
   <!-- <?php //require(ROOT . "Vistas/footer.php"); ?> --> <!-- incluyo el archivo footer  PROVISORIO SIN FOOTER--> 
 
@@ -175,8 +175,12 @@ include_once "api/api_now.php";// incluyo la API de peliculas actuales en cartel
  
 
       <!-- JavaScript -->
-    
-  
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!--
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    -->
    
 
 

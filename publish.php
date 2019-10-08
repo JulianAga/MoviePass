@@ -1,5 +1,5 @@
 <?php
-require_once("Modelos/cine.php");
+require_once("Models/cine.php");
 require_once("Repository/PostsRepository.php");
 
 use modelos\Cine as Cine;

@@ -9,57 +9,12 @@
         "numeroTarjeta": null
     },
     {
-        "id": null,
-        "nombre": "leo",
-        "apellido": "ami",
-        "telefono": "473",
-        "direccion": "palma",
-        "ciudad": "mdq",
-        "numeroTarjeta": null
-    },
-    {
-        "id": null,
-        "nombre": "leonardo",
-        "apellido": "amigorena",
-        "telefono": "4733333",
-        "direccion": "rofo",
-        "ciudad": "necochea",
-        "numeroTarjeta": null
-    },
-    {
-        "id": null,
-        "nombre": "nio",
-        "apellido": "asd",
-        "telefono": "asd",
-        "direccion": "asd",
-        "ciudad": "asd",
-        "numeroTarjeta": null
-    },
-    {
-        "id": null,
-        "nombre": "nio",
-        "apellido": "asd",
-        "telefono": "asd",
-        "direccion": "asd",
-        "ciudad": "asd",
-        "numeroTarjeta": null
-    },
-    {
-        "id": null,
-        "nombre": "nio",
-        "apellido": "asd",
-        "telefono": "asd",
-        "direccion": "asd",
-        "ciudad": "asd",
-        "numeroTarjeta": null
-    },
-    {
-        "id": 6,
-        "nombre": "nio",
-        "apellido": "asd",
-        "telefono": "asd",
-        "direccion": "asd",
-        "ciudad": "asd",
+        "id": 2,
+        "nombre": "nicolas",
+        "apellido": "vezzali dussio",
+        "telefono": "223544321",
+        "direccion": "santiago 6000",
+        "ciudad": "mar del plata",
         "numeroTarjeta": null
     }
 ]

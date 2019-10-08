@@ -7,7 +7,9 @@ define("ROOT", dirname(__DIR__) . "/");
 define("FRONT_ROOT", "/ExerciseOne/");
 define('ROOT_VIEW', '/ExerciseOne');
 define("VIEWS_PATH", "Views/");
-define("CSS_PATH", FRONT_ROOT.VIEWS_PATH . "layout/styles/");
+define("API_PATH", "Api/");
+define("CONFIG_API_PATH", "Config/");
+define("CSS_PATH", "/ExerciseOne/Views/css/");
 define("JS_PATH", FRONT_ROOT.VIEWS_PATH . "js/");
 define("IMG_PATH", VIEWS_PATH . "img/");
 ?>
