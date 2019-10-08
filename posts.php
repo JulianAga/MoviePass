@@ -1,11 +1,11 @@
 <?php
 
-require('Vistas/header.php');
+require('Views/header.php');
 require_once('Repository/PostsRepository.php');
-require_once('Modelos/cine.php');
+require_once('Models/cine.php');
 
 use Repository\PostsRepository as PostsRepository;
-use modelos\Cine as Cine;
+use models\Cine as Cine;
 
     ?>
 
