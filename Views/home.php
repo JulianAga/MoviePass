@@ -42,6 +42,36 @@ include_once "api/api_now.php";// incluyo la API de peliculas actuales en cartel
       <br>
       <div class="row">
         <?php
+        //////////   agregado por leo
+        
+
+        use Repository\DAOGenres as DAOGenres;
+        $daoGenres=new DAOGenres();           //crea un objeto de dao genres
+
+        $genresArray=$daoGenres->GetAll();    //carga en la variable la lista con los generos (ESTO NO CREO QUE VAYA ACA PERO NI IDEA DONDE TIENE QUE IR)
+        //////////
+      
+      ?>
+      
+      <!--
+          Recorre la lista de generos y los pone como opcion dentro del select
+          y los manda como post a esta misma pagina (tampoco se si esta bien)
+      -->
+      <div>
+        <form method="post" action="" name="genreSearch">
+            <label>Genero</label>
+            <select name="genre">
+            <option value="" selected disabled hidden>Choose here</option>
+                <?php
+                foreach($genresArray as $g){?>
+                <option value="<?php echo $g->getId();?>"><?php echo $g->getName();?></option> 
+                <?php } ?>              
+            </select>
+            <input type='submit' name="genreSearch">
+        </form>
+      </div>
+      
+      <?php
         if ($nowplaying !=null)//si no esta null la cartelera que llega desde movie DB, la recorro
         {
         foreach ($nowplaying->results as $p) {?> <!-- recorro la lista de peliculas actuales y las muestro-->
@@ -50,17 +80,38 @@ include_once "api/api_now.php";// incluyo la API de peliculas actuales en cartel
               <form action="<?= ROOT_VIEW ?>/DetallePelicula/verPelicula" method="post" enctype="multipart/form-data"><!-- ENVIO FORMULARIO CON EL ID DE LA PELICULA PARA VERLA EN DETALLE-->
 
                 <?php
-                  echo '
-                  <li class="li_borde_trasparente">
-                  <a style="color:white;" href="movie.php?id=' . $p->id . '"> 
-                  <img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive" style="width:100%" alt="Image " >
-                     <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
-                     </h3>
-                  </a>
-                  <h5 ><em>Calificacion : " . $p->vote_average . " |  Votos: " . $p->vote_count . "</em>
-                  </h5>
-                  
-                  </li>"; 
+                   if($_POST && isset($_POST["genre"])) // si se mando como post un genero del select
+                   {
+                     
+                     if(in_array($_POST["genre"],$p->genre_ids)) //verifica que la pelicula sea de el genero elegido
+                     {
+                       echo '
+                       <li class="li_borde_trasparente">
+                       <a style="color:white;" href="movie.php?id=' . $p->id . '"> 
+                       <img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive" style="width:100%" alt="Image " >
+                         <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
+                         </h3>
+                       </a>
+                       <h5 ><em>Calificacion : " . $p->vote_average . " |  Votos: " . $p->vote_count . "</em>
+                       </h5>
+                       
+                       </li>"; 
+                     }
+                   }
+                   else //si no hay post muestra todas las peliculas (no se tendria q repetir el codigo pero no se como hacerlo)
+                   {
+                     echo '
+                     <li class="li_borde_trasparente">
+                     <a style="color:white;" href="movie.php?id=' . $p->id . '"> 
+                     <img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive" style="width:100%" alt="Image " >
+                       <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
+                       </h3>
+                     </a>
+                     <h5 ><em>Calificacion : " . $p->vote_average . " |  Votos: " . $p->vote_count . "</em>
+                     </h5>
+                     
+                     </li>";
+                   }
                 ?> 
                 <div class="form-group">
                   
