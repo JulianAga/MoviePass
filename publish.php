@@ -2,7 +2,7 @@
 require_once("Models/cine.php");
 require_once("Repository/PostsRepository.php");
 
-use models\Cine as Cine;
+use modelos\Cine as Cine;
 use Repository\PostsRepository as PostsRepository;
 
 
@@ -19,7 +19,7 @@ if($_POST){
     $repository = new PostsRepository();
 	$repository->add($newProd);
     echo "<script> alert('Cine agregado satisfactoriamente!');";
-    echo "window.location = 'Views/Adm/home_adm.php'; </script>";
+    echo "window.location = 'posts.php'; </script>";
     $successMje =  "Cine agregado satisfactoriamente!";
 }
 

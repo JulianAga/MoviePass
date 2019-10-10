@@ -113,7 +113,7 @@ use models\Cine as Cine;
         </button>
       </div>
       <div class="modal-body">
-      <form method="post" action="<?= ROOT_VIEW ?>/publish">
+      <form method="post" action="publish.php">
                      <div class="form-group">
                         <label>Id del Cine</label>
                         <input type="text" class="form-control" name="ID" required>
@@ -145,7 +145,7 @@ use models\Cine as Cine;
                 <div class="modal-footer">
                     <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-dark">Publicar</button>
-        </form>
+                    </form>
       </div>
     </div>
   </div>
