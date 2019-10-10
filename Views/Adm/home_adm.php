@@ -1,5 +1,6 @@
 
-<?php namespace Adm;
+<?php 
+
 
 use Repository\PostsRepository as PostsRepository;
 use models\Cine as Cine;
