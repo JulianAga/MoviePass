@@ -60,6 +60,8 @@ use models\Cine as Cine;
                                 <?php foreach ($productsArray as $key => $value)
                                 {
                                 $Cine = $value;
+                                if($Cine->getHabilitado() == true)
+                                {
                                     ?>
 
 
@@ -74,11 +76,11 @@ use models\Cine as Cine;
                                 <td><?php  echo $Cine->getValor_entrada(); ?></td>
                                 <td><button class="btn btn-dark">+</button></td>
                                 <td><button class="btn btn-dark">+</button></td>
-                                <td><button class="btn btn-dark">-</button></td>
+                                <td><form action="<?= ROOT_VIEW ?>/delete" method="post"><button class="btn btn-dark" name="eliminar" value="<?php echo $Cine->getID();?>">-</button></form></td>
 
                                 
                             </tr>
-                                <?php } ?>
+                                <?php }} ?>
 
                     </tbody>
                 </table>

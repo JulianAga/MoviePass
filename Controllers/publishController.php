@@ -14,6 +14,7 @@ if($_POST){
    $newProd->setValor_entrada($_POST['valor']);
     //$newProd->setDate($_POST['date']);
     $newProd->setCapacidad($_POST['capacidad']);
+    $newProd->setHabilitado(true);
 
    
     $repository = new PostsRepository();

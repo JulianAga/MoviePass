@@ -7,13 +7,15 @@ class Cine {
     private $direccion;
     private $capacidad;
     private $valor_entrada;
+    private $habilitado;
 
-    function __construct (/*$ID ,$nombre, $direccion, $capacidad, $valor_entrada*/){
+    function __construct (){
         /*$this->ID = $ID;
         $this->nombre = $nombre;
         $this->direccion = $direccion;
         $this->capacidad = $capacidad;
         $this->valor_entrada = $valor_entrada;*/
+        //$this->habilitado = true;
     }
 
     public function getID (){
@@ -54,5 +56,14 @@ class Cine {
 
     public function setValor_entrada($valor_entrada){
         $this->valor_entrada = $valor_entrada;
+    }
+    public function getHabilitado()
+    {
+        return $this->habilitado;
+    }
+    
+    public function setHabilitado($habilitado)
+    {
+        $this->habilitado = $habilitado;
     }
 }

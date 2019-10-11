@@ -32,7 +32,23 @@ require_once('Repository/IRepository.php');
             $this->saveData();
         }
 
-        private function SaveData()
+        public function disable($id)
+        {
+            $this->RetrieveData();
+            for ($i=0; $i < count($this->postsList); $i++) { 
+                # code...
+                if($this->postsList[$i]->getId() == $id){
+                    $this->postsList[$i]->setHabilitado(false);
+                    }
+
+                }
+                $this->saveData();
+            }
+         //   $newList = array();
+          //  for($this->postsList as $post) {
+               
+
+        private function saveData()
         {
             $arrayToEncode = array();
 
@@ -44,6 +60,7 @@ require_once('Repository/IRepository.php');
                 $valuesArray["category"] = $post->getValor_entrada();
                 /*$valuesArray["date"] = $post->getDate();*/
                 $valuesArray["description"] = $post->getCapacidad();
+                $valuesArray["habilitado"] = $post->getHabilitado();
 
                 array_push($arrayToEncode, $valuesArray);
             }
@@ -72,6 +89,7 @@ require_once('Repository/IRepository.php');
                     $post->setValor_entrada($valuesArray["category"]);
                     /*$post->setDate($valuesArray["date"]);*/
                     $post->setCapacidad($valuesArray["description"]);
+                    $post->setHabilitado($valuesArray["habilitado"]);
 
                     array_push($this->postsList, $post);
                 }
@@ -85,9 +103,10 @@ require_once('Repository/IRepository.php');
             foreach ($this->postsList as $key => $category) {
                 if($category->getID() == $ID) {
                  $flag = true;
+                 $value = $category;
                 }
             }
-            return $flag;
+            return $value;
         }
     
     }
