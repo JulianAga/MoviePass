@@ -15,7 +15,7 @@ use models\Cine as Cine;
 <title></title>
 
 
-<link rel="stylesheet" href="/ExerciseOne/Views/css/header2.css"><!-- ARCHIVO CSS-->
+<link rel="stylesheet" href="/MoviePass/Views/css/header2.css"><!-- ARCHIVO CSS-->
 
 <!-- ESTA LIBRERIA DE BOOSTRAP LA COMENTE PORQE AFECTA A LA BARRA DE NAVEGACION PRINCIPAL
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -115,7 +115,7 @@ use models\Cine as Cine;
         </button>
       </div>
       <div class="modal-body">
-      <form method="post" action="<?= ROOT_VIEW ?>/publish">
+      <form method="post" action="<?= ROOT_VIEW ?>/Publish/newCine">
                      <div class="form-group">
                         <label>Id del Cine</label>
                         <input type="text" class="form-control" name="ID" required>

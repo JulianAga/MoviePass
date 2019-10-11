@@ -9,7 +9,7 @@ define('ROOT_VIEW', '/MoviePass');
 define("VIEWS_PATH", "Views/");
 define("API_PATH", "Api/");
 define("CONFIG_API_PATH", "Config/");
-define("CSS_PATH", "/ExerciseOne/Views/css/");
+define("CSS_PATH", "/MoviePass/Views/css/");
 define("JS_PATH", FRONT_ROOT.VIEWS_PATH . "js/");
 define("IMG_PATH", VIEWS_PATH . "img/");
 ?>

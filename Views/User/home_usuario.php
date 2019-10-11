@@ -18,7 +18,7 @@ require (API_PATH."api_now.php");// incluyo la API de peliculas actuales en cart
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="Views/js/main.js"></script>
   <script src="Views/js/busqueda.js"></script>
-  <link rel="stylesheet" href="/ExerciseOne/Views/css/header2.css"><!-- ARCHIVO CSS-->
+  <link rel="stylesheet" href="/MoviePass/Views/css/header2.css"><!-- ARCHIVO CSS-->
 
 <title>MoviePass</title>
 
