@@ -90,7 +90,7 @@ use models\Cine as Cine;
       <form method="post" action="<?= ROOT_VIEW ?>/Modify/ModifyCine">
                      <div class="form-group">
                         <label>Id del Cine</label>
-                        <input type="text" class="form-control" name="ID" value="<?php echo $Cine->getID();?>" required>
+                        <input type="text" class="form-control" name="ID" value="<?php echo $Cine->getID();?>" disabled>
                     </div>
 
                     <div class="form-group">
