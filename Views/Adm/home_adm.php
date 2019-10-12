@@ -130,28 +130,13 @@ use models\Cine as Cine;
                             </tr>
                                 <?php }} ?>
 
+                                
                     </tbody>
                 </table>
-                </div>
-            </form>
-            </div>
 
-            <!-- Esto como si no existiera -->
-            <?php if(isset($successMje) || isset($errorMje)) { ?>
-                <div class="alert <?php if(isset($successMje)) echo 'alert-success'; else echo 'alert-danger'; ?> alert-dismissible fade show mt-3" role="alert">
-                    <strong><?php if(isset($successMje)) echo $successMje; else echo $errorMje; ?></strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            <?php } ?>
-        </div>
-    </main>
-
-    <!--
-        CREATE POSTS
-    -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Añadir cine</button>
+                           <!--   Boton Añadir Cines   -->
+                
+<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Añadir cine</button>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -200,6 +185,29 @@ use models\Cine as Cine;
     </div>
   </div>
 </div>
+
+                           <!--   Boton Añadir Cines   -->
+                </div>
+            </form>
+            
+            </div>
+
+            <!-- Esto como si no existiera -->
+            <?php if(isset($successMje) || isset($errorMje)) { ?>
+                <div class="alert <?php if(isset($successMje)) echo 'alert-success'; else echo 'alert-danger'; ?> alert-dismissible fade show mt-3" role="alert">
+                    <strong><?php if(isset($successMje)) echo $successMje; else echo $errorMje; ?></strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php } ?>
+        </div>
+        
+    </main>
+
+    <!--
+        CREATE POSTS
+    -->
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
