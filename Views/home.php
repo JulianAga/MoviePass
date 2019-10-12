@@ -4,6 +4,15 @@
 include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
 include_once "api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
+//////////   agregado por leo
+        
+
+        use Repository\DAOGenres as DAOGenres;
+        $daoGenres=new DAOGenres();           //crea un objeto de dao genres
+
+        $genresArray=$daoGenres->GetAll();    //carga en la variable la lista con los generos (ESTO NO CREO QUE VAYA ACA PERO NI IDEA DONDE TIENE QUE IR)
+        //////////
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,42 +49,30 @@ include_once "api/api_now.php";// incluyo la API de peliculas actuales en cartel
           </nav>
       </div>
       <br>
-      <div class="row">
-        <?php
-        //////////   agregado por leo
-        
-
-        use Repository\DAOGenres as DAOGenres;
-        $daoGenres=new DAOGenres();           //crea un objeto de dao genres
-
-        $genresArray=$daoGenres->GetAll();    //carga en la variable la lista con los generos (ESTO NO CREO QUE VAYA ACA PERO NI IDEA DONDE TIENE QUE IR)
-        //////////
-      
-      ?>
-      
       <!--
-          Recorre la lista de generos y los pone como opcion dentro del select
-          y los manda como post a esta misma pagina (tampoco se si esta bien)
-      -->
-      <div>
-        <form method="post" action="" name="genreSearch">
-            <label>Genero</label>
-            <select name="genre">
-            <option value="" selected disabled hidden>Choose here</option>
-                <?php
-                foreach($genresArray as $g){?>
-                <option value="<?php echo $g->getId();?>"><?php echo $g->getName();?></option> 
-                <?php } ?>              
-            </select>
-            <input type='submit' name="genreSearch">
-        </form>
-      </div>
-      
+            Recorre la lista de generos y los pone como opcion dentro del select
+            y los manda como post a esta misma pagina (tampoco se si esta bien)
+        -->
+        <div>
+          <form method="post" action="" name="genreSearch">
+              <label>Genero</label>
+              <select name="genre">
+              <option value="" selected disabled hidden>Choose here</option>
+                  <?php
+                  foreach($genresArray as $g){?>
+                  <option value="<?php echo $g->getId();?>"><?php echo $g->getName();?></option> 
+                  <?php } ?>              
+              </select>
+              <input type='submit' name="genreSearch">
+          </form>
+        </div>
+        <br>
+      <div class="wrapperr">
       <?php
         if ($nowplaying !=null)//si no esta null la cartelera que llega desde movie DB, la recorro
         {
         foreach ($nowplaying->results as $p) {?> <!-- recorro la lista de peliculas actuales y las muestro-->
-          <div class="p-4 align-self-center col-md-3">
+          <div class="align-self-center">
             <div class="card background">
               <form action="<?= ROOT_VIEW ?>/DetallePelicula/verPelicula" method="post" enctype="multipart/form-data"><!-- ENVIO FORMULARIO CON EL ID DE LA PELICULA PARA VERLA EN DETALLE-->
 
@@ -200,6 +197,14 @@ include_once "api/api_now.php";// incluyo la API de peliculas actuales en cartel
         background-repeat:repeat; /* Indicamos que la textura se repetira */
         background-attachment: fixed; /* Establecemos una posicion fija para la textura */
         /* Eliminamos la propiedad de background-size */
+      }
+      .wrapperr { /* le da forma a la cuadricula de peliculas*/
+        display: grid;
+        /*grid-template-columns: 360px 360px 360px;/*360 x3=1080px . para agregar mas dividirlo por la cant deseada*/
+        grid-template-columns: 270px 270px 270px 270px;/*270 x4=1080px . para agregar mas dividirlo por la cant deseada*/
+  
+        grid-gap: 30px 20px;
+  
       }
 
       

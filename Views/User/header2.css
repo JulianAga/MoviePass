@@ -2,6 +2,14 @@
 body{
         font-family: 'Varela Round', sans-serif;
     }
+    .wrapperr {
+        display: grid;
+        /*grid-template-columns: 360px 360px 360px;/*360 x3=1080px . para agregar mas dividirlo por la cant deseada*/
+        grid-template-columns: 270px 270px 270px 270px;/*360 x3=1080px . para agregar mas dividirlo por la cant deseada*/
+  
+        grid-gap: 30px 20px;
+  
+      }
     .form-control {
         box-shadow: none;       
         font-weight: normal;

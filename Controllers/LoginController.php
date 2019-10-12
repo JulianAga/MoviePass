@@ -54,6 +54,8 @@
 			}
 		}//fin index-------
 
+
+
 		public function verificarSesion($emailBuscado, $passLogin) //recibo el mail y la contraseña del login
 		{
 			//session_start();
@@ -130,6 +132,7 @@
 			{
 				echo '<script language="javascript">alert("Ningun usuario logueado!");</script>';
 				$this->index();
+
 			}			
 
 		}//fin crear session**********

@@ -202,4 +202,12 @@ nav
     color:#fff;
     text-decoration:none;
 }
+.wrapperr { /* le da forma a la cuadricula de peliculas*/
+        display: grid;
+        /*grid-template-columns: 360px 360px 360px;/*360 x3=1080px . para agregar mas dividirlo por la cant deseada*/
+        grid-template-columns: 270px 270px 270px 270px;/*270 x4=1080px . para agregar mas dividirlo por la cant deseada*/
+  
+        grid-gap: 30px 20px;
+  
+      }
 */

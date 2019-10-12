@@ -20,6 +20,8 @@ require (API_PATH."api_now.php");// incluyo la API de peliculas actuales en cart
   <script src="Views/js/busqueda.js"></script>
   <link rel="stylesheet" href="/MoviePass/Views/css/header2.css"><!-- ARCHIVO CSS-->
 
+
+
 <title>MoviePass</title>
 
   
@@ -45,27 +47,67 @@ require (API_PATH."api_now.php");// incluyo la API de peliculas actuales en cart
           </nav>
       </div>
       <br>
-      <div class="row">
-        <?php
+      <!--
+            Recorre la lista de generos y los pone como opcion dentro del select
+            y los manda como post a esta misma pagina (tampoco se si esta bien)
+        -->
+        <div>
+          <form method="post" action="" name="genreSearch">
+              <label>Genero</label>
+              <select name="genre">
+              <option value="" selected disabled hidden>Choose here</option>
+                  <?php
+                  foreach($genresArray as $g){?>
+                  <option value="<?php echo $g->getId();?>"><?php echo $g->getName();?></option> 
+                  <?php } ?>              
+              </select>
+              <input type='submit' name="genreSearch">
+          </form>
+        </div>
+      <br>
+      <div class="wrapperr">
+      
+      <?php
         if ($nowplaying !=null)//si no esta null la cartelera que llega desde movie DB, la recorro
         {
         foreach ($nowplaying->results as $p) {?> <!-- recorro la lista de peliculas actuales y las muestro-->
-          <div class="p-4 align-self-center col-md-3">
+          <div class="align-self-center">
             <div class="card background">
               <form action="<?= ROOT_VIEW ?>/DetallePelicula/verPelicula" method="post" enctype="multipart/form-data"><!-- ENVIO FORMULARIO CON EL ID DE LA PELICULA PARA VERLA EN DETALLE-->
 
                 <?php
-                  echo '
-                  <li class="li_borde_trasparente">
-                  <a style="color:white;" href="movie.php?id=' . $p->id . '"> 
-                  <img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive" style="width:100%" alt="Image " >
-                     <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
-                     </h3>
-                  </a>
-                  <h5 ><em>Calificacion : " . $p->vote_average . " |  Votos: " . $p->vote_count . "</em>
-                  </h5>
-                  
-                  </li>"; 
+                   if($_POST && isset($_POST["genre"])) // si se mando como post un genero del select
+                   {
+                     
+                     if(in_array($_POST["genre"],$p->genre_ids)) //verifica que la pelicula sea de el genero elegido
+                     {
+                       echo '
+                       <li class="li_borde_trasparente">
+                       <a style="color:white;" href="movie.php?id=' . $p->id . '"> 
+                       <img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive" style="width:100%" alt="Image " >
+                         <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
+                         </h3>
+                       </a>
+                       <h5 ><em>Calificacion : " . $p->vote_average . " |  Votos: " . $p->vote_count . "</em>
+                       </h5>
+                       
+                       </li>"; 
+                     }
+                   }
+                   else //si no hay post muestra todas las peliculas (no se tendria q repetir el codigo pero no se como hacerlo)
+                   {
+                     echo '
+                     <li class="li_borde_trasparente">
+                     <a style="color:white;" href="movie.php?id=' . $p->id . '"> 
+                     <img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive" style="width:100%" alt="Image " >
+                       <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
+                       </h3>
+                     </a>
+                     <h5 ><em>Calificacion : " . $p->vote_average . " |  Votos: " . $p->vote_count . "</em>
+                     </h5>
+                     
+                     </li>";
+                   }
                 ?> 
                 <div class="form-group">
                   
@@ -150,6 +192,16 @@ require (API_PATH."api_now.php");// incluyo la API de peliculas actuales en cart
         background-attachment: fixed; /* Establecemos una posicion fija para la textura */
         /* Eliminamos la propiedad de background-size */
       }
+      .wrapperr { /* le da forma a la cuadricula de peliculas*/
+        display: grid;
+        /*grid-template-columns: 360px 360px 360px;/*360 x3=1080px . para agregar mas dividirlo por la cant deseada*/
+        grid-template-columns: 270px 270px 270px 270px;/*270 x4=1080px . para agregar mas dividirlo por la cant deseada*/
+  
+        grid-gap: 30px 20px;
+  
+      }
+      
+      
 
       
       h5 
