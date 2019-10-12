@@ -55,11 +55,11 @@ require_once('Repository/IRepository.php');
             foreach($this->postsList as $post)
             {
                 $valuesArray["ID"] = $post->getID();
-                $valuesArray["title"] = $post->getNombre();
-                $valuesArray["author"] = $post->getDireccion();
-                $valuesArray["category"] = $post->getValor_entrada();
+                $valuesArray["cine"] = $post->getNombre();
+                $valuesArray["direccion"] = $post->getDireccion();
+                $valuesArray["valor"] = $post->getValor_entrada();
                 /*$valuesArray["date"] = $post->getDate();*/
-                $valuesArray["description"] = $post->getCapacidad();
+                $valuesArray["capacidad"] = $post->getCapacidad();
                 $valuesArray["habilitado"] = $post->getHabilitado();
 
                 array_push($arrayToEncode, $valuesArray);
@@ -84,11 +84,11 @@ require_once('Repository/IRepository.php');
                 {
                     $post = new Cine();
                     $post->setID($valuesArray["ID"]);
-                    $post->setNombre($valuesArray["title"]);
-                    $post->setDireccion($valuesArray["author"]);
-                    $post->setValor_entrada($valuesArray["category"]);
+                    $post->setNombre($valuesArray["cine"]);
+                    $post->setDireccion($valuesArray["direccion"]);
+                    $post->setValor_entrada($valuesArray["valor"]);
                     /*$post->setDate($valuesArray["date"]);*/
-                    $post->setCapacidad($valuesArray["description"]);
+                    $post->setCapacidad($valuesArray["capacidad"]);
                     $post->setHabilitado($valuesArray["habilitado"]);
 
                     array_push($this->postsList, $post);
