@@ -51,9 +51,9 @@
     <?php
       echo '
         <h2>Sinopsis</h2>
-        <li>
+        
           <p>'.$mov->overview.'</p>
-        </li>
+        
         <br>
         <h2>Ficha Tecnica</h2>
         <li>
@@ -85,13 +85,18 @@
         </li>
         ';?>
         <div class="or-seperator"></div>
-
+        <br>
+        <div>
+          <form>
+            <input type="submit" class="btn btn-primary btn-block btn-abajo" value="Comprar Entradas">
+          </form>
+        </div>
       
     
  
     
   </div>
-  <div class="d">Item 4</div>
+  
 </div>
 
 
@@ -198,6 +203,11 @@
 .c { grid-area: main;  height:600px; width:850px;margin-right: 70px; padding: 30px;}
 .d { grid-area: foot; background: orange; }
 
+.btn-abajo{
+  position: relative;
+  bottom: -90px;
+  right: 0px;
+}
 
     </style>
     
