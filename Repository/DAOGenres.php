@@ -45,21 +45,21 @@ class DAOGenres{
 
     public function GetById($id){
         $this->RetrieveData();
-        $accountFounded = null;
+        $genreFounded = null;
         
         if(!empty($this->List)){
             foreach($this->List as $genre){
                 if($genre->getId() == $id){
-                    $accountFounded = $genre;
+                    $genreFounded = $genre;
                 }
             }
         }
         else
         {
-            echo 'esta vacio';
+            echo 'esta vacia la lista';
         }
 
-        return $accountFounded;
+        return $genreFounded;
     }
 
 
