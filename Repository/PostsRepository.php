@@ -44,9 +44,23 @@ require_once('Repository/IRepository.php');
                 }
                 $this->saveData();
             }
-         //   $newList = array();
-          //  for($this->postsList as $post) {
-               
+         
+            public function modify($id,$direccion,$cine,$valor,$capacidad)
+            {
+                $this->RetrieveData();
+                for ($i=0; $i < count($this->postsList); $i++) { 
+                    # code...
+                    if($this->postsList[$i]->getId() == $id){
+                        $this->postsList[$i]->setDireccion($direccion);
+                        $this->postsList[$i]->setNombre($cine);
+                        $this->postsList[$i]->setValor_entrada($valor);
+                        $this->postsList[$i]->setCapacidad($capacidad);
+
+                        }
+    
+                    }
+                    $this->saveData();
+                }
 
         private function saveData()
         {
@@ -110,4 +124,3 @@ require_once('Repository/IRepository.php');
         }
     
     }
-?>

@@ -56,7 +56,7 @@ class PublishController
         }//fin index-------
 //
 //
-    public function newCine($direccion,$cine,$ID,$valor,$capacidad){
+    public function newCine(){
         $this->newProd->setDireccion($_POST['direccion']);
         $this->newProd->setNombre($_POST['cine']);
         $this->newProd->setID($_POST['ID']);

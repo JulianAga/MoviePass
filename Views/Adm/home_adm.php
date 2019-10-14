@@ -75,7 +75,9 @@ use models\Cine as Cine;
                                 <!--       <td><?php // echo $Post->getDate(); ?></td> -->
                                 <td><?php  echo $Cine->getValor_entrada(); ?></td>
                                 <td><button class="btn btn-dark">+</button></td>
-                                <td><button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">*</button>
+                                <td>
+                                    <!-- BOTON MODIFICAR CINE -->
+                                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">*</button>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -87,10 +89,10 @@ use models\Cine as Cine;
         </button>
       </div>
       <div class="modal-body">
-      <form method="post" action="<?= ROOT_VIEW ?>/Modify/ModifyCine">
+      <form method="post" action="<?= ROOT_VIEW ?>/Modify/modifyCine">
                      <div class="form-group">
                         <label>Id del Cine</label>
-                        <input type="text" class="form-control" name="ID" value="<?php echo $Cine->getID();?>" disabled>
+                        <input type="text" class="form-control" name="ID" value="<?php echo $Cine->getID();?>" readonly/>
                     </div>
 
                     <div class="form-group">
@@ -136,13 +138,13 @@ use models\Cine as Cine;
 
                            <!--   Boton Añadir Cines   -->
                 
-<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Añadir cine</button>
+<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#MainModal" data-whatever="@mdo">Añadir cine</button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="MainModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Añadir cine</h5>
+        <h5 class="modal-title" id="MainModalLabel">Añadir cine</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
