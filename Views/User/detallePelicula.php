@@ -25,12 +25,9 @@
 <?php require(VIEWS_PATH."header.php"); ?> <!-- llamado a la barra nav de home-->
 </head>
 
-<body class="body_parallax"> <!-- fondo_body/body_parallax es una clase css donbde esta el archivo de la imagen de fondo y otras configuraciones del fondo, esta al final de home.php en la secion de <style>-->
-  
+<body class="body_parallax "> <!-- fondo_body/body_parallax es una clase css donbde esta el archivo de la imagen de fondo y otras configuraciones del fondo, esta al final de home.php en la secion de <style>-->
 
-
-
-<br> <!-- espacios en blanco -->
+  <br> <!-- espacios en blanco -->
 
   <!-- INICIO DETALLE PELICULA   -->
 <div class="grid"> <!-- contenedor principal -->
@@ -41,12 +38,12 @@
     ?>
     
   </div> <!-- cada uno de los ítems del grid -->
-  <div class="b li_borde_trasparente">
+  <div class="b li_borde_trasparente ">
     <?php echo '
     <img src="http://image.tmdb.org/t/p/w500'. $mov->poster_path . '" class="img-responsive"  style="width:400" height="400"  alt="Image "> ';
     ?>
   </div>
-  <div class="c li_borde_trasparente">
+  <div class="c li_borde_trasparente ">
     
     <?php
       echo '
@@ -105,6 +102,12 @@
   
 
   <!-- <?php //require(ROOT . "Vistas/footer.php"); ?> --> <!-- incluyo el archivo footer  PROVISORIO SIN FOOTER--> 
+  
+
+
+
+
+
 
 <!-- CONFIGURACIONES CSS Y JAVA SCRIPT -->
 
@@ -117,16 +120,21 @@
         margin: 30px 30px;
       }
       .li_borde_trasparente{
-        box-shadow:0 6px 6px 5px rgba(0, 0, 0, 0.5);
-        background:rgba(0,0,0,.3);
+        box-shadow:0 5px 5px 3px rgba(0, 0, 0, 0.5);
+        background: #8b8b8b; 
+
+        background: -moz-linear-gradient(top,  #8b8b8b 0%, #6a6a6a 50%, #5e5e5e 51%, #717171 100%); 
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#8b8b8b), color-stop(50%,#6a6a6a), color-stop(51%,#5e5e5e), color-stop(100%,#717171)); 
+        background: -webkit-linear-gradient(top,  #8b8b8b 0%,#6a6a6a 50%,#5e5e5e 51%,#717171 100%); 
+        background: -o-linear-gradient(top,  #8b8b8b 0%,#6a6a6a 50%,#5e5e5e 51%,#717171 100%); 
+        background: -ms-linear-gradient(top,  #8b8b8b 0%,#6a6a6a 50%,#5e5e5e 51%,#717171 100%); 
+        background: linear-gradient(to bottom,  #8b8b8b 0%,#6a6a6a 50%,#5e5e5e 51%,#717171 100%); 
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8b8b8b', endColorstr='#717171',GradientType=0 );
       }
       .div_trasparente
       {
-        background:rgba(0,0,0,.3);
-        padding:20px;
-        margin:20px 0;
-        color:#fff;
-        box-shadow:0 5px 5px 3px rgba(0, 0, 0, 0.25);
+        background:rgba(255,255,255,.9);
+        
       }
       
 
@@ -153,12 +161,14 @@
 
 
       }
+
       .body_parallax
       {
 
-        background:url(../../images/texturas/spectrum.png); /* Nuestra textura */
+        background:url(/MoviePass/images/texturas/spectrum.png); /* Nuestra textura */
         background-repeat:repeat; /* Indicamos que la textura se repetira */
         background-attachment: fixed; /* Establecemos una posicion fija para la textura */
+        
         /* Eliminamos la propiedad de background-size */
       }
       .h3-align-center{
@@ -181,6 +191,16 @@
           src:url(Vistas/fonts/myriadpro/myriadpro.eot), 
           url(Vistas/fonts/myriadpro/myriadpro.ttf), 
           url(Vistas/fonts/myriadpro/myriadpro.woff);
+      }
+      .div-gradient{
+        background: rgba(0,0,0,1);
+        background: -moz-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 50%, rgba(8,8,8,1) 100%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,1)), color-stop(50%, rgba(255,255,255,1)), color-stop(50%, rgba(255,255,255,1)), color-stop(100%, rgba(8,8,8,1)));
+        background: -webkit-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 50%, rgba(8,8,8,1) 100%);
+        background: -o-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 50%, rgba(8,8,8,1) 100%);
+        background: -ms-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 50%, rgba(8,8,8,1) 100%);
+        background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 50%, rgba(8,8,8,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#080808', GradientType=0 );
       }
       /*----------------------------------------------------*/
       

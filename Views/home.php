@@ -85,7 +85,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                      {
 
                        echo '
-                       <li class="li_borde_trasparente">
+                       <div class="li_borde_trasparente">
                        <a style="color:white;" href="movie.php?id=' . $p->id . '"> 
                        <button type="submit" name="boton_imagen"><img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive"  style="width:100%" alt="Image "></button>
                          <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
@@ -94,15 +94,15 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                        <h5 ><em>Calificacion : " . $p->vote_average . " |  Votos: " . $p->vote_count . "</em>
                        </h5>
                        
-                       </li>"; 
+                       </div>"; 
                      }
                    }
                    else //si no hay post muestra todas las peliculas (no se tendria q repetir el codigo pero no se como hacerlo)
                    {
                     
                      echo '
-                     <li class="li_borde_trasparente">
-                     <a style="color:white;" href="movie.php?id=' . $p->id . '"> 
+                     <div class="li_borde_trasparente">
+                     <a style="color:white;" > 
                      <button type="submit" name="boton_imagen"><img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive" style="width:100%" alt="Image "></button>
                        <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
                        </h3>
@@ -110,7 +110,8 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                      <h5 ><em>Calificacion : " . $p->vote_average . " |  Votos: " . $p->vote_count . "</em>
                      </h5>
                      
-                     </li>";
+                     
+                     </div>";
                      
                    }
                    
@@ -160,15 +161,20 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
       }
       .li_borde_trasparente{
         box-shadow:0 5px 5px 3px rgba(0, 0, 0, 0.5);
-        background:rgba(0,0,0,.3);
+        background: #8b8b8b; 
+
+        background: -moz-linear-gradient(top,  #8b8b8b 0%, #6a6a6a 50%, #5e5e5e 51%, #717171 100%); 
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#8b8b8b), color-stop(50%,#6a6a6a), color-stop(51%,#5e5e5e), color-stop(100%,#717171)); 
+        background: -webkit-linear-gradient(top,  #8b8b8b 0%,#6a6a6a 50%,#5e5e5e 51%,#717171 100%); 
+        background: -o-linear-gradient(top,  #8b8b8b 0%,#6a6a6a 50%,#5e5e5e 51%,#717171 100%); 
+        background: -ms-linear-gradient(top,  #8b8b8b 0%,#6a6a6a 50%,#5e5e5e 51%,#717171 100%); 
+        background: linear-gradient(to bottom,  #8b8b8b 0%,#6a6a6a 50%,#5e5e5e 51%,#717171 100%); 
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8b8b8b', endColorstr='#717171',GradientType=0 ); 
       }
       .div_trasparente
       {
         background:rgba(0,0,0,.3);
-        padding:20px;
-        margin:20px 0;
-        color:#fff;
-        box-shadow:0 5px 5px 3px rgba(0, 0, 0, 0.25);
+       
       }
       
 
@@ -198,7 +204,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
       .body_parallax
       {
 
-        background:url(../../images/texturas/spectrum.png); /* Nuestra textura */
+        background:url(/MoviePass/images/texturas/spectrum.png); /* Nuestra textura */
         background-repeat:repeat; /* Indicamos que la textura se repetira */
         background-attachment: fixed; /* Establecemos una posicion fija para la textura */
         /* Eliminamos la propiedad de background-size */
