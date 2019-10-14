@@ -62,7 +62,13 @@ class DAOGenres{
         return $genreFounded;
     }
 
+    public function GetNameById($id)
+    {
+        $genre=$this->GetById($id);
 
+        return $genre->getName();
+    }
+    
     private function RetrieveData()
     {
         
