@@ -1,5 +1,6 @@
 <?php namespace Controllers;
 
+
 use Models\Cuenta as Cuenta;
 use Models\Cliente as Cliente;
 
@@ -7,17 +8,33 @@ use Models\Cliente as Cliente;
 
 class DetallePeliculaController
 {
-	$RepositoryPeliculas;
+	
 	public function __construct()
-	{			
-			
+
+	{	
+		
 			
 	}
 
 
-	public function buscarPeli ($idPeliculaBuscada)
+	public function searchMovie ($movie_id)
 	{
-		//buscar la peli con su id
+		
+		include "Config/API_tmdb.php";
+		include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
+
+	if ($nowplaying!=null){
+		foreach ($nowplaying->results as $mov) {
+			if ($mov->id == $movie_id){
+				require(ROOT . '/Views/User/detallePelicula.php');
+				break;
+
+			}//if
+			
+		}//foreach
+
+	}//if general
+		
 
 	}//fin buscar peli
 

@@ -1,6 +1,7 @@
 <?php
  	
  	include "Config/API_tmdb.php";
+ 	include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
  	
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors', 1);

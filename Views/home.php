@@ -2,7 +2,7 @@
 
 
 include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
-include_once "api/api_now.php";// incluyo la API de peliculas actuales en cartelera
+include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
 //////////   agregado por leo
         
@@ -12,6 +12,7 @@ include_once "api/api_now.php";// incluyo la API de peliculas actuales en cartel
 
         $genresArray=$daoGenres->GetAll();    //carga en la variable la lista con los generos (ESTO NO CREO QUE VAYA ACA PERO NI IDEA DONDE TIENE QUE IR)
         //////////
+
 
 ?>
 <!DOCTYPE html>
@@ -74,18 +75,19 @@ include_once "api/api_now.php";// incluyo la API de peliculas actuales en cartel
         foreach ($nowplaying->results as $p) {?> <!-- recorro la lista de peliculas actuales y las muestro-->
           <div class="align-self-center">
             <div class="card background">
-              <form action="<?= ROOT_VIEW ?>/DetallePelicula/verPelicula" method="post" enctype="multipart/form-data"><!-- ENVIO FORMULARIO CON EL ID DE LA PELICULA PARA VERLA EN DETALLE-->
-
+              <form action="<?= ROOT_VIEW ?>/DetallePelicula/searchMovie" method="post"><!-- ENVIO FORMULARIO CON EL ID DE LA PELICULA PARA VERLA EN DETALLE-->
+                <input type="hidden" id="movie_id" name="movie_id" value="<?php echo $p->id?>"/> <!-- le paso el id de pelicula-->
                 <?php
                    if($_POST && isset($_POST["genre"])) // si se mando como post un genero del select
                    {
                      
                      if(in_array($_POST["genre"],$p->genre_ids)) //verifica que la pelicula sea de el genero elegido
                      {
+
                        echo '
                        <li class="li_borde_trasparente">
                        <a style="color:white;" href="movie.php?id=' . $p->id . '"> 
-                       <img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive" style="width:100%" alt="Image " >
+                       <button type="submit" name="boton_imagen"><img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive"  style="width:100%" alt="Image "></button>
                          <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
                          </h3>
                        </a>
@@ -97,10 +99,11 @@ include_once "api/api_now.php";// incluyo la API de peliculas actuales en cartel
                    }
                    else //si no hay post muestra todas las peliculas (no se tendria q repetir el codigo pero no se como hacerlo)
                    {
+                    
                      echo '
                      <li class="li_borde_trasparente">
                      <a style="color:white;" href="movie.php?id=' . $p->id . '"> 
-                     <img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive" style="width:100%" alt="Image " >
+                     <button type="submit" name="boton_imagen"><img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive" style="width:100%" alt="Image "></button>
                        <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
                        </h3>
                      </a>
@@ -108,12 +111,14 @@ include_once "api/api_now.php";// incluyo la API de peliculas actuales en cartel
                      </h5>
                      
                      </li>";
+                     
                    }
-                ?> 
-                <div class="form-group">
-                  
-                  <!-- <input class="form-control" id="" name="" type="text"> --> <!-- enviar la id de la pelicula para ver su detalle --> 
-                </div> 
+                   
+                ?>
+                
+                
+                
+                 
               </form>
                     
               <div class="card-block p-2">
@@ -126,7 +131,7 @@ include_once "api/api_now.php";// incluyo la API de peliculas actuales en cartel
               </div> 
             </div>
           </div>
-        <?php } 
+        <?php } //fin foreach
         }?>    
         <br>
       </div>

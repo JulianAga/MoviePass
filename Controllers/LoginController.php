@@ -42,7 +42,7 @@
 					
 					//lo lleva al home CLIENTE
 					
-					require(ROOT . '/Views/User/home_usuario.php');
+					require(ROOT . '/Views/home.php');
 					
 				}
 			}

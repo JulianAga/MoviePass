@@ -1,8 +1,7 @@
 <?php namespace User;
 
 
-include "../../Config/API_tmdb.php";//llamado a la configuracion API the movie DB
-include_once "../../Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
+//var_dump($mov);
 
 ?>
 <!DOCTYPE html>
@@ -15,6 +14,7 @@ include_once "../../Api/api_now.php";// incluyo la API de peliculas actuales en 
   <!-- <link rel="stylesheet" href="Vistas/css/estilos.css"> -->
   <link rel="stylesheet" href="fonts/fonts.css">
   <link rel="stylesheet" href="http://necolas.github.io/normalize.css/3.0.1/normalize.css">
+  <link rel="stylesheet" href="/MoviePass/Views/css/header2.css"><!-- ARCHIVO CSS-->
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="Views/js/main.js"></script>
   <script src="Views/js/busqueda.js"></script>
@@ -22,73 +22,80 @@ include_once "../../Api/api_now.php";// incluyo la API de peliculas actuales en 
 <title>MoviePass</title>
 
   
-  
+<?php require(VIEWS_PATH."header.php"); ?> <!-- llamado a la barra nav de home-->
 </head>
 
 <body class="body_parallax"> <!-- fondo_body/body_parallax es una clase css donbde esta el archivo de la imagen de fondo y otras configuraciones del fondo, esta al final de home.php en la secion de <style>-->
   
-    
-<header>
-  <?php require("header_usuario.php"); ?> <!-- llamado a la barra nav de home-->
-</header>
+
 
 
 <br> <!-- espacios en blanco -->
-<br>
-  <!-- INICIO CARTELERA   -->   
-  <section class="text-black" id="cartelera"> 
-    <div class="container">    
-      <div>
-          <nav class="li_borde_trasparente">
-            <h1 class="text-center" style="color:white;">Cartelera</h1>
-          </nav>
-      </div>
-      <br>
-      <div class="row">
-        <?php
-        if ($nowplaying !=null)//si no esta null la cartelera que llega desde movie DB, la recorro
-        {
-        foreach ($nowplaying->results as $p) {?> <!-- recorro la lista de peliculas actuales y las muestro-->
-          <div class="p-4 align-self-center col-md-3">
-            <div class="card background">
-              <form action="<?= ROOT_VIEW ?>/DetallePelicula/verPelicula" method="post" enctype="multipart/form-data"><!-- ENVIO FORMULARIO CON EL ID DE LA PELICULA PARA VERLA EN DETALLE-->
 
-                <?php
-                  echo '
-                  <li class="li_borde_trasparente">
-                  <a style="color:white;" href="movie.php?id=' . $p->id . '"> 
-                  <img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive" style="width:100%" alt="Image " >
-                     <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
-                     </h3>
-                  </a>
-                  <h5 ><em>Calificacion : " . $p->vote_average . " |  Votos: " . $p->vote_count . "</em>
-                  </h5>
-                  
-                  </li>"; 
-                ?> 
-                <div class="form-group">
-                  
-                  <!-- <input class="form-control" id="" name="" type="text"> --> <!-- enviar la id de la pelicula para ver su detalle --> 
-                </div> 
-              </form>
-                    
-              <div class="card-block p-2">
-                <div class="panel-body ">   
-
-                </div>
-                <div class="p-1 col-md-4">                
-                                        
-                </div>                               
-              </div> 
-            </div>
-          </div>
-        <?php } 
-        }?>    
+  <!-- INICIO DETALLE PELICULA   -->
+<div class="grid"> <!-- contenedor principal -->
+  <div class="a h3-align-center li_borde_trasparente">
+    <?php echo '
+      <h3 font-weight: bold>' . $mov->original_title . ' (' . substr($mov->release_date, 0, 4) . ')</h3>
+    ';
+    ?>
+    
+  </div> <!-- cada uno de los ítems del grid -->
+  <div class="b li_borde_trasparente">
+    <?php echo '
+    <img src="http://image.tmdb.org/t/p/w500'. $mov->poster_path . '" class="img-responsive"  style="width:400" height="400"  alt="Image "> ';
+    ?>
+  </div>
+  <div class="c li_borde_trasparente">
+    
+    <?php
+      echo '
+        <h2>Sinopsis</h2>
+        <li>
+          <p>'.$mov->overview.'</p>
+        </li>
         <br>
-      </div>
-    </div>
-  </section>
-  <!-- FIN Cartelera  --> 
+        <h2>Ficha Tecnica</h2>
+        <li>
+          <p>Genero/s:';?> <?php foreach ($mov->genre_ids as $key) {  echo $key.' '; } ?> </p> <!-- muestra los id de los generos-->
+         
+        </li>
+        <br>
+        <?php
+        echo '
+        <li>
+          <p>Fecha de Estreno: '.$mov->release_date.'</p>
+          
+        </li>
+        ';?>
+        <br>
+        <?php
+        echo '
+        <li>
+          <p>Lenguaje Original: '.$mov->original_language.'</p>
+          
+        </li>
+        ';?>
+        <br>
+        <?php
+        echo '
+        <li>
+          <p>Valoración: '.$mov->vote_average.'</p>
+          
+        </li>
+        ';?>
+        <div class="or-seperator"></div>
+
+      
+    
+ 
+    
+  </div>
+  <div class="d">Item 4</div>
+</div>
+
+
+   
 
   
 
@@ -105,7 +112,7 @@ include_once "../../Api/api_now.php";// incluyo la API de peliculas actuales en 
         margin: 30px 30px;
       }
       .li_borde_trasparente{
-        box-shadow:0 5px 5px 3px rgba(0, 0, 0, 0.5);
+        box-shadow:0 6px 6px 5px rgba(0, 0, 0, 0.5);
         background:rgba(0,0,0,.3);
       }
       .div_trasparente
@@ -149,6 +156,9 @@ include_once "../../Api/api_now.php";// incluyo la API de peliculas actuales en 
         background-attachment: fixed; /* Establecemos una posicion fija para la textura */
         /* Eliminamos la propiedad de background-size */
       }
+      .h3-align-center{
+        text-align: center;
+      }
 
       
       h5 
@@ -167,6 +177,27 @@ include_once "../../Api/api_now.php";// incluyo la API de peliculas actuales en 
           url(Vistas/fonts/myriadpro/myriadpro.ttf), 
           url(Vistas/fonts/myriadpro/myriadpro.woff);
       }
+      /*----------------------------------------------------*/
+      
+
+
+
+
+.grid {
+  display: grid;
+  grid-template-areas: "head head"
+                       "menu main"
+                       "foot foot";
+  
+  
+  grid-column-gap: 50px;
+  grid-row-gap: 20px;
+}
+.a { grid-area: head; margin-right: 70px; margin-left:70px;}
+.b { grid-area: menu;  height:600px; width:400px; margin-left:70px;}
+.c { grid-area: main;  height:600px; width:850px;margin-right: 70px; padding: 30px;}
+.d { grid-area: foot; background: orange; }
+
 
     </style>
     
