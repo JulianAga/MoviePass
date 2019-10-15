@@ -72,7 +72,8 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                 <td><?php  echo $Cine->getCapacidad(); ?></td>
                                 <!--       <td><?php // echo $Post->getDate(); ?></td> -->
                                 <td><?php  echo $Cine->getValor_entrada(); ?></td>
-                                <!--BOTON AGREGAR PELICULA -->
+<!--BOTON AGREGAR PELICULA -->
+                            
                                 <td>
                                     <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#addMovie" data-whatever="@mdo">+</button>
                                     <div class="modal fade" id="addMovie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -89,7 +90,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                                         <div class="form-group">
                                                             <label>Pelicula</label>
                                                             
-                                                            <select name="id_pelicula" class="custom-select">
+                                                            <select name="id_pelicula" class="form-control">
                                                                 <option disabled>Seleccione Pelicula...
                                                                 </option>
                                                                 
