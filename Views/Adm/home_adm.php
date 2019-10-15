@@ -105,7 +105,12 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                                             </select>
                                                         </div>
                                            
+                                                        <div class="form-group">
+                                                            <label>Fecha</label>
+                                                            <input type="date" class="form-control" name="fecha" value="<?php echo $Cine->getDireccion();?>" required>
+                                                        </div>
                                             <div class="modal-footer">
+                                                
                                                 <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
                                                 <button type="submit" class="btn btn-dark">Publicar</button>
                                             </div>
