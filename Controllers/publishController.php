@@ -64,12 +64,18 @@ class PublishController
         $this->newProd->setCapacidad($_POST['capacidad']);
         $this->newProd->setHabilitado(true);
 
-       
-        
+        if($this->repository->existByID($this->newProd->getID()))
+        {
+            echo '<script language="javascript">alert("El ID del cine ya se encuentra registrado!");</script>';
+            $this->index();
+        }
+        else
+        {
         $this->repository->add($this->newProd);
         
         echo '<script language="javascript">alert("Cine agregado satisfactoriamente!");</script>'; //este tipo de mensaje no rompe el codigo
         $this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
+        }
     }
 
 /*
