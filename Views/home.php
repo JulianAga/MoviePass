@@ -56,14 +56,15 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
         -->
         <div class="li_borde_trasparente">
           <form method="post" action="" name="genreSearch">
-              <select name="genre" id="genre" onchange="activarBoton()">
-              <option value="" selected disabled hidden>Genero</option>
+            <label class="label-blanco"> Genero</label>
+              <select name="genre" id="genre" >
+              <option value="" selected disabled hidden>Todos</option>
                   <?php
                   foreach($genresArray as $g){?>
                   <option value="<?php echo $g->getId();?>"><?php echo $g->getName();?></option> 
                   <?php } ?>              
               </select>
-              <input type="submit" name="enviar" id="enviar" disabled>
+              <input type="submit" name="enviar" id="enviar" >
           </form>
         </div>
         <br>
@@ -72,65 +73,74 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
         if ($nowplaying !=null)//si no esta null la cartelera que llega desde movie DB, la recorro
         {
         foreach ($nowplaying->results as $p) {?> <!-- recorro la lista de peliculas actuales y las muestro-->
-          <div class="align-self-center">
-            <div class="card background">
-              <form action="<?= ROOT_VIEW ?>/DetallePelicula/searchMovie" method="post"><!-- ENVIO FORMULARIO CON EL ID DE LA PELICULA PARA VERLA EN DETALLE-->
-                <input type="hidden" id="movie_id" name="movie_id" value="<?php echo $p->id?>"/> <!-- le paso el id de pelicula-->
+          
+              
                 <?php
                    if($_POST && isset($_POST["genre"])) // si se mando como post un genero del select
                    {
                      
                      if(in_array($_POST["genre"],$p->genre_ids)) //verifica que la pelicula sea de el genero elegido
                      {
+                      ?>
+                      <form action="<?= ROOT_VIEW ?>/DetallePelicula/searchMovie" method="post"><!-- ENVIO FORMULARIO CON EL ID DE LA PELICULA PARA VERLA EN DETALLE-->
+                       <input type="hidden" id="movie_id" name="movie_id" value="<?php echo $p->id?>"/> <!-- le paso el id de pelicula-->
+                       <?php
 
                        echo '
-                       <div class="li_borde_trasparente">
-                       <a style="color:white;" href="movie.php?id=' . $p->id . '"> 
-                       <button type="submit" name="boton_imagen"><img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive"  style="width:100%" alt="Image "></button>
-                         <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
-                         </h3>
-                       </a>
-                       <h5 ><em>Calificacion : " . $p->vote_average . " |  Votos: " . $p->vote_count . "</em>
-                       </h5>
+                       <div class="align-self-center">
+                        <div class="card background">
                        
-                       </div>"; 
+                         <div class="li_borde_trasparente">
+                           <a style="color:white;" href="movie.php?id=' . $p->id . '"> 
+                           <button type="submit" name="boton_imagen"><img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive"  style="width:100%" alt="Image "></button>
+                             <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
+                             </h3>
+                           </a>
+                           <h5 ><em>Calificacion : " . $p->vote_average . " |  Votos: " . $p->vote_count . "</em>
+                           </h5>
+                         
+                         </div>
+                         </div>
+                         </div>
+                         ";
+                         ?>
+                         </form> 
+                         <?php
+
                      }
                    }
+                   
                    else //si no hay post muestra todas las peliculas (no se tendria q repetir el codigo pero no se como hacerlo)
-                   {
-                    
+                   {?>
+                    <form action="<?= ROOT_VIEW ?>/DetallePelicula/searchMovie" method="post"><!-- ENVIO FORMULARIO CON EL ID DE LA PELICULA PARA VERLA EN DETALLE-->
+                       <input type="hidden" id="movie_id" name="movie_id" value="<?php echo $p->id?>"/> <!-- le paso el id de pelicula-->
+                    <?php
                      echo '
-                     <div class="li_borde_trasparente">
-                     <a style="color:white;" > 
-                     <button type="submit" name="boton_imagen"><img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive" style="width:100%" alt="Image "></button>
-                       <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
-                       </h3>
-                     </a>
-                     <h5 ><em>Calificacion : " . $p->vote_average . " |  Votos: " . $p->vote_count . "</em>
-                     </h5>
-
-                     
-                     </div>";
+                       <div class="align-self-center">
+                        <div class="card background">
+                        
+                         <div class="li_borde_trasparente">
+                           <a style="color:white;" href="movie.php?id=' . $p->id . '"> 
+                           <button type="submit" name="boton_imagen"><img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive"  style="width:100%" alt="Image "></button>
+                             <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
+                             </h3>
+                           </a>
+                           <h5 ><em>Calificacion : " . $p->vote_average . " |  Votos: " . $p->vote_count . "</em>
+                           </h5>
+                         
+                         </div>
+                         </div>
+                         </div>
+                         ";?>
+                         </form>
+                         <?php
                      
                    }
                    
-                ?>
-                
-                
-                
-                 
-              </form>
-                    
-              <div class="card-block p-2">
-                <div class="panel-body ">   
-
-                </div>
-                <div class="p-1 col-md-4">                
-                                        
-                </div>                               
-              </div> 
-            </div>
-          </div>
+                   
+                ?>   
+              
+            
         <?php } //fin foreach
         }?>    
         <br>
@@ -245,17 +255,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
       <!-- JavaScript -->
       <script type="text/javascript">
-        function activarBoton(){
-
-            var lista = document.getElementById("genre");
-            var boton = document.getElementById("enviar");
-            if(lista.selectedIndex !=0 )
-              boton.disabled = false;
-            else{
-              boton.disabled = true;
-            }
-
-        }//FIN ACTIVAR BOTON
+        
       </script>
     
   
