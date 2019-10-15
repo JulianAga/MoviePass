@@ -122,5 +122,18 @@ require_once('Repository/IRepository.php');
             }
             return $value;
         }
+
+        
+        public function existByID($ID) {
+            $this->RetrieveData();
+            $flag = false;
+
+            foreach ($this->postsList as $key => $category) {
+                if($category->getID() == $ID) {
+                 $flag = true;
+                }
+            }
+            return $flag;
+        }
     
     }

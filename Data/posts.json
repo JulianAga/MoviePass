@@ -1,26 +1,32 @@
 [
     {
         "ID": "123",
+
         "cine": "Ambassador",
         "direccion": "cordoba 123",
         "valor": "100",
         "capacidad": "500",
-        "habilitado": true
+        "habilitado": false
     },
     {
         "ID": "123",
+
         "cine": "los gallegos",
         "direccion": "santiago700",
         "valor": "123",
         "capacidad": "300",
-        "habilitado": true
+        "habilitado": false
     },
     {
-        "ID": "123",
-        "cine": "los gallegos",
-        "direccion": "santiago700",
+        "ID": "555",
+        "cine": "adasd",
+        "direccion": "qwd",
         "valor": "123",
+
         "capacidad": "300",
-        "habilitado": true
+
+        "capacidad": "123",
+
+        "habilitado": false
     }
 ]
