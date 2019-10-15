@@ -61,7 +61,7 @@ require (API_PATH."api_now.php");// incluyo la API de peliculas actuales en cart
                   <option value="<?php echo $g->getId();?>"><?php echo $g->getName();?></option> 
                   <?php } ?>              
               </select>
-              <input type='submit' name="genreSearch">
+              <input type='submit' name="genreSearch" id="enviar">
           </form>
         </div>
       <br>
@@ -221,12 +221,27 @@ require (API_PATH."api_now.php");// incluyo la API de peliculas actuales en cart
           url(Vistas/fonts/myriadpro/myriadpro.woff);
       }
 
+
+
     </style>
     
     <!--  -->
  
 
       <!-- JavaScript -->
+      <script type="text/javascript">
+        function activarBoton(){
+
+            var lista = document.getElementById("genre");
+            var boton = document.getElementById("enviar");
+            if(lista.selectedIndex !=0 )
+              boton.disabled = false;
+            else{
+              boton.disabled = true;
+            }
+
+        }//FIN ACTIVAR BOTON
+      </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!--
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -57,14 +57,14 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
         <div class="li_borde_trasparente">
           <form method="post" action="" name="genreSearch">
               <label class="label-blanco">Genero</label>
-              <select name="genre">
+              <select name="genre" onchange="activarBoton()">
               <option value="" selected disabled hidden>Choose here</option>
                   <?php
                   foreach($genresArray as $g){?>
                   <option value="<?php echo $g->getId();?>"><?php echo $g->getName();?></option> 
                   <?php } ?>              
               </select>
-              <input type='submit' name="genreSearch">
+              <input type='submit' name="genreSearch" id="enviar" disabled>
           </form>
         </div>
         <br>
@@ -245,6 +245,19 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
  
 
       <!-- JavaScript -->
+      <script type="text/javascript">
+        function activarBoton(){
+
+            var lista = document.getElementById("genre");
+            var boton = document.getElementById("enviar");
+            if(lista.selectedIndex !=0 )
+              boton.disabled = false;
+            else{
+              boton.disabled = true;
+            }
+
+        }//FIN ACTIVAR BOTON
+      </script>
     
   
    
