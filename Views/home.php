@@ -56,15 +56,14 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
         -->
         <div class="li_borde_trasparente">
           <form method="post" action="" name="genreSearch">
-              <label class="label-blanco">Genero</label>
-              <select name="genre" onchange="activarBoton()">
-              <option value="" selected disabled hidden>Choose here</option>
+              <select name="genre" id="genre" onchange="activarBoton()">
+              <option value="" selected disabled hidden>Genero</option>
                   <?php
                   foreach($genresArray as $g){?>
                   <option value="<?php echo $g->getId();?>"><?php echo $g->getName();?></option> 
                   <?php } ?>              
               </select>
-              <input type='submit' name="genreSearch" id="enviar" disabled>
+              <input type="submit" name="enviar" id="enviar" disabled>
           </form>
         </div>
         <br>

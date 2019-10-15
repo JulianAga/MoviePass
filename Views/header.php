@@ -48,11 +48,11 @@ if( isset($_SESSION['Login'])){
   <!-- BARRA DE NAVEGACION -->
   <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
     <ul class="nav navbar-nav">
-      <li class="nav-item"><a href="#cartelera" class="nav-link">Cartelera</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Proximos Estrenos</a></li>
+      <li class="nav-item"><a href="#cartelera" class="nav-link"><strong>Cartelera</strong></a></li>
+      <li class="nav-item"><a href="#" class="nav-link"><strong>Proximos Estrenos</strong></a></li>
       <!-- BOTON DESPLEGABLE-->     
       <li class="nav-item dropdown">
-        <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Localidad<b class="caret"></b></a>
+        <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#"><strong>Localidad</strong><b class="caret"></b></a>
         <!-- ITEMS DESPLEGABLES-->
         <ul class="dropdown-menu">          
           <li><a href="#" class="dropdown-item">Mar del Plata</a></li>
@@ -75,7 +75,7 @@ if( isset($_SESSION['Login'])){
      <?php  if( !isset($_SESSION['Login']) ) {  ?> 
     <!-- BOTON INICIAR SESION-->    
       <li class="nav-item">
-        <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Iniciar Sesion</a>
+        <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#"><strong>Iniciar Sesion</strong></a>
         <ul class="dropdown-menu form-wrapper">         
           <li>
             <form action="<?= ROOT_VIEW ?>/Login/verificarSesion" method="post">
