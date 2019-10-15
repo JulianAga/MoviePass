@@ -118,6 +118,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
                                 <!-- BOTON MODIFICAR CINE -->
                                 <td>
+
                                     <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">*</button>
                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
@@ -173,9 +174,61 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                     <form action="<?= ROOT_VIEW ?>/Delete/deleteCine" method="post">
                                         <button class="btn btn-dark" name="eliminar" value="<?php echo $Cine->getID();?>">-</button>
                                     </form>
+
+                                    <!-- BOTON MODIFICAR CINE -->
+                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal<?php echo $Cine->getID();?>" data-whatever="@mdo">*</button>
+
+    <div class="modal fade" id="exampleModal<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="ModalLabel">Modificar Cine</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+                                    </button>
+      </div>
+      <div class="modal-body">
+      <form method="post" action="<?= ROOT_VIEW ?>/Modify/modifyCine">
+                     <div class="form-group">
+                        <label>Id del Cine</label>
+                        <input type="text" class="form-control" name="ID" value="<?php echo $Cine->getID();?>" readonly/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nombre del Cine</label>
+                        <input type="text" class="form-control" name="cine" value="<?php echo $Cine->getNombre();?>" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Direccion</label>
+                        <input type="text" class="form-control" name="direccion" value="<?php echo $Cine->getDireccion();?>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Valor de Entrada</label>
+                        <input type="number" class="form-control" name="valor" value="<?php echo $Cine->getValor_entrada();?>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Capacidad</label>
+                        <input type="number" class="form-control" name="capacidad" value="<?php echo $Cine->getCapacidad();?>" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-dark">Publicar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+                                </td>
+                                <td>
+                                    <form action="<?= ROOT_VIEW ?>/Delete/deleteCine" method="post"><button class="btn btn-dark" name="eliminar" value="<?php echo $Cine->getID();?>">-</button></form>
+
                                 </td>
 
-                                
                             </tr>
                                 <?php }} ?>
 
@@ -235,7 +288,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
   </div>
 </div>
 
-                           <!--   Boton Añadir Cines   -->
+                           <!--  Fin Boton Añadir Cines   -->
                 </div>
             </form>
             
