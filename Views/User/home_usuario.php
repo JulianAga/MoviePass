@@ -53,15 +53,14 @@ require (API_PATH."api_now.php");// incluyo la API de peliculas actuales en cart
         -->
         <div>
           <form method="post" action="" name="genreSearch">
-              <label>Genero</label>
-              <select name="genre">
-              <option value="" selected disabled hidden>Choose here</option>
+              <select name="genre" id="genre">
+              <option value="" selected disabled hidden>Genero</option>
                   <?php
                   foreach($genresArray as $g){?>
                   <option value="<?php echo $g->getId();?>"><?php echo $g->getName();?></option> 
                   <?php } ?>              
               </select>
-              <input type='submit' name="genreSearch" id="enviar">
+              <input type='submit' name="enviar" id="enviar">
           </form>
         </div>
       <br>
