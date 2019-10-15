@@ -5,7 +5,7 @@
         "direccion": "cordoba 123",
         "valor": "100",
         "capacidad": "500",
-        "habilitado": false
+        "habilitado": true
     },
     {
         "ID": "123",
@@ -13,7 +13,7 @@
         "direccion": "santiago700",
         "valor": "123",
         "capacidad": "300",
-        "habilitado": false
+        "habilitado": true
     },
     {
         "ID": "123",
@@ -21,6 +21,6 @@
         "direccion": "santiago700",
         "valor": "123",
         "capacidad": "300",
-        "habilitado": false
+        "habilitado": true
     }
 ]
