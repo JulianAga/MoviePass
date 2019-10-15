@@ -77,16 +77,16 @@ use models\Cine as Cine;
                                 <td><button class="btn btn-dark">+</button></td>
                                 <td>
                                     <!-- BOTON MODIFICAR CINE -->
-                                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">*</button>
+                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal<?php echo $Cine->getID();?>" data-whatever="@mdo">*</button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modificar Cine</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="modal fade" id="exampleModal<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="ModalLabel">Modificar Cine</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+                                    </button>
       </div>
       <div class="modal-body">
       <form method="post" action="<?= ROOT_VIEW ?>/Modify/modifyCine">
@@ -114,8 +114,6 @@ use models\Cine as Cine;
                         <label>Capacidad</label>
                         <input type="number" class="form-control" name="capacidad" value="<?php echo $Cine->getCapacidad();?>" required>
                     </div>
-      
-
                 </div>
 
                 <div class="modal-footer">
@@ -125,10 +123,12 @@ use models\Cine as Cine;
       </div>
     </div>
   </div>
-</div></td>
-                                <td><form action="<?= ROOT_VIEW ?>/Delete/deleteCine" method="post"><button class="btn btn-dark" name="eliminar" value="<?php echo $Cine->getID();?>">-</button></form></td>
+</div>
+                                </td>
+                                <td>
+                                    <form action="<?= ROOT_VIEW ?>/Delete/deleteCine" method="post"><button class="btn btn-dark" name="eliminar" value="<?php echo $Cine->getID();?>">-</button></form>
+                                </td>
 
-                                
                             </tr>
                                 <?php }} ?>
 
@@ -188,7 +188,7 @@ use models\Cine as Cine;
   </div>
 </div>
 
-                           <!--   Boton Añadir Cines   -->
+                           <!--  Fin Boton Añadir Cines   -->
                 </div>
             </form>
             
@@ -206,11 +206,6 @@ use models\Cine as Cine;
         </div>
         
     </main>
-
-    <!--
-        CREATE POSTS
-    -->
-
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

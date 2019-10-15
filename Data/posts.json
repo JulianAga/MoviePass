@@ -18,9 +18,25 @@
     {
         "ID": "555",
         "cine": "Ambassador",
-        "direccion": "cordoba 129",
+        "direccion": "cordoba 128",
         "valor": "150",
-        "capacidad": "500",
+        "capacidad": "505",
+        "habilitado": true
+    },
+    {
+        "ID": "999",
+        "cine": "CineChascomus",
+        "direccion": "Chascom\u00fas 2000",
+        "valor": "303",
+        "capacidad": "9000",
+        "habilitado": true
+    },
+    {
+        "ID": "654",
+        "cine": "papapap",
+        "direccion": "papappaap",
+        "valor": "125",
+        "capacidad": "3443",
         "habilitado": true
     }
 ]
