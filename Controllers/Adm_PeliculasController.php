@@ -98,15 +98,21 @@ public function recibirPeliculas(){
 
 
 
-		$newMovie = new Pelicula ($descripcion,$titulo,$restriccion,$duracion,$codigo,$categoria,$tipo);
 
+		$newMovie = new Pelicula ($descripcion,$titulo,$restriccion,$duracion,$codigo,$categoria,$tipo);
 		$this->repositoryMovies->add($newMovie);
 
-		//var_dump($this->repositoryMovies->getAll() );
 	}
-
-
 }//fin recibir peliculas
+//
+//
+public function addMovie($id_pelicula){
+	echo "entro a addmovie  ";
+	var_dump($id_pelicula);
+
+}//fin addmovie
+//
+//
 
 
 

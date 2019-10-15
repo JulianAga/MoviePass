@@ -4,6 +4,8 @@
 
 use Repository\PostsRepository as PostsRepository;
 use models\Cine as Cine;
+include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
+include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 ?>
 
 <!DOCTYPE html>
@@ -74,59 +76,104 @@ use models\Cine as Cine;
                                 <td><?php  echo $Cine->getCapacidad(); ?></td>
                                 <!--       <td><?php // echo $Post->getDate(); ?></td> -->
                                 <td><?php  echo $Cine->getValor_entrada(); ?></td>
-                                <td><button class="btn btn-dark">+</button></td>
+                                <!--BOTON AGREGAR PELICULA -->
                                 <td>
-                                    <!-- BOTON MODIFICAR CINE -->
+                                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#addMovie" data-whatever="@mdo">+</button>
+                                    <div class="modal fade" id="addMovie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Agregar Pelicula</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <form method="post" action="<?= ROOT_VIEW ?>/Adm_Peliculas/addMovie">
+                                                        <div class="form-group">
+                                                            <label>Pelicula</label>
+                                                            
+                                                            <select name="id_pelicula" class="custom-select">
+                                                                <option disabled>Seleccione Pelicula...
+                                                                </option>
+                                                                
+                                                                    <?php foreach ($nowplaying->results as $key ) { ?>
+                                                                        <option value="<?php echo $key->id; ?>"> <?php echo $key->title ; ?>
+                                                                            
+                                                                        </option>
+                                                                    <?php } ?>  
+                                                            </select>
+                                                        </div>
+                                           
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-dark">Publicar</button>
+                                            </div>
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </td>
+
+                                <!-- BOTON MODIFICAR CINE -->
+                                <td>
                                     <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">*</button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modificar Cine</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                          <form method="post" action="<?= ROOT_VIEW ?>/Modify/modifyCine">
+                                                         <div class="form-group">
+                                                            <label>Id del Cine</label>
+                                                            <input type="text" class="form-control" name="ID" value="<?php echo $Cine->getID();?>" readonly/>
+                                                        </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modificar Cine</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <form method="post" action="<?= ROOT_VIEW ?>/Modify/modifyCine">
-                     <div class="form-group">
-                        <label>Id del Cine</label>
-                        <input type="text" class="form-control" name="ID" value="<?php echo $Cine->getID();?>" readonly/>
-                    </div>
+                                                        <div class="form-group">
+                                                            <label>Nombre del Cine</label>
+                                                            <input type="text" class="form-control" name="cine" value="<?php echo $Cine->getNombre();?>" required/>
+                                                        </div>
 
-                    <div class="form-group">
-                        <label>Nombre del Cine</label>
-                        <input type="text" class="form-control" name="cine" value="<?php echo $Cine->getNombre();?>" required/>
-                    </div>
+                                                        <div class="form-group">
+                                                            <label>Direccion</label>
+                                                            <input type="text" class="form-control" name="direccion" value="<?php echo $Cine->getDireccion();?>" required>
+                                                        </div>
 
-                    <div class="form-group">
-                        <label>Direccion</label>
-                        <input type="text" class="form-control" name="direccion" value="<?php echo $Cine->getDireccion();?>" required>
-                    </div>
+                                                        <div class="form-group">
+                                                            <label>Valor de Entrada</label>
+                                                            <input type="number" class="form-control" name="valor" value="<?php echo $Cine->getValor_entrada();?>" required>
+                                                        </div>
 
-                    <div class="form-group">
-                        <label>Valor de Entrada</label>
-                        <input type="number" class="form-control" name="valor" value="<?php echo $Cine->getValor_entrada();?>" required>
-                    </div>
+                                                        <div class="form-group">
+                                                            <label>Capacidad</label>
+                                                            <input type="number" class="form-control" name="capacidad" value="<?php echo $Cine->getCapacidad();?>" required>
+                                                        </div>
+                                          
 
-                    <div class="form-group">
-                        <label>Capacidad</label>
-                        <input type="number" class="form-control" name="capacidad" value="<?php echo $Cine->getCapacidad();?>" required>
-                    </div>
-      
+                                                    </div>
 
-                </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
+                                                        <button type="submit" class="btn btn-dark">Publicar</button>
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </td>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-dark">Publicar</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div></td>
-                                <td><form action="<?= ROOT_VIEW ?>/Delete/deleteCine" method="post"><button class="btn btn-dark" name="eliminar" value="<?php echo $Cine->getID();?>">-</button></form></td>
+                                <!-- boton eliminar CINE-->
+                                <td>
+                                    <form action="<?= ROOT_VIEW ?>/Delete/deleteCine" method="post">
+                                        <button class="btn btn-dark" name="eliminar" value="<?php echo $Cine->getID();?>">-</button>
+                                    </form>
+                                </td>
 
                                 
                             </tr>

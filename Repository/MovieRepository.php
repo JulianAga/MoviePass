@@ -33,7 +33,7 @@ class MovieRepository implements IMovieRepository{
     private function SaveData()
     {
         $arrayToEncode = array();
-        foreach($this->movieList as $movie) //recorro la lista con cuentas
+        foreach($this->movieList as $movie) //recorro la lista con peliculas
         {
             $valuesArray["id"] = $movie->getId();                 //guardo todos los valores en un array
             $valuesArray["descripcion"] = $movie->getDescripcion();
@@ -48,7 +48,7 @@ class MovieRepository implements IMovieRepository{
             array_push($arrayToEncode, $valuesArray);   
         }
 
-        $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);      //se guarda LA CUENTA EN EL JSON
+        $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);      //se guarda LA pelicula EN EL JSON
         
         file_put_contents('Data/peliculas.json', $jsonContent);
     }//fin savedata
@@ -68,7 +68,7 @@ class MovieRepository implements IMovieRepository{
             {
                 
                 
-                $movie = new Pelicula($valuesArray["id"],$valuesArray["descripcion"],$valuesArray["nombre"],$valuesArray["restriccion"],$valuesArray["duracion"],$valuesArray["codigo"],$valuesArray["categoria"],$valuesArray["tipo"]); //se van creando las cuentas
+                $movie = new Pelicula($valuesArray["descripcion"],$valuesArray["nombre"],$valuesArray["restriccion"],$valuesArray["duracion"],$valuesArray["codigo"],$valuesArray["categoria"],$valuesArray["tipo"]); //se van creando las cuentas
 
 
                 array_push($this->movieList, $movie);

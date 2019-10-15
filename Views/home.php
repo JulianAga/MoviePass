@@ -54,9 +54,9 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
             Recorre la lista de generos y los pone como opcion dentro del select
             y los manda como post a esta misma pagina (tampoco se si esta bien)
         -->
-        <div>
+        <div class="li_borde_trasparente">
           <form method="post" action="" name="genreSearch">
-              <label>Genero</label>
+              <label class="label-blanco">Genero</label>
               <select name="genre">
               <option value="" selected disabled hidden>Choose here</option>
                   <?php
@@ -216,6 +216,9 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
   
         grid-gap: 30px 20px;
   
+      }
+      .label-blanco{
+        color: #ffff;
       }
 
       

@@ -1,406 +1,1102 @@
 [
     {
         "id": null,
-        "descripcion": null,
-        "nombre": null,
+        "descripcion": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+        "nombre": "Joker",
         "restriccion": null,
         "duracion": null,
-        "codigo": null,
-        "categoria": null,
+        "codigo": 475557,
+        "categoria": [
+            80,
+            18,
+            53
+        ],
         "tipo": null
     },
     {
         "id": null,
-        "descripcion": null,
-        "nombre": null,
+        "descripcion": "27 years after overcoming the malevolent supernatural entity Pennywise, the former members of the Losers' Club, who have grown up and moved away from Derry, are brought back together by a devastating phone call.",
+        "nombre": "It Chapter Two",
         "restriccion": null,
         "duracion": null,
-        "codigo": null,
-        "categoria": null,
+        "codigo": 474350,
+        "categoria": [
+            27
+        ],
         "tipo": null
     },
     {
         "id": null,
-        "descripcion": null,
-        "nombre": null,
+        "descripcion": "Henry Brogen, an aging assassin tries to get out of the business but finds himself in the ultimate battle: fighting his own clone who is 25 years younger than him and at the peak of his abilities.",
+        "nombre": "Gemini Man",
         "restriccion": null,
         "duracion": null,
-        "codigo": null,
-        "categoria": null,
+        "codigo": 453405,
+        "categoria": [
+            28,
+            53
+        ],
         "tipo": null
     },
     {
         "id": null,
-        "descripcion": null,
-        "nombre": null,
+        "descripcion": "Woody has always been confident about his place in the world and that his priority is taking care of his kid, whether that's Andy or Bonnie. But when Bonnie adds a reluctant new toy called \"Forky\" to her room, a road trip adventure alongside old and new friends will show Woody how big the world can be for a toy.",
+        "nombre": "Toy Story 4",
         "restriccion": null,
         "duracion": null,
-        "codigo": null,
-        "categoria": null,
+        "codigo": 301528,
+        "categoria": [
+            12,
+            16,
+            35,
+            14,
+            10751
+        ],
         "tipo": null
     },
     {
         "id": null,
-        "descripcion": null,
-        "nombre": null,
+        "descripcion": "In the wake of his dramatic escape from captivity, Jesse Pinkman must come to terms with his past in order to forge some kind of future.",
+        "nombre": "El Camino: A Breaking Bad Movie",
         "restriccion": null,
         "duracion": null,
-        "codigo": null,
-        "categoria": null,
+        "codigo": 559969,
+        "categoria": [
+            80,
+            18,
+            53
+        ],
         "tipo": null
     },
     {
         "id": null,
-        "descripcion": null,
-        "nombre": null,
+        "descripcion": "When John Rambo's niece travels to Mexico to find the father that abandoned her and her mother, she finds herself in the grasps of Calle Mexican sex traffickers. When she doesn't return home as expected, John learns she's crossed into Mexico and sets out to get her back and make them pay.",
+        "nombre": "Rambo: Last Blood",
         "restriccion": null,
         "duracion": null,
-        "codigo": null,
-        "categoria": null,
+        "codigo": 522938,
+        "categoria": [
+            28,
+            53
+        ],
         "tipo": null
     },
     {
         "id": null,
-        "descripcion": null,
-        "nombre": null,
+        "descripcion": "A spinoff of The Fate of the Furious, focusing on Johnson's US Diplomatic Security Agent Luke Hobbs forming an unlikely alliance with Statham's Deckard Shaw.",
+        "nombre": "Fast & Furious Presents: Hobbs & Shaw",
         "restriccion": null,
         "duracion": null,
-        "codigo": null,
-        "categoria": null,
+        "codigo": 384018,
+        "categoria": [
+            28
+        ],
         "tipo": null
     },
     {
         "id": null,
-        "descripcion": null,
-        "nombre": null,
+        "descripcion": "Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin\u2019s guild, the High Table, John Wick is excommunicado, but the world\u2019s most ruthless hit men and women await his every turn.",
+        "nombre": "John Wick: Chapter 3 - Parabellum",
         "restriccion": null,
         "duracion": null,
-        "codigo": null,
-        "categoria": null,
+        "codigo": 458156,
+        "categoria": [
+            28,
+            80,
+            53
+        ],
         "tipo": null
     },
     {
         "id": null,
-        "descripcion": null,
-        "nombre": null,
+        "descripcion": "A faded television actor and his stunt double strive to achieve fame and success in the film industry during the final years of Hollywood's Golden Age in 1969 Los Angeles.",
+        "nombre": "Once Upon a Time... in Hollywood",
         "restriccion": null,
         "duracion": null,
-        "codigo": null,
-        "categoria": null,
+        "codigo": 466272,
+        "categoria": [
+            35,
+            18
+        ],
         "tipo": null
     },
     {
         "id": null,
-        "descripcion": null,
-        "nombre": null,
+        "descripcion": "After crashing his car, a cop who's recovering from eye surgery recruits an Uber driver to help him catch a heroin dealer. The mismatched pair soon find themselves in for a wild day of stakeouts and shootouts as they encounter the city's seedy side.",
+        "nombre": "Stuber",
         "restriccion": null,
         "duracion": null,
-        "codigo": null,
-        "categoria": null,
+        "codigo": 513045,
+        "categoria": [
+            28,
+            35,
+            80,
+            53
+        ],
         "tipo": null
     },
     {
         "id": null,
-        "descripcion": null,
-        "nombre": null,
+        "descripcion": "The Addams family's lives begin to unravel when they face-off against a treacherous, greedy crafty reality-TV host while also preparing for their extended family to arrive for a major celebration.",
+        "nombre": "The Addams Family",
         "restriccion": null,
         "duracion": null,
-        "codigo": null,
-        "categoria": null,
+        "codigo": 481084,
+        "categoria": [
+            16,
+            35,
+            14,
+            27,
+            10751
+        ],
         "tipo": null
     },
     {
         "id": null,
-        "descripcion": null,
-        "nombre": null,
+        "descripcion": "When a huge hurricane hits her hometown in Florida, Haley ignores evacuation orders to look for her father. After finding him badly wounded, both are trapped by the flood. With virtually no time to escape the storm, they discover that rising water levels are the least of their problems.",
+        "nombre": "Crawl",
         "restriccion": null,
         "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": null,
-        "tipo": "An astronaut travels to the outer edges of the solar system to find his father and unravel a mystery that threatens the survival of our planet. He uncovers secrets which challenge the nature of human existence and our place in the cosmos."
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": null,
-        "categoria": "One Piece: Stampede is a stand-alone film that celebrates the anime's 20th Anniversary and takes place outside the canon of the \"One Piece\" TV series. Monkey D. Luffy and his Straw Hat pirate crew are invited to a massive Pirate Festival that brings many of the most iconic characters from throughout the franchise to participate in competition with the Straw Hats to find Roger's treasure. It also pits the Straw Hats against a new enemy named Bullet, a former member of Roger's crew.",
-        "tipo": "One Piece: Stampede"
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": null,
-        "codigo": "A crew of savvy former strip club employees band together to turn the tables on their Wall Street clients.",
-        "categoria": "Hustlers",
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": null,
-        "duracion": "The group will face a new zombie threat as a new breed of zombie has developed. This new super-zombie type is faster, bigger, and stronger than the previous strain of zombies and harder to kill. These super-zombies have started grouping up into a horde going from city to city leaving a path of destruction behind them.",
-        "codigo": "Zombieland: Double Tap",
-        "categoria": null,
-        "tipo": null
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": null,
-        "restriccion": "Red, Chuck, Bomb and the rest of their feathered friends are surprised when a green pig suggests that they put aside their differences and unite to fight a common threat. Aggressive birds from an island covered in ice are planning to use an elaborate weapon to destroy the fowl and swine.",
-        "duracion": "The Angry Birds Movie 2",
-        "codigo": null,
-        "categoria": null,
-        "tipo": 454640
-    },
-    {
-        "id": null,
-        "descripcion": null,
-        "nombre": "The shadow of the Bellows family has loomed large in the small town of Mill Valley for generations. It's in a mansion that young Sarah Bellows turns her tortured life and horrible secrets into a series of scary stories. These terrifying tales soon have a way of becoming all too real for a group of unsuspecting teens who stumble upon Sarah's spooky home.",
-        "restriccion": "Scary Stories to Tell in the Dark",
-        "duracion": null,
-        "codigo": null,
-        "categoria": 417384,
-        "tipo": [
+        "codigo": 511987,
+        "categoria": [
+            28,
+            18,
             27,
             53
-        ]
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The Russian Czar Peter the Great commissions Jonathan Green, an English traveller, to map the Far East territories of the Russian Empire. Green sets off on yet another long journey, full of unbelievable adventures, which eventually leads him to China. On his way, the famous cartographer makes breath-taking discoveries, meets mysterious creatures, Chinese princesses, deadly masters of oriental martial arts, and even Lun Van, the King of Dragons, himself. What could be more perilous than looking into the eyes of Viy? Only meeting him again\u2026 What will prevail this time \u2014 the unflinching scepticism of the scientist or ancient black magic, which has already gained influence over the Far East Lands?",
+        "nombre": "The Mystery of the Dragon\u2019s Seal",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 428045,
+        "categoria": [
+            12,
+            14
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "An astronaut travels to the outer edges of the solar system to find his father and unravel a mystery that threatens the survival of our planet. He uncovers secrets which challenge the nature of human existence and our place in the cosmos.",
+        "nombre": "Ad Astra",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 419704,
+        "categoria": [
+            12,
+            18,
+            878
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "One Piece: Stampede is a stand-alone film that celebrates the anime's 20th Anniversary and takes place outside the canon of the \"One Piece\" TV series. Monkey D. Luffy and his Straw Hat pirate crew are invited to a massive Pirate Festival that brings many of the most iconic characters from throughout the franchise to participate in competition with the Straw Hats to find Roger's treasure. It also pits the Straw Hats against a new enemy named Bullet, a former member of Roger's crew.",
+        "nombre": "One Piece: Stampede",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 568012,
+        "categoria": [
+            28,
+            12,
+            16
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "A crew of savvy former strip club employees band together to turn the tables on their Wall Street clients.",
+        "nombre": "Hustlers",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 540901,
+        "categoria": [
+            35,
+            80,
+            18
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The group will face a new zombie threat as a new breed of zombie has developed. This new super-zombie type is faster, bigger, and stronger than the previous strain of zombies and harder to kill. These super-zombies have started grouping up into a horde going from city to city leaving a path of destruction behind them.",
+        "nombre": "Zombieland: Double Tap",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 338967,
+        "categoria": [
+            28,
+            35,
+            27
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "Red, Chuck, Bomb and the rest of their feathered friends are surprised when a green pig suggests that they put aside their differences and unite to fight a common threat. Aggressive birds from an island covered in ice are planning to use an elaborate weapon to destroy the fowl and swine.",
+        "nombre": "The Angry Birds Movie 2",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 454640,
+        "categoria": [
+            28,
+            12,
+            16,
+            35,
+            10751
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The shadow of the Bellows family has loomed large in the small town of Mill Valley for generations. It's in a mansion that young Sarah Bellows turns her tortured life and horrible secrets into a series of scary stories. These terrifying tales soon have a way of becoming all too real for a group of unsuspecting teens who stumble upon Sarah's spooky home.",
+        "nombre": "Scary Stories to Tell in the Dark",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 417384,
+        "categoria": [
+            27,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The gamols are back!",
+        "nombre": "Sanggano, Sanggago't Sanggwapo",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 623393,
+        "categoria": [
+            35,
+            10751
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+        "nombre": "Joker",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 475557,
+        "categoria": [
+            80,
+            18,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "27 years after overcoming the malevolent supernatural entity Pennywise, the former members of the Losers' Club, who have grown up and moved away from Derry, are brought back together by a devastating phone call.",
+        "nombre": "It Chapter Two",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 474350,
+        "categoria": [
+            27
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "Henry Brogen, an aging assassin tries to get out of the business but finds himself in the ultimate battle: fighting his own clone who is 25 years younger than him and at the peak of his abilities.",
+        "nombre": "Gemini Man",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 453405,
+        "categoria": [
+            28,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "Woody has always been confident about his place in the world and that his priority is taking care of his kid, whether that's Andy or Bonnie. But when Bonnie adds a reluctant new toy called \"Forky\" to her room, a road trip adventure alongside old and new friends will show Woody how big the world can be for a toy.",
+        "nombre": "Toy Story 4",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 301528,
+        "categoria": [
+            12,
+            16,
+            35,
+            14,
+            10751
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "In the wake of his dramatic escape from captivity, Jesse Pinkman must come to terms with his past in order to forge some kind of future.",
+        "nombre": "El Camino: A Breaking Bad Movie",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 559969,
+        "categoria": [
+            80,
+            18,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "When John Rambo's niece travels to Mexico to find the father that abandoned her and her mother, she finds herself in the grasps of Calle Mexican sex traffickers. When she doesn't return home as expected, John learns she's crossed into Mexico and sets out to get her back and make them pay.",
+        "nombre": "Rambo: Last Blood",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 522938,
+        "categoria": [
+            28,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "A spinoff of The Fate of the Furious, focusing on Johnson's US Diplomatic Security Agent Luke Hobbs forming an unlikely alliance with Statham's Deckard Shaw.",
+        "nombre": "Fast & Furious Presents: Hobbs & Shaw",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 384018,
+        "categoria": [
+            28
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin\u2019s guild, the High Table, John Wick is excommunicado, but the world\u2019s most ruthless hit men and women await his every turn.",
+        "nombre": "John Wick: Chapter 3 - Parabellum",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 458156,
+        "categoria": [
+            28,
+            80,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "A faded television actor and his stunt double strive to achieve fame and success in the film industry during the final years of Hollywood's Golden Age in 1969 Los Angeles.",
+        "nombre": "Once Upon a Time... in Hollywood",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 466272,
+        "categoria": [
+            35,
+            18
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "After crashing his car, a cop who's recovering from eye surgery recruits an Uber driver to help him catch a heroin dealer. The mismatched pair soon find themselves in for a wild day of stakeouts and shootouts as they encounter the city's seedy side.",
+        "nombre": "Stuber",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 513045,
+        "categoria": [
+            28,
+            35,
+            80,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The Addams family's lives begin to unravel when they face-off against a treacherous, greedy crafty reality-TV host while also preparing for their extended family to arrive for a major celebration.",
+        "nombre": "The Addams Family",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 481084,
+        "categoria": [
+            16,
+            35,
+            14,
+            27,
+            10751
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "When a huge hurricane hits her hometown in Florida, Haley ignores evacuation orders to look for her father. After finding him badly wounded, both are trapped by the flood. With virtually no time to escape the storm, they discover that rising water levels are the least of their problems.",
+        "nombre": "Crawl",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 511987,
+        "categoria": [
+            28,
+            18,
+            27,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The Russian Czar Peter the Great commissions Jonathan Green, an English traveller, to map the Far East territories of the Russian Empire. Green sets off on yet another long journey, full of unbelievable adventures, which eventually leads him to China. On his way, the famous cartographer makes breath-taking discoveries, meets mysterious creatures, Chinese princesses, deadly masters of oriental martial arts, and even Lun Van, the King of Dragons, himself. What could be more perilous than looking into the eyes of Viy? Only meeting him again\u2026 What will prevail this time \u2014 the unflinching scepticism of the scientist or ancient black magic, which has already gained influence over the Far East Lands?",
+        "nombre": "The Mystery of the Dragon\u2019s Seal",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 428045,
+        "categoria": [
+            12,
+            14
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "An astronaut travels to the outer edges of the solar system to find his father and unravel a mystery that threatens the survival of our planet. He uncovers secrets which challenge the nature of human existence and our place in the cosmos.",
+        "nombre": "Ad Astra",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 419704,
+        "categoria": [
+            12,
+            18,
+            878
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "One Piece: Stampede is a stand-alone film that celebrates the anime's 20th Anniversary and takes place outside the canon of the \"One Piece\" TV series. Monkey D. Luffy and his Straw Hat pirate crew are invited to a massive Pirate Festival that brings many of the most iconic characters from throughout the franchise to participate in competition with the Straw Hats to find Roger's treasure. It also pits the Straw Hats against a new enemy named Bullet, a former member of Roger's crew.",
+        "nombre": "One Piece: Stampede",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 568012,
+        "categoria": [
+            28,
+            12,
+            16
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "A crew of savvy former strip club employees band together to turn the tables on their Wall Street clients.",
+        "nombre": "Hustlers",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 540901,
+        "categoria": [
+            35,
+            80,
+            18
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The group will face a new zombie threat as a new breed of zombie has developed. This new super-zombie type is faster, bigger, and stronger than the previous strain of zombies and harder to kill. These super-zombies have started grouping up into a horde going from city to city leaving a path of destruction behind them.",
+        "nombre": "Zombieland: Double Tap",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 338967,
+        "categoria": [
+            28,
+            35,
+            27
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "Red, Chuck, Bomb and the rest of their feathered friends are surprised when a green pig suggests that they put aside their differences and unite to fight a common threat. Aggressive birds from an island covered in ice are planning to use an elaborate weapon to destroy the fowl and swine.",
+        "nombre": "The Angry Birds Movie 2",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 454640,
+        "categoria": [
+            28,
+            12,
+            16,
+            35,
+            10751
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The shadow of the Bellows family has loomed large in the small town of Mill Valley for generations. It's in a mansion that young Sarah Bellows turns her tortured life and horrible secrets into a series of scary stories. These terrifying tales soon have a way of becoming all too real for a group of unsuspecting teens who stumble upon Sarah's spooky home.",
+        "nombre": "Scary Stories to Tell in the Dark",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 417384,
+        "categoria": [
+            27,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The gamols are back!",
+        "nombre": "Sanggano, Sanggago't Sanggwapo",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 623393,
+        "categoria": [
+            35,
+            10751
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+        "nombre": "Joker",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 475557,
+        "categoria": [
+            80,
+            18,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "27 years after overcoming the malevolent supernatural entity Pennywise, the former members of the Losers' Club, who have grown up and moved away from Derry, are brought back together by a devastating phone call.",
+        "nombre": "It Chapter Two",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 474350,
+        "categoria": [
+            27
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "Henry Brogen, an aging assassin tries to get out of the business but finds himself in the ultimate battle: fighting his own clone who is 25 years younger than him and at the peak of his abilities.",
+        "nombre": "Gemini Man",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 453405,
+        "categoria": [
+            28,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "Woody has always been confident about his place in the world and that his priority is taking care of his kid, whether that's Andy or Bonnie. But when Bonnie adds a reluctant new toy called \"Forky\" to her room, a road trip adventure alongside old and new friends will show Woody how big the world can be for a toy.",
+        "nombre": "Toy Story 4",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 301528,
+        "categoria": [
+            12,
+            16,
+            35,
+            14,
+            10751
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "In the wake of his dramatic escape from captivity, Jesse Pinkman must come to terms with his past in order to forge some kind of future.",
+        "nombre": "El Camino: A Breaking Bad Movie",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 559969,
+        "categoria": [
+            80,
+            18,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "When John Rambo's niece travels to Mexico to find the father that abandoned her and her mother, she finds herself in the grasps of Calle Mexican sex traffickers. When she doesn't return home as expected, John learns she's crossed into Mexico and sets out to get her back and make them pay.",
+        "nombre": "Rambo: Last Blood",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 522938,
+        "categoria": [
+            28,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "A spinoff of The Fate of the Furious, focusing on Johnson's US Diplomatic Security Agent Luke Hobbs forming an unlikely alliance with Statham's Deckard Shaw.",
+        "nombre": "Fast & Furious Presents: Hobbs & Shaw",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 384018,
+        "categoria": [
+            28
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin\u2019s guild, the High Table, John Wick is excommunicado, but the world\u2019s most ruthless hit men and women await his every turn.",
+        "nombre": "John Wick: Chapter 3 - Parabellum",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 458156,
+        "categoria": [
+            28,
+            80,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "A faded television actor and his stunt double strive to achieve fame and success in the film industry during the final years of Hollywood's Golden Age in 1969 Los Angeles.",
+        "nombre": "Once Upon a Time... in Hollywood",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 466272,
+        "categoria": [
+            35,
+            18
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "After crashing his car, a cop who's recovering from eye surgery recruits an Uber driver to help him catch a heroin dealer. The mismatched pair soon find themselves in for a wild day of stakeouts and shootouts as they encounter the city's seedy side.",
+        "nombre": "Stuber",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 513045,
+        "categoria": [
+            28,
+            35,
+            80,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The Addams family's lives begin to unravel when they face-off against a treacherous, greedy crafty reality-TV host while also preparing for their extended family to arrive for a major celebration.",
+        "nombre": "The Addams Family",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 481084,
+        "categoria": [
+            16,
+            35,
+            14,
+            27,
+            10751
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "When a huge hurricane hits her hometown in Florida, Haley ignores evacuation orders to look for her father. After finding him badly wounded, both are trapped by the flood. With virtually no time to escape the storm, they discover that rising water levels are the least of their problems.",
+        "nombre": "Crawl",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 511987,
+        "categoria": [
+            28,
+            18,
+            27,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The Russian Czar Peter the Great commissions Jonathan Green, an English traveller, to map the Far East territories of the Russian Empire. Green sets off on yet another long journey, full of unbelievable adventures, which eventually leads him to China. On his way, the famous cartographer makes breath-taking discoveries, meets mysterious creatures, Chinese princesses, deadly masters of oriental martial arts, and even Lun Van, the King of Dragons, himself. What could be more perilous than looking into the eyes of Viy? Only meeting him again\u2026 What will prevail this time \u2014 the unflinching scepticism of the scientist or ancient black magic, which has already gained influence over the Far East Lands?",
+        "nombre": "The Mystery of the Dragon\u2019s Seal",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 428045,
+        "categoria": [
+            12,
+            14
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "An astronaut travels to the outer edges of the solar system to find his father and unravel a mystery that threatens the survival of our planet. He uncovers secrets which challenge the nature of human existence and our place in the cosmos.",
+        "nombre": "Ad Astra",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 419704,
+        "categoria": [
+            12,
+            18,
+            878
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "One Piece: Stampede is a stand-alone film that celebrates the anime's 20th Anniversary and takes place outside the canon of the \"One Piece\" TV series. Monkey D. Luffy and his Straw Hat pirate crew are invited to a massive Pirate Festival that brings many of the most iconic characters from throughout the franchise to participate in competition with the Straw Hats to find Roger's treasure. It also pits the Straw Hats against a new enemy named Bullet, a former member of Roger's crew.",
+        "nombre": "One Piece: Stampede",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 568012,
+        "categoria": [
+            28,
+            12,
+            16
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "A crew of savvy former strip club employees band together to turn the tables on their Wall Street clients.",
+        "nombre": "Hustlers",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 540901,
+        "categoria": [
+            35,
+            80,
+            18
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The group will face a new zombie threat as a new breed of zombie has developed. This new super-zombie type is faster, bigger, and stronger than the previous strain of zombies and harder to kill. These super-zombies have started grouping up into a horde going from city to city leaving a path of destruction behind them.",
+        "nombre": "Zombieland: Double Tap",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 338967,
+        "categoria": [
+            28,
+            35,
+            27
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "Red, Chuck, Bomb and the rest of their feathered friends are surprised when a green pig suggests that they put aside their differences and unite to fight a common threat. Aggressive birds from an island covered in ice are planning to use an elaborate weapon to destroy the fowl and swine.",
+        "nombre": "The Angry Birds Movie 2",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 454640,
+        "categoria": [
+            28,
+            12,
+            16,
+            35,
+            10751
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The shadow of the Bellows family has loomed large in the small town of Mill Valley for generations. It's in a mansion that young Sarah Bellows turns her tortured life and horrible secrets into a series of scary stories. These terrifying tales soon have a way of becoming all too real for a group of unsuspecting teens who stumble upon Sarah's spooky home.",
+        "nombre": "Scary Stories to Tell in the Dark",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 417384,
+        "categoria": [
+            27,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The gamols are back!",
+        "nombre": "Sanggano, Sanggago't Sanggwapo",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 623393,
+        "categoria": [
+            35,
+            10751
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+        "nombre": "Joker",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 475557,
+        "categoria": [
+            80,
+            18,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "27 years after overcoming the malevolent supernatural entity Pennywise, the former members of the Losers' Club, who have grown up and moved away from Derry, are brought back together by a devastating phone call.",
+        "nombre": "It Chapter Two",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 474350,
+        "categoria": [
+            27
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "Henry Brogen, an aging assassin tries to get out of the business but finds himself in the ultimate battle: fighting his own clone who is 25 years younger than him and at the peak of his abilities.",
+        "nombre": "Gemini Man",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 453405,
+        "categoria": [
+            28,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "Woody has always been confident about his place in the world and that his priority is taking care of his kid, whether that's Andy or Bonnie. But when Bonnie adds a reluctant new toy called \"Forky\" to her room, a road trip adventure alongside old and new friends will show Woody how big the world can be for a toy.",
+        "nombre": "Toy Story 4",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 301528,
+        "categoria": [
+            12,
+            16,
+            35,
+            14,
+            10751
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "In the wake of his dramatic escape from captivity, Jesse Pinkman must come to terms with his past in order to forge some kind of future.",
+        "nombre": "El Camino: A Breaking Bad Movie",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 559969,
+        "categoria": [
+            80,
+            18,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "When John Rambo's niece travels to Mexico to find the father that abandoned her and her mother, she finds herself in the grasps of Calle Mexican sex traffickers. When she doesn't return home as expected, John learns she's crossed into Mexico and sets out to get her back and make them pay.",
+        "nombre": "Rambo: Last Blood",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 522938,
+        "categoria": [
+            28,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "A spinoff of The Fate of the Furious, focusing on Johnson's US Diplomatic Security Agent Luke Hobbs forming an unlikely alliance with Statham's Deckard Shaw.",
+        "nombre": "Fast & Furious Presents: Hobbs & Shaw",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 384018,
+        "categoria": [
+            28
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin\u2019s guild, the High Table, John Wick is excommunicado, but the world\u2019s most ruthless hit men and women await his every turn.",
+        "nombre": "John Wick: Chapter 3 - Parabellum",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 458156,
+        "categoria": [
+            28,
+            80,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "A faded television actor and his stunt double strive to achieve fame and success in the film industry during the final years of Hollywood's Golden Age in 1969 Los Angeles.",
+        "nombre": "Once Upon a Time... in Hollywood",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 466272,
+        "categoria": [
+            35,
+            18
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "After crashing his car, a cop who's recovering from eye surgery recruits an Uber driver to help him catch a heroin dealer. The mismatched pair soon find themselves in for a wild day of stakeouts and shootouts as they encounter the city's seedy side.",
+        "nombre": "Stuber",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 513045,
+        "categoria": [
+            28,
+            35,
+            80,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The Addams family's lives begin to unravel when they face-off against a treacherous, greedy crafty reality-TV host while also preparing for their extended family to arrive for a major celebration.",
+        "nombre": "The Addams Family",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 481084,
+        "categoria": [
+            16,
+            35,
+            14,
+            27,
+            10751
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "When a huge hurricane hits her hometown in Florida, Haley ignores evacuation orders to look for her father. After finding him badly wounded, both are trapped by the flood. With virtually no time to escape the storm, they discover that rising water levels are the least of their problems.",
+        "nombre": "Crawl",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 511987,
+        "categoria": [
+            28,
+            18,
+            27,
+            53
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The Russian Czar Peter the Great commissions Jonathan Green, an English traveller, to map the Far East territories of the Russian Empire. Green sets off on yet another long journey, full of unbelievable adventures, which eventually leads him to China. On his way, the famous cartographer makes breath-taking discoveries, meets mysterious creatures, Chinese princesses, deadly masters of oriental martial arts, and even Lun Van, the King of Dragons, himself. What could be more perilous than looking into the eyes of Viy? Only meeting him again\u2026 What will prevail this time \u2014 the unflinching scepticism of the scientist or ancient black magic, which has already gained influence over the Far East Lands?",
+        "nombre": "The Mystery of the Dragon\u2019s Seal",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 428045,
+        "categoria": [
+            12,
+            14
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "An astronaut travels to the outer edges of the solar system to find his father and unravel a mystery that threatens the survival of our planet. He uncovers secrets which challenge the nature of human existence and our place in the cosmos.",
+        "nombre": "Ad Astra",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 419704,
+        "categoria": [
+            12,
+            18,
+            878
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "One Piece: Stampede is a stand-alone film that celebrates the anime's 20th Anniversary and takes place outside the canon of the \"One Piece\" TV series. Monkey D. Luffy and his Straw Hat pirate crew are invited to a massive Pirate Festival that brings many of the most iconic characters from throughout the franchise to participate in competition with the Straw Hats to find Roger's treasure. It also pits the Straw Hats against a new enemy named Bullet, a former member of Roger's crew.",
+        "nombre": "One Piece: Stampede",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 568012,
+        "categoria": [
+            28,
+            12,
+            16
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "A crew of savvy former strip club employees band together to turn the tables on their Wall Street clients.",
+        "nombre": "Hustlers",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 540901,
+        "categoria": [
+            35,
+            80,
+            18
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The group will face a new zombie threat as a new breed of zombie has developed. This new super-zombie type is faster, bigger, and stronger than the previous strain of zombies and harder to kill. These super-zombies have started grouping up into a horde going from city to city leaving a path of destruction behind them.",
+        "nombre": "Zombieland: Double Tap",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 338967,
+        "categoria": [
+            28,
+            35,
+            27
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "Red, Chuck, Bomb and the rest of their feathered friends are surprised when a green pig suggests that they put aside their differences and unite to fight a common threat. Aggressive birds from an island covered in ice are planning to use an elaborate weapon to destroy the fowl and swine.",
+        "nombre": "The Angry Birds Movie 2",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 454640,
+        "categoria": [
+            28,
+            12,
+            16,
+            35,
+            10751
+        ],
+        "tipo": null
+    },
+    {
+        "id": null,
+        "descripcion": "The shadow of the Bellows family has loomed large in the small town of Mill Valley for generations. It's in a mansion that young Sarah Bellows turns her tortured life and horrible secrets into a series of scary stories. These terrifying tales soon have a way of becoming all too real for a group of unsuspecting teens who stumble upon Sarah's spooky home.",
+        "nombre": "Scary Stories to Tell in the Dark",
+        "restriccion": null,
+        "duracion": null,
+        "codigo": 417384,
+        "categoria": [
+            27,
+            53
+        ],
+        "tipo": null
     },
     {
         "id": null,

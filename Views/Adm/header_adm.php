@@ -49,7 +49,7 @@ if( isset($_SESSION['Login'])){
   <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
     <ul class="nav navbar-nav">
       <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Adm_Peliculas/adm_cines" class="nav-link">ADM Cines</a></li>
-      <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Adm_Peliculas/recibirPeliculas" class="nav-link">ADM Peliculas</a></li>
+      <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Adm_Peliculas/metodo" class="nav-link">ADM Peliculas</a></li>
       <li class="nav-item"><a href="#" class="nav-link">ADM Localidades</a></li> 
     </ul>
     
@@ -61,8 +61,8 @@ if( isset($_SESSION['Login'])){
         <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-user barra"></span> 
-                        <strong></strong>
+                        <!--<span class="glyphicon glyphicon-user barra"></span> -->
+                        <strong><?php echo $cuenta_logueada->getEmail(); ?></strong>
                         <span class="glyphicon glyphicon-chevron-down"></span>
                     </a>
                     <ul class="dropdown-menu form-wrapper">

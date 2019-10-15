@@ -39,41 +39,33 @@ use models\Pelicula as Pelicula;
                 <table class="table box_transparente">
                     <thead class="thead-dark">
                         <tr>
-                            <th></th>
                             <th>ID</th>
                             <th>Pelicula</th>
                             <th>Cine</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
                             <th>Modificar</th>
                             <th>Eliminar</th>
-
                         </tr>
                     </thead>
                     <tbody>
                     <?php
-                               $cines = new PostsRepository();
+                               $peliculas = new MovieRepository();
                             //$categories = new CategoriesRepository();
-                            $productsArray = $cines->getAll(); ?>
+                            $productsArray = $peliculas->getAll(); ?>
 
                                 <?php foreach ($productsArray as $key => $value)
                                 {
-                                $Cine = $value;
-                                if($Cine->getHabilitado() == true)
+                                $peliculas = $value;
+                                if($peliculas->getHabilitado() == true)
                                 {
                                     ?>
-
-
                             <tr>
                             <td><input type="checkbox" name="userschecked[]" /></td>
-                                <td><?php  echo $Cine->getID(); ?></td>
-                                    
-                                <td><?php  echo $Cine->getNombre(); ?></td>
-                                <td><?php  echo $Cine->getDireccion(); ?></td>
-                                <td><?php  echo $Cine->getCapacidad(); ?></td>
+                                <td><?php  echo $peliculas->getID(); ?></td>   
+                                <td><?php  echo $peliculas->getNombre(); ?></td>
+                                <td><?php  echo $peliculas->getDireccion(); ?></td>
+                                <td><?php  echo $peliculas->getCapacidad(); ?></td>
                                 <!--       <td><?php // echo $Post->getDate(); ?></td> -->
-                                <td><?php  echo $Cine->getValor_entrada(); ?></td>
+                                <td><?php  echo $peliculas->getValor_entrada(); ?></td>
                                 <td><button class="btn btn-dark">+</button></td>
                                 <td>
                                     <!-- BOTON MODIFICAR CINE -->

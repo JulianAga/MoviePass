@@ -33,7 +33,7 @@
 <div class="grid"> <!-- contenedor principal -->
   <div class="a h3-align-center li_borde_trasparente">
     <?php echo '
-      <h3 font-weight: bold>' . $mov->original_title . ' (' . substr($mov->release_date, 0, 4) . ')</h3>
+      <h4 class="label-blanco" font-weight: bold>' . $mov->original_title . ' (' . substr($mov->release_date, 0, 4) . ')</h4>
     ';
     ?>
     
@@ -165,7 +165,7 @@
       .body_parallax
       {
 
-        background:url(/MoviePass/images/texturas/spectrum.png); /* Nuestra textura */
+        background:url(/MoviePass/images/texturas/karachi.gif); /* Nuestra textura */
         background-repeat:repeat; /* Indicamos que la textura se repetira */
         background-attachment: fixed; /* Establecemos una posicion fija para la textura */
         
@@ -208,26 +208,29 @@
 
 
 
-.grid {
-  display: grid;
-  grid-template-areas: "head head"
-                       "menu main"
-                       "foot foot";
-  
-  
-  grid-column-gap: 50px;
-  grid-row-gap: 20px;
-}
-.a { grid-area: head; margin-right: 70px; margin-left:70px;}
-.b { grid-area: menu;  height:600px; width:400px; margin-left:70px;}
-.c { grid-area: main;  height:600px; width:850px;margin-right: 70px; padding: 30px;}
-.d { grid-area: foot; background: orange; }
+      .grid {
+        display: grid;
+        grid-template-areas: "head head"
+                             "menu main"
+                             "foot foot";
+        
+        
+        grid-column-gap: 50px;
+        grid-row-gap: 20px;
+      }
+      .a { grid-area: head; margin-right: 70px; margin-left:70px;}
+      .b { grid-area: menu;  height:600px; width:400px; margin-left:70px;}
+      .c { grid-area: main;  height:600px; width:850px;margin-right: 70px; padding: 30px;}
+      .d { grid-area: foot; background: orange; }
 
-.btn-abajo{
-  position: relative;
-  bottom: -90px;
-  right: 0px;
-}
+      .btn-abajo{
+        position: relative;
+        bottom: -90px;
+        right: 0px;
+      }
+      .label-blanco{
+        color: #ffff;
+      }
 
     </style>
     

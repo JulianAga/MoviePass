@@ -70,6 +70,7 @@ if( isset($_SESSION['Login'])){
         <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
       </div>
     </form>
+    <!--ENTRA SI NO SESSION, CAMBIANDO LOS ICONOS DE LA BARRA -->
     <ul class="nav navbar-nav navbar-right ml-auto">
      <?php  if( !isset($_SESSION['Login']) ) {  ?> 
     <!-- BOTON INICIAR SESION-->    
@@ -139,14 +140,17 @@ if( isset($_SESSION['Login'])){
       </li>
        <?php  } ?> 
 
-       <?php   if( isset($_SESSION['Login']) ) {  ?> 
+       <?php   if( isset($_SESSION['Login']) ) {  ?> <!--ENTRA SI HAY SESSION, CAMBIANDO LOS ICONOS DE LA BARRA -->
       
         <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-user barra"></span> 
-                        <strong></strong>
+                        
+                        
+                        <strong><?php echo $cuenta_logueada->getEmail(); ?></strong>
                         <span class="glyphicon glyphicon-chevron-down"></span>
+                        <!--<span class="glyphicon glyphicon-user barra"></span> -->
+                        
                     </a>
                     <ul class="dropdown-menu form-wrapper">
                         <li>
@@ -159,7 +163,6 @@ if( isset($_SESSION['Login'])){
                                     </div>
                                     <div>
                                         <p class="text-center"><strong><h4>Nombre Apellido</h4></strong></p>
-                                        <p class="text-left"> <?php echo $cuenta_logueada->getEmail(); ?></p>
                                         <p>
                                             <input type="submit" class="btn btn-primary btn-block" value="Mi Cuenta">
                                         </p>
