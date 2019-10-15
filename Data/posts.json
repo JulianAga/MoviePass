@@ -1,27 +1,11 @@
 [
     {
         "ID": "123",
-        "cine": "Ambassador",
-        "direccion": "cordoba 123",
-        "valor": "100",
-        "capacidad": "500",
+        "cine": "los gallegos",
+        "direccion": "santiago700",
+        "valor": "123",
+        "capacidad": "300",
         "habilitado": true
-    },
-    {
-        "ID": "123",
-        "cine": "los gallegos",
-        "direccion": "santiago700",
-        "valor": "123",
-        "capacidad": "300",
-        "habilitado": false
-    },
-    {
-        "ID": "123",
-        "cine": "los gallegos",
-        "direccion": "santiago700",
-        "valor": "123",
-        "capacidad": "300",
-        "habilitado": false
     },
     {
         "ID": "555",

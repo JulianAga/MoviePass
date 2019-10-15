@@ -64,7 +64,7 @@ class PublishController
         $this->newProd->setCapacidad($_POST['capacidad']);
         $this->newProd->setHabilitado(true);
 
-        if($this->repository->existByID($this->newProd->getID()))
+        if($this->repository->existByID($this->newProd->getID())) // Verifica que no exista otro Cine con el mismo id en el repositorio
         {
             echo '<script language="javascript">alert("El ID del cine ya se encuentra registrado!");</script>';
             $this->index();
