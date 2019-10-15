@@ -31,12 +31,11 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
     <header>
         <?php include_once("header_adm.php"); ?> <!-- llamado a la barra nav de home-->
     </header>
-    
-    <main class="p-5">
+        <main class="p-5">
         <div class="container position-relative align-middle">
         <h1 class="box_titulo box_transparente">CINEMAS</h1>
             
-                <table class="table box_transparente">
+                <table class="table box_transparente table_transparente">
                     <thead class="thead-dark">
                         <tr>
                             <th></th>
@@ -250,6 +249,10 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
         </div>
         
     </main>
+        
+    
+    
+    
 
     <!--
         CREATE POSTS
@@ -258,12 +261,17 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
         .box_transparente{
             box-shadow:0 5px 5px 3px rgba(0, 0, 0, 0.5);
         }
+        .table_transparente{
+            background-color: rgba(255, 255, 255,.9)
+        }
         .box_titulo{
             background-color: rgba(52, 189, 235,.7)
         }
         .fondo_home_adm{
-            background-color: rgba(0,0,0,0.8);
+            
             background:url(/MoviePass/images/fondo_body5.jpg);
+            
+
             
 
         }
