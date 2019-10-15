@@ -63,7 +63,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                   <option value="<?php echo $g->getId();?>"><?php echo $g->getName();?></option> 
                   <?php } ?>              
               </select>
-              <input type='submit' name="enviar" id="enviar" disabled>
+              <input type="submit" name="enviar" id="enviar" disabled>
           </form>
         </div>
         <br>
