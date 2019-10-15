@@ -9,66 +9,18 @@
     },
     {
         "ID": "123",
-        "cine": "Ambassador",
-        "direccion": "cordoba 123",
-        "valor": "100",
-        "capacidad": "500",
-        "habilitado": false
-    },
-    {
-        "ID": "555",
-        "cine": "Ambassador",
-        "direccion": "cordoba 129",
-        "valor": "150",
-        "capacidad": "500",
-        "habilitado": false
-    },
-    {
-        "ID": "200",
-        "cine": "Los Gallegos",
-        "direccion": "Diagonal 1560",
-        "valor": "250",
-        "capacidad": "210",
-        "habilitado": true
-    },
-    {
-        "ID": "200",
-        "cine": "Los Gallegos",
-        "direccion": "Diagonal 1560",
-        "valor": "250",
-        "capacidad": "210",
-        "habilitado": true
-    },
-    {
-        "ID": "2000",
-        "cine": "nene",
-        "direccion": "perez 5000",
-        "valor": "300",
-        "capacidad": "450",
-        "habilitado": true
-    },
-    {
-        "ID": "2000",
-        "cine": "nene",
-        "direccion": "perez 5000",
-        "valor": "300",
-        "capacidad": "450",
-        "habilitado": true
-    },
-    {
-        "ID": "asc",
-        "cine": "cece",
-        "direccion": "Santiago 1550",
+        "cine": "los gallegos",
+        "direccion": "santiago700",
         "valor": "123",
-        "capacidad": "123",
+        "capacidad": "300",
         "habilitado": false
     },
     {
         "ID": "123",
-        "cine": "das",
-        "direccion": "as\u00ed",
-        "valor": "-1",
-        "capacidad": "-2",
-        "habilitado": true
+        "cine": "los gallegos",
+        "direccion": "santiago700",
+        "valor": "123",
+        "capacidad": "300",
+        "habilitado": false
     }
 ]
