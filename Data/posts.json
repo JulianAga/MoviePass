@@ -38,5 +38,21 @@
         "valor": "125",
         "capacidad": "3443",
         "habilitado": true
+    },
+    {
+        "ID": "200",
+        "cine": "Los Gallegos",
+        "direccion": "Diagonal 1560",
+        "valor": "250",
+        "capacidad": "210",
+        "habilitado": true
+    },
+    {
+        "ID": "200",
+        "cine": "Los Gallegos",
+        "direccion": "Diagonal 1560",
+        "valor": "250",
+        "capacidad": "210",
+        "habilitado": true
     }
 ]

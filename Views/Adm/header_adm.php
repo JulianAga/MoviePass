@@ -1,4 +1,4 @@
-<?php namespace Views
+<?php namespace Views;
 
 
   
@@ -25,7 +25,7 @@ if( isset($_SESSION['Login'])){
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="/ExerciseOne/Views/css/header2.css"><!-- ARCHIVO CSS-->
+<link rel="stylesheet" href="/MoviePass/Views/css/header2.css"><!-- ARCHIVO CSS-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -48,8 +48,8 @@ if( isset($_SESSION['Login'])){
   <!-- BARRA DE NAVEGACION -->
   <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
     <ul class="nav navbar-nav">
-      <li class="nav-item"><a href="#cartelera" class="nav-link">ADM Cines</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">ADM Peliculas</a></li>
+      <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Adm_Peliculas/adm_cines" class="nav-link">ADM Cines</a></li>
+      <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Adm_Peliculas/recibirPeliculas" class="nav-link">ADM Peliculas</a></li>
       <li class="nav-item"><a href="#" class="nav-link">ADM Localidades</a></li> 
     </ul>
     

@@ -1,9 +1,9 @@
-
-<?php 
+<?php namespace Adm;
 
 
 use Repository\PostsRepository as PostsRepository;
 use models\Cine as Cine;
+use models\Pelicula as Pelicula;
 ?>
 
 <!DOCTYPE html>
@@ -34,18 +34,18 @@ use models\Cine as Cine;
         <div class="container position-relative align-middle">
 
         
-        <h1 class="box_titulo box_transparente">CINEMAS</h1>
+        <h1 class="box_titulo box_transparente">PELICULAS</h1>
             
                 <table class="table box_transparente">
                     <thead class="thead-dark">
                         <tr>
                             <th></th>
                             <th>ID</th>
+                            <th>Pelicula</th>
                             <th>Cine</th>
-                            <th>Direccion</th>
-                            <th>Capacidad</th>
-                            <th>Valor de entrada</th>
-                            <th>Agregar Pelicula</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                             <th>Modificar</th>
                             <th>Eliminar</th>
 
@@ -77,19 +77,19 @@ use models\Cine as Cine;
                                 <td><button class="btn btn-dark">+</button></td>
                                 <td>
                                     <!-- BOTON MODIFICAR CINE -->
-                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal<?php echo $Cine->getID();?>" data-whatever="@mdo">*</button>
+                                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">*</button>
 
-    <div class="modal fade" id="exampleModal<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="ModalLabel">Modificar Cine</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-                                    </button>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modificar Pelicula</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
-      <form method="post" action="<?= ROOT_VIEW ?>/Modify/modifyCine">
+      <form method="post" action="<?= ROOT_VIEW ?>/Modify/modifyCine"> <!-- CAMBIAR A MODIFICAR PELICULA-->
                      <div class="form-group">
                         <label>Id del Cine</label>
                         <input type="text" class="form-control" name="ID" value="<?php echo $Cine->getID();?>" readonly/>
@@ -114,6 +114,8 @@ use models\Cine as Cine;
                         <label>Capacidad</label>
                         <input type="number" class="form-control" name="capacidad" value="<?php echo $Cine->getCapacidad();?>" required>
                     </div>
+      
+
                 </div>
 
                 <div class="modal-footer">
@@ -123,12 +125,10 @@ use models\Cine as Cine;
       </div>
     </div>
   </div>
-</div>
-                                </td>
-                                <td>
-                                    <form action="<?= ROOT_VIEW ?>/Delete/deleteCine" method="post"><button class="btn btn-dark" name="eliminar" value="<?php echo $Cine->getID();?>">-</button></form>
-                                </td>
+</div></td>
+                                <td><form action="<?= ROOT_VIEW ?>/Delete/deleteCine" method="post"><button class="btn btn-dark" name="eliminar" value="<?php echo $Cine->getID();?>">-</button></form></td>
 
+                                
                             </tr>
                                 <?php }} ?>
 
@@ -188,7 +188,7 @@ use models\Cine as Cine;
   </div>
 </div>
 
-                           <!--  Fin Boton Añadir Cines   -->
+                           <!--   Boton Añadir Cines   -->
                 </div>
             </form>
             

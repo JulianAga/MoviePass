@@ -109,7 +109,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                      </a>
                      <h5 ><em>Calificacion : " . $p->vote_average . " |  Votos: " . $p->vote_count . "</em>
                      </h5>
-                     
+
                      
                      </div>";
                      
@@ -204,7 +204,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
       .body_parallax
       {
 
-        background:url(/MoviePass/images/texturas/spectrum.png); /* Nuestra textura */
+        background:url(/MoviePass/images/texturas/karachi.gif); /* Nuestra textura */
         background-repeat:repeat; /* Indicamos que la textura se repetira */
         background-attachment: fixed; /* Establecemos una posicion fija para la textura */
         /* Eliminamos la propiedad de background-size */
