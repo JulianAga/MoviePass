@@ -1,9 +1,7 @@
 <?php namespace Controllers;
-require_once("Models/cine.php");
-require_once("Repository/PostsRepository.php");
 
 use models\Cine as Cine;
-use Repository\PostsRepository as PostsRepository;
+use Repository\CinesRepository as CinesRepository;
 
 /**
  * 
@@ -15,11 +13,8 @@ class PublishController
     
     public function __construct()
     {
-        
         $this->newProd = new Cine();
-        $this->repository = new PostsRepository();
-
-
+        $this->repository = new CinesRepository();
     }
 
 
@@ -90,7 +85,7 @@ if($_POST){
     $this->newProd->setHabilitado(true);
 
    
-    //$this->repository = new PostsRepository();
+    //$this->repository = new CinesRepository();
     $this->repository->add($newProd);
     echo "<script> alert('Cine agregado satisfactoriamente!');";
     //echo "window.location = 'Views/Adm/home_adm.php'; </script>";

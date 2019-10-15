@@ -2,7 +2,7 @@
 <?php 
 
 
-use Repository\PostsRepository as PostsRepository;
+use Repository\CinesRepository as CinesRepository;
 use models\Cine as Cine;
 include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
 include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
@@ -39,7 +39,6 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                     <thead class="thead-dark">
                         <tr>
                             <th></th>
-                            <th>ID</th>
                             <th>Cine</th>
                             <th>Direccion</th>
                             <th>Capacidad</th>
@@ -52,9 +51,9 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                     </thead>
                     <tbody>
                     <?php
-                               $cines = new PostsRepository();
-                            //$categories = new CategoriesRepository();
-                            $productsArray = $cines->getAll(); ?>
+                               $cines = new CinesRepository();
+
+                                $productsArray = $cines->getAll(); ?>
 
                                 <?php foreach ($productsArray as $key => $value)
                                 {
@@ -66,7 +65,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
                             <tr>
                             <td><input type="checkbox" name="userschecked[]" /></td>
-                                <td><?php  echo $Cine->getID(); ?></td>
+                                <!--<td><?php//  echo $Cine->getID(); ?></td>-->
                                     
                                 <td><?php  echo $Cine->getNombre(); ?></td>
                                 <td><?php  echo $Cine->getDireccion(); ?></td>
@@ -121,12 +120,12 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                 <!-- BOTON MODIFICAR CINE -->
                                 <td>
 
-                                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">*</button>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModifyModal<?php echo $Cine->getID();?>" data-whatever="@mdo">*</button>
+                                    <div class="modal fade" id="ModifyModal<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                           <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Modificar Cine</h5>
+                                            <h5 class="modal-title" id="ModifyModalLabel">Modificar Cine</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                               <span aria-hidden="true">&times;</span>
                                             </button>
@@ -186,13 +185,13 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
                            <!--   Boton Añadir Cines   -->
                 
-<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#MainModal" data-whatever="@mdo">Añadir cine</button>
+<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#AddCineModal" data-whatever="@mdo">Añadir cine</button>
 
-<div class="modal fade" id="MainModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="AddCineModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="MainModalLabel">Añadir cine</h5>
+        <h5 class="modal-title" id="AddCineModalLabel">Añadir cine</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -275,10 +274,6 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
         .fondo_home_adm{
             
             background:url(/MoviePass/images/fondo_body5.jpg);
-            
-
-            
-
         }
     </style>
 

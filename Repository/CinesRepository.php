@@ -4,7 +4,7 @@ require_once('Repository/IRepository.php');
     use Repository\IRepository as IRepository;
     use models\Cine as Cine;
 
-    class PostsRepository implements IRepository
+    class CinesRepository implements IRepository
     {
         private $postsList = array();
 

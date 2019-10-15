@@ -47,7 +47,10 @@ class Cine {
     }
 
     public function setCapacidad($capacidad){
+        if($capacidad > 0)
+        {
         $this->capacidad = $capacidad;
+        }
     }
 
     public function getValor_entrada(){
@@ -55,8 +58,12 @@ class Cine {
     }
 
     public function setValor_entrada($valor_entrada){
+        if($valor_entrada > 0)
+        {
         $this->valor_entrada = $valor_entrada;
+        }
     }
+    
     public function getHabilitado()
     {
         return $this->habilitado;

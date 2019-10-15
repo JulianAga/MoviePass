@@ -1,8 +1,9 @@
 <?php
 namespace Controllers;
 
-use Repository\PostsRepository as PostsRepository;
+use Repository\CinesRepository as CinesRepository;
 use Models\Cine as Cine;
+
 class ModifyController
 {
 
@@ -11,11 +12,8 @@ class ModifyController
     
     public function __construct()
     {
-        
         $this->cinema = new Cine();
-        $this->repository = new PostsRepository();
-
-
+        $this->repository = new CinesRepository();
     }
 
     
