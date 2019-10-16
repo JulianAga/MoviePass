@@ -15,9 +15,11 @@
 
 		public function __construct()
 		{			
-			
+			//REPOSITORIOS DE JSON
 			$this->RepositoryCuentas= new AccountRepository();
 			$this->RepositoryClientes= new ClientRepository();
+			//BD
+			$this->DAOCuentas=\DAOS\CuentasDAO::getInstance();
 			
 		}	
 
@@ -141,6 +143,7 @@
 
 		public function nuevo($nombre, $apellido, $telefono,$direccion,$ciudad, $email, $pass1, $pass2) 
 		{	
+			//traigo roles de la bd
 
 			try 
 			{
