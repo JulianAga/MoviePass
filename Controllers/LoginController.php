@@ -37,7 +37,7 @@
 			{
 				
 
-				if($_SESSION['Login']->getRol()=="ADM")//SI ES ADMIN LO LLEVA A SU PAG (falta configurar esto)
+				if($_SESSION['Login']->getRol()==1)//SI ES ADMIN LO LLEVA A SU PAG (falta configurar esto)
 				{
 					//lo lleva al home ADM
 					//pasar por la controladora de ADM para levantar los datos de la bd
@@ -45,7 +45,7 @@
 					require(ROOT . '/Views/Adm/home_adm.php');//
 					
 				}
-				if($_SESSION['Login']->getRol()=="User")// SI ES CLIENTE AL HOME DE CLIENTE (falta configurar esto)
+				if($_SESSION['Login']->getRol()==2)// SI ES CLIENTE AL HOME DE CLIENTE (falta configurar esto)
 				{
 					
 					//lo lleva al home CLIENTE
@@ -74,7 +74,8 @@
 			{	
 				try 
 				{
-					$buscado=$this->RepositoryCuentas->GetByEmail($emailBuscado);//busco si existe el email en BD ,devuelve null o el objeto CUENTA
+					//$buscado=$this->RepositoryCuentas->GetByEmail($emailBuscado);//busco si existe el email en BD ,devuelve null o el objeto CUENTA
+					$buscado=$this->DAOCuentas->buscarPorEmail($emailBuscado);
 			    }
 			    catch (Exception $e) 
 			    {

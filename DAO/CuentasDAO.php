@@ -153,14 +153,17 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 
 			while ($row = $command->fetch())
 			{
+
 				$email=($row['email']);
 				$pass=($row['pass']);
-				$rol=($row['rol']);
-				$id_cliente=($row['fk_cliente']);
+				$rol=($row['id_rol']);
+				$id_cliente=($row['id_cliente']);
 
 				$object = new \Models\Cuenta($email, $pass, $rol,$id_cliente);//tomo los datos de la cuenta buscada y creo un objeto
 				$object->setId($row['id_cuenta']);		
 			}
+
+			
 
 			return $object;//retorno el objeto o null si no lo encontro
 
