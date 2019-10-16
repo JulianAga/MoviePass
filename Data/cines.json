@@ -1,0 +1,26 @@
+[
+    {
+        "ID": 1,
+        "cine": "Ambassador",
+        "direccion": "cordoba 123",
+        "valor": "150",
+        "capacidad": "500",
+        "habilitado": true
+    },
+    {
+        "ID": 2,
+        "cine": "asds",
+        "direccion": "adssda",
+        "valor": null,
+        "capacidad": null,
+        "habilitado": false
+    },
+    {
+        "ID": 3,
+        "cine": "El paseo",
+        "direccion": "La Rioja 2000",
+        "valor": "200",
+        "capacidad": "300",
+        "habilitado": true
+    }
+]

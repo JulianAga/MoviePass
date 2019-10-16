@@ -201,7 +201,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
       <form method="post" action="<?= ROOT_VIEW ?>/Publish/newCine">
                      <div class="form-group">
                         <label>Id del Cine</label>
-                        <input type="text" class="form-control" name="ID" required>
+                        <input type="text" class="form-control" name="ID" disabled>
                     </div>
 
                     <div class="form-group">
