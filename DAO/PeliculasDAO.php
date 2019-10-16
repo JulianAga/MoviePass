@@ -1,17 +1,17 @@
 <?php namespace DAO;
 
-
-use models\Cine as Cine;
 use \Exception as Exception;
 use \PDOException as PDOException;
+use models\Pelicula as Pelicula;
 
 /**
  * 
  */
-class CinesDAO extends SingletonAbstractDAO implements IDAO
+class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 {
-	//-------------ATRIBUTOS--------------
-	private $table = 'Cines';
+	//----------ATRIBUTOS------------------
+	private $table = 'Peliculas';
+	
 	//----------METODOS--------------------
 	public function insertar($dato){
 
@@ -43,15 +43,6 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 	//
 	//
 	//
-	public function traerTodos(){
-
-	}//fin traer todos
 	
-	
-}//fin class----------------
-
-
-
-
-
+}
 ?>
