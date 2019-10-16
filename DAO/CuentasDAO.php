@@ -9,10 +9,25 @@ namespace DAOS;
  *pass varchar(100),
  *rol varchar(10),
  *fk_cliente int,
+
  *constraint pk_cuenta primary key(id_cuenta),
  *constraint fk_cuenta_cliente foreign key(fk_cliente) references clientes(id_cliente),
  *constraint unq_cuenta_email unique (email)
  *);
+ /*
+ *	CREATE TABLE clientes(
+ *	id_cliente int auto_increment not null,
+ 	nombre varchar(30),
+ *	apellido varchar(30),
+ 	telefono varchar(30),
+ *	direccion varchar(30),
+ 	ciudad varchar(30),
+ 	num_tarjeta varchar(30),
+ *	
+ *	
+ *	primary key(id_cliente)
+ *	);
+ */
  */
 
 use \Exception as Exception;
@@ -63,6 +78,7 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 	{
 		try 
     	{
+    		//table2 es cuentas
 			$query = 'INSERT INTO '.$this->table2.' 
 			(email, pass, rol,fk_cliente) 
 			VALUES 
@@ -99,24 +115,33 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 		try 
     	{
 			$query = 'INSERT INTO '.$this->table.' 
-			( apellido, domicilio,nombre,telefono) 
+			( apellido, direccion,nombre,telefono) 
 			VALUES 
-			( :apellido, :domicilio,:nombre,:telefono)';
+			( :apellido, :direccion,:nombre,:telefono)';
 
 			$pdo = new Connection();
 			$connection = $pdo->Connect();
 			$command = $connection->prepare($query);
 
 			
-			$apellido = $dato->getApellido();
-			$domicilio = $dato->getDomicilio();
-			$nombre = $dato->getNombre();
-			$telefono = $dato->getTelefono();
 
-			$command->bindParam(':apellido', $apellido);
-			$command->bindParam(':domicilio', $domicilio);
+			$nombre = $dato->getNombre();
+			$apellido = $dato->getApellido();
+			$telefono = $dato->getTelefono();
+			$direccion = $dato->getDireccion();
+			$ciudad = $dato->getCiudad();
+			$numTarjeta = $dato->getNumeroTarjeta();
+
+			
+			
 			$command->bindParam(':nombre', $nombre);
+			$command->bindParam(':apellido', $apellido);
 			$command->bindParam(':telefono', $telefono);
+			$command->bindParam(':direccion', $direccion);
+			$command->bindParam(':ciudad', $ciudad);
+			$command->bindParam(':num_tarjeta', $numTarjeta);
+			
+			
 
 			$command->execute();
 			
@@ -191,12 +216,18 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 
 			while ($row = $command->fetch())
 			{
-				$apellido = ($row['apellido']);
-				$domicilio = ($row['domicilio']);
-				$nombre = ($row['nombre']);
-				$telefono = ($row['telefono']);
+				
 
-				$object = new \Modelos\Cliente( $nombre , $apellido , $domicilio , $telefono ) ;
+				$nombre = ($row['nombre']);
+				$apellido = ($row['apellido']);
+				$telefono = ($row['telefono']);
+				$direccion = ($row['direccion']);
+				$ciudad = ($row['ciudad']);
+				$numTarjeta = ($row['num_tarjeta']);
+				
+				
+
+				$object = new \Models\Cliente( $nombre , $apellido ,$telefono, $direccion ,$ciudad,$numTarjeta  ) ;
 
 				$object->setId($row['id_cliente']);	
 			}
@@ -259,11 +290,15 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 	{
 		try 
     	{
+    		//table=clientes
+
 			$query= 'UPDATE '.$this->table.'
-					SET apellido = :apellido, 
-						domicilio = :domicilio,
-						nombre = :nombre,
-						telefono = :telefono
+					SET nombre = :nombre, 
+						apellido = :apellido,
+						telefono = :telefono,
+						direccion = :direccion,
+						ciudad = :ciudad,
+						num_tarjeta = :num_tarjeta
 						
 					WHERE id_cliente = :id';
 
@@ -272,17 +307,22 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 			$command = $connection->prepare($query);
 
 			$id = $dato->getId();
-			$apellido = $dato->getApellido();
-			$domicilio = $dato->getDomicilio();
 			$nombre = $dato->getNombre();
-			$telefono = $dato->getTelefono();		
+			$apellido = $dato->getApellido();
+			$telefono = $dato->getTelefono();
+			$direccion = $dato->getDireccion();
+			$ciudad = $dato->getCiudad();
+			$num_tarjeta = $dato->getNumeroTarjeta();		
+					
 
 
 			$command->bindParam(':id', $id);
-			$command->bindParam(':apellido', $apellido);
-			$command->bindParam(':domicilio', $domicilio);
 			$command->bindParam(':nombre', $nombre);
+			$command->bindParam(':apellido', $apellido);
 			$command->bindParam(':telefono', $telefono);
+			$command->bindParam(':direccion', $direccion);
+			$command->bindParam(':ciudad', $ciudad);
+			$command->bindParam(':num_tarjeta', $numTarjeta);
 			
 
 			$command->execute();
@@ -320,7 +360,7 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 				$rol = ($row['rol']);
 				$fk_cliente = ($row['fk_cliente']);
 
-				$object = new \Modelos\Cuenta($email, $pass, $rol, $fk_cliente) ;
+				$object = new \Models\Cuenta($email, $pass, $rol, $fk_cliente) ;
 
 				$object->setId($row['id_cuenta']);	
 			}

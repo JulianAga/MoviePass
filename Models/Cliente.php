@@ -11,7 +11,7 @@ class Cliente
 	private $numeroTarjeta;
 
 
-	public function __construct($nombre, $apellido, $telefono, $direccion,$ciudad)
+	public function __construct($nombre, $apellido, $telefono, $direccion,$ciudad,$numeroTarjeta)
 	{
 		$this->setId(null);
 		$this->setNombre($nombre);
@@ -19,7 +19,7 @@ class Cliente
 		$this->setTelefono($telefono);
 		$this->setDireccion($direccion);
 		$this->setCiudad($ciudad);
-		$this->setNumeroTarjeta(null);
+		$this->setNumeroTarjeta($numeroTarjeta);
 		
 	}
 
