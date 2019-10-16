@@ -35,8 +35,8 @@ use \PDOException as PDOException;
 
 class CuentasDAO extends SingletonAbstractDAO implements IDAO
 {
-	private $table = 'clientes';
-	private $table2 = 'cuentas';
+	private $table = 'Clientes';
+	private $table2 = 'Cuentas';
 
 	public function insertar($dato)//le llega un objeto cliente y lo guarda en la base de datos
 	{

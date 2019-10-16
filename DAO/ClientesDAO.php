@@ -21,7 +21,7 @@ use \PDOException as PDOException;
 class ClientesDAO extends SingletonAbstractDAO implements IDAO
 {
 	//-------------ATRIBUTOS--------------------------
-	private $table = 'clientes';
+	private $table = 'Clientes';
 
 
 
