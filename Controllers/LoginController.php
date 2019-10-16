@@ -19,8 +19,8 @@
 		public function __construct()
 		{			
 			//REPOSITORIOS DE JSON
-			$this->RepositoryCuentas= new AccountRepository();
-			$this->RepositoryClientes= new ClientRepository();
+			//$this->RepositoryCuentas= new AccountRepository();
+			//$this->RepositoryClientes= new ClientRepository();
 			//BD
 			$this->DAOCuentas=\DAO\CuentasDAO::getInstance();
 			$this->DAORoles=\DAO\RolesDAO::getInstance();
