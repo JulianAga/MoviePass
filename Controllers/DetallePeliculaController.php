@@ -26,6 +26,8 @@ class DetallePeliculaController
 	if ($nowplaying!=null){
 		foreach ($nowplaying->results as $mov) {
 			if ($mov->id == $movie_id){
+
+				//traer las pelis de la BD y reemplazar el llamado a la API
 				require(ROOT . '/Views/User/detallePelicula.php');
 				break;
 

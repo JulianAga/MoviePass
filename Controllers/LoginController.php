@@ -33,14 +33,16 @@
 				if($_SESSION['Login']->getRol()=="ADM")//SI ES ADMIN LO LLEVA A SU PAG (falta configurar esto)
 				{
 					//lo lleva al home ADM
+					//pasar por la controladora de ADM para levantar los datos de la bd
 					
-					require(ROOT . '/Views/Adm/home_adm.php');//no esta hecho aun
+					require(ROOT . '/Views/Adm/home_adm.php');//
 					
 				}
 				if($_SESSION['Login']->getRol()=="User")// SI ES CLIENTE AL HOME DE CLIENTE (falta configurar esto)
 				{
 					
 					//lo lleva al home CLIENTE
+					//paso por la controladora de Home y desde ahi lo redirijo a la vista
 					
 					require(ROOT . '/Views/home.php');
 					
