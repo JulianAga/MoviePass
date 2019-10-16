@@ -40,5 +40,5 @@ create table Cuentas
 
 
 insert into Roles (nombre,descripcion) values ("ADM","Tareas administrativas"),("User","cliente");
-insert into Clientes (nombre,apellido,dni,telefono,direccion,ciudad,numero_tarjeta) values ("Nicolas","Vezzali",31101987,2235443945,"Santiago del estero 1660");
+insert into Clientes (nombre,apellido,dni,telefono,direccion,ciudad,numero_tarjeta) values ("Nicolas","Vezzali",31101987,2235443945," Mdq" ,"Santiago  1660",null);
 insert into Cuentas (email,pass,id_rol,id_cliente) values ("nico@hotmail.com","1234",1,1);
