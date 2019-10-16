@@ -2,33 +2,7 @@
 
 namespace DAOS;
 
-/*
- *CREATE TABLE cuentas(
- *id_cuenta int auto_increment not null,
- *email varchar(100),
- *pass varchar(100),
- *rol varchar(10),
- *fk_cliente int,
 
- *constraint pk_cuenta primary key(id_cuenta),
- *constraint fk_cuenta_cliente foreign key(fk_cliente) references clientes(id_cliente),
- *constraint unq_cuenta_email unique (email)
- *);
- /*
- *	CREATE TABLE clientes(
- *	id_cliente int auto_increment not null,
- 	nombre varchar(30),
- *	apellido varchar(30),
- 	telefono varchar(30),
- *	direccion varchar(30),
- 	ciudad varchar(30),
- 	num_tarjeta varchar(30),
- *	
- *	
- *	primary key(id_cliente)
- *	);
- */
- */
 
 use \Exception as Exception;
 use \PDOException as PDOException;
@@ -115,9 +89,9 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 		try 
     	{
 			$query = 'INSERT INTO '.$this->table.' 
-			( apellido, direccion,nombre,telefono) 
+			( nombre, apellido,dni,telefono direccion,ciudad,numero_tarjeta) 
 			VALUES 
-			( :apellido, :direccion,:nombre,:telefono)';
+			( :nombre, :apellido,:dni,:telefono :direccion,:ciudad,:numero_tarjeta)';
 
 			$pdo = new Connection();
 			$connection = $pdo->Connect();
@@ -127,6 +101,7 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 
 			$nombre = $dato->getNombre();
 			$apellido = $dato->getApellido();
+			$dni = $dato->getDni();
 			$telefono = $dato->getTelefono();
 			$direccion = $dato->getDireccion();
 			$ciudad = $dato->getCiudad();
@@ -136,10 +111,11 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 			
 			$command->bindParam(':nombre', $nombre);
 			$command->bindParam(':apellido', $apellido);
+			$command->bindParam(':dni', $dni);
 			$command->bindParam(':telefono', $telefono);
 			$command->bindParam(':direccion', $direccion);
 			$command->bindParam(':ciudad', $ciudad);
-			$command->bindParam(':num_tarjeta', $numTarjeta);
+			$command->bindParam(':numero_tarjeta', $numTarjeta);
 			
 			
 
@@ -182,7 +158,7 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 				$rol=($row['rol']);
 				$id_cliente=($row['fk_cliente']);
 
-				$object = new \Modelos\Cuenta($email, $pass, $rol,$id_cliente);//tomo los datos de la cuenta buscada y creo un objeto
+				$object = new \Models\Cuenta($email, $pass, $rol,$id_cliente);//tomo los datos de la cuenta buscada y creo un objeto
 				$object->setId($row['id_cuenta']);		
 			}
 
@@ -220,14 +196,15 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 
 				$nombre = ($row['nombre']);
 				$apellido = ($row['apellido']);
+				$dni = ($row['dni']);
 				$telefono = ($row['telefono']);
 				$direccion = ($row['direccion']);
 				$ciudad = ($row['ciudad']);
-				$numTarjeta = ($row['num_tarjeta']);
+				$numTarjeta = ($row['numero_tarjeta']);
 				
 				
 
-				$object = new \Models\Cliente( $nombre , $apellido ,$telefono, $direccion ,$ciudad,$numTarjeta  ) ;
+				$object = new \Models\Cliente( $nombre , $apellido ,$dni,$telefono, $direccion ,$ciudad,$numTarjeta  ) ;
 
 				$object->setId($row['id_cliente']);	
 			}
@@ -295,10 +272,11 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 			$query= 'UPDATE '.$this->table.'
 					SET nombre = :nombre, 
 						apellido = :apellido,
+						dni = :dni,
 						telefono = :telefono,
 						direccion = :direccion,
 						ciudad = :ciudad,
-						num_tarjeta = :num_tarjeta
+						numero_tarjeta = :numero_tarjeta
 						
 					WHERE id_cliente = :id';
 
@@ -309,6 +287,7 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 			$id = $dato->getId();
 			$nombre = $dato->getNombre();
 			$apellido = $dato->getApellido();
+			$dni = $dato->getDni();
 			$telefono = $dato->getTelefono();
 			$direccion = $dato->getDireccion();
 			$ciudad = $dato->getCiudad();
@@ -319,10 +298,11 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 			$command->bindParam(':id', $id);
 			$command->bindParam(':nombre', $nombre);
 			$command->bindParam(':apellido', $apellido);
+			$command->bindParam(':dni', $dni);
 			$command->bindParam(':telefono', $telefono);
 			$command->bindParam(':direccion', $direccion);
 			$command->bindParam(':ciudad', $ciudad);
-			$command->bindParam(':num_tarjeta', $numTarjeta);
+			$command->bindParam(':numero_tarjeta', $numTarjeta);
 			
 
 			$command->execute();

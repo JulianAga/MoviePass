@@ -5,17 +5,19 @@ class Cliente
 	private $id;
 	private $nombre;
 	private $apellido;
+	private $dni;
 	private $telefono;
 	private $direccion;
 	private $ciudad;
 	private $numeroTarjeta;
 
 
-	public function __construct($nombre, $apellido, $telefono, $direccion,$ciudad,$numeroTarjeta)
+	public function __construct($nombre, $apellido,$dni, $telefono, $direccion,$ciudad,$numeroTarjeta)
 	{
 		$this->setId(null);
 		$this->setNombre($nombre);
 		$this->setApellido($apellido);
+		$this->setDni($dni);
 		$this->setTelefono($telefono);
 		$this->setDireccion($direccion);
 		$this->setCiudad($ciudad);
@@ -49,6 +51,14 @@ class Cliente
 	public function setApellido($apellido)
 	{
 		$this->apellido = $apellido;
+	}
+	public function getDni()
+	{
+		return $this->dni;
+	}
+	public function setDni($dni)
+	{
+		$this->dni = $dni;
 	}
 	public function getTelefono ()
 	{

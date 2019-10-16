@@ -16,12 +16,12 @@
             $urlArray = array_filter($urlArray);
 
             if(empty($urlArray))
-                $this->controller = "login";            
+                $this->controller = "login"; //entra por default primero a esta controladora          
             else
                 $this->controller = ucwords(array_shift($urlArray));
 
             if(empty($urlArray))
-                $this->method = "index";
+                $this->method = "index";//entra a este metodo de la controladora default
             else
                 $this->method = array_shift($urlArray);
 

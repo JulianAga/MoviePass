@@ -1,20 +1,7 @@
 <?php 
 
 namespace DAOS;
-/*
-CREATE TABLE clientes(
- *	id_cliente int auto_increment not null,
- *	nombre varchar(30),
- *	apellido varchar(30),
- *	telefono varchar(30),
- *	direccion varchar(30),
- *	ciudad varchar(30),
- *	num_tarjeta varchar(30),
- *	
- *	
- *	primary key(id_cliente)
- *	);
-*/
+
 use \Exception as Exception;
 use \PDOException as PDOException;
 
@@ -30,9 +17,9 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 	public function insertar($dato){
 		
 		$query = 'INSERT INTO '.$this->table.' 
-		( nombre , apellido , telefono , direccion , ciudad , num_tarjeta) 
+		( nombre , apellido , dni, telefono , direccion , ciudad , numero_tarjeta) 
 		VALUES 
-		( :nombre , :apellido , :telefono , :direccion , :ciudad , :num_tarjeta )';
+		( :nombre , :apellido ,:dni, :telefono , :direccion , :ciudad , :numero_tarjeta )';
 
 		$pdo = new Connection();
 		$connection = $pdo->Connect();
@@ -40,6 +27,7 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 
 		$nombre = $dato->getNombre();
 		$apellido = $dato->getApellido();
+		$dni = $dato->getDni();
 		$telefono = $dato->getTelefono();
 		$direccion = $dato->getDireccion();
 		$ciudad = $dato->getCiudad();
@@ -47,10 +35,11 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 
 		$command->bindParam(':nombre', $nombre);
 		$command->bindParam(':apellido', $apellido);
+		$command->bindParam(':dni', $dni);
 		$command->bindParam(':telefono', $telefono);
 		$command->bindParam(':direccion', $direccion);
 		$command->bindParam(':ciudad', $ciudad);
-		$command->bindParam(':num_tarjeta', $numTarjeta);
+		$command->bindParam(':numero_tarjeta', $numTarjeta);
 
 		$command->execute();
 		
@@ -58,9 +47,9 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 	public function insertarDevolverID($dato){
 		
 		$query = 'INSERT INTO '.$this->table.' 
-		( nombre , apellido , telefono , direccion , ciudad , num_tarjeta ) 
+		( nombre , apellido ,dni, telefono , direccion , ciudad , numero_tarjeta ) 
 		VALUES 
-		( :nombre , :apellido , :telefono , :direccion , :ciudad , :num_tarjeta )';
+		( :nombre , :apellido ,:dni, :telefono , :direccion , :ciudad , :numero_tarjeta )';
 
 		$pdo = new Connection();
 		$connection = $pdo->Connect();
@@ -68,6 +57,7 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 
 		$nombre = $dato->getNombre();
 		$apellido = $dato->getApellido();
+		$dni = $dato->getDni();
 		$telefono = $dato->getTelefono();
 		$direccion = $dato->getDireccion();
 		$ciudad = $dato->getCiudad();
@@ -75,10 +65,11 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 
 		$command->bindParam(':nombre', $nombre);
 		$command->bindParam(':apellido', $apellido);
+		$command->bindParam(':dni', $dni);
 		$command->bindParam(':telefono', $telefono);
 		$command->bindParam(':direccion', $direccion);
 		$command->bindParam(':ciudad', $ciudad);
-		$command->bindParam(':num_tarjeta', $numTarjeta);
+		$command->bindParam(':numero_tarjeta', $numTarjeta);
 
 		$command->execute();
 
@@ -107,12 +98,13 @@ class ClientesDAO extends SingletonAbstractDAO implements IDAO
 			{
 				$nombre = ($row['nombre']);
 				$apellido = ($row['apellido']);
+				$dni = ($row['dni']);
 				$telefono = ($row['telefono']);
 				$direccion = ($row['direccion']);
 				$ciudad = ($row['ciudad']);
-				$numTarjeta = ($row['num_tarjeta']);
+				$numTarjeta = ($row['numero_tarjeta']);
 
-				$object = new \Models\Cliente( $nombre , $apellido ,$telefono, $direccion ,$ciudad,$numTarjeta  ) ;
+				$object = new \Models\Cliente( $nombre , $apellido ,$dni,$telefono, $direccion ,$ciudad,$numTarjeta  ) ;
 
 				$object->setId($row['id_cliente']);	
 			}
