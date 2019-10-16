@@ -15,8 +15,14 @@ create table Clientes
     nombre varchar(30),
     apellito varchar(30),
     dni bigint,
+    telefono bigint,
+    direccion varchar(50),
+    ciudad varchar(30),
+    numero_tarjeta bigint,
     constraint pk_id_cliente primary key (id_cliente),
-    constraint unq_dni unique (dni)
+    constraint unq_dni unique (dni),
+    constraint unq_telefono unique (telefono),
+    constraint unq_numero_tarjeta unique (numero_tarjeta)
 );
 
 create table Cuentas
