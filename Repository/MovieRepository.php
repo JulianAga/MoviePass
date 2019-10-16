@@ -43,7 +43,7 @@ class MovieRepository implements IMovieRepository{
             $valuesArray["codigo"] = $movie->getCodigo();
             $valuesArray["categoria"] = $movie->getCategoria();
             $valuesArray["tipo"] = $movie->getTipo();
-            
+                   
 
             array_push($arrayToEncode, $valuesArray);   
         }

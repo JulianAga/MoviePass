@@ -107,6 +107,8 @@ public function recibirPeliculas(){
 //
 //
 public function addMovie($id_pelicula){
+
+	
 	echo "entro a addmovie  ";
 	var_dump($id_pelicula);
 

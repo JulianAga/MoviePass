@@ -1,11 +1,8 @@
 <?php
 namespace Controllers;
 
-require_once("Models/cine.php");
-require_once("Repository/PostsRepository.php");
-
 use models\Cine as Cine;
-use Repository\PostsRepository as PostsRepository;
+use Repository\CinesRepository as CinesRepository;
 
 class DeleteController 
 {
@@ -16,7 +13,7 @@ class DeleteController
     {
         
         //$this->newProd = new Cine();
-        $this->repository = new PostsRepository();
+        $this->repository = new CinesRepository();
 
 
     }

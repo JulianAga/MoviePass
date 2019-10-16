@@ -6,39 +6,40 @@ require_once('Repository/IRepository.php');
 
     class CinesRepository implements IRepository
     {
-        private $postsList = array();
+        private $cinesList = array();
 
         public function getAll(){
             $this->retrieveData();
-            return $this->postsList;
+            return $this->cinesList;
         }
 
         public function add($value){
             $this->retrieveData();
-            array_push($this->postsList, $value);
+            $this->fixId($value);
+            array_push($this->cinesList, $value);
             $this->saveData();
         }
 
         public function delete($value){
             $this->retrieveData();
             $newList = array();
-            foreach ($this->postsList as $post) {
+            foreach ($this->cinesList as $post) {
                 if($post->getId() != $value){
                     array_push($newList, $post);
                 }
             }
     
-            $this->postsList = $newList;
+            $this->cinesList = $newList;
             $this->saveData();
         }
 
         public function disable($id)
         {
             $this->RetrieveData();
-            for ($i=0; $i < count($this->postsList); $i++) { 
+            for ($i=0; $i < count($this->cinesList); $i++) { 
                 # code...
-                if($this->postsList[$i]->getId() == $id){
-                    $this->postsList[$i]->setHabilitado(false);
+                if($this->cinesList[$i]->getId() == $id){
+                    $this->cinesList[$i]->setHabilitado(false);
                     }
 
                 }
@@ -48,14 +49,13 @@ require_once('Repository/IRepository.php');
             public function modify($id,$direccion,$cine,$valor,$capacidad)
             {
                 $this->RetrieveData();
-                for ($i=0; $i < count($this->postsList); $i++) { 
+                for ($i=0; $i < count($this->cinesList); $i++) { 
                     # code...
-                    if($this->postsList[$i]->getId() == $id){
-                        $this->postsList[$i]->setDireccion($direccion);
-                        $this->postsList[$i]->setNombre($cine);
-                        $this->postsList[$i]->setValor_entrada($valor);
-                        $this->postsList[$i]->setCapacidad($capacidad);
-
+                    if($this->cinesList[$i]->getId() == $id){
+                        $this->cinesList[$i]->setDireccion($direccion);
+                        $this->cinesList[$i]->setNombre($cine);
+                        $this->cinesList[$i]->setValor_entrada($valor);
+                        $this->cinesList[$i]->setCapacidad($capacidad);
                         }
     
                     }
@@ -66,7 +66,7 @@ require_once('Repository/IRepository.php');
         {
             $arrayToEncode = array();
 
-            foreach($this->postsList as $post)
+            foreach($this->cinesList as $post)
             {
                 $valuesArray["ID"] = $post->getID();
                 $valuesArray["cine"] = $post->getNombre();
@@ -81,16 +81,16 @@ require_once('Repository/IRepository.php');
 
             $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
             
-            file_put_contents('data/posts.json', $jsonContent);
+            file_put_contents('data/cines.json', $jsonContent);
         }
 
         private function RetrieveData()
         {
-            $this->postsList = array();
+            $this->cinesList = array();
 
-            if(file_exists('data/posts.json'))
+            if(file_exists('data/cines.json'))
             {
-                $jsonContent = file_get_contents('data/posts.json');
+                $jsonContent = file_get_contents('data/cines.json');
 
                 $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
 
@@ -105,7 +105,7 @@ require_once('Repository/IRepository.php');
                     $post->setCapacidad($valuesArray["capacidad"]);
                     $post->setHabilitado($valuesArray["habilitado"]);
 
-                    array_push($this->postsList, $post);
+                    array_push($this->cinesList, $post);
                 }
             }
         }
@@ -114,7 +114,7 @@ require_once('Repository/IRepository.php');
             $this->RetrieveData();
             $flag = false;
 
-            foreach ($this->postsList as $key => $category) {
+            foreach ($this->cinesList as $key => $category) {
                 if($category->getID() == $ID) {
                  $flag = true;
                  $value = $category;
@@ -128,7 +128,7 @@ require_once('Repository/IRepository.php');
             $this->RetrieveData();
             $flag = false;
 
-            foreach ($this->postsList as $key => $category) {
+            foreach ($this->cinesList as $key => $category) {
                 if($category->getID() == $ID) {
                  $flag = true;
                 }
@@ -136,4 +136,22 @@ require_once('Repository/IRepository.php');
             return $flag;
         }
     
+        public function fixId(Cine $cine)
+        {
+            $id=0;
+            if(empty($this->cinesList))
+            {
+                $cine->setID(1);
+            }
+            else
+            {
+                foreach ($this->cinesList as $value) {
+                    if($value->getID()> $id)
+                    {
+                        $id = $value -> getID();
+                    }
+                }
+                $cine->setID($id+1);
+            }
+        }
     }

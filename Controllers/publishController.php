@@ -51,16 +51,24 @@ class PublishController
         }//fin index-------
 //
 //
+
+
     public function newCine(){
         $this->newProd->setDireccion($_POST['direccion']);
         $this->newProd->setNombre($_POST['cine']);
-        $this->newProd->setID($_POST['ID']);
+        //$this->newProd->setID($_POST['ID']);
         $this->newProd->setValor_entrada($_POST['valor']); 
         $this->newProd->setCapacidad($_POST['capacidad']);
         $this->newProd->setHabilitado(true);
 
-        if($this->repository->existByID($this->newProd->getID())) // Verifica que no exista otro Cine con el mismo id en el repositorio
+        if ($this->newProd->getValor_entrada() == null || $this->newProd->getCapacidad() == null)
         {
+            echo '<script language="javascript">alert("El campo debe tener valores positivos!");</script>';
+            $this->index();
+        }
+        else if($this->repository->existByID($this->newProd->getID())) // Verifica que no exista otro Cine con el mismo id en el repositorio
+        {
+            
             echo '<script language="javascript">alert("El ID del cine ya se encuentra registrado!");</script>';
             $this->index();
         }

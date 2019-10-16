@@ -33,7 +33,8 @@ create table Cuentas
     id_rol int,
     id_cliente int,
     constraint pk_id_cuenta primary key (id_cuenta),
-    constraint fk_id_rol foreign key (id_rol) references Roles (id_rol),
+    constraint fk_id_rol foreign key (id_rol) references Roles (id_rol) on delete no action,
+    constraint fk_id_cliente foreign key (id_cliente) references Clientes (id_cliente) on delete cascade,
     constraint unq_email unique (email)
 );
 
