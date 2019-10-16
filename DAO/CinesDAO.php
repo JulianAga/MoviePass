@@ -12,7 +12,7 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 {
 	//-------------ATRIBUTOS--------------
 	private $table = 'Cines';
-	//----------METODOS--------------------
+	//-------------METODOS--------------------
 	public function insertar($dato){
 
 	}//FIN INSERTAR

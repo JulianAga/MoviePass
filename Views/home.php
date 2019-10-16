@@ -87,7 +87,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                        <?php
 
                        echo '
-                       <div class="align-self-center">
+                       <div class="align-self-center zoomIt">
                         <div class="card background">
                        
                          <div class="li_borde_trasparente">
@@ -116,10 +116,10 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                        <input type="hidden" id="movie_id" name="movie_id" value="<?php echo $p->id?>"/> <!-- le paso el id de pelicula-->
                     <?php
                      echo '
-                       <div class="align-self-center">
+                       <div class="align-self-center zoomIt">
                         <div class="card background">
                         
-                         <div class="li_borde_trasparente">
+                         <div class="li_borde_trasparente ">
                            <a style="color:white;" href="movie.php?id=' . $p->id . '"> 
                            <button type="submit" name="boton_imagen"><img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive"  style="width:100%" alt="Image "></button>
                              <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
@@ -246,6 +246,22 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
           src:url(Vistas/fonts/myriadpro/myriadpro.eot), 
           url(Vistas/fonts/myriadpro/myriadpro.ttf), 
           url(Vistas/fonts/myriadpro/myriadpro.woff);
+      }
+      /*-----efecto en imagenes home-------*/
+      .zoomIt{
+        display:block!important;
+        -webkit-transition:-webkit-transform 0.5s ease-out;
+        -moz-transition:-moz-transform 0.5s ease-out;
+        -o-transition:-o-transform 0.5s ease-out;
+        -ms-transition:-ms-transform 0.5s ease-out;
+        transition:transform 0.5s ease-out;
+      }
+      .zoomIt:hover{
+        -moz-transform: scale(1.15);
+        -webkit-transform: scale(1.15);
+        -o-transform: scale(1.15);
+        -ms-transform: scale(1.15);
+        transform: scale(1.15)
       }
 
     </style>

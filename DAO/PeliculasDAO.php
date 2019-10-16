@@ -43,6 +43,8 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 	//
 	//
 	//
-	
+	public function traerTodos(){
+
+	}//fin traer todos
 }
 ?>
