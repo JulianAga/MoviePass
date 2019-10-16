@@ -1,6 +1,6 @@
 <?php 
 
-namespace DAOS;
+namespace DAO;
 
 
 
@@ -65,7 +65,7 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 			$email = $dato->getEmail();
 			$pass = $dato->getPassword();
 			$rol = $dato->getRol();
-			$fk_cliente = $dato->getMCliente();
+			$fk_cliente = $dato->getCliente();
 
 			$command->bindParam(':email', $email);
 			$command->bindParam(':pass', $pass);
@@ -135,7 +135,7 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 
 	}
 
-	public function buscarPorNombre($dato)
+	public function buscarPorEmail($dato)
 	{
 		try 
     	{

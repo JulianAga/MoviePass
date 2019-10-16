@@ -3,6 +3,11 @@
 define("ADM", "Admin");
 define("User", "User");
 define("ROOT", dirname(__DIR__) . "/");
+//BD
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'MoviePass');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 //Path to your project's root folder
 define("FRONT_ROOT", "/MoviePass/");
 define('ROOT_VIEW', '/MoviePass');

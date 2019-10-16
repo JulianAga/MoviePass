@@ -104,13 +104,16 @@ if( isset($_SESSION['Login'])){
         <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle get-started-btn mt-1 mb-1">Registrate</a>
         <ul class="dropdown-menu form-wrapper">         
           <li>
-            <form action="<?= ROOT_VIEW ?>/Login/nuevo" method="post">
+            <form action="<?= ROOT_VIEW ?>/Login/nuevo_usuario" method="post">
               <p class="hint-text">Completá con tus datos y registrate!</p>
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Nombre" name="nombre" required="required">
               </div>
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Apellido" name="apellido" required="required">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="D.N.I" name="dni" required="required">
               </div>
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Telefono" name="telefono"required="required">

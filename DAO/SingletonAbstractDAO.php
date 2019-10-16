@@ -1,4 +1,4 @@
-<?php namespace DAOS;
+<?php namespace DAO;
 
 class SingletonAbstractDAO
 {

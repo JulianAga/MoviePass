@@ -3,11 +3,11 @@
 /**
  * 
  */
-class ClassName 
+class Rol 
 {
-	$id;
-	$nombre;
-	$descripcion;
+	private $id;
+	private $nombre;
+	private $descripcion;
 
 	function __construct($nombre,$descripcion)
 

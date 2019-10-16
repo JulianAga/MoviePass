@@ -4,13 +4,16 @@
 	use Models\Cliente as Cliente;
 	use Repository\ClientRepository as ClientRepository;
 	use Repository\AccountRepository as AccountRepository;
-	use DAOS\SingletonAbstractDAO as SingletonAbstractDAO;
+	use DAO\SingletonAbstractDAO as SingletonAbstractDAO;
 
 	class LoginController 
 	{
 		
 		private $RepositoryCuentas;
 		private $RepositoryClientes;
+		private $DAOClientes;
+		private $DAOCuentas;
+		private $DAORoles;
 		
 
 		public function __construct()
@@ -19,7 +22,9 @@
 			$this->RepositoryCuentas= new AccountRepository();
 			$this->RepositoryClientes= new ClientRepository();
 			//BD
-			$this->DAOCuentas=\DAOS\CuentasDAO::getInstance();
+			$this->DAOCuentas=\DAO\CuentasDAO::getInstance();
+			$this->DAORoles=\DAO\RolesDAO::getInstance();
+			$this->DAOClientes=\DAO\ClientesDAO::getInstance();
 			
 		}	
 
@@ -121,9 +126,6 @@
 
 		public function cerrarSesion()
 		{	
-			
-			
-			
 			//session_start();
 			
 			if (isset($_SESSION['Login']) )//entra si existe la session
@@ -141,13 +143,16 @@
 
 		}//fin crear session**********
 
-		public function nuevo($nombre, $apellido, $telefono,$direccion,$ciudad, $email, $pass1, $pass2) 
+		public function nuevo_usuario($nombre, $apellido,$dni, $telefono,$direccion,$ciudad, $email, $pass1, $pass2) 
 		{	
 			//traigo roles de la bd
+			
+			$objectRol = $this->DAORoles->buscarRol("User");//busco en bd el rol User y creo un objeto ROl
 
 			try 
 			{
-				$buscado=$this->RepositoryCuentas->GetByEmail($email);//busco si existe el email en BD
+				//$buscado=$this->RepositoryCuentas->GetByEmail($email);//busco si existe el email en JSON
+				$buscado=$this->DAOCuentas->buscarPorEmail($email);//busco si existe el email en BD
 		    } 
 		    catch (Exception $e) 
 		    {
@@ -157,23 +162,25 @@
 			if ($buscado == null)
 			{//entra si el email buscado en BD no existe
 
-				$cliente = new Cliente ($nombre, $apellido,$telefono, $direccion,$ciudad );//creo el cliente
+				$cliente = new Cliente ($nombre, $apellido,$dni,$telefono, $direccion,$ciudad );//creo el cliente
 
 				try 
 				{
-					$clientID = $this->RepositoryClientes->saveClienteReturnID($cliente);// le paso un cliente sin id, lo guarda en json y me devuelve el cliente con ID
+					//$clientID = $this->RepositoryClientes->saveClienteReturnID($cliente);// le paso un cliente sin id, lo guarda en json y me devuelve el cliente con ID
+					$clienteConId = $this->DAOClientes->insertarDevolverID($cliente);//le paso cliente , lo guarda en bd y me devuelve el cliente con ID
 			    }
 			    catch (Exception $e) 
 			    {
-			    	echo "<script>alert('Error al insertar datos de Login en BBDD'));</script>";
+			    	echo "<script>alert('Error al insertar nuevo Usuario  en BBDD'));</script>";
 			    }				
 				
 				if ($pass1 == $pass2)//verifico que coincidan las pass
 				{
-					$nuevaCuenta= new Cuenta($email,$pass1,User,$clientID);//creo la cuenta con el ID del cliente
+					$nuevaCuenta = new Cuenta($email,$pass1,$objectRol->getId(),$clienteConId->getId());//creo la cuenta con el FK_ID del cliente y con el FK_ID de rol
 					try 
 					{
-						$this->RepositoryCuentas->Add($nuevaCuenta);//agrego la cuenta completa a la BD
+						//$this->RepositoryCuentas->Add($nuevaCuenta);//agrego la cuenta completa a Json
+						$this->DAOCuentas->insertarCuenta($nuevaCuenta);//agrego la cuenta completa a la BD
 						echo "<script> if(alert('Usuario Registrado !'));</script>";
 				    } 
 				    catch (Exception $e) 

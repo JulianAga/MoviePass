@@ -1,6 +1,6 @@
 <?php 
 
-namespace DAOS;
+namespace DAO;
 
 use \Exception as Exception;
 use \PDOException as PDOException;
