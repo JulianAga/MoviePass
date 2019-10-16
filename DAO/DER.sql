@@ -13,7 +13,7 @@ create table Clientes
 (
 	id_cliente int auto_increment,
     nombre varchar(30),
-    apellito varchar(30),
+    apellido varchar(30),
     dni bigint,
     telefono bigint,
     direccion varchar(50),
@@ -36,3 +36,8 @@ create table Cuentas
     constraint fk_id_rol foreign key (id_rol) references Roles (id_rol),
     constraint unq_email unique (email)
 );
+
+
+insert into Roles (nombre,descripcion) values ("ADM","Tareas administrativas"),("User","cliente");
+insert into Clientes (nombre,apellido,dni,telefono,direccion,ciudad,numero_tarjeta) values ("Nicolas","Vezzali",31101987,2235443945,"Santiago del estero 1660");
+insert into Cuentas (email,pass,id_rol,id_cliente) values ("nico@hotmail.com","1234",1,1);
