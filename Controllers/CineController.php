@@ -6,25 +6,19 @@ use Repository\CinesRepository as CinesRepository;
 /**
  * 
  */
-class PublishController 
+class CineController 
 {
-    private $newProd;
-    private $repository;
 
-    private $DAOCines;
-    
-    public function __construct()
-    {
-        //$this->newProd = new Cine();
-        //$this->repository = new CinesRepository();
+//----------------ATRIBUTOS-----------------------
+	 private $DAOCines;
+//----------------CONSTRUCTOR---------------------
+	function __construct()
+	{
+		$this->DAOCines=\DAO\CinesDAO::getInstance();
+	}
 
-        $this->DAOCines=\DAO\CinesDAO::getInstance();
-        
-    }
-
-
-
-    public function index()
+//----------------METODOS--------------------------
+	public function index()
         {
             
             if(isset($_SESSION['Login']))//Si hay session:
@@ -54,19 +48,10 @@ class PublishController
                 require(ROOT . '/Views/home.php');//SI NO HAY SESSION LO LLEVA A HOME (como no hay ninguna session lo lleva al home.php como anonimo)
             }
         }//fin index-------
-//
-//
-
-
-    public function newCine($direccion,$cine,$valor,$capacidad){
-        /*
-        $this->newProd->setDireccion($_POST['direccion']);
-        $this->newProd->setNombre($_POST['cine']);
-        //$this->newProd->setID($_POST['ID']);
-        $this->newProd->setValor_entrada($_POST['valor']); 
-        $this->newProd->setCapacidad($_POST['capacidad']);
-        $this->newProd->setHabilitado(true);
-        */
+	//
+	//
+	public function newCine($direccion,$cine,$valor,$capacidad){
+        
 
         $newCine = new cine ($cine,$direccion,$capacidad,$valor,true);//creo el nuevo cine
 
@@ -88,34 +73,34 @@ class PublishController
         echo '<script language="javascript">alert("Cine agregado satisfactoriamente!");</script>'; //este tipo de mensaje no rompe el codigo
         $this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
         }
-    }
+    }//fin newcine
+    //
+    //
+	public function deleteCine($id_cine){
+        
+    
+        $this->DAOCines->borrar($id_cine);
 
-/*
-if($_POST){
-    //$newProd = new Cine();
-    $this->newProd->setDireccion($_POST['direccion']);
-    $this->newProd->setNombre($_POST['cine']);
-    $this->newProd->setID($_POST['ID']);
-   $this->newProd->setValor_entrada($_POST['valor']);
-    //$newProd->setDate($_POST['date']);
-    $this->newProd->setCapacidad($_POST['capacidad']);
-    $this->newProd->setHabilitado(true);
+        echo '<script language="javascript">alert("Cine eliminado satisfactoriamente!");</script>'; //este tipo de mensaje no rompe el codigo
+        $this->index();
+	}//fin delete cine
+	//
+	//
+	public function modifyCine($id,$direccion,$cine,$valor,$capacidad){
+        //$this->repository->modify($_POST['ID'],$_POST['direccion'],$_POST['cine'],$_POST['valor'],$_POST['capacidad']);
+        $cineMod = new cine ($cine,$direccion,$capacidad,$valor,true);
+        $cineMod->setID($id);
 
-   
-    //$this->repository = new CinesRepository();
-    $this->repository->add($newProd);
-    echo "<script> alert('Cine agregado satisfactoriamente!');";
-    //echo "window.location = 'Views/Adm/home_adm.php'; </script>";
-    $successMje =  "Cine agregado satisfactoriamente!";
-    $this->index(); //llamo al index de esta clase para redirigirlo a donde sea correspondiente
-}
-*/
-
-
-
-}//-----fin clase----------------------
+        $this->DAOCines->actualizar($cineMod);
+        
+        echo '<script language="javascript">alert("Cine modificado satisfactoriamente!");</script>'; //este tipo de mensaje no rompe el codigo
+        $this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
 
 
+    }//fin modify cine
+    //
+    //
 
+}//fin class
 
- ?>
+?>

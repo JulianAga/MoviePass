@@ -11,9 +11,11 @@
 		
 		private $RepositoryCuentas;
 		private $RepositoryClientes;
+
 		private $DAOClientes;
 		private $DAOCuentas;
 		private $DAORoles;
+		private $DAOCines;
 		
 
 		public function __construct()
@@ -25,6 +27,7 @@
 			$this->DAOCuentas=\DAO\CuentasDAO::getInstance();
 			$this->DAORoles=\DAO\RolesDAO::getInstance();
 			$this->DAOClientes=\DAO\ClientesDAO::getInstance();
+			$this->DAOCines=\DAO\CinesDAO::getInstance();
 			
 		}	
 
@@ -41,6 +44,7 @@
 				{
 					//lo lleva al home ADM
 					//pasar por la controladora de ADM para levantar los datos de la bd
+					$arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
 					
 					require(ROOT . '/Views/Adm/home_adm.php');//
 					

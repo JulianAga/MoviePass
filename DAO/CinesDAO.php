@@ -102,8 +102,46 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 	//
 	//
 	public function buscarPorID($dato){
+		try 
+    	{
+    		
+			$object = null;
 
-	}//fin buscar por ID
+			$query = 'SELECT * FROM '.$this->table.' WHERE id_cine = :id';
+
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);			
+
+			
+			$command->bindParam(':id', $dato);
+			$command->execute();
+
+			while ($row = $command->fetch())
+			{
+				$capacidad = ($row['capacidad']);
+				$direccion = ($row['direccion']);
+				$nombre = ($row['nombre']);
+				$valor_entrada = ($row['valor_entrada']);
+				$habilitado = ($row['habilitado']);
+
+				$object = new \Models\cine($nombre, $direccion, $capacidad, $valor_entrada, $habilitado) ;
+
+				$object->setId($row['id_cine']);	
+			}
+
+
+			return $object;
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+		}		
+	}//fin buscar cuenta por id de cliente
+
+	
 	//
 	//
 	//
@@ -121,9 +159,11 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
     		
     	}
     	catch (PDOException $ex) {
+    		echo '<script language="javascript">alert("Error al eliminar Cine");</script>';
 			throw $ex;
     	}
     	catch (Exception $e) {
+    		echo '<script language="javascript">alert("Error al eliminar Cine");</script>';
 			throw $e;
     	}
 
@@ -170,9 +210,11 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
+    		echo '<script language="javascript">alert("Error al modificar Cine en BD");</script>'; //este tipo de mensaje no rompe el codigo
 			throw $ex;
     	}
     	catch (Exception $e) {
+    		echo '<script language="javascript">alert("Error al modificar Cine en BD");</script>'; //este tipo de mensaje no rompe el codigo
 			throw $e;
     	}
 

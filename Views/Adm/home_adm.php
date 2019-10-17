@@ -51,11 +51,11 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                     </thead>
                     <tbody>
                     <?php
-                               $cines = new CinesRepository();
+                               //$cines = new CinesRepository();
 
-                                $productsArray = $cines->getAll(); ?>
+                                //$productsArray = $cines->getAll(); ?>
 
-                                <?php foreach ($productsArray as $key => $value)
+                                <?php foreach ($arrayCines as $key => $value)
                                 {
                                 $Cine = $value;
                                 if($Cine->getHabilitado() == true)
@@ -132,7 +132,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                             </button>
                                           </div>
                                           <div class="modal-body">
-                                          <form method="post" action="<?= ROOT_VIEW ?>/Modify/modifyCine">
+                                          <form method="post" action="<?= ROOT_VIEW ?>/Cine/modifyCine">
                                                          <div class="form-group">
                                                             <label>Id del Cine</label>
                                                             <input type="text" class="form-control" name="ID" value="<?php echo $Cine->getID();?>" readonly/>
@@ -150,12 +150,12 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
                                                         <div class="form-group">
                                                             <label>Valor de Entrada</label>
-                                                            <input type="number" class="form-control" name="valor" value="<?php echo $Cine->getValor_entrada();?>" required>
+                                                            <input type="number" class="form-control" min="0" name="valor" value="<?php echo $Cine->getValor_entrada();?>" required>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Capacidad</label>
-                                                            <input type="number" class="form-control" name="capacidad" value="<?php echo $Cine->getCapacidad();?>" required>
+                                                            <input type="number" class="form-control" min="1" name="capacidad" value="<?php echo $Cine->getCapacidad();?>" required>
                                                         </div>
                                           
 
@@ -173,7 +173,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
                                 <!-- boton eliminar CINE-->
                                 <td>
-                                    <form action="<?= ROOT_VIEW ?>/Delete/deleteCine" method="post">
+                                    <form action="<?= ROOT_VIEW ?>/Cine/deleteCine" method="post">
                                         <button class="btn btn-dark" name="eliminar" value="<?php echo $Cine->getID();?>">-</button>
                                     </form>
                                 </td>
@@ -199,10 +199,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
       </div>
       <div class="modal-body">
       <form method="post" action="<?= ROOT_VIEW ?>/Publish/newCine">
-                     <div class="form-group">
-                        <label>Id del Cine</label>
-                        <input type="text" class="form-control" name="ID" disabled>
-                    </div>
+                     
 
                     <div class="form-group">
                         <label>Nombre del Cine</label>
@@ -216,12 +213,12 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
                     <div class="form-group">
                         <label>Valor de Entrada</label>
-                        <input type="number" class="form-control" name="valor" required>
+                        <input type="number" class="form-control" min="0" name="valor" required>
                     </div>
 
                     <div class="form-group">
                         <label>Capacidad</label>
-                        <input type="number" class="form-control" name="capacidad" required>
+                        <input type="number" class="form-control" min="1" name="capacidad" required>
                     </div>
       
 

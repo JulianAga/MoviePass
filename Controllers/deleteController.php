@@ -63,6 +63,7 @@ class DeleteController
         echo '<script language="javascript">alert("Cine eliminado satisfactoriamente!");</script>'; //este tipo de mensaje no rompe el codigo
         $this->index();
 }
+
 }
 
  ?>

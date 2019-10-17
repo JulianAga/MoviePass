@@ -358,6 +358,6 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
     	catch (Exception $e) {
 			throw $e;
 		}		
-	}
+	}//fin buscar cuenta por id de cliente
 }
 ?>
