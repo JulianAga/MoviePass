@@ -6,11 +6,16 @@
 ?>
 <?php
 
+//-----ESTO DEBE IR EN LA CONTROLADORA HOME
 if( isset($_SESSION['Login'])){
   $cuenta_logueada=$_SESSION['Login'];
   $cuenta_logueada->getEmail();
 }
-
+if( isset($_SESSION['Cliente_Logueado'])){
+  $cliente=$_SESSION['Cliente_Logueado'];
+  
+}
+//-----------------------------------------
 ?>
 
 <!DOCTYPE html>
@@ -165,7 +170,7 @@ if( isset($_SESSION['Login'])){
                                         </p>
                                     </div>
                                     <div>
-                                        <p class="text-center"><strong><h4>Nombre Apellido</h4></strong></p>
+                                        <p class="text-center"><strong><h4><?php echo $cliente->getNombre(); ?> <?php echo $cliente->getApellido(); ?></h4></strong></p>
                                         <p>
                                             <input type="submit" class="btn btn-primary btn-block" value="Mi Cuenta">
                                         </p>

@@ -117,7 +117,10 @@
 		public function crearSesion($cuenta)
 		{	
 			//session_start();		
-			$_SESSION['Login']=$cuenta;//guardo el objeto CUENTA logueada en la session	
+			$_SESSION['Login']=$cuenta;//guardo el objeto CUENTA logueada en la session
+			$cliente=$this->DAOClientes->buscarPorID($cuenta->getCliente() );
+			$_SESSION['Cliente_Logueado']=$cliente;
+
 
 			echo '<script language="javascript">alert("Bienvenido '.$cuenta->getEmail(). '!");</script>';
 			$this->index();
@@ -131,7 +134,8 @@
 			
 			if (isset($_SESSION['Login']) )//entra si existe la session
 			{	
-    			unset($_SESSION["Login"]);     			
+    			unset($_SESSION["Login"]); 
+    			unset($_SESSION["Cliente_Logueado"]);    			
     			$this->index();
 			}
 

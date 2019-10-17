@@ -46,7 +46,8 @@ insert into Cuentas (email,pass,id_rol,id_cliente) values ("nico@hotmail.com","1
 insert into Clientes (nombre,apellido,dni,telefono,direccion,ciudad,numero_tarjeta) values ("Cliente","Anonimo",21456743,22354987," Mdq" ,"Lopez 666",null);
 insert into Cuentas (email,pass,id_rol,id_cliente) values ("cliente@hgmail.com","1234",2,2);
 
-
+/*
+*/
 create table Cines
 (
 	id_cine int auto_increment,
@@ -59,7 +60,8 @@ create table Cines
 );
 
 insert into Cines (capacidad,direccion, nombre,valor_entrada,habilitado) values (100,'palma 1132','galleguitos',300,true);
-
+/*
+*/
 create table Peliculas
 (
 	id_pelicula int auto_increment,
@@ -70,6 +72,8 @@ create table Peliculas
 );
 
 insert into Peliculas(imagen,lenguaje,titulo) values ('adfadsfbjkfgabkf','ingles','Joker');
+/*
+*/
 create table Funciones
 (
 	id_cine int,
@@ -78,10 +82,11 @@ create table Funciones
     horario varchar(10),
     constraint pk_id_cine_id_pelicula primary key (id_cine,id_pelicula),
     constraint fk_id_cine foreign key (id_cine) references Cines (id_cine),
-    constraint fk_id_peliculas foreign key (id_pelicula) references Peliculas (id_peliculas)
+    constraint fk_id_peliculas foreign key (id_pelicula) references Peliculas (id_pelicula)
 );
 insert into Funciones (id_cine,id_pelicula,dia,horario) values (1,1,'17','23:00');
-
+/*
+*/
 create table Generos
 (
 	id_genero int,
@@ -90,7 +95,8 @@ create table Generos
 );
 
 insert into Generos (id_genero,nombre_genero) values (1,'accion');
-
+/*
+*/
 create table PeliculasXgenero
 (
 	id_pelicula int,

@@ -9,6 +9,7 @@ use \PDOException as PDOException;
 
 class CuentasDAO extends SingletonAbstractDAO implements IDAO
 {
+	
 	private $table = 'Clientes';
 	private $table2 = 'Cuentas';
 
