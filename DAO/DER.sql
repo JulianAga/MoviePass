@@ -47,3 +47,57 @@ insert into Clientes (nombre,apellido,dni,telefono,direccion,ciudad,numero_tarje
 insert into Cuentas (email,pass,id_rol,id_cliente) values ("cliente@hgmail.com","1234",2,2);
 
 
+create table Cines
+(
+	id_cine int auto_increment,
+    capacidad int,
+    direccion varchar(30),
+    nombre varchar(30),
+    valor_entrada int,
+    habilitado boolean,
+    constraint pk_id_cine primary key (id_cine)
+);
+
+insert into Cines (capacidad,direccion, nombre,valor_entrada,habilitado) values (100,'palma 1132','galleguitos',300,true);
+
+create table Peliculas
+(
+	id_pelicula int auto_increment,
+    imagen varchar(30),
+    lenguaje varchar(30),
+    titulo varchar(30),
+    constraint pk_id_pelicula primary key (id_pelicula)
+);
+
+insert into Peliculas(imagen,lenguaje,titulo) values ('adfadsfbjkfgabkf','ingles','Joker');
+create table Funciones
+(
+	id_cine int,
+    id_pelicula int,
+    dia varchar(2),
+    horario varchar(10),
+    constraint pk_id_cine_id_pelicula primary key (id_cine,id_pelicula),
+    constraint fk_id_cine foreign key (id_cine) references Cines (id_cine),
+    constraint fk_id_peliculas foreign key (id_pelicula) references Peliculas (id_peliculas)
+);
+insert into Funciones (id_cine,id_pelicula,dia,horario) values (1,1,'17','23:00');
+
+create table Generos
+(
+	id_genero int,
+    nombre_genero varchar(30),
+    constraint pk_id_genero primary key (id_genero)
+);
+
+insert into Generos (id_genero,nombre_genero) values (1,'accion');
+
+create table PeliculasXgenero
+(
+	id_pelicula int,
+    id_genero int,
+    constraint pk_id_pelicula_id_genero primary key (id_pelicula,id_genero),
+    constraint fk_id_pelicula foreign key (id_pelicula) references Peliculas (id_pelicula),
+    constraint fk_id_genero foreign key (id_genero) references Generos (id_genero)
+);
+
+insert into PeliculasXgenero (id_pelicula,id_genero) values (1,1);
