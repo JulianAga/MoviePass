@@ -90,9 +90,9 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 		try 
     	{
 			$query = 'INSERT INTO '.$this->table.' 
-			( nombre, apellido,dni,telefono direccion,ciudad,numero_tarjeta) 
+			( nombre, apellido,dni,telefono ,direccion,ciudad,numero_tarjeta) 
 			VALUES 
-			( :nombre, :apellido,:dni,:telefono :direccion,:ciudad,:numero_tarjeta)';
+			( :nombre, :apellido,:dni,:telefono ,:direccion,:ciudad,:numero_tarjeta)';
 
 			$pdo = new Connection();
 			$connection = $pdo->Connect();

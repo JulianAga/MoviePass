@@ -9,13 +9,14 @@ class Cine {
     private $valor_entrada;
     private $habilitado;
 
-    function __construct (){
-        /*$this->ID = $ID;
+    function __construct ($nombre,$direccion,$capacidad,$valor_entrada,$habilitado){
+
+        $this->ID = null;
         $this->nombre = $nombre;
         $this->direccion = $direccion;
         $this->capacidad = $capacidad;
-        $this->valor_entrada = $valor_entrada;*/
-        //$this->habilitado = true;
+        $this->valor_entrada = $valor_entrada;
+        $this->habilitado = $habilitado;
     }
 
     public function getID (){
