@@ -56,7 +56,7 @@ create table Cines
     nombre varchar(30),
     valor_entrada int,
     habilitado boolean,
-    constraint pk_id_cine primary key (id_cine)
+    constraint pk_id_cine primary key (id_cine) ;
 );
 
 insert into Cines (capacidad,direccion, nombre,valor_entrada,habilitado) values (100,'palma 1132','galleguitos',300,true);

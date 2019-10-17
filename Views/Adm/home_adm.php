@@ -58,11 +58,8 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                 <?php foreach ($arrayCines as $key => $value)
                                 {
                                 $Cine = $value;
-                                if($Cine->getHabilitado() == true)
-                                {
-                                    ?>
-
-
+                                
+                                ?>
                             <tr>
                             <td><input type="checkbox" name="userschecked[]" /></td>
                                 <!--<td><?php//  echo $Cine->getID(); ?></td>-->
@@ -142,6 +139,14 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                                             <label>Nombre del Cine</label>
                                                             <input type="text" class="form-control" name="cine" value="<?php echo $Cine->getNombre();?>" required/>
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label>Estado </label>
+                                                            <select name="habilitado">
+                                                                <option value="1" name="habilitado"<?php if ($Cine->getHabilitado()==true){?> selected <?php }?> >Habilitado</option>
+                                                                <option value="0" name="habilitado"<?php if ($Cine->getHabilitado()==false){?> selected <?php }?> >Deshabilitado</option>
+                                                            </select>   
+                                                        </div>
+                                                        
 
                                                         <div class="form-group">
                                                             <label>Direccion</label>
@@ -163,14 +168,16 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
-                                                        <button type="submit" class="btn btn-dark">Publicar</button>
+                                                        <button type="submit" class="btn btn-dark">Modificar</button>
+                                                    </div>
                                             </form>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
                                 </td>
-
+                                
+                                
                                 <!-- boton eliminar CINE-->
                                 <td>
                                     <form action="<?= ROOT_VIEW ?>/Cine/deleteCine" method="post">
@@ -178,13 +185,11 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                     </form>
                                 </td>
                             </tr>
-                                <?php }} ?>
-
-                                
+                                <?php }//fin foreach ?>          
                     </tbody>
                 </table>
 
-                           <!--   Boton Añadir Cines   -->
+<!--   Boton Añadir Cines   -->
                 
 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#AddCineModal" data-whatever="@mdo">Añadir cine</button>
 
@@ -198,7 +203,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
         </button>
       </div>
       <div class="modal-body">
-      <form method="post" action="<?= ROOT_VIEW ?>/Publish/newCine">
+      <form method="post" action="<?= ROOT_VIEW ?>/Cine/newCine">
                      
 
                     <div class="form-group">

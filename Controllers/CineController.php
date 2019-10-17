@@ -77,8 +77,8 @@ class CineController
     //
     //
 	public function deleteCine($id_cine){
-        
-    
+        echo "entro a borrar cine ";
+    	echo $id_cine;
         $this->DAOCines->borrar($id_cine);
 
         echo '<script language="javascript">alert("Cine eliminado satisfactoriamente!");</script>'; //este tipo de mensaje no rompe el codigo
@@ -86,11 +86,17 @@ class CineController
 	}//fin delete cine
 	//
 	//
-	public function modifyCine($id,$direccion,$cine,$valor,$capacidad){
-        //$this->repository->modify($_POST['ID'],$_POST['direccion'],$_POST['cine'],$_POST['valor'],$_POST['capacidad']);
-        $cineMod = new cine ($cine,$direccion,$capacidad,$valor,true);
-        $cineMod->setID($id);
+	public function modifyCine($id,$cine,$habilitado,$direccion,$capacidad,$valor){
+        
 
+        if ($habilitado==1)
+        	$cineMod = new cine ($cine,$direccion,$capacidad,$valor,1);
+        else if($habilitado==0)
+        	$cineMod = new cine ($cine,$direccion,$capacidad,$valor,0);
+
+        
+        
+        $cineMod->setID($id);
         $this->DAOCines->actualizar($cineMod);
         
         echo '<script language="javascript">alert("Cine modificado satisfactoriamente!");</script>'; //este tipo de mensaje no rompe el codigo
@@ -98,6 +104,11 @@ class CineController
 
 
     }//fin modify cine
+    //
+    //
+    public function habilitado(){
+
+    }//fin habilitar
     //
     //
 

@@ -146,13 +146,17 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 	//
 	//
 	public function borrar($dato){
+		echo "entro a borrar cine ";
+		echo $dato;
 		try 
     	{
 		$query = 'DELETE FROM '.$this->table.' WHERE id_cine = :id';
 
+
 		$pdo = new Connection();
 		$connection = $pdo->Connect();
 		$command = $connection->prepare($query);
+
 
 		$command->bindParam(':id', $dato);
 		$command->execute();
@@ -175,6 +179,7 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 		try 
     	{
     		//table=clientes
+    		
 
 			$query= 'UPDATE '.$this->table.'
 					SET capacidad = :capacidad, 
@@ -189,12 +194,13 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 			$connection = $pdo->Connect();
 			$command = $connection->prepare($query);
 
-			$id = $dato->getId();
+			$id = $dato->getID();
 			$capacidad = $dato->getCapacidad();
 			$direccion = $dato->getDireccion();
 			$nombre = $dato->getNombre();
 			$valor_entrada = $dato->getValor_entrada();
-			$habilitado = $dato->getHabilitado();		
+			$habilitado = $dato->getHabilitado();
+					
 					
 
 
