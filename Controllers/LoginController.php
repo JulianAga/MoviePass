@@ -6,6 +6,10 @@
 	use Repository\AccountRepository as AccountRepository;
 	use DAO\SingletonAbstractDAO as SingletonAbstractDAO;
 
+	use Repository\DAOGenres as DAOGenres;
+	
+
+
 	class LoginController 
 	{
 		
@@ -33,7 +37,7 @@
 
 
 
-		public function index()
+		public function index($genre = '')
 		{
 			
 			if(isset($_SESSION['Login']))//Si hay session:
@@ -62,7 +66,36 @@
 
 			else
 			{
+				include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
+				include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 				
+				$daoGenres=new DAOGenres();           //crea un objeto de dao genres
+				$genresArray=$daoGenres->GetAll();    //carga en la variable la lista con los generos (ESTO NO CREO QUE VAYA ACA PERO NI IDEA DONDE TIENE QUE IR)
+				
+				$movieList=array();
+				if ($nowplaying !=null)//si no esta null la cartelera que llega desde movie DB, la recorro
+				{
+					
+					if(!empty($genre))
+					{
+						foreach ($nowplaying->results as $p) 
+						{ 
+							if(in_array($genre,$p->genre_ids)) //verifica que la pelicula sea de el genero elegido
+							{
+								array_push($movieList,$p);
+							}
+						}
+					}
+					else
+					{
+						foreach ($nowplaying->results as $p) 
+						{ 
+							array_push($movieList,$p);
+						}
+					}
+				}
+				//var_dump($movieList);
+			
 				require(ROOT . '/Views/home.php');//SI NO HAY SESSION LO LLEVA A HOME (como no hay ninguna session lo lleva al home.php como anonimo)
 			}
 		}//fin index-------
@@ -214,7 +247,35 @@
 
 
 		
+	private function genreFilter($genre)
+	{
+		
 
+		$movieList=array();
+		if ($nowplaying !=null)//si no esta null la cartelera que llega desde movie DB, la recorro
+        {
+			
+			if(!empty($genre))
+			{
+				foreach ($nowplaying->results as $p) 
+				{ 
+					if(in_array($genre,$p->genre_ids)) //verifica que la pelicula sea de el genero elegido
+					{
+						array_push($movieList,$p);
+					}
+				}
+			}
+			else
+			{
+				foreach ($nowplaying->results as $p) 
+				{ 
+					array_push($movieList,$p);
+				}
+			}
+		}
+
+		return $movieList;
+	}
 		
 
 

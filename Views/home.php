@@ -4,15 +4,6 @@
 include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
 include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
-//////////   agregado por leo
-        
-
-        use Repository\DAOGenres as DAOGenres;
-        $daoGenres=new DAOGenres();           //crea un objeto de dao genres
-
-        $genresArray=$daoGenres->GetAll();    //carga en la variable la lista con los generos (ESTO NO CREO QUE VAYA ACA PERO NI IDEA DONDE TIENE QUE IR)
-        //////////
-
 
 ?>
 <!DOCTYPE html>
@@ -50,15 +41,12 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
           </nav>
       </div>
       <br>
-      <!--
-            Recorre la lista de generos y los pone como opcion dentro del select
-            y los manda como post a esta misma pagina (tampoco se si esta bien)
-        -->
+      <!-- Recorre la lista de generos y los pone como opcion dentro del select -->
         <div class="li_borde_trasparente">
           <form method="post" action="" name="genreSearch">
             <label class="label-blanco"> Genero</label>
               <select name="genre" id="genre" >
-              <option value="" selected disabled hidden>Todos</option>
+              <option value="" selected hidden>Todos</option>
                   <?php
                   foreach($genresArray as $g){?>
                   <option value="<?php echo $g->getId();?>"><?php echo $g->getName();?></option> 
@@ -69,84 +57,30 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
         </div>
         <br>
       <div class="wrapperr">
-      <?php
-        if ($nowplaying !=null)//si no esta null la cartelera que llega desde movie DB, la recorro
-        {
-        foreach ($nowplaying->results as $p) {?> <!-- recorro la lista de peliculas actuales y las muestro-->
-          
-              
-                <?php
-                   if($_POST && isset($_POST["genre"])) // si se mando como post un genero del select
-                   {
-                     
-                     if(in_array($_POST["genre"],$p->genre_ids)) //verifica que la pelicula sea de el genero elegido
-                     {
-                      ?>
-                      <form action="<?= ROOT_VIEW ?>/DetallePelicula/searchMovie" method="post"><!-- ENVIO FORMULARIO CON EL ID DE LA PELICULA PARA VERLA EN DETALLE-->
-                       <input type="hidden" id="movie_id" name="movie_id" value="<?php echo $p->id?>"/> <!-- le paso el id de pelicula-->
-                       <?php
+      <?php  foreach($movieList as $p) {?> <!-- Inicio foreach-->
+        
+        <form action="<?= ROOT_VIEW ?>/DetallePelicula/searchMovie" method="post"><!-- ENVIO FORMULARIO CON EL ID DE LA PELICULA PARA VERLA EN DETALLE-->
+            <input type="hidden" id="movie_id" name="movie_id" value="<?php echo $p->id;?>"/> <!-- le paso el id de pelicula-->
+              <div class="align-self-center zoomIt">
+                <div class="card background">
+                  <div class="li_borde_trasparente">
+                      <a style="color:white;" href="movie.php?id=' . <?php echo $p->id ;?> . '"> 
+                        <button type="submit" name="boton_imagen"><img src="http://image.tmdb.org/t/p/w500<?php echo $p->poster_path ;?>" class="img-responsive"  style="width:100%" alt="Image "></button>
+                        <h3 font-weight: bold><?php echo $p->original_title; ?>(<?php echo substr($p->release_date, 0, 4);?>) </h3>
+                      </a>
+                        <h5 ><em>Calificacion :<?php echo $p->vote_average;?>  |  Votos: <?php echo $p->vote_count ;?></em> </h5>
+                  </div>
+                </div>
+              </div>
+        </form> 
+      
+      <?php }?> <!-- Fin foreach-->               
 
-                       echo '
-                       <div class="align-self-center zoomIt">
-                        <div class="card background">
-                       
-                         <div class="li_borde_trasparente">
-                           <a style="color:white;" href="movie.php?id=' . $p->id . '"> 
-                           <button type="submit" name="boton_imagen"><img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive"  style="width:100%" alt="Image "></button>
-                             <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
-                             </h3>
-                           </a>
-                           <h5 ><em>Calificacion : " . $p->vote_average . " |  Votos: " . $p->vote_count . "</em>
-                           </h5>
-                         
-                         </div>
-                         </div>
-                         </div>
-                         ";
-                         ?>
-                         </form> 
-                         <?php
-
-                     }
-                   }
-                   
-                   else //si no hay post muestra todas las peliculas (no se tendria q repetir el codigo pero no se como hacerlo)
-                   {?>
-                    <form action="<?= ROOT_VIEW ?>/DetallePelicula/searchMovie" method="post"><!-- ENVIO FORMULARIO CON EL ID DE LA PELICULA PARA VERLA EN DETALLE-->
-                       <input type="hidden" id="movie_id" name="movie_id" value="<?php echo $p->id?>"/> <!-- le paso el id de pelicula-->
-                    <?php
-                     echo '
-                       <div class="align-self-center zoomIt">
-                        <div class="card background">
-                        
-                         <div class="li_borde_trasparente ">
-                           <a style="color:white;" href="movie.php?id=' . $p->id . '"> 
-                           <button type="submit" name="boton_imagen"><img src="http://image.tmdb.org/t/p/w500'. $p->poster_path . '" class="img-responsive"  style="width:100%" alt="Image "></button>
-                             <h3 font-weight: bold>' . $p->original_title . " (" . substr($p->release_date, 0, 4) . ")
-                             </h3>
-                           </a>
-                           <h5 ><em>Calificacion : " . $p->vote_average . " |  Votos: " . $p->vote_count . "</em>
-                           </h5>
-                         
-                         </div>
-                         </div>
-                         </div>
-                         ";?>
-                         </form>
-                         <?php
-                     
-                   }
-                   
-                   
-                ?>   
-              
-            
-        <?php } //fin foreach
-        }?>    
+     
         <br>
       </div>
     </div>
-  </section>
+    </section>
   <!-- FIN Cartelera  --> 
 
   
