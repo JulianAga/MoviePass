@@ -163,8 +163,8 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 
 		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
 		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
-
-		if ($command->errorInfo()==null)
+		
+		if ($descripcion_error==null)
 			echo '<script language="javascript">alert("Cine Eliminado");</script>';
 		else{
 

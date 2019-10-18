@@ -53,12 +53,12 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                     <?php
                                 ?>
                                 <!-- $arrayCines viene desde el llamado de LoginController  -->
-
-                                <?php foreach ($arrayCines as $key => $value)
-                                {
-                                $Cine = $value;
-                                
-                                ?>
+                               <?php if ($arrayCines != null){ ?>
+                                    <?php foreach ($arrayCines as $key => $value)
+                                    {
+                                    $Cine = $value;
+                                    
+                                    ?>
                             <tr>
                                 <td style="vertical-align:middle;"><input type="checkbox" name="userschecked[]" /></td>    
                                 <td style="vertical-align:middle;"><?php  echo $Cine->getNombre(); ?></td>
@@ -207,7 +207,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                     </div>
                                 </td>
                             </tr>
-                                <?php }//fin foreach ?>          
+                                <?php } }//fin if y fin foreach ?>          
                     </tbody>
                 </table>
 
