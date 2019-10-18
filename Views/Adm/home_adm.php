@@ -51,9 +51,8 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                     </thead>
                     <tbody>
                     <?php
-                               //$cines = new CinesRepository();
-
-                                //$productsArray = $cines->getAll(); ?>
+                                ?>
+                                <!-- $arrayCines viene desde el llamado de LoginController  -->
 
                                 <?php foreach ($arrayCines as $key => $value)
                                 {
@@ -102,7 +101,6 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                                             <input type="date" class="form-control" name="fecha" value="<?php echo $Cine->getDireccion();?>" required>
                                                         </div>
                                             <div class="modal-footer">
-                                                
                                                 <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
                                                 <button type="submit" class="btn btn-dark">Publicar</button>
                                             </div>
@@ -203,20 +201,6 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                       </div>
                                     </div>
                                 </td>
-                                <!--
-                                 boton eliminar CINE
-                                <td style="vertical-align:middle;">
-                                    <form action="<?= ROOT_VIEW ?>/Cine/deleteCine" method="post">
-                                        <button class="btn btn-primary btn-block" name="eliminar" value="<?php echo $Cine->getID();?>">Eliminar</button>
-                                        <div>
-                                            
-                                        </div>
-
-                                    </form>
-                                </td>
-                                -->
-                                
-                                
                             </tr>
                                 <?php }//fin foreach ?>          
                     </tbody>
