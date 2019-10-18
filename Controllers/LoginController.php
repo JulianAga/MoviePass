@@ -2,6 +2,7 @@
 
 	use Models\Cuenta as Cuenta;
 	use Models\Cliente as Cliente;
+	use Controllers\CineController as CineController;
 	use Repository\ClientRepository as ClientRepository;
 	use Repository\AccountRepository as AccountRepository;
 	use DAO\SingletonAbstractDAO as SingletonAbstractDAO;
@@ -48,7 +49,10 @@
 				{
 					//lo lleva al home ADM
 					//pasar por la controladora de ADM para levantar los datos de la bd
+					
 					$arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
+					//$cineController= new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
+					//$arrayCines=$cineController->traerTodos();//levanto todos los cines de la BD
 					
 					require(ROOT . '/Views/Adm/home_adm.php');//
 					

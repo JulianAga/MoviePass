@@ -1,6 +1,7 @@
 <?php namespace Controllers;
 
 use models\cine as Cine;
+use Controllers\CineController as CineController;
 use Repository\CinesRepository as CinesRepository;
 
 /**
@@ -103,6 +104,20 @@ class CineController
     public function habilitado(){
 
     }//fin habilitar
+    //
+    //
+    public function traerTodos(){
+        $arrayCines= array();
+        $arrayCines=$this->DAOCines->traerTodos();
+
+        if($arrayCines!=null)
+            return $arrayCines;
+        else{
+            echo '<script language="javascript">alert("No hay Cines cargados en BD!");</script>';
+            return null;
+        }
+    }//traer todos
+    //
     //
     //
 

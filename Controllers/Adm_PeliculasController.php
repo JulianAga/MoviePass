@@ -2,6 +2,7 @@
 
 
 use models\Pelicula as Pelicula;
+use Controllers\CineController as CineController;
 use Repository\MovieRepository as MovieRepository;
 /**
  * 
@@ -17,6 +18,7 @@ class Adm_PeliculasController
 	function __construct()
 	{
 		$this->repositoryMovies= new MovieRepository();
+
 		$this->peliculaDAO = \DAO\PeliculasDAO::getInstance();
 		
 	}
@@ -30,14 +32,15 @@ public function index (){
 			{
 				
 
-				if($_SESSION['Login']->getRol()=="ADM")//SI ES ADMIN LO LLEVA A SU PAG (falta configurar esto)
+				if($_SESSION['Login']->getRol()==1)//SI ES ADMIN LO LLEVA A SU PAG (falta configurar esto)
 				{
 					//lo lleva al home ADM
-					
-					require(ROOT . '/Views/Adm/home_adm.php');//no esta hecho aun
+					$cineController = new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
+					$arrayCines=$cineController->traerTodos();//levanto todos los cines de la BD
+					require(ROOT . '/Views/Adm/home_adm.php');//llamo a la vista
 					
 				}
-				if($_SESSION['Login']->getRol()=="User")// SI ES CLIENTE AL HOME DE CLIENTE (falta configurar esto)
+				if($_SESSION['Login']->getRol()==2)// SI ES CLIENTE AL HOME DE CLIENTE (falta configurar esto)
 				{
 					
 					//lo lleva al home CLIENTE
@@ -86,7 +89,7 @@ public function recibirPeliculas(){
 	include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
 	include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
-	echo "entro a recibir peliculas";
+	
 	
 	foreach ($nowplaying->results as $m) {
 
@@ -101,8 +104,12 @@ public function recibirPeliculas(){
 
 		
 
-		$newMovie = new Pelicula ($codigo,$descripcion,$titulo,$duracion,$genero,$imagen,$lenguaje);
-		$this->peliculaDAO->insertar($newMovie);//guardo la pelicula en BD
+		$newMovie = new Pelicula ($codigo,$descripcion,$titulo,$duracion,$genero,$imagen,$lenguaje);//creo objeto con los datos de la API
+		$buscado=$this->peliculaDAO->buscarPorID($newMovie->codigo);//Busco en la BD si existe esa pelicula
+		if($buscado==null)//guarda solo las peliculas que NO estan en la BD
+			$this->peliculaDAO->insertar($newMovie);//guardo la pelicula en BD
+		
+		$this->index();
 
 	}
 }//fin recibir peliculas
@@ -118,11 +125,7 @@ public function addMovie($id_pelicula){
 }//fin addmovie
 //
 //
-public function actualizarPeliculasApi(){
-	include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
-	include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
-}//fin actualizar peliculas api
 
 
 

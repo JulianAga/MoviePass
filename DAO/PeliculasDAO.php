@@ -62,7 +62,49 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 	//
 	//
 	//
-	public function buscarPorID($dato){
+	public function buscarPorID($dato){//buscar una pelicula por el ID de la API
+		try 
+    	{
+    		
+			$object = null;
+
+			$query = 'SELECT * FROM '.$this->table.' WHERE id_api = :id';
+
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);			
+
+			
+			$command->bindParam(':id', $dato);
+			$command->execute();
+
+			
+
+			while ($row = $command->fetch())
+			{
+				$duracion = ($row['duracion']);
+				$imagen = ($row['imagen']);
+				$lenguaje = ($row['lenguaje']);
+				$titulo = ($row['titulo']);
+				$descripcion = ($row['descripcion']);
+				$id_api = ($row['id_api']);
+				$habilitada = ($row['habilitada']);
+
+				$object = new \Models\Pelicula($id_api, $descripcion, $titulo, $duracion,null, $imagen, $lenguaje) ;
+				
+
+				$object->setId($row['id_pelicula']);	
+			}
+
+
+			return $object;
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+		}
 
 	}//fin buscar por ID
 	//

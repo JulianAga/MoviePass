@@ -85,7 +85,7 @@ create table Funciones
     dia varchar(2),
     horario varchar(10),
     constraint pk_id_cine_id_pelicula primary key (id_cine,id_pelicula),
-    constraint fk_id_cine foreign key (id_cine) references Cines (id_cine),
+    constraint fk_id_cine foreign key (id_cine) references Cines (id_cine) ,
     constraint fk_id_peliculas foreign key (id_pelicula) references Peliculas (id_pelicula)
 );
 insert into Funciones (id_cine,id_pelicula,dia,horario) values (1,1,'17','23:00');
