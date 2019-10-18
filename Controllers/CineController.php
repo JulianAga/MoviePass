@@ -77,11 +77,7 @@ class CineController
     //
     //
 	public function deleteCine($id_cine){
-        echo "entro a borrar cine ";
-    	echo $id_cine;
         $this->DAOCines->borrar($id_cine);
-
-        echo '<script language="javascript">alert("Cine eliminado satisfactoriamente!");</script>'; //este tipo de mensaje no rompe el codigo
         $this->index();
 	}//fin delete cine
 	//
@@ -94,8 +90,6 @@ class CineController
         else if($habilitado==0)
         	$cineMod = new cine ($cine,$direccion,$capacidad,$valor,0);
 
-        
-        
         $cineMod->setID($id);
         $this->DAOCines->actualizar($cineMod);
         

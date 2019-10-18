@@ -146,8 +146,7 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 	//
 	//
 	public function borrar($dato){
-		echo "entro a borrar cine ";
-		echo $dato;
+		
 		try 
     	{
 		$query = 'DELETE FROM '.$this->table.' WHERE id_cine = :id';
@@ -158,16 +157,29 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 		$command = $connection->prepare($query);
 
 
+
 		$command->bindParam(':id', $dato);
 		$command->execute();
-    		
+
+		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+
+		if ($command->errorInfo()==null)
+			echo '<script language="javascript">alert("Cine Eliminado");</script>';
+		else{
+
+			echo '<script language="javascript">alert("Error al eliminar Cine de BD");</script>';
+			echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
+			echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
+		}
+
     	}
     	catch (PDOException $ex) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine");</script>';
+    		echo '<script language="javascript">alert("Error al eliminar Cine: PDO EXCEPTION");</script>';
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine");</script>';
+    		echo '<script language="javascript">alert("Error al eliminar Cine: EXCEPTION");</script>';
 			throw $e;
     	}
 
