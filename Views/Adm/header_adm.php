@@ -54,7 +54,7 @@ if( isset($_SESSION['Cliente_Logueado'])){
     <ul class="nav navbar-nav">
       <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Adm_Peliculas/adm_cines" class="nav-link">ADM Cines</a></li>
       <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Adm_Peliculas/metodo" class="nav-link">ADM Peliculas</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">ADM Localidades</a></li> 
+      <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Adm_Peliculas/recibirPeliculas" class="nav-link">Actualizar Peliculas API</a></li> 
     </ul>
     
     <ul class="nav navbar-nav navbar-right ml-auto">

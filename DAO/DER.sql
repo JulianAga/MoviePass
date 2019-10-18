@@ -56,7 +56,7 @@ create table Cines
     nombre varchar(30),
     valor_entrada int,
     habilitado boolean,
-    constraint pk_id_cine primary key (id_cine) ;
+    constraint pk_id_cine primary key (id_cine)
 );
 
 insert into Cines (capacidad,direccion, nombre,valor_entrada,habilitado) values (100,'palma 1132','galleguitos',300,true);
@@ -66,13 +66,16 @@ create table Peliculas
 (
 	id_pelicula int auto_increment,
     duracion int,
-    imagen varchar(30),
+    imagen varchar(300),
     lenguaje varchar(30),
-    titulo varchar(30),
+    titulo varchar(50),
+    descripcion varchar(1500),
+    id_api int,
+    habilitada boolean default true,
     constraint pk_id_pelicula primary key (id_pelicula)
 );
 
-insert into Peliculas(imagen,lenguaje,titulo) values ('adfadsfbjkfgabkf','ingles','Joker');
+
 /*
 */
 create table Funciones

@@ -4,29 +4,52 @@
 class Pelicula
 {
     private $id;
+    private $id_api;
     private $descripcion;
     private $nombre;
-    private $restriccion;
+    private $imagen;
     private $duracion; //en minutos
-    private $codigo;
     private $categoria;
-    private $tipo;//2d 3d
+    private $lenguaje;
+   
 
 
 
-    public function __construct($descripcion,  $nombre, $restriccion, $duracion, $codigo, $categoria,$tipo)
+    public function __construct($id_api,$descripcion,  $nombre, $duracion,  $categoria, $imagen,$lenguaje)
     {
+        $this->setId_api($id_api);
         $this->setDescripcion($descripcion);
         $this->setNombre($nombre);
-        $this->setRestriccion($restriccion);
         $this->setDuracion($duracion);
-        $this->setCodigo($codigo);
+        $this->setImagen($imagen);
         $this->setCategoria($categoria);
-        $this->setTipo($tipo);
+        $this->setLenguaje($lenguaje);
+        
     }
-
-    
-	
+     public function getLenguaje()
+    {
+        return $this->lenguaje;
+    }
+    public function setLenguaje($lenguaje)
+    {
+        $this->lenguaje = $lenguaje;
+    }
+     public function getImagen()
+    {
+        return $this->imagen;
+    }
+    public function setImagen($imagen)
+    {
+        $this->imagen = $imagen;
+    }
+	 public function getId_api()
+    {
+        return $this->id_api;
+    }
+    public function setId_api($id_api)
+    {
+        $this->id_api = $id_api;
+    }
      public function getId()
     {
         return $this->id;
@@ -54,14 +77,7 @@ class Pelicula
     {
         $this->nombre = $nombre;
     }
-    public function getRestriccion ()
-    {
-        return $this->restriccion;
-    }
-    public function setRestriccion($restriccion)
-    {
-        $this->restriccion = $restriccion;
-    }
+   
     public function getDuracion ()
     {
         return $this->duracion;
@@ -70,14 +86,7 @@ class Pelicula
     {
         $this->duracion = $duracion;
     }
-    public function getCodigo()
-    {
-        return $this->codigo;
-    }
-    public function setCodigo($codigo)
-    {
-        $this->codigo = $codigo;
-    }
+    
      public function getCategoria()
     {
         return $this->categoria;
@@ -86,14 +95,7 @@ class Pelicula
     {
         $this->categoria = $categoria;
     }
-     public function getTipo()
-    {
-        return $this->tipo;
-    }
-    public function setTipo($tipo)
-    {
-        $this->tipo = $tipo;
-    }
+    
 
 }
 

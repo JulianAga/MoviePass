@@ -10,12 +10,14 @@ class Adm_PeliculasController
 {
 	//------------------------ATRIBUTOS-------------------
 	private $repositoryMovies;
+	private $cineDAO;
 
 	//------------------------CONSTRUCTOR-----------------
 	
 	function __construct()
 	{
 		$this->repositoryMovies= new MovieRepository();
+		$this->peliculaDAO = \DAO\PeliculasDAO::getInstance();
 		
 	}
 
@@ -88,22 +90,23 @@ public function recibirPeliculas(){
 	
 	foreach ($nowplaying->results as $m) {
 
-		$descripcion = $m->overview;
-		$titulo = $m->title;
-		$restriccion = null;
-		$duracion =null;
 		$codigo=$m->id;
-		$categoria= $m->genre_ids;
-		$tipo=null;
+		$duracion =null;
+		$imagen='http://image.tmdb.org/t/p/w500<?php'.$m->poster_path;
+		$lenguaje=$m->original_language;
+		$titulo = $m->title;
+		$descripcion = $m->overview;
+		$genero = $m->genre_ids;
+		
 
+		
 
-
-
-		$newMovie = new Pelicula ($descripcion,$titulo,$restriccion,$duracion,$codigo,$categoria,$tipo);
-		$this->repositoryMovies->add($newMovie);
+		$newMovie = new Pelicula ($codigo,$descripcion,$titulo,$duracion,$genero,$imagen,$lenguaje);
+		$this->peliculaDAO->insertar($newMovie);//guardo la pelicula en BD
 
 	}
 }//fin recibir peliculas
+//
 //
 //
 public function addMovie($id_pelicula){
@@ -115,6 +118,11 @@ public function addMovie($id_pelicula){
 }//fin addmovie
 //
 //
+public function actualizarPeliculasApi(){
+	include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
+	include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
+
+}//fin actualizar peliculas api
 
 
 
