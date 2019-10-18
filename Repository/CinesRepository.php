@@ -72,7 +72,6 @@ require_once('Repository/IRepository.php');
                 $valuesArray["cine"] = $post->getNombre();
                 $valuesArray["direccion"] = $post->getDireccion();
                 $valuesArray["valor"] = $post->getValor_entrada();
-                /*$valuesArray["date"] = $post->getDate();*/
                 $valuesArray["capacidad"] = $post->getCapacidad();
                 $valuesArray["habilitado"] = $post->getHabilitado();
 
@@ -101,7 +100,6 @@ require_once('Repository/IRepository.php');
                     $post->setNombre($valuesArray["cine"]);
                     $post->setDireccion($valuesArray["direccion"]);
                     $post->setValor_entrada($valuesArray["valor"]);
-                    /*$post->setDate($valuesArray["date"]);*/
                     $post->setCapacidad($valuesArray["capacidad"]);
                     $post->setHabilitado($valuesArray["habilitado"]);
 

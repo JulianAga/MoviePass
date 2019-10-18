@@ -3,27 +3,32 @@
 class Funcion
 {
 
-	private $pelicula;
+	private $id_funcion;
+	private $id_pelicula;
 	private $horario;
 	private $dia;
-
+	
 
 	public function __construct($pelicula, $horario, $dia)
 	{
-		$this->setPelicula($pelicula);
+		$this->setIdPelicula($pelicula);
 		$this->setHorario($horario);
 		$this->setDia($dia);
 		
 		
 	}
+	public function getID()
+	{
+		return $this->id_funcion;
+	}
 
 	public function getPelicula ()
 	{
-		return $this->pelicula;
+		return $this->id_pelicula;
 	}
-	public function setPelicula($pelicula)
+	public function setIdPelicula($id_pelicula)
 	{
-		$this->pelicula = $pelicula;
+		$this->id_pelicula = $id_pelicula;
 	}
 	public function getHorario()
 	{
@@ -41,7 +46,10 @@ class Funcion
 	{
 		$this->dia = $dia;
 	}
-
+	public function setID($id)
+	{
+		$this->id_funcion=$id;
+	}
 
 
 
