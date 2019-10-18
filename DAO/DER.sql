@@ -65,6 +65,7 @@ insert into Cines (capacidad,direccion, nombre,valor_entrada,habilitado) values 
 create table Peliculas
 (
 	id_pelicula int auto_increment,
+    duracion int,
     imagen varchar(30),
     lenguaje varchar(30),
     titulo varchar(30),
