@@ -29,12 +29,14 @@ class FuncionesDAO extends SingletonAbstractDAO implements IDAO
 
 			$id_funcion = $dato->getID();
 			$id_pelicula = $dato->getIdPelicula();
-			$dia = $dato->getDia();
+            $dia = $dato->getDia();
+			$horario = $dato->getHorario();
+            
 
 			$command->bindParam(':id_funcion', $id_funcion);
 			$command->bindParam(':id_pelicula', $id_pelicula);
-			$command->bindParam(':dia', $dia);
-
+            $command->bindParam(':dia', $dia);
+			$command->bindParam(':horario', $horario);
 
 			$command->execute();
 
