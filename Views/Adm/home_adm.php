@@ -43,9 +43,9 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                             <th>Direccion</th>
                             <th>Capacidad</th>
                             <th>Valor de entrada</th>
-                            <th>Agregar Pelicula</th>
-                            <th>Modificar</th>
-                            <th>Eliminar</th>
+                            <th>  </th>
+                            <th>  </th>
+                            <th>  </th>
 
                         </tr>
                     </thead>
@@ -61,18 +61,16 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                 
                                 ?>
                             <tr>
-                            <td><input type="checkbox" name="userschecked[]" /></td>
-                                <!--<td><?php//  echo $Cine->getID(); ?></td>-->
-                                    
-                                <td><?php  echo $Cine->getNombre(); ?></td>
-                                <td><?php  echo $Cine->getDireccion(); ?></td>
-                                <td><?php  echo $Cine->getCapacidad(); ?></td>
+                                <td style="vertical-align:middle;"><input type="checkbox" name="userschecked[]" /></td>    
+                                <td style="vertical-align:middle;"><?php  echo $Cine->getNombre(); ?></td>
+                                <td style="vertical-align:middle;"><?php  echo $Cine->getDireccion(); ?></td>
+                                <td style="vertical-align:middle;"> <?php  echo $Cine->getCapacidad(); ?></td>
                                 <!--       <td><?php // echo $Post->getDate(); ?></td> -->
-                                <td><?php  echo $Cine->getValor_entrada(); ?></td>
+                                <td style="vertical-align:middle;"><?php  echo $Cine->getValor_entrada(); ?></td>
 <!--BOTON AGREGAR PELICULA -->
                             
-                                <td>
-                                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#addMovie" data-whatever="@mdo">+</button>
+                                <td style="vertical-align:middle;">
+                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addMovie" data-whatever="@mdo">Agregar Pelicula</button>
                                     <div class="modal fade" id="addMovie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -116,9 +114,9 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                 </td>
 
                                 <!-- BOTON MODIFICAR CINE -->
-                                <td>
+                                <td style="vertical-align:middle;">
 
-                                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModifyModal<?php echo $Cine->getID();?>" data-whatever="@mdo">*</button>
+                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#ModifyModal<?php echo $Cine->getID();?>" data-whatever="@mdo">Modificar</button>
                                     <div class="modal fade" id="ModifyModal<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -179,9 +177,9 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                 
                                 
                                 <!-- boton eliminar CINE-->
-                                <td>
+                                <td style="vertical-align:middle;">
                                     <form action="<?= ROOT_VIEW ?>/Cine/deleteCine" method="post">
-                                        <button class="btn btn-dark" name="eliminar" value="<?php echo $Cine->getID();?>">-</button>
+                                        <button class="btn btn-primary btn-block" name="eliminar" value="<?php echo $Cine->getID();?>">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
@@ -277,6 +275,9 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
         .fondo_home_adm{
             
             background:url(/MoviePass/images/fondo_body5.jpg);
+        }
+        .tdCentrado{
+            padding: 5px;
         }
     </style>
 
