@@ -112,6 +112,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                       </div>
                                     </div>
                                 </td>
+                                
 
                                 <!-- BOTON MODIFICAR CINE -->
                                 <td style="vertical-align:middle;">
@@ -174,14 +175,48 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                       </div>
                                     </div>
                                 </td>
-                                
-                                
-                                <!-- boton eliminar CINE-->
+                                <!-- BOTON MODIFICAR CINE -->
+                                <td style="vertical-align:middle;">
+
+                                    <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#DeleteModal<?php echo $Cine->getID();?>" data-whatever="@mdo">Eliminar</button>
+                                    <div class="modal fade" id="DeleteModal<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h3>Eliminar Cine</h3>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <h3><strong>Esta seguro?</strong></h3>
+                                          <form method="post" action="<?= ROOT_VIEW ?>/Cine/deleteCine">
+                                                         
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">Cancelar</button>
+                                                        <button name="eliminar" type="submit" value="<?php echo $Cine->getID();?>" class="btn btn-danger btn-block">Eliminar</button>
+                                                    </div>
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </td>
+                                <!--
+                                 boton eliminar CINE
                                 <td style="vertical-align:middle;">
                                     <form action="<?= ROOT_VIEW ?>/Cine/deleteCine" method="post">
                                         <button class="btn btn-primary btn-block" name="eliminar" value="<?php echo $Cine->getID();?>">Eliminar</button>
+                                        <div>
+                                            
+                                        </div>
+
                                     </form>
                                 </td>
+                                -->
+                                
+                                
                             </tr>
                                 <?php }//fin foreach ?>          
                     </tbody>
