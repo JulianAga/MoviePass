@@ -1,5 +1,5 @@
 
-<?php
+<?php/*
 namespace Controllers;
 
 use Repository\CinesRepository as CinesRepository;
@@ -59,4 +59,4 @@ class ModifyController
 
 }
 
-?>
+*/?>

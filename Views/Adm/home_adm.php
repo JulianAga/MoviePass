@@ -64,7 +64,6 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                 <td style="vertical-align:middle;"><?php  echo $Cine->getNombre(); ?></td>
                                 <td style="vertical-align:middle;"><?php  echo $Cine->getDireccion(); ?></td>
                                 <td style="vertical-align:middle;"> <?php  echo $Cine->getCapacidad(); ?></td>
-                                <!--       <td><?php // echo $Post->getDate(); ?></td> -->
                                 <td style="vertical-align:middle;"><?php  echo $Cine->getValor_entrada(); ?></td>
 <!--BOTON AGREGAR PELICULA -->
                             
@@ -80,7 +79,8 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                             </button>
                                           </div>
                                           <div class="modal-body">
-                                            <form method="post" action="<?= ROOT_VIEW ?>/Adm_Peliculas/addMovie">
+                                        <!--    <form method="post" action="<?/*ROOT_VIEW*/ ?>/Adm_Peliculas/addMovie"> -->
+                                        <form method="post" action="<?= ROOT_VIEW ?>/Funcion/addFuncion">
                                                         <div class="form-group">
                                                             <label>Pelicula</label>
                                                             
@@ -89,11 +89,16 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                                                 </option>
                                                                 
                                                                     <?php foreach ($nowplaying->results as $key ) { ?>
-                                                                        <option value="<?php echo $key->id; ?>"> <?php echo $key->title ; ?>
+                                                                        <option value="<?php echo $key->id; ?>" name="id_pelicula"> <?php echo $key->title ; ?>
                                                                             
                                                                         </option>
                                                                     <?php } ?>  
                                                             </select>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Id del Cine</label>
+                                                            <input type="text" class="form-control" name="id_cine" value="<?php echo $Cine->getID();?>" readonly/>
                                                         </div>
                                            
                                                         <div class="form-group">
@@ -148,7 +153,6 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                                                 <option value="0" name="habilitado"<?php if ($Cine->getHabilitado()==false){?> selected <?php }?> >Deshabilitado</option>
                                                             </select>   
                                                         </div>
-                                                        
 
                                                         <div class="form-group">
                                                             <label>Direccion</label>

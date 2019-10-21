@@ -1,7 +1,7 @@
 <?php namespace Controllers;
 
 use models\cine as Cine;
-use Controllers\CineController as CineController;
+//use Controllers\CineController as CineController;
 use Repository\CinesRepository as CinesRepository;
 
 /**

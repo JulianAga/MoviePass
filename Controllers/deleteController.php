@@ -1,5 +1,5 @@
 <?php
-namespace Controllers;
+/*namespace Controllers;
 
 use models\Cine as Cine;
 use Repository\CinesRepository as CinesRepository;
@@ -66,4 +66,4 @@ class DeleteController
 
 }
 
- ?>
+ */?>
