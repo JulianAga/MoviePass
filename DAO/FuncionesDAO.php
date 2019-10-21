@@ -15,8 +15,6 @@ class FuncionesDAO extends SingletonAbstractDAO
 	public function insertar($dato){
 		try 
     	{
-    		
-
 			$query = 'INSERT INTO '.$this->table.' 
 			(id_cine, id_pelicula, dia, horario) 
 			VALUES 
@@ -39,7 +37,21 @@ class FuncionesDAO extends SingletonAbstractDAO
 
 			$command->execute();
 
-    	}
+		//capturar errores de BD----------------------------
+			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+		
+		if ($descripcion_error==null)
+			echo '<script language="javascript">alert("Funcion Agregada!");</script>';
+		else{
+
+			echo '<script language="javascript">alert("Error al guardar Funcion en  BD. Error Nº '.$num_error.' Descripcion: '.$descripcion_error.' ");</script>';
+		}
+		//-----------------------------------------------------
+
+    	
+
+    	}//fin if 
     	catch (PDOException $ex) {
 			throw $ex;
     	}

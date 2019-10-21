@@ -12,10 +12,12 @@ class FuncionController
 
 //----------------ATRIBUTOS-----------------------
 	 private $DAOFunciones;
+	 private $DAOPeliculas;
 //----------------CONSTRUCTOR---------------------
 	function __construct()
 	{
 		$this->DAOFunciones=\DAO\FuncionesDAO::getInstance();
+		$this->DAOPeliculas=\DAO\PeliculasDAO::getInstance();
 	}
 
 	public function index()
@@ -54,16 +56,17 @@ class FuncionController
 		public function addFuncion($id_pelicula, $id_cine, $fecha, $hora)
 		{
 			$funcion = new Funcion();
-			$funcion->setIdPelicula($id_pelicula);
+			$peli_buscada=$this->DAOPeliculas->buscarPorID($id_pelicula);//le paso el ID de la pelicula de la API y me devuelve el ID de esa pelicula en BD
+			$funcion->setIdPelicula($peli_buscada->getId() );//le asigno la ID buscada
 			$funcion->setIdCine($id_cine);
 			$funcion->setDia($fecha);
 			$funcion->setHorario($hora);
 			 var_dump($funcion);
 			
+
 			$this->DAOFunciones->insertar($funcion);
         
-        echo '<script language="javascript">alert("Funcion agregada satisfactoriamente!");</script>'; //este tipo de mensaje no rompe el codigo
-		$this->index();
+			$this->index();
 		}
 
 }
