@@ -52,12 +52,14 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 	public function insertarCuenta($dato)//le llega un objeto cuenta y lo guarda en BD
 	{
 		try 
+
     	{
+    		
     		//table2 es cuentas
 			$query = 'INSERT INTO '.$this->table2.' 
-			(email, pass, rol,fk_cliente) 
+			(email, pass, id_rol,id_cliente) 
 			VALUES 
-			(:email, :pass, :rol,:fk_cliente)';
+			(:email, :pass, :id_rol,:id_cliente)';
 
 			$pdo = new Connection();
 			$connection = $pdo->Connect();
@@ -70,8 +72,8 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 
 			$command->bindParam(':email', $email);
 			$command->bindParam(':pass', $pass);
-			$command->bindParam(':rol', $rol);
-			$command->bindParam(':fk_cliente', $fk_cliente);
+			$command->bindParam(':id_rol', $rol);
+			$command->bindParam(':id_cliente', $fk_cliente);
 
 			$command->execute();
 

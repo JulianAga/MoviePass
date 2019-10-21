@@ -37,6 +37,7 @@ public function index (){
 					//lo lleva al home ADM
 					$cineController = new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
 					$arrayCines=$cineController->traerTodos();//levanto todos los cines de la BD
+
 					require(ROOT . '/Views/Adm/home_adm.php');//llamo a la vista
 					
 				}
@@ -105,7 +106,7 @@ public function recibirPeliculas(){
 		
 
 		$newMovie = new Pelicula ($codigo,$descripcion,$titulo,$duracion,$genero,$imagen,$lenguaje);//creo objeto con los datos de la API
-		$buscado=$this->peliculaDAO->buscarPorID($newMovie->codigo);//Busco en la BD si existe esa pelicula
+		$buscado=$this->peliculaDAO->buscarPorID($newMovie->getId_api());//Busco en la BD si existe esa pelicula
 		if($buscado==null)//guarda solo las peliculas que NO estan en la BD
 			$this->peliculaDAO->insertar($newMovie);//guardo la pelicula en BD
 		

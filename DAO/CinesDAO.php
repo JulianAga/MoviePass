@@ -294,6 +294,7 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 	}//fin traer todos
 //
 //	
+
 	
 }//fin class----------------
 

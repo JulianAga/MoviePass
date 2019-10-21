@@ -16,6 +16,7 @@ class CineController
 	function __construct()
 	{
 		$this->DAOCines=\DAO\CinesDAO::getInstance();
+       
 	}
 
 //----------------METODOS--------------------------
@@ -108,12 +109,19 @@ class CineController
     //
     //
     public function traerTodos(){
+        
         $arrayCines= array();
         $arrayCines=$this->DAOCines->traerTodos();
 
-        if($arrayCines!=null)
+        
+        
+
+        if($arrayCines!=null){
+
             return $arrayCines;
+        }
         else{
+            
             echo '<script language="javascript">alert("No hay Cines cargados en BD!");</script>';
             return null;
         }

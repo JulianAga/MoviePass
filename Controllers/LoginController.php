@@ -50,9 +50,11 @@
 					//lo lleva al home ADM
 					//pasar por la controladora de ADM para levantar los datos de la bd
 					
-					$arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
-					//$cineController= new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
-					//$arrayCines=$cineController->traerTodos();//levanto todos los cines de la BD
+					//$cineController = new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
+					//$arrayCines=$cineController->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
+
+					$cineController= new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
+					$arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD
 					
 					require(ROOT . '/Views/Adm/home_adm.php');//
 					
@@ -62,6 +64,7 @@
 					
 					//lo lleva al home CLIENTE
 					//paso por la controladora de Home y desde ahi lo redirijo a la vista
+					$movieList = $this->
 					
 					require(ROOT . '/Views/home.php');
 					
@@ -222,12 +225,16 @@
 				
 				if ($pass1 == $pass2)//verifico que coincidan las pass
 				{
+					
 					$nuevaCuenta = new Cuenta($email,$pass1,$objectRol->getId(),$clienteConId->getId());//creo la cuenta con el FK_ID del cliente y con el FK_ID de rol
 					try 
 					{
+						
+
 						//$this->RepositoryCuentas->Add($nuevaCuenta);//agrego la cuenta completa a Json
 						$this->DAOCuentas->insertarCuenta($nuevaCuenta);//agrego la cuenta completa a la BD
 						echo "<script> if(alert('Usuario Registrado !'));</script>";
+						$this->crearSesion($nuevaCuenta);//creo la sesion y lo redirijo al index
 				    } 
 				    catch (Exception $e) 
 				    {
