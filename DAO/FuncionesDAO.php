@@ -20,7 +20,7 @@ class FuncionesDAO extends SingletonAbstractDAO
 			$query = 'INSERT INTO '.$this->table.' 
 			(id_cine, id_pelicula, dia, horario) 
 			VALUES 
-			(: id_cine, id_pelicula, dia, horario)';
+			(:id_cine, :id_pelicula, :dia, :horario)';
 
 			$pdo = new Connection();
 			$connection = $pdo->Connect();
@@ -52,6 +52,7 @@ class FuncionesDAO extends SingletonAbstractDAO
 	//
 	//
     //
+    
     
 }
     ?>

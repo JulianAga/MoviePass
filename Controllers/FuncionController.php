@@ -28,7 +28,9 @@ class FuncionController
                 if($_SESSION['Login']->getRol()==1)//SI ES ADMIN LO LLEVA A SU PAG (falta configurar esto)
                 {
                     //lo lleva al home ADM
-                   // $arrayFunciones=$this->DAOFunciones->traerTodos();//levanto todas las funciones de la BD antes de el llamado a la vista
+                   
+                $cineController = new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
+				$arrayCines=$cineController->traerTodos();//levanto todos los cines de la BD
 				   require(ROOT . '/Views/Adm/home_adm.php');//no esta hecho aun
                     
                 }
@@ -56,10 +58,9 @@ class FuncionController
 			$funcion->setIdCine($id_cine);
 			$funcion->setDia($fecha);
 			$funcion->setHorario($hora);
+			 var_dump($funcion);
 			
-			echo $funcion->getHorario();
-			
-		$this->DAOFunciones->insertar($funcion);
+			$this->DAOFunciones->insertar($funcion);
         
         echo '<script language="javascript">alert("Funcion agregada satisfactoriamente!");</script>'; //este tipo de mensaje no rompe el codigo
 		$this->index();

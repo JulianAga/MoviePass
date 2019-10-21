@@ -82,7 +82,7 @@ create table Funciones
 (
 	id_cine int,
     id_pelicula int,
-    dia varchar(2),
+    dia date(20),
     horario varchar(10),
     constraint pk_id_cine_id_pelicula primary key (id_cine,id_pelicula),
     constraint fk_id_cine foreign key (id_cine) references Cines (id_cine) ,
