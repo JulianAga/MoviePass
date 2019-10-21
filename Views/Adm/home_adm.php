@@ -194,12 +194,10 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                           <div class="modal-body">
                                             <h3><strong>Esta seguro?</strong></h3>
                                           <form method="post" action="<?= ROOT_VIEW ?>/Cine/deleteCine">
-                                                         
-
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">Cancelar</button>
-                                                        <button name="eliminar" type="submit" value="<?php echo $Cine->getID();?>" class="btn btn-danger btn-block">Eliminar</button>
-                                                    </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">Cancelar</button>
+                                                <button name="eliminar" type="submit" value="<?php echo $Cine->getID();?>" class="btn btn-danger btn-block">Eliminar</button>
+                                            </div>
                                             </form>
                                           </div>
                                         </div>

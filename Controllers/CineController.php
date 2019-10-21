@@ -51,9 +51,10 @@ class CineController
         }//fin index-------
 	//
 	//
-	public function newCine($direccion,$cine,$valor,$capacidad){
+	public function newCine($cine,$direccion,$valor,$capacidad){
         
 
+        
         $newCine = new cine ($cine,$direccion,$capacidad,$valor,true);//creo el nuevo cine
 
         if ($newCine->getValor_entrada() == null || $newCine->getCapacidad() == null)
