@@ -143,6 +143,16 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 
 	
 	//
+
+
+	public function deshabilitar($dato)
+	{
+			$cine = buscarPorID($dato);
+			$cine->setHabilitado(false);
+			actualizar($cine);
+			echo '<script language="javascript">alert("Cine deshabilitado");</script>';
+	}
+
 	//
 	//
 	public function borrar($dato){

@@ -22,5 +22,21 @@
         "valor": "200",
         "capacidad": "300",
         "habilitado": true
+    },
+    {
+        "ID": 4,
+        "cine": "Aldrey",
+        "direccion": "Sarmiento 123",
+        "valor": "300",
+        "capacidad": "320",
+        "habilitado": true
+    },
+    {
+        "ID": 5,
+        "cine": "Aldrey",
+        "direccion": "Sarmiento 123",
+        "valor": "300",
+        "capacidad": "320",
+        "habilitado": false
     }
 ]

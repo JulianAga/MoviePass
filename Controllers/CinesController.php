@@ -1,4 +1,4 @@
-<?php namespace Controllers;
+<?/*php namespace Controllers;
 
 use models\cine as Cine;
 use Repository\CinesRepository as CinesRepository;
@@ -6,7 +6,7 @@ use Repository\CinesRepository as CinesRepository;
 /**
  * 
  */
-class PublishController 
+/*class CinesController 
 {
     private $newProd;
     private $repository;
@@ -59,18 +59,10 @@ class PublishController
 
 
     public function newCine($direccion,$cine,$valor,$capacidad){
-        /*
-        $this->newProd->setDireccion($_POST['direccion']);
-        $this->newProd->setNombre($_POST['cine']);
-        //$this->newProd->setID($_POST['ID']);
-        $this->newProd->setValor_entrada($_POST['valor']); 
-        $this->newProd->setCapacidad($_POST['capacidad']);
-        $this->newProd->setHabilitado(true);
-        */
 
         $newCine = new cine ($cine,$direccion,$capacidad,$valor,true);//creo el nuevo cine
 
-        if ($newCine->getValor_entrada() == null || $newCine->getCapacidad() == null)
+        if ($newCine->getValor_entrada() == null || $newCine->getCapacidad() == null) // Verifica que el cine no tenga valores negativos
         {
             echo '<script language="javascript">alert("El campo debe tener valores positivos!");</script>';
             $this->index();
@@ -90,32 +82,10 @@ class PublishController
         }
     }
 
-/*
-if($_POST){
-    //$newProd = new Cine();
-    $this->newProd->setDireccion($_POST['direccion']);
-    $this->newProd->setNombre($_POST['cine']);
-    $this->newProd->setID($_POST['ID']);
-   $this->newProd->setValor_entrada($_POST['valor']);
-    //$newProd->setDate($_POST['date']);
-    $this->newProd->setCapacidad($_POST['capacidad']);
-    $this->newProd->setHabilitado(true);
-
-   
-    //$this->repository = new CinesRepository();
-    $this->repository->add($newProd);
-    echo "<script> alert('Cine agregado satisfactoriamente!');";
-    //echo "window.location = 'Views/Adm/home_adm.php'; </script>";
-    $successMje =  "Cine agregado satisfactoriamente!";
-    $this->index(); //llamo al index de esta clase para redirigirlo a donde sea correspondiente
-}
-*/
-
-
 
 }//-----fin clase----------------------
 
 
 
 
- ?>
+*/ ?>

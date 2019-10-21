@@ -236,7 +236,7 @@
 				}
 				else
 				{
-					echo "<script> if(alert('Las contaseñas no coinciden'));</script>";
+					echo "<script> if(alert('Las contraseñas no coinciden'));</script>";
 				}
 				
 			}
