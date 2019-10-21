@@ -65,15 +65,15 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                 <td style="vertical-align:middle;"><?php  echo $Cine->getDireccion(); ?></td>
                                 <td style="vertical-align:middle;"> <?php  echo $Cine->getCapacidad(); ?></td>
                                 <td style="vertical-align:middle;"><?php  echo $Cine->getValor_entrada(); ?></td>
-<!--BOTON AGREGAR PELICULA -->
+<!--BOTON AGREGAR FUNCION -->
                             
                                 <td style="vertical-align:middle;">
-                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addMovie<?php echo $Cine->getID();?>" data-whatever="@mdo">Agregar Pelicula</button>
+                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addMovie<?php echo $Cine->getID();?>" data-whatever="@mdo">Agregar Funcion</button>
                                     <div class="modal fade" id="addMovie<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                           <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Agregar Pelicula</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Agregar Funcion</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                               <span aria-hidden="true">&times;</span>
                                             </button>
@@ -103,7 +103,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                            
                                                         <div class="form-group">
                                                             <label>Fecha</label>
-                                                            <input type="date" class="form-control" name="fecha" required>
+                                                            <input type="date" class="form-control" id="date" min="<?php echo date("Y-m-d");?>"  name="fecha" required>
                                                         </div>
 
                                                         <div class="form-group">
@@ -306,6 +306,14 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
             padding: 5px;
         }
     </style>
+
+    <script >
+        n =  new Date();
+        y = n.getFullYear();
+        m = n.getMonth() + 1;
+        d = n.getDate();
+        document.getElementById("date").innerHTML = d + "/" + m + "/" + y;
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
