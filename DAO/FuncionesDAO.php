@@ -1,7 +1,6 @@
 <?php namespace DAO;
 
 
-use models\Cine as Cine;
 use \Exception as Exception;
 use \PDOException as PDOException;
 
@@ -19,7 +18,7 @@ class FuncionesDAO extends SingletonAbstractDAO
     		
 
 			$query = 'INSERT INTO '.$this->table.' 
-			( id_cine, id_pelicula, dia, horario) 
+			(id_cine, id_pelicula, dia, horario) 
 			VALUES 
 			(: id_cine, id_pelicula, dia, horario)';
 

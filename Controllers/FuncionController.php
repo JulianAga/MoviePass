@@ -28,8 +28,8 @@ class FuncionController
                 if($_SESSION['Login']->getRol()==1)//SI ES ADMIN LO LLEVA A SU PAG (falta configurar esto)
                 {
                     //lo lleva al home ADM
-                    $arrayFunciones=$this->DAOFunciones->traerTodos();//levanto todas las funciones de la BD antes de el llamado a la vista
-                    require(ROOT . '/Views/Adm/home_adm.php');//no esta hecho aun
+                   // $arrayFunciones=$this->DAOFunciones->traerTodos();//levanto todas las funciones de la BD antes de el llamado a la vista
+				   require(ROOT . '/Views/Adm/home_adm.php');//no esta hecho aun
                     
                 }
                 if($_SESSION['Login']->getRol()==2)// SI ES CLIENTE AL HOME DE CLIENTE (falta configurar esto)
@@ -56,6 +56,8 @@ class FuncionController
 			$funcion->setIdCine($id_cine);
 			$funcion->setDia($fecha);
 			$funcion->setHorario($hora);
+			
+			echo $funcion->getHorario();
 			
 		$this->DAOFunciones->insertar($funcion);
         

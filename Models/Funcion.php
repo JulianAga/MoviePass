@@ -18,7 +18,7 @@ class Funcion
 		return $this->id_funcion;
 	}
 
-	public function getPelicula ()
+	public function getIdPelicula ()
 	{
 		return $this->id_pelicula;
 	}
@@ -57,7 +57,7 @@ class Funcion
 	{
 		$this->dia = $dia;
 	}
-	
+
 	public function setID($id)
 	{
 		$this->id_funcion=$id;

@@ -68,8 +68,8 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 <!--BOTON AGREGAR PELICULA -->
                             
                                 <td style="vertical-align:middle;">
-                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addMovie" data-whatever="@mdo">Agregar Pelicula</button>
-                                    <div class="modal fade" id="addMovie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addMovie<?php echo $Cine->getID();?>" data-whatever="@mdo">Agregar Pelicula</button>
+                                    <div class="modal fade" id="addMovie<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                           <div class="modal-header">
