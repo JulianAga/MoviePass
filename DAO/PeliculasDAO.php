@@ -103,7 +103,7 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 				$descripcion = ($row['descripcion']);
 				$id_api = ($row['id_api']);
 				$habilitada = ($row['habilitada']);
-
+				$categoria;
 				$object = new \Models\Pelicula($id_api, $descripcion, $titulo, $duracion,null, $imagen, $lenguaje) ;
 				
 

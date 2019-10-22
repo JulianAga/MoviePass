@@ -230,7 +230,17 @@ class GenerosDAO extends SingletonAbstractDAO implements IDAO
 	}//fin traer todos
 //
 //	
+    public function devolverArrayGeneros($arrayIdGeneros)
+    {
+        $arrayGeneros=array();
+        foreach($arrayIdGeneros as $idGenero)
+        {
+            $genero = $this->buscarPorID($idGenero);
+            array_push($arrayGeneros,$genero);
+        }
 
+        return $arrayGeneros;
+    }
 	
 }//fin class----------------
 
