@@ -40,7 +40,6 @@ class FuncionController
                 {
                     
                     //lo lleva al home CLIENTE
-                    
                     require(ROOT . '/Views/User/home_usuario.php');
                     
                 }
@@ -48,24 +47,18 @@ class FuncionController
 
             else
             {
-                
                 require(ROOT . '/Views/home.php');//SI NO HAY SESSION LO LLEVA A HOME (como no hay ninguna session lo lleva al home.php como anonimo)
             }
 		}
 		
 		public function addFuncion($id_pelicula, $id_cine, $fecha, $hora)
 		{
-			$funcion = new Funcion();
-			$peli_buscada=$this->DAOPeliculas->buscarPorID($id_pelicula);//le paso el ID de la pelicula de la API y me devuelve el ID de esa pelicula en BD
-			$funcion->setIdPelicula($peli_buscada->getId() );//le asigno la ID buscada
-			$funcion->setIdCine($id_cine);
-			$funcion->setDia($fecha);
-			$funcion->setHorario($hora);
-			 var_dump($funcion);
 			
-
+			$peli_buscada=$this->DAOPeliculas->buscarPorID($id_pelicula);//le paso el ID de la pelicula de la API y me devuelve el objeto de esa pelicula en BD
+			$funcion = new Funcion($id_cine,$peli_buscada->getId(),$hora,$fecha);
+			
+			 
 			$this->DAOFunciones->insertar($funcion);
-        
 			$this->index();
 		}
 

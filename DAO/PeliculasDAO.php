@@ -44,6 +44,20 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 
 			$command->execute();
 
+			//-------------------CAPTURO ERRORES DE BD---------------------------------------
+		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+		
+		if ($descripcion_error==null)
+			echo '<script language="javascript">alert("Cine Eliminado");</script>';
+		else{
+
+			echo '<script language="javascript">alert("Error al eliminar Cine de BD");</script>';
+			echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
+			echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
+		}
+		//----------------------------------------------------------------------------------
+
     	}
     	catch (PDOException $ex) {
 			throw $ex;
@@ -97,6 +111,57 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 			}
 
 
+			return $object;
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+		}
+
+	}//fin buscar por ID
+	//
+	//
+	//
+	public function buscarPorID_BD($dato){//buscar una pelicula por el ID de la BD
+		try 
+    	{
+    		
+			$object = null;
+			
+
+			$query = 'SELECT * FROM '.$this->table.' WHERE id_pelicula = :id';
+
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);			
+
+			
+			$command->bindParam(':id', $dato);
+			$command->execute();
+
+
+
+			
+
+			while ($row = $command->fetch())
+			{
+				$duracion = ($row['duracion']);
+				$imagen = ($row['imagen']);
+				$lenguaje = ($row['lenguaje']);
+				$titulo = ($row['titulo']);
+				$descripcion = ($row['descripcion']);
+				$id_api = ($row['id_api']);
+				$habilitada = ($row['habilitada']);
+
+				$object = new \Models\Pelicula($id_api, $descripcion, $titulo, $duracion,null, $imagen, $lenguaje) ;
+				
+
+				$object->setId($row['id_pelicula']);	
+			}
+
+			
 			return $object;
     	}
     	catch (PDOException $ex) {

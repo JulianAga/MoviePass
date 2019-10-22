@@ -64,6 +64,45 @@ class FuncionesDAO extends SingletonAbstractDAO
 	//
 	//
     //
+    public function traerTodos(){
+		try 
+    	{
+			$objects = array();
+
+			$query = 'SELECT * FROM '.$this->table;
+
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);
+
+			$command->execute();
+
+			while ($row = $command->fetch())
+			{
+				$id_cine = ($row['id_cine']);
+				$id_pelicula = ($row['id_pelicula']);
+				$dia = ($row['dia']);
+				$horario = ($row['horario']);
+				
+
+				$object = new \Models\Funcion($id_cine,$id_pelicula,$horario,$dia);
+				array_push($objects, $object);
+
+			}
+
+			return $objects; //retorno lista de Cines
+
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+    	}
+
+	}//fin traer todos
+//
+//
     
     
 }

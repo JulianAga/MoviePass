@@ -94,25 +94,29 @@ public function recibirPeliculas(){
 	
 	foreach ($nowplaying->results as $m) {
 
+
 		$codigo=$m->id;
 		$duracion =null;
-		$imagen='http://image.tmdb.org/t/p/w500<?php'.$m->poster_path;
+		$imagen=$m->poster_path;
 		$lenguaje=$m->original_language;
 		$titulo = $m->title;
 		$descripcion = $m->overview;
 		$genero = $m->genre_ids;
-		
 
-		
-
+	
 		$newMovie = new Pelicula ($codigo,$descripcion,$titulo,$duracion,$genero,$imagen,$lenguaje);//creo objeto con los datos de la API
-		$buscado=$this->peliculaDAO->buscarPorID($newMovie->getId_api());//Busco en la BD si existe esa pelicula
-		if($buscado==null)//guarda solo las peliculas que NO estan en la BD
-			$this->peliculaDAO->insertar($newMovie);//guardo la pelicula en BD
 		
-		$this->index();
+		$buscado=$this->peliculaDAO->buscarPorID($newMovie->getId_api() );//Busco en la BD si existe esa pelicula
+		if($buscado==null){
+		//guarda solo las peliculas que NO estan en la BD
+			
+			$this->peliculaDAO->insertar($newMovie);//guardo la pelicula en BD
+		}
+		
+		
 
-	}
+	}//fin foreach
+	$this->index();
 }//fin recibir peliculas
 //
 //

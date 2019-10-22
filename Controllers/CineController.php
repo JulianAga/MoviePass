@@ -113,9 +113,6 @@ class CineController
         $arrayCines= array();
         $arrayCines=$this->DAOCines->traerTodos();
 
-        
-        
-
         if($arrayCines!=null){
 
             return $arrayCines;

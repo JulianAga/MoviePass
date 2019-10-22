@@ -57,18 +57,18 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
         </div>
         <br>
       <div class="wrapperr">
-      <?php  foreach($movieList as $p) {?> <!-- Inicio foreach-->
+      <?php  foreach($arrayPeliculas as $p) {?> <!-- Inicio foreach-->
         
         <form action="<?= ROOT_VIEW ?>/DetallePelicula/searchMovie" method="post"><!-- ENVIO FORMULARIO CON EL ID DE LA PELICULA PARA VERLA EN DETALLE-->
-            <input type="hidden" id="movie_id" name="movie_id" value="<?php echo $p->id;?>"/> <!-- le paso el id de pelicula-->
+            <input type="hidden" id="movie_id" name="movie_id" value="<?php echo $p->getId_api();?>"/> <!-- le paso el id de pelicula-->
               <div class="align-self-center zoomIt">
                 <div class="card background">
                   <div class="li_borde_trasparente">
-                      <a style="color:white;" href="movie.php?id=' . <?php echo $p->id ;?> . '"> 
-                        <button type="submit" name="boton_imagen"><img src="http://image.tmdb.org/t/p/w500<?php echo $p->poster_path ;?>" class="img-responsive"  style="width:100%" alt="Image "></button>
-                        <h3 font-weight: bold><?php echo $p->original_title; ?>(<?php echo substr($p->release_date, 0, 4);?>) </h3>
+                      <a style="color:white;" href="movie.php?id=' . <?php echo $p->getImagen() ;?> . '"> 
+                        <button type="submit" name="boton_imagen"><img src="http://image.tmdb.org/t/p/w500<?php echo $p->getImagen() ;?>" class="img-responsive"  style="width:100%" alt="Image "></button>
+                        <h3 font-weight: bold><?php echo $p->getNombre(); ?> <!--(<?php echo substr($p->release_date, 0, 4);?>)--> </h3>
                       </a>
-                        <h5 ><em>Calificacion :<?php echo $p->vote_average;?>  |  Votos: <?php echo $p->vote_count ;?></em> </h5>
+                        <h5 ><em>Calificacion :<!--<?php echo $p->vote_average;?>  |  Votos: <?php echo $p->vote_count ;?></em> --></h5>
                   </div>
                 </div>
               </div>

@@ -170,7 +170,7 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 
 		$command->bindParam(':id', $dato);
 		$command->execute();
-
+		//-------------------CAPTURO ERRORES DE BD---------------------------------------
 		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
 		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 		
@@ -182,6 +182,7 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 			echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
 			echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
 		}
+		//----------------------------------------------------------------------------------
 
     	}
     	catch (PDOException $ex) {

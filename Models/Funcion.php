@@ -1,18 +1,27 @@
 <?php namespace Models;
 
+use models\Pelicula as Pelicula;
+
 class Funcion
 {
-
+	//---------------ATRIBUTOS--------------
 	private $id_funcion;
+
 	private $id_cine;
 	private $id_pelicula;
 	private $horario;
 	private $dia;
 	
+	//--------------CONSTRUCTOR--------------
+	public function __construct($id_cine,$id_pelicula,$horario,$dia){
+		$this->id_cine = $id_cine;
+		$this->id_pelicula = $id_pelicula;
+		$this->horario = $horario;
+		$this->dia = $dia;
 
-	public function __construct()
-	{
 	}
+
+	//---------------GETERS SETERS------------
 	public function getID()
 	{
 		return $this->id_funcion;

@@ -21,18 +21,22 @@
 		private $DAOCuentas;
 		private $DAORoles;
 		private $DAOCines;
+		private $DAOFunciones;
 		
 
 		public function __construct()
 		{			
-			//REPOSITORIOS DE JSON
+			//---------REPOSITORIOS DE JSON---------------------
 			//$this->RepositoryCuentas= new AccountRepository();
 			//$this->RepositoryClientes= new ClientRepository();
-			//BD
+
+			//--------------------BD-----------------------------
 			$this->DAOCuentas=\DAO\CuentasDAO::getInstance();
 			$this->DAORoles=\DAO\RolesDAO::getInstance();
 			$this->DAOClientes=\DAO\ClientesDAO::getInstance();
 			$this->DAOCines=\DAO\CinesDAO::getInstance();
+			$this->DAOFunciones=\DAO\FuncionesDAO::getInstance();
+			$this->DAOPeliculas=\DAO\PeliculasDAO::getInstance();
 			
 		}	
 
@@ -64,8 +68,7 @@
 					
 					//lo lleva al home CLIENTE
 					//paso por la controladora de Home y desde ahi lo redirijo a la vista
-					$movieList = $this->
-					
+					$movieList = $this->DAOFunciones->traerTodos();
 					require(ROOT . '/Views/home.php');
 					
 				}
@@ -73,19 +76,26 @@
 
 			else
 			{
-				include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
-				include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
+				
+
+				$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
+				$arrayPeliculas=array();
+				foreach ($functionList as $key) {//recorro la lista de funciones y creo objetos pelicula con esos datos
+
+					array_push($arrayPeliculas, $this->DAOPeliculas->buscarPorID_BD($key->getIdPelicula() ) ); //busco las peliculas que estan en la lista de funciones por su ID y las guardo en una lista para poder mostrarlas
+					
+				}//fin foreach
 				
 				$daoGenres=new DAOGenres();           //crea un objeto de dao genres
-				$genresArray=$daoGenres->GetAll();    //carga en la variable la lista con los generos (ESTO NO CREO QUE VAYA ACA PERO NI IDEA DONDE TIENE QUE IR)
+				$genresArray=$daoGenres->GetAll();    //carga en la variable la lista con los generos 
 				
 				$movieList=array();
-				if ($nowplaying !=null)//si no esta null la cartelera que llega desde movie DB, la recorro
+				if ($functionList !=null)//si no esta null la cartelera que llega desde movie DB, la recorro
 				{
 					
 					if(!empty($genre))
 					{
-						foreach ($nowplaying->results as $p) 
+						foreach ($functionList as $p) 
 						{ 
 							if(in_array($genre,$p->genre_ids)) //verifica que la pelicula sea de el genero elegido
 							{
@@ -95,7 +105,7 @@
 					}
 					else
 					{
-						foreach ($nowplaying->results as $p) 
+						foreach ($functionList as $p) 
 						{ 
 							array_push($movieList,$p);
 						}
