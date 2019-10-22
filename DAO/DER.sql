@@ -72,7 +72,8 @@ create table Peliculas
     descripcion varchar(1500),
     id_api int,
     habilitada boolean default true,
-    constraint pk_id_pelicula primary key (id_pelicula)
+    constraint pk_id_pelicula primary key (id_pelicula),
+    constraint unq_id_api unique (id_api)
 );
 
 
@@ -95,7 +96,10 @@ create table Generos
 (
 	id_genero int,
     nombre_genero varchar(30),
-    constraint pk_id_genero primary key (id_genero)
+    id_api int,
+    constraint pk_id_genero primary key (id_genero),
+    constraint unq_id_api unique (id_api)
+
 );
 
 insert into Generos (id_genero,nombre_genero) values (1,'accion');

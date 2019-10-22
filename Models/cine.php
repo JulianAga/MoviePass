@@ -32,9 +32,15 @@ class Cine {
     }
 
     public function setNombre ($nombre){
-        $this->nombre = $nombre;
+        if($nombre != null)
+        {
+            $this->nombre = $nombre;
+        }
+        else
+        {
+            $this->nombre ='unnamed';
+        }
     }
-
     public function getDireccion (){
         return $this->direccion;
     }

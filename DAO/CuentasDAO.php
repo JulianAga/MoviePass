@@ -6,6 +6,7 @@ namespace DAO;
 
 use \Exception as Exception;
 use \PDOException as PDOException;
+use DAO\ClientesDAO as ClientesDAO;
 
 class CuentasDAO extends SingletonAbstractDAO implements IDAO
 {
@@ -162,7 +163,11 @@ class CuentasDAO extends SingletonAbstractDAO implements IDAO
 				$rol=($row['id_rol']);
 				$id_cliente=($row['id_cliente']);
 
-				$object = new \Models\Cuenta($email, $pass, $rol,$id_cliente);//tomo los datos de la cuenta buscada y creo un objeto
+				$ClientesDAO= new ClientesDAO();
+	
+
+				$object = new \Models\Cuenta($email, $pass, $rol,$ClientesDAO->buscarPorID($id_cliente));//tomo los datos de la cuenta buscada y creo un objeto
+			
 				$object->setId($row['id_cuenta']);		
 			}
 

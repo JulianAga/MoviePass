@@ -9,7 +9,7 @@ class Pelicula
     private $nombre;
     private $imagen;
     private $duracion; //en minutos
-    private $categoria;
+    private $categoria= array();
     private $lenguaje;
    
 
