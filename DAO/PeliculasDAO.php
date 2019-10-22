@@ -49,10 +49,10 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 		
 		if ($descripcion_error==null)
-			echo '<script language="javascript">alert("Cine Eliminado");</script>';
+			echo '<script language="javascript">alert("Peliculas Actualizadas..");</script>';
 		else{
 
-			echo '<script language="javascript">alert("Error al eliminar Cine de BD");</script>';
+			echo '<script language="javascript">alert("Error al actualizar peliculas de BD!");</script>';
 			echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
 			echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
 		}

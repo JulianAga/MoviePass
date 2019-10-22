@@ -14,7 +14,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title></title>
+<title>Home Administrador</title>
 
 
 <link rel="stylesheet" href="/MoviePass/Views/css/header2.css"><!-- ARCHIVO CSS-->
@@ -33,7 +33,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
     </header>
         <main class="p-5">
         <div class="container position-relative align-middle">
-        <h1 class="box_titulo box_transparente">CINEMAS</h1>
+        <h1 class="box_titulo box_transparente">CINES</h1>
             
                 <table class="table box_transparente table_transparente">
                     <thead class="thead-dark">
@@ -66,10 +66,10 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                 <td style="vertical-align:middle;"><?php  echo $Cine->getDireccion(); ?></td>
                                 <td style="vertical-align:middle;"> <?php  echo $Cine->getCapacidad(); ?></td>
                                 <td style="vertical-align:middle;"><?php  echo $Cine->getValor_entrada(); ?></td>
-<!--BOTON AGREGAR FUNCION -->
+<!---------BOTON AGREGAR FUNCION ----------------------->
                             
                                 <td style="vertical-align:middle;">
-                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addMovie<?php echo $Cine->getID();?>" data-whatever="@mdo">Agregar Funcion</button>
+                                    <button type="button" class="boton_modificar" data-toggle="modal" data-target="#addMovie<?php echo $Cine->getID();?>" data-whatever="@mdo">Agregar Funcion</button>
                                     <div class="modal fade" id="addMovie<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -80,7 +80,6 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                             </button>
                                           </div>
                                           <div class="modal-body">
-                                        <!--    <form method="post" action="<?/*ROOT_VIEW*/ ?>/Adm_Peliculas/addMovie"> -->
                                         <form method="post" action="<?= ROOT_VIEW ?>/Funcion/addFuncion">
                                                         <div class="form-group">
                                                             <label>Pelicula</label>
@@ -112,8 +111,8 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                                             <input type="time" class="form-control" name="hora" required>
                                                         </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
-                                                <button type="submit" class="btn btn-dark">Agregar</button>
+                                                <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="boton_modificar">Agregar</button>
                                             </div>
                                             </form>
                                           </div>
@@ -121,15 +120,15 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                       </div>
                                     </div>
                                 </td>
-                                <!-- BOTON VER FUNCIONES  -->
+        <!---------- BOTON VER FUNCIONES  -------------------------------------->
                                 <td style="vertical-align:middle;">
 
-                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#ModifyModal<?php echo $Cine->getID();?>" data-whatever="@mdo">Ver Funciones</button>
-                                    <div class="modal fade" id="ModifyModal<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <button type="button" class="boton_modificar" data-toggle="modal" data-target="#verFuncionModal<?php echo $Cine->getID();?>" data-whatever="@mdo">Ver Funciones</button>
+                                    <div class="modal fade" id="verFuncionModal<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                           <div class="modal-header">
-                                            <h5 class="modal-title" id="ModifyModalLabel">Funciones</h5>
+                                            <h5 class="modal-title" id="verFuncionModal">Funciones</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                               <span aria-hidden="true">&times;</span>
                                             </button>
@@ -163,8 +162,13 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                                     </div>
 
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
-                                                        <button type="submit" class="btn btn-dark">Modificar</button>
+                                                        <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
+                                                        <button type="submit" class="boton_modificar">Modificar</button>
+
+                                                        <form method="post" action="<?= ROOT_VIEW ?>/Funcion/deleteFunction">
+                                                            <button type="submit" class="boton_eliminar">Eliminar Funcion</button>
+
+                                                        </form>
                                                     </div>
                                             </form>
                                           </div>
@@ -174,10 +178,10 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                 </td>
                                 
 
-                                <!-- BOTON MODIFICAR CINE -->
+                                <!--------------- BOTON MODIFICAR CINE ------------------------------>
                                 <td style="vertical-align:middle;">
 
-                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#ModifyModal<?php echo $Cine->getID();?>" data-whatever="@mdo">Modificar</button>
+                                    <button type="button" class="boton_modificar" data-toggle="modal" data-target="#ModifyModal<?php echo $Cine->getID();?>" data-whatever="@mdo">Modificar Cine</button>
                                     <div class="modal fade" id="ModifyModal<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -225,8 +229,8 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                                     </div>
 
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
-                                                        <button type="submit" class="btn btn-dark">Modificar</button>
+                                                        <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
+                                                        <button type="submit" class="boton_modificar">Modificar</button>
                                                     </div>
                                             </form>
                                           </div>
@@ -238,7 +242,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                 <!-- BOTON ELIMINAR CINE Y CONFIRMACION-->
                                 <td style="vertical-align:middle;">
 
-                                    <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#DeleteModal<?php echo $Cine->getID();?>" data-whatever="@mdo">Eliminar</button>
+                                    <button type="button" class="boton_eliminar" data-toggle="modal" data-target="#DeleteModal<?php echo $Cine->getID();?>" data-whatever="@mdo">Eliminar</button>
                                     <div class="modal fade" id="DeleteModal<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -252,8 +256,8 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                             <h3><strong>Esta seguro?</strong></h3>
                                           <form method="post" action="<?= ROOT_VIEW ?>/Cine/deleteCine">
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">Cancelar</button>
-                                                <button name="eliminar" type="submit" value="<?php echo $Cine->getID();?>" class="btn btn-danger btn-block">Eliminar</button>
+                                                <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
+                                                <button name="eliminar" type="submit" value="<?php echo $Cine->getID();?>" class="boton_eliminar">Eliminar</button>
                                             </div>
                                             </form>
                                           </div>
@@ -268,7 +272,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
 <!--   Boton Añadir Cines   -->
                 
-<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#AddCineModal" data-whatever="@mdo">Añadir cine</button>
+<button type="button" class="boton_cancelar" data-toggle="modal" data-target="#AddCineModal" data-whatever="@mdo">Añadir cine</button>
 
 <div class="modal fade" id="AddCineModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -307,8 +311,8 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-dark">Publicar</button>
+                    <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="boton_modificar">Publicar</button>
         </form>
       </div>
     </div>
@@ -358,7 +362,68 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
         .tdCentrado{
             padding: 5px;
         }
+
+        .boton_cancelar{
+            text-decoration: none;
+            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-family: helvetica;
+            font-weight: 300;
+            font-size: 15px;
+            font-style: bold;
+            color: #ECEEF4;
+            background-color: #BDB7B7;
+            border-radius: 15px;
+            border: 3px double #000102  ;
+            float: left;
+        }
+        .boton_cancelar:hover{
+            color: #1883ba;
+            background-color: #ffffff;
+        }
+        .boton_modificar{
+            text-decoration: none;
+            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-family: helvetica;
+            font-weight: 300;
+            font-size: 15px;
+            font-style: bold;
+            color: #ECEEF4;
+            background-color:#376AE8;
+            border-radius: 15px;
+            border: 3px double #000102  ;
+        }
+        .boton_modificar:hover{
+            color: #1883ba;
+            background-color: #ffffff;
+        }
+        .boton_eliminar{
+            text-decoration: none;
+            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-family: helvetica;
+            font-weight: 300;
+            font-size: 15px;
+            font-style: bold;
+            color: #ECEEF4;
+            background-color:#F00606;
+            border-radius: 15px;
+            border: 3px double #000102  ;
+        }
+        .boton_eliminar:hover{
+            color: #1883ba;
+            background-color: #ffffff;
+        }
+
+
+        }
+        
     </style>
+
 
     <script >
         n =  new Date();

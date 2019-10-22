@@ -79,10 +79,10 @@ if( isset($_SESSION['Cliente_Logueado'])){
                                         </p>
                                     </div>
                                     <div>
-                                        <p class="text-center"><strong><h4><?php echo $cliente->getNombre(); ?> <?php echo $cliente->getApellido(); ?></h4></strong></p>
-                                        
-                                        <p>
-                                            <input type="submit" class="btn btn-primary btn-block" value="Mi Cuenta">
+                                        <p class="text-center">
+                                          <strong>
+                                            <h4><?php echo $cliente->getNombre(); ?> <?php echo $cliente->getApellido();?></h4>
+                                          </strong>
                                         </p>
                                     </div>
                                 </div>
@@ -94,11 +94,16 @@ if( isset($_SESSION['Cliente_Logueado'])){
                                 <div>
                                   <form action="<?= ROOT_VIEW ?>/Login/cerrarSesion" method="post">
                                     <div>
-                                        <p>
-                                            <input type="submit" class="btn btn-danger btn-block" value="Cerrar Sesion">
-                                        </p>
+                                        
+                                            <input type="submit" class="boton_eliminar" value="Cerrar Sesion">
+                                        
                                     </div>
-                                  </form> 
+                                  </form>
+                                  <form action="<?= ROOT_VIEW ?>/asd/asd" method="post">
+                                        
+                                            <input type="submit" class="boton_modificar" value="Mi Cuenta">
+                                        
+                                  </form>
                                 </div>
                             </div>
                         </li>
@@ -118,6 +123,62 @@ if( isset($_SESSION['Cliente_Logueado'])){
   .glyphicon .glyphicon-user{
             font-size:35px;
   }
+  .boton_cancelar{
+            text-decoration: none;
+            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-family: helvetica;
+            font-weight: 300;
+            font-size: 15px;
+            font-style: bold;
+            color: #ECEEF4;
+            background-color: #BDB7B7;
+            border-radius: 15px;
+            border: 3px double #000102  ;
+            float: left;
+        }
+        .boton_cancelar:hover{
+            color: #1883ba;
+            background-color: #ffffff;
+        }
+        .boton_modificar{
+            text-decoration: none;
+            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-family: helvetica;
+            font-weight: 300;
+            font-size: 15px;
+            font-style: bold;
+            color: #ECEEF4;
+            background-color:#376AE8;
+            border-radius: 15px;
+            border: 3px double #000102  ;
+        }
+        .boton_modificar:hover{
+            color: #1883ba;
+            background-color: #ffffff;
+        }
+        .boton_eliminar{
+            text-decoration: none;
+            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-family: helvetica;
+            font-weight: 300;
+            font-size: 15px;
+            font-style: bold;
+            color: #ECEEF4;
+            background-color:#F00606;
+            border-radius: 15px;
+            border: 3px double #000102;
+            float: right;
+        }
+        .boton_eliminar:hover{
+            color: #1883ba;
+            background-color: #ffffff;
+        }
   
 </style>
 <!-- JS-->
