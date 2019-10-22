@@ -46,6 +46,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                             <th>  </th>
                             <th>  </th>
                             <th>  </th>
+                            <th>  </th>
 
                         </tr>
                     </thead>
@@ -120,6 +121,57 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                       </div>
                                     </div>
                                 </td>
+                                <!-- BOTON VER FUNCIONES  -->
+                                <td style="vertical-align:middle;">
+
+                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#ModifyModal<?php echo $Cine->getID();?>" data-whatever="@mdo">Ver Funciones</button>
+                                    <div class="modal fade" id="ModifyModal<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="ModifyModalLabel">Funciones</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                          <form method="post" action="<?= ROOT_VIEW ?>/Funcion/modifyFunction">
+
+                                                        <div class="form-group">
+                                                            <label>Cine</label>
+                                                            <input type="text" class="form-control" name="cine" value="<?php echo $Cine->getNombre();?>" readonly/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Funciones</label>
+                                                            <select name="habilitado">
+                                                                <option value="1" name="habilitado"<?php if ($Cine->getHabilitado()==true){?> selected <?php }?> >Habilitado</option>
+                                                                <option value="0" name="habilitado"<?php if ($Cine->getHabilitado()==false){?> selected <?php }?> >Deshabilitado</option>
+                                                            </select>   
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Valor de Entrada</label>
+                                                            <input type="number" class="form-control" min="0" name="valor" value="<?php echo $Cine->getValor_entrada();?>" required>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Horario</label>
+                                                            <input type="time" class="form-control" min="1" name="capacidad" value="<?php echo $Cine->getCapacidad();?>" required>
+                                                        </div>
+                                          
+
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
+                                                        <button type="submit" class="btn btn-dark">Modificar</button>
+                                                    </div>
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </td>
                                 
 
                                 <!-- BOTON MODIFICAR CINE -->
@@ -182,7 +234,8 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                       </div>
                                     </div>
                                 </td>
-                                <!-- BOTON MODIFICAR CINE -->
+                                
+                                <!-- BOTON ELIMINAR CINE Y CONFIRMACION-->
                                 <td style="vertical-align:middle;">
 
                                     <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#DeleteModal<?php echo $Cine->getID();?>" data-whatever="@mdo">Eliminar</button>
