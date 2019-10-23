@@ -60,6 +60,40 @@ class GenerosDAO extends SingletonAbstractDAO implements IDAO
 	}
 	// Busca en la tabla la fila con el mismo ID pasado por parametros, y lo retorna en forma de objeto.
 	public function buscarPorID($dato){
+		try 
+    	{
+    		
+    		
+			$object = null;
+
+			$query = 'SELECT * FROM '.$this->table.' WHERE id_genero = :id';
+
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);			
+
+			$id_genre=$dato->getId();
+			$command->bindParam(':id', $id_genre);
+			$command->execute();
+
+			while ($row = $command->fetch())
+			{
+				$nombre_genero = ($row['nombre_genero']);
+				$idGenero=($row['id_genero']);
+				$object = new \Models\Genre($idGenero,$nombre_genero) ;
+
+				
+			}
+
+
+			return $object;
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+		}
 
 	}
 	// Busca en la tabla la fila con el mismo ID pasado por parametros, y lo borra. No retorna nada.

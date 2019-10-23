@@ -50,7 +50,10 @@ class GeneroController
 	public function guardar_Generos($arrayGeneros){
 		foreach ($arrayGeneros as $key) {
 			
-			$this->generoDAO->insertar($key);
+			$buscado= $this->generoDAO->buscarPorID($key);//busco en BD si existe ese genero. devuelve NULL si no encuentra
+			if($buscado==null){	//guardo solo los que no estan en BD
+			$this->generoDAO->insertar($key);	
+			}
 		}
 
 	}
