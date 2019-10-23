@@ -30,7 +30,7 @@ class Genre
     }
 
  
-    public function setId($idApi)
+    public function setIdApi($idApi)
     {
         $this->idApi = $idApi;
     }
