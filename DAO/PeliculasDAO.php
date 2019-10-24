@@ -49,10 +49,10 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 		
 		if ($descripcion_error==null)
-			echo '<script language="javascript">alert("Cine Eliminado");</script>';
+			echo '<script language="javascript">alert("Peliculas Actualizadas..");</script>';
 		else{
 
-			echo '<script language="javascript">alert("Error al eliminar Cine de BD");</script>';
+			echo '<script language="javascript">alert("Error al actualizar peliculas de BD!");</script>';
 			echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
 			echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
 		}
@@ -105,9 +105,7 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 				$habilitada = ($row['habilitada']);
 				$categoria;
 				$object = new \Models\Pelicula($id_api, $descripcion, $titulo, $duracion,null, $imagen, $lenguaje) ;
-				
-
-				$object->setId($row['id_pelicula']);	
+					
 			}
 
 
@@ -131,7 +129,7 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 			$object = null;
 			
 
-			$query = 'SELECT * FROM '.$this->table.' WHERE id_pelicula = :id';
+			$query = 'SELECT * FROM '.$this->table.' WHERE id_api = :id';
 
 			$pdo = new Connection();
 			$connection = $pdo->Connect();
@@ -156,9 +154,7 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 				$habilitada = ($row['habilitada']);
 
 				$object = new \Models\Pelicula($id_api, $descripcion, $titulo, $duracion,null, $imagen, $lenguaje) ;
-				
-
-				$object->setId($row['id_pelicula']);	
+					
 			}
 
 			

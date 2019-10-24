@@ -64,16 +64,14 @@ insert into Cines (capacidad,direccion, nombre,valor_entrada,habilitado) values 
 */
 create table Peliculas
 (
-	id_pelicula int auto_increment,
+    id_api int,
     duracion int,
     imagen varchar(300),
     lenguaje varchar(30),
     titulo varchar(50),
     descripcion varchar(1500),
-    id_api int,
     habilitada boolean default true,
-    constraint pk_id_pelicula primary key (id_pelicula),
-    constraint unq_id_api unique (id_api)
+    constraint pk_id_pelicula primary key (id_api)
 );
 
 
@@ -87,7 +85,7 @@ create table Funciones
     horario varchar(10),
     constraint pk_id_cine_id_pelicula primary key (id_cine,id_pelicula),
     constraint fk_id_cine foreign key (id_cine) references Cines (id_cine) ,
-    constraint fk_id_peliculas foreign key (id_pelicula) references Peliculas (id_pelicula)
+    constraint fk_id_peliculas foreign key (id_pelicula) references Peliculas (id_api)
 );
 insert into Funciones (id_cine,id_pelicula,dia,horario) values (10,301528,"2014-05-09",'23:00');
 /*
@@ -110,7 +108,7 @@ create table PeliculasXgenero
 	id_pelicula int,
     id_genero int,
     constraint pk_id_pelicula_id_genero primary key (id_pelicula,id_genero),
-    constraint fk_id_pelicula foreign key (id_pelicula) references Peliculas (id_pelicula),
+    constraint fk_id_pelicula foreign key (id_pelicula) references Peliculas (id_api),
     constraint fk_id_genero foreign key (id_genero) references Generos (id_genero)
 );
 

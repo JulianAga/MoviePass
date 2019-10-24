@@ -90,8 +90,11 @@ public function recibirPeliculas(){
 	include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
 	include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
-	
-	
+	$generoController = new GeneroController();//creo instancia controladora de generos
+	$arrayGeneros=$generoController->recibirGeneros();//recibo todos los generos de la API
+
+	$generoController->guardar_Generos($arrayGeneros);
+
 	foreach ($nowplaying->results as $m) {
 
 

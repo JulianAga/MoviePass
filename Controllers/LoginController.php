@@ -97,9 +97,9 @@
 					
 					if(!empty($genre))
 					{
-						foreach ($functionList as $p) 
+						foreach ($arrayPeliculas as $p) 
 						{ 
-							if(in_array($genre,$p->genre_ids)) //verifica que la pelicula sea de el genero elegido
+							if(in_array($genre,$p->genre_ids) ) //verifica que la pelicula sea de el genero elegido ** CORREGIR **
 							{
 								array_push($movieList,$p);
 							}
@@ -107,7 +107,7 @@
 					}
 					else
 					{
-						foreach ($functionList as $p) 
+						foreach ($arrayPeliculas as $p) 
 						{ 
 							array_push($movieList,$p);
 						}

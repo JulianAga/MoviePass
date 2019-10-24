@@ -20,23 +20,20 @@ class GenerosDAO extends SingletonAbstractDAO implements IDAO
     		
 
 			$query = 'INSERT INTO '.$this->table.' 
-			(nombre_genero, id_api) 
+			(id_genero,nombre_genero) 
 			VALUES 
-			(:nombre_genero, :id_api)';
+			(:id_genero,:nombre_genero)';
 
 			$pdo = new Connection();
 			$connection = $pdo->Connect();
 			$command = $connection->prepare($query);
 
+			$id_genero = $dato->getId();
 			$nombre_genero = $dato->getName();
-			$id_api = $dato->getId();
 			
 
 			$command->bindParam(':nombre_genero', $nombre_genero);
-			$command->bindParam(':id_api', $id_api);
-			
-
-
+			$command->bindParam(':id_genero', $id_genero);
 			$command->execute();
 
     	}
@@ -102,18 +99,17 @@ class GenerosDAO extends SingletonAbstractDAO implements IDAO
 			$connection = $pdo->Connect();
 			$command = $connection->prepare($query);			
 
-			
-			$command->bindParam(':id', $dato);
+			$id_genre=$dato->getId();
+			$command->bindParam(':id', $id_genre);
 			$command->execute();
 
 			while ($row = $command->fetch())
 			{
 				$nombre_genero = ($row['nombre_genero']);
-				$id_api = ($row['id_api']);
+				$idGenero=($row['id_genero']);
+				$object = new \Models\Genre($idGenero,$nombre_genero) ;
 
-				$object = new \Models\Genre($id, $nombre_genero, $id_api);
-
-				$object->setId($row['id_genero']);	
+				
 			}
 
 
