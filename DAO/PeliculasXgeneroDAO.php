@@ -32,7 +32,6 @@ class PeliculasXgeneroDAO extends SingletonAbstractDAO implements IDAO
 
             $array= array();
             $array= $dato->getCategoria();
-            var_dump($array);
             foreach($array as $genero)
             {
                     $id_pelicula = $dato->getId_api();
