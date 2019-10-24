@@ -151,50 +151,65 @@ if( isset($_SESSION['Cliente_Logueado'])){
        <?php   if( isset($_SESSION['Login']) ) {  ?> <!--ENTRA SI HAY SESSION, CAMBIANDO LOS ICONOS DE LA BARRA -->
       
         <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        
-                        
-                        <strong><?php echo $cuenta_logueada->getEmail(); ?></strong>
-                        <span class="glyphicon glyphicon-chevron-down"></span>
-                        <!--<span class="glyphicon glyphicon-user barra"></span> -->
-                        
-                    </a>
-                    <ul class="dropdown-menu form-wrapper">
-                        <li>
-                            <div class="navbar-login">
-                                <div>
-                                    <div>
-                                        <p class="text-center">
-                                            <span class="glyphicon glyphicon-user barra"></span>
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <p class="text-center"><strong><h4><?php echo $cliente->getNombre(); ?> <?php echo $cliente->getApellido(); ?></h4></strong></p>
-                                        <p>
-                                            <input type="submit" class="boton_modificar" value="Mi Cuenta">
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="navbar-login navbar-login-session">
-                                <div>
-                                  <form action="<?= ROOT_VIEW ?>/Login/cerrarSesion" method="post">
-                                    <div>
-                                        <p>
-                                            <input type="submit" class="boton_eliminar" value="Cerrar Sesion">
-                                        </p>
-                                    </div>
-                                  </form> 
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <strong>
+                  <?php echo $cliente->getNombre(); ?> <?php echo $cliente->getApellido();?>
+                </strong>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                  <li>
+                      <div class="navbarr-content">
+                          <div class="row">
+                              <div class="col-md-5">
+                                  <img src="http://placehold.it/120x120"
+                                      alt="Alternate Text" class="img-responsive" />
+                                  <p class="text-center small">
+                                      <a href="#">Cambiar</a>
+                                  </p>
+                              </div>
+                              <div class="col-md-7">
+                                  <span>
+                                    <strong style="margin:auto; display:table;">
+                                      <?php echo $cliente->getNombre(); ?> <?php echo $cliente->getApellido();?>
+                                    </strong>
+                                  </span>
+                                  <p class="">
+                                    <strong style="margin:auto; display:table;">
+                                      <?php echo $cuenta_logueada->getEmail(); ?> 
+                                    </strong>   
+                                  </p>
+                                  <div class="divider">
+                                  </div>
+                                  <form action="<?= ROOT_VIEW ?>//" method="post">
+                                      <input type="submit" class="btn btn-info btn-block btn-md " value="Mi Perfil">
+                                    </form>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="navbarr-footer">
+                          <div class="navbarr-footer-content">
+                              <div class="row">
+                                  <div class="col-md-6">
+                                    <form action="<?= ROOT_VIEW ?>//" method="post">
+                                      <input type="submit" class="btn btn-primary btn-md pull-left" value="Crear Administrador">
+                                    </form>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <form action="<?= ROOT_VIEW ?>/Login/cerrarSesion" method="post">
+                                      <input type="submit" class="btn btn-danger btn-md pull-right" value="Cerrar Sesion">
+                                    </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </li>
+              </ul>
+            </li>
+          </ul>      
+        </ul>
     <?php  } ?> 
     </ul>
         
@@ -262,6 +277,51 @@ if( isset($_SESSION['Cliente_Logueado'])){
         .boton_eliminar:hover{
             color: #1883ba;
             background-color: #ffffff;
+        }
+/*-------------------------------------------*/
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+        .navbarr-wrapperr {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 20;
+          margin-top: 20px;
+        }
+
+        /* Flip around the padding for proper display in narrow viewports */
+        .navbarr-wrapperr .containerr {
+          padding-left: 0;
+          padding-right: 0;
+        }
+        .navbarr-wrapperr .navbarr {
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+
+        .navbarr-content
+        {
+            width:320px;
+            padding: 15px;
+            padding-bottom:0px;
+        }
+        .navbarr-content:before, .navbarr-content:after
+        {
+            display: table;
+            content: "";
+            line-height: 0;
+        }
+        .navbarr-nav.navbarr-right:last-child {
+        margin-right: 15px !important;
+        }
+        .navbarr-footer 
+        {
+            background-color:#DDD;
+        }
+        .navbarr-footer-content { padding:15px 15px 15px 15px; }
+        .dropdown-menu {
+        padding: 0px;
+        overflow: hidden;
         }
   
 </style>
