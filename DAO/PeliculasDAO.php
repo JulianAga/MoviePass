@@ -3,7 +3,7 @@
 use \Exception as Exception;
 use \PDOException as PDOException;
 use models\Pelicula as Pelicula;
-
+use DAO\PeliculasXgeneroDAO as PeliculasXgeneroDAO;
 /**
  * 
  */
@@ -17,12 +17,14 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 		try 
     	{
     		
-
+			
 			$query = 'INSERT INTO '.$this->table.' 
 			( duracion, imagen , lenguaje , titulo, descripcion, id_api) 
 			VALUES 
 			(:duracion, :imagen, :lenguaje, :titulo, :descripcion, :id_api)';
 
+			$peliculasXgeneroDAO=new PeliculasXgeneroDAO();
+			
 			$pdo = new Connection();
 			$connection = $pdo->Connect();
 			$command = $connection->prepare($query);
@@ -33,7 +35,8 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 			$titulo = $dato->getNombre();
 			$descripcion = $dato->getDescripcion();
 			$id_api = $dato->getId_api();
-
+			
+			
 			$command->bindParam(':duracion', $duracion);
 			$command->bindParam(':imagen', $imagen);
 			$command->bindParam(':lenguaje', $lenguaje);
@@ -43,6 +46,8 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 
 
 			$command->execute();
+
+			$peliculasXgeneroDAO->insertar($dato);
 
 			//-------------------CAPTURO ERRORES DE BD---------------------------------------
 		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
