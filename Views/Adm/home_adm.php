@@ -1,7 +1,7 @@
 
-<?php 
+<?php
 
-
+use DAO\FuncionesDAO;
 use Repository\CinesRepository as CinesRepository;
 use models\Cine as Cine;
 include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
@@ -67,6 +67,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                 <td style="vertical-align:middle;"> <?php  echo $Cine->getCapacidad(); ?></td>
                                 <td style="vertical-align:middle;"><?php  echo $Cine->getValor_entrada(); ?></td>
 <!---------BOTON AGREGAR FUNCION ----------------------->
+
                             
                                 <td style="vertical-align:middle;">
                                     <button type="button" class="boton_modificar" data-toggle="modal" data-target="#addMovie<?php echo $Cine->getID();?>" data-whatever="@mdo">Agregar Funcion</button>
@@ -141,26 +142,35 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                                             <input type="text" class="form-control" name="cine" value="<?php echo $Cine->getNombre();?>" readonly/>
                                                         </div>
                                                         <div class="form-group">
+
                                                             <label>Funciones</label>
                                                             <select name="habilitado">
                                                                 <option value="1" name="habilitado"<?php if ($Cine->getHabilitado()==true){?> selected <?php }?> >Habilitado</option>
                                                                 <option value="0" name="habilitado"<?php if ($Cine->getHabilitado()==false){?> selected <?php }?> >Deshabilitado</option>
                                                             </select>   
                                                         </div>
+                                                    <?php
+                                                          $DAOFunciones=\DAO\FuncionesDAO::getInstance();     // NO CREO QUE ESTO ESTE BIEN (al menos por el modelo de capas), NO DUDES EN BORRARLO NICO xd
+                                                          $functionList = $this->DAOFunciones->traerTodos();  //traigo las funciones guardadas en la BD
+                                                          if ($functionList != null){ ?>
 
+                                                    <?php    foreach ($functionList as $key => $value) { 
+                                                        $funcion = $value;
+                                                        if($funcion->getIdCine() == $Cine->getID()){          //asigno las funciones al cine al que pertenecen
+                                                        ?>
                                                         <div class="form-group">
-                                                            <label>Valor de Entrada</label>
-                                                            <input type="number" class="form-control" min="0" name="valor" value="<?php echo $Cine->getValor_entrada();?>" required>
+                                                            <label>Fecha Pelicula</label>
+                                                            <input type="date" class="form-control" min="0" name="fecha" value="<?php echo $funcion->getDia();?>">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Horario</label>
-                                                            <input type="time" class="form-control" min="1" name="capacidad" value="<?php echo $Cine->getCapacidad();?>" required>
+                                                            <input type="time" class="form-control" min="1" name="hora" value="<?php echo $funcion->getHorario();?>">
                                                         </div>
                                           
-
+                                                        <?php  }}}?>
                                                     </div>
-
+                                                        
                                                     <div class="modal-footer">
                                                         <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
                                                         <button type="submit" class="boton_modificar">Modificar</button>
