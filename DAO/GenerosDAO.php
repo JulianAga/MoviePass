@@ -48,6 +48,45 @@ class GenerosDAO extends SingletonAbstractDAO implements IDAO
 	//
 	//
 	//
+
+	public function traerTodos()
+	{
+		try 
+    	{
+			$objects = array();
+
+			$query = 'SELECT * FROM '.$this->table;
+
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);
+
+			$command->execute();
+
+			
+
+			while ($row = $command->fetch())
+			{
+				$nombre= ($row['nombre_genero']);
+				$idApi = ($row['id_genero']);
+				
+
+				$object = new \Models\Genre($nombre,$idApi);
+
+				array_push($objects, $object);
+
+			}
+
+			return $objects; //retorno lista de Generos
+
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+    	}
+	}
 	public function guardarGeneros(){
 
 
@@ -96,6 +135,21 @@ class GenerosDAO extends SingletonAbstractDAO implements IDAO
 		}
 
 	}
+
+
+	/*public function devolverArrayGeneros($arrayIdGeneros)
+    {
+        $arrayGeneros=array();
+        foreach($arrayIdGeneros as $idGenero)
+        {
+            $genero = $this->buscarPorID($idGenero);
+            array_push($arrayGeneros,$genero);
+        }
+
+        return $arrayGeneros;
+    }*/
+
+
 	// Busca en la tabla la fila con el mismo ID pasado por parametros, y lo borra. No retorna nada.
 	public function borrar($dato){
 
@@ -105,8 +159,6 @@ class GenerosDAO extends SingletonAbstractDAO implements IDAO
 
 	}
 	// Retorna todas las filas de la tabla en forma de objetos en un array.
-	public function traerTodos(){
-
-	}
+	
 }
 ?>
