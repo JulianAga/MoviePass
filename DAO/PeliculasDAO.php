@@ -105,9 +105,7 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 				$habilitada = ($row['habilitada']);
 
 				$object = new \Models\Pelicula($id_api, $descripcion, $titulo, $duracion,null, $imagen, $lenguaje) ;
-				
-
-				$object->setId($row['id_pelicula']);	
+					
 			}
 
 
@@ -131,7 +129,7 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 			$object = null;
 			
 
-			$query = 'SELECT * FROM '.$this->table.' WHERE id_pelicula = :id';
+			$query = 'SELECT * FROM '.$this->table.' WHERE id_api = :id';
 
 			$pdo = new Connection();
 			$connection = $pdo->Connect();
@@ -156,9 +154,7 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 				$habilitada = ($row['habilitada']);
 
 				$object = new \Models\Pelicula($id_api, $descripcion, $titulo, $duracion,null, $imagen, $lenguaje) ;
-				
-
-				$object->setId($row['id_pelicula']);	
+					
 			}
 
 			

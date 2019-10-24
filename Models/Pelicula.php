@@ -3,7 +3,6 @@
 
 class Pelicula
 {
-    private $id;
     private $id_api;
     private $descripcion;
     private $nombre;
@@ -49,16 +48,6 @@ class Pelicula
     public function setId_api($id_api)
     {
         $this->id_api = $id_api;
-    }
-     public function getId()
-    {
-        return $this->id;
-    }
-
- 
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     public function getDescripcion ()
