@@ -12,7 +12,7 @@ class DAOGenres{
     
     private $List;
 
-    public function GetArrayGenre(){       
+    public function GetJsonGenre(){       
         include "Config/API_tmdb.php";
         $curl = curl_init();
 
@@ -30,11 +30,11 @@ class DAOGenres{
         $response = curl_exec($curl);
         $err = curl_error($curl);
         curl_close($curl);
-        $genreList= json_decode( $response,true );
+
         if ($err) {
         echo "cURL Error #:" . $err;
         }
-        else return $genreList;
+        else return $response;
     }
     
     public function GetAll(){

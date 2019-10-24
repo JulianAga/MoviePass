@@ -68,7 +68,7 @@ class FuncionesDAO extends SingletonAbstractDAO
     public function traerTodos(){
 		try 
     	{
-			$arrayFunciones = array();
+			$objects = array();
 
 			$query = 'SELECT * FROM '.$this->table;
 
@@ -95,7 +95,7 @@ class FuncionesDAO extends SingletonAbstractDAO
 
 			}
 
-			return $arrayFunciones; //retorno lista de funciones
+			return $objects; //retorno lista de Cines
 
     	}
     	catch (PDOException $ex) {
