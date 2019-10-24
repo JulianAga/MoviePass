@@ -4,7 +4,6 @@
 class Pelicula
 {
     private $id;
-    private $id_api;
     private $descripcion;
     private $nombre;
     private $imagen;
@@ -15,9 +14,9 @@ class Pelicula
 
 
 
-    public function __construct($id_api,$descripcion,  $nombre, $duracion,  $categoria, $imagen,$lenguaje)
+    public function __construct($id,$descripcion,  $nombre, $duracion,  $categoria, $imagen,$lenguaje)
     {
-        $this->setId_api($id_api);
+        $this->setId($id);
         $this->setDescripcion($descripcion);
         $this->setNombre($nombre);
         $this->setDuracion($duracion);
@@ -42,20 +41,12 @@ class Pelicula
     {
         $this->imagen = $imagen;
     }
-	 public function getId_api()
-    {
-        return $this->id_api;
-    }
-    public function setId_api($id_api)
-    {
-        $this->id_api = $id_api;
-    }
+	
      public function getId()
     {
         return $this->id;
     }
 
- 
     public function setId($id)
     {
         $this->id = $id;

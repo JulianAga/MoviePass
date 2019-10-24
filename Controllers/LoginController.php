@@ -79,6 +79,8 @@
 				
 
 				$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
+				//var_dump($functionList);
+				
 				$arrayPeliculas=array();
 				foreach ($functionList as $key) {//recorro la lista de funciones y creo objetos pelicula con esos datos
 

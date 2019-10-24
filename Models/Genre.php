@@ -6,11 +6,11 @@ class Genre
 	private $name;
     private $id_api;
 
-	public function __construct($id, $name,$idApi)
+	public function __construct($id, $name)
 	{
 		$this->setId($id);
         $this->setName($name);
-        $this->setIdApi($idApi);
+        
 	}
     
     public function getId()
@@ -24,16 +24,6 @@ class Genre
         $this->id = $id;
     }
 
-    public function getIdApi()
-    {
-        return $this->idApi;
-    }
-
- 
-    public function setIdApi($idApi)
-    {
-        $this->idApi = $idApi;
-    }
 
     public function getName()
     {

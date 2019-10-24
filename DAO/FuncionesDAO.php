@@ -3,7 +3,8 @@
 
 use \Exception as Exception;
 use \PDOException as PDOException;
-
+use DAO\CinesDAO as CinesDAO;
+use DAO\PeliculasDAO as PeliculasDAO;
 /**
  * 
  */
@@ -84,8 +85,12 @@ class FuncionesDAO extends SingletonAbstractDAO
 				$dia = ($row['dia']);
 				$horario = ($row['horario']);
 				
-
-				$object = new \Models\Funcion($id_cine,$id_pelicula,$horario,$dia);
+				$CinesDAO = new CinesDAO();
+				$PeliculasDAO = new PeliculasDAO();
+				$cine= $CinesDAO->buscarPorID($id_cine);         //con el dao de cines busco el cine en la base de datos con el id y creo el objeto
+				$pelicula = $PeliculasDAO->buscarPorID($id_pelicula); // lo mismo con la pelicula
+				var_dump($pelicula);
+				$object = new \Models\Funcion($cine,$pelicula,$horario,$dia);
 				array_push($objects, $object);
 
 			}
