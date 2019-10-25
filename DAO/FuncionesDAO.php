@@ -3,7 +3,8 @@
 
 use \Exception as Exception;
 use \PDOException as PDOException;
-
+use DAO\CinesDAO as CinesDAO;
+use DAO\PeliculasDAO as PeliculasDAO;
 /**
  * 
  */
@@ -67,6 +68,9 @@ class FuncionesDAO extends SingletonAbstractDAO
     public function traerTodos(){
 		try 
     	{
+			$cineDAO= new CinesDAO();
+			$peliDAO= new PeliculasDAO();
+			
 			$arrayFunciones = array();
 
 			$query = 'SELECT * FROM '.$this->table;
@@ -85,7 +89,7 @@ class FuncionesDAO extends SingletonAbstractDAO
 				$horario = ($row['horario']);
 				
 
-				$object = new \Models\Funcion($id_cine,$id_pelicula,$horario,$dia);
+				$object = new \Models\Funcion($cineDAO->buscarPorID($id_cine),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
 				array_push($arrayFunciones, $object);
 
 			}

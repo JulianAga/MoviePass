@@ -111,7 +111,7 @@ class GenerosDAO extends SingletonAbstractDAO implements IDAO
 			$connection = $pdo->Connect();
 			$command = $connection->prepare($query);			
 
-			$id_genre=$dato->getId();
+			$id_genre=$dato;
 			$command->bindParam(':id', $id_genre);
 			$command->execute();
 

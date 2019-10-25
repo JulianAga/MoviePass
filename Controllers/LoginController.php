@@ -80,9 +80,9 @@
 
 				$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
 				$arrayPeliculas=array();
-				foreach ($functionList as $key) {//recorro la lista de funciones y creo objetos pelicula con esos datos
+				foreach ($functionList as $key) {//recorro la lista de funciones 
 
-					array_push($arrayPeliculas, $this->DAOPeliculas->buscarPorID_BD($key->getIdPelicula() ) ); //busco las peliculas que estan en la lista de funciones por su ID y las guardo en una lista para poder mostrarlas
+					array_push($arrayPeliculas,$key->getIdPelicula()); // las guardo en una lista para poder mostrarlas
 					
 				}//fin foreach
 				
@@ -90,17 +90,21 @@
 				$genresArray=$daoGenres->GetAll();    //carga en la variable la lista con los generos 
 				
 				$movieList=array();
-				if ($functionList !=null)//si no esta null la cartelera que llega desde movie DB, la recorro
+				if ($arrayPeliculas !=null)//si no esta null la cartelera que llega desde movie DB, la recorro
 				{
 					
 					if(!empty($genre))
 					{
 						foreach ($arrayPeliculas as $p) 
 						{ 
-							if(in_array($genre,$p->genre_ids) ) //verifica que la pelicula sea de el genero elegido ** CORREGIR **
+							foreach($p->getCategoria() as $categoria)
 							{
-								array_push($movieList,$p);
+								if( $genre==$categoria->getId() ) //verifica que la pelicula sea de el genero elegido 
+								{
+									array_push($movieList,$p);
+								}
 							}
+							
 						}
 					}
 					else
