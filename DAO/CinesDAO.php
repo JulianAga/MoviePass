@@ -281,7 +281,7 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 				array_push($objects, $object);
 
 			}
-
+			
 			return $objects; //retorno lista de Cines
 
     	}

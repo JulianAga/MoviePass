@@ -66,7 +66,7 @@
                   <div class="li_borde_trasparente">
                       <a style="color:white;" href="movie.php?id=' . <?php echo $p->getImagen() ;?>'"> 
                         <button type="submit" name="boton_imagen"><img src="http://image.tmdb.org/t/p/w500<?php echo $p->getImagen() ;?>" class="img-responsive"  style="width:100%" alt="Image "></button>
-                        <h3 font-weight: bold><?php echo $p->getNombre(); ?> <!--(<?php echo substr($p->release_date, 0, 4);?>)--> </h3>
+                        <h3 font-weight: bold><?php echo $p->getNombre(); ?> <!--(<?php //echo substr($p->release_date, 0, 4);?>)--> </h3>
                       </a>
                         <!--<h5 ><em>Calificacion :<?php //echo $p->vote_average;?>  |  Votos: <?php //echo $p->vote_count ;?></em> --> <!--</h5> -->
                   </div>

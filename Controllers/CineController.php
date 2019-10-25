@@ -31,7 +31,7 @@ class CineController
                 {
                     //lo lleva al home ADM
                     $arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
-                    require(ROOT . '/Views/Adm/home_adm.php');//no esta hecho aun
+                    require(ROOT . '/Views/Adm/home_adm.php');//
                     
                 }
                 if($_SESSION['Login']->getRol()==2)// SI ES CLIENTE AL HOME DE CLIENTE (falta configurar esto)
