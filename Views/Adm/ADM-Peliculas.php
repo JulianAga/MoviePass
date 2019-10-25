@@ -49,6 +49,7 @@ use models\Pelicula as Pelicula;
                     <tbody>
                     <?php
                                $peliculas = new MovieRepository();
+                            //$categories = new CategoriesRepository();
                             $productsArray = $peliculas->getAll(); ?>
 
                                 <?php foreach ($productsArray as $key => $value)
@@ -63,6 +64,7 @@ use models\Pelicula as Pelicula;
                                 <td><?php  echo $peliculas->getNombre(); ?></td>
                                 <td><?php  echo $peliculas->getDireccion(); ?></td>
                                 <td><?php  echo $peliculas->getCapacidad(); ?></td>
+                                <!--       <td><?php // echo $Post->getDate(); ?></td> -->
                                 <td><?php  echo $peliculas->getValor_entrada(); ?></td>
                                 <td><button class="btn btn-dark">+</button></td>
                                 <td>
