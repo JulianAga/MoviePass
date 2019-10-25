@@ -57,7 +57,7 @@
         </div>
         <br>
       <div class="wrapperr">
-      <?php  foreach($arrayPeliculas as $p) {?> <!-- Inicio foreach-->
+      <?php  foreach($movieList as $p) {?> <!-- Inicio foreach-->
         
         <form action="<?= ROOT_VIEW ?>/DetallePelicula/searchMovie" method="post"><!-- ENVIO FORMULARIO CON EL ID DE LA PELICULA PARA VERLA EN DETALLE-->
             <input type="hidden" id="movie_id" name="movie_id" value="<?php echo $p->getId_api();?>"/> <!-- le paso el id de pelicula-->

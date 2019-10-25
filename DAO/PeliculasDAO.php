@@ -84,7 +84,7 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 	public function buscarPorID($dato){//buscar una pelicula por el ID de la API
 		try 
     	{
-    		
+    		$peliculasXgeneroDAO=new PeliculasXgeneroDAO();
 			$object = null;
 
 			$query = 'SELECT * FROM '.$this->table.' WHERE id_api = :id';
@@ -109,7 +109,9 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 				$id_api = ($row['id_api']);
 				$habilitada = ($row['habilitada']);
 
-				$object = new \Models\Pelicula($id_api, $descripcion, $titulo, $duracion,null, $imagen, $lenguaje) ;
+				$generos=$peliculasXgeneroDAO->buscarGeneroPorIdPelicula($dato);
+				
+				$object = new \Models\Pelicula($id_api, $descripcion, $titulo, $duracion,$generos, $imagen, $lenguaje) ;
 					
 			}
 
@@ -141,7 +143,7 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 			$command = $connection->prepare($query);			
 
 			
-			$command->bindParam(':id', $dato);
+			$command->bindParam(':id', $dato->getId_api());
 			$command->execute();
 
 
