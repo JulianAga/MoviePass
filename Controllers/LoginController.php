@@ -70,6 +70,7 @@
 					//paso por la controladora de Home y desde ahi lo redirijo a la vista
 					$movieList = $this->DAOFunciones->traerTodos();
 					require(ROOT . '/Views/home.php');
+
 					
 				}
 			}
@@ -229,6 +230,7 @@
 					else
 					{
 						echo "<script> if(alert('E-Mail y/o Contraseña icorrectos!'));</script>";
+						 
 						$this->index();
 					}					
 				}
@@ -236,6 +238,7 @@
 				else
 				{					
 						echo "<script> if(alert('El E-Mail ingresado no se encuentra Registrado'));</script>";
+						
 						$this->index();										
 									
 				}
@@ -260,6 +263,7 @@
 
 
 			echo '<script language="javascript">alert("Bienvenido '.$cuenta->getEmail(). '!");</script>';
+			//header("Location:".ROOT_VIEW); 
 			$this->index();
 
 		}//fin crear session**********
@@ -272,8 +276,9 @@
 			if (isset($_SESSION['Login']) )//entra si existe la session
 			{	
     			unset($_SESSION["Login"]); 
-    			unset($_SESSION["Cliente_Logueado"]);    			
-    			$this->index();
+    			unset($_SESSION["Cliente_Logueado"]); 
+    			header("Location:".ROOT_VIEW); 
+    			//$this->index();
 			}
 
 			else
@@ -337,6 +342,7 @@
 				else
 				{
 					echo "<script> if(alert('Las contraseñas no coinciden'));</script>";
+					header("Location:".ROOT_VIEW); 
 				}
 				
 			}
@@ -344,6 +350,7 @@
 			else
 			{
 					echo "<script> if(alert('El Email ya se encuentra Registrado..'));</script>";
+					header("Location:".ROOT_VIEW); 
 			}
 
 			$this->index();//llamo a la vista

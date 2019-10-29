@@ -11,7 +11,10 @@ class Adm_PeliculasController
 {
 	//------------------------ATRIBUTOS-------------------
 	private $repositoryMovies;
+
 	private $cineDAO;
+	private $peliculaDAO;
+
 
 	//------------------------CONSTRUCTOR-----------------
 	
@@ -133,7 +136,16 @@ public function addMovie($id_pelicula){
 }//fin addmovie
 //
 //
+public function buscarXiD_api($id_api){
 
+	
+	$objPelicula=$this->peliculaDAO->buscarPorID($id_api);
+	return $objPelicula;
+
+}//fin buscar por id api
+//
+//
+//
 
 
 

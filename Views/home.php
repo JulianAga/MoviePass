@@ -65,12 +65,6 @@
         <br>
       <div class="wrapperr">
        
-      
-      
-      
-      
-      
-  
       <?php  foreach($movieList as $p) {?> <!-- Inicio foreach-->
         
         <form action="<?= ROOT_VIEW ?>/DetallePelicula/searchMovie" method="post"><!-- ENVIO FORMULARIO CON EL ID DE LA PELICULA PARA VERLA EN DETALLE-->

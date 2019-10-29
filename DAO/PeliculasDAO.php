@@ -63,6 +63,20 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 
 
 			$command->execute();
+			//-------------------CAPTURO ERRORES DE BD---------------------------------------
+			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+			
+			if ($descripcion_error==null)
+				echo '<script language="javascript">alert("Peliculas guardadas..");</script>';
+			else{
+
+				echo '<script language="javascript">alert("Error al guardar peliculas  BD!");</script>';
+				echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
+				echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
+			}
+			//----------------------------------------------------------------------------------
+
 
 			$query = 'INSERT INTO '.$this->table2.' 
 			(id_pelicula, id_genero) 
@@ -77,30 +91,31 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
             $array= $dato->getCategoria();
             foreach($array as $genero)
             {
-                    $id_pelicula = $dato->getId_api();
-                    $id_genero = $genero;
-                    $command->bindParam(':id_pelicula', $id_pelicula);
-                    $command->bindParam(':id_genero', $id_genero);
-    
-    
-                    $command->execute();
-    
-               
-            }
+                $id_pelicula = $dato->getId_api();
+                $id_genero = $genero;
+                $command->bindParam(':id_pelicula', $id_pelicula);
+                $command->bindParam(':id_genero', $id_genero);
 
-				//-------------------CAPTURO ERRORES DE BD---------------------------------------
+
+                $command->execute();
+             //-------------------CAPTURO ERRORES DE BD---------------------------------------
 			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
 			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 			
 			if ($descripcion_error==null)
-				echo '<script language="javascript">alert("Peliculas Actualizadas..");</script>';
+				echo '<script language="javascript">alert("Peliculas x genero guardadas..");</script>';
 			else{
 
-				echo '<script language="javascript">alert("Error al actualizar peliculas de BD!");</script>';
+				echo '<script language="javascript">alert("Error al guardar peliculas x genero de BD!");</script>';
 				echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
 				echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
-		}
-		//----------------------------------------------------------------------------------
+			}
+			//----------------------------------------------------------------------------------
+    
+               
+            }//fin foreach
+
+				
 
     	}
     	catch (PDOException $ex) {
@@ -123,6 +138,7 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 	public function buscarPorID($dato){//buscar una pelicula por el ID de la API
 		try 
     	{
+    		
 			$object = null;
 
 			$query = 'SELECT * FROM '.$this->table.' WHERE id_api = :id';
@@ -134,8 +150,17 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 			
 			$command->bindParam(':id', $dato);
 			$command->execute();
-
+			//-------------------CAPTURO ERRORES DE BD---------------------------------------
+			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 			
+			if ($descripcion_error!=null){
+				echo '<script language="javascript">alert("Error al recuperar peliculas de BD!");</script>';
+				echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
+				echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
+			}
+			
+				//----------------------------------------------------------------------------------
 
 			while ($row = $command->fetch())
 			{
@@ -147,37 +172,12 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 				$id_api = ($row['id_api']);
 				$habilitada = ($row['habilitada']);
 				
-            
-				$array=array();
-	
-				$query = 'SELECT * FROM '.$this->table2.' WHERE id_pelicula = :id';
-	
-				$pdo = new Connection();
-				$connection = $pdo->Connect();
-				$command = $connection->prepare($query);			
-	
+            	$generos = $this->buscarGenerosXidPelicula($dato);
 				
-				$command->bindParam(':id', $dato);
-				$command->execute();
-	
-				while ($row = $command->fetch())
-				{
-					$id_genero = ($row['id_genero']);
-					$object = $this->generosDAO->buscarPorID($id_genero);
-					
-					array_push($array, $object);
-				}
-	
-	
-				$generos= $array;
-				
-				
-				
-				
-				
+				//var_dump($generos);
 				$object = new \Models\Pelicula($id_api, $descripcion, $titulo, $duracion,$generos, $imagen, $lenguaje) ;
-					
-			}
+				
+			}//while 
 
 
 			return $object;
@@ -190,6 +190,41 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 		}
 
 	}//fin buscar por ID
+	public function buscarGenerosXidPelicula($dato){
+
+		$array=array();
+		$query = 'SELECT * FROM '.$this->table2.' WHERE id_pelicula = :id';
+
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);			
+
+		
+		$command->bindParam(':id', $dato);
+		$command->execute();
+		//-------------------CAPTURO ERRORES DE BD---------------------------------------
+		$num_error2=$command->errorInfo()[1];//tomo el error que produce la query
+		$descripcion_error2=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+		
+		if ($descripcion_error2!=null){
+			echo '<script language="javascript">alert("Error al recuperar peliculas x genero de BD!");</script>';
+			echo '<script language="javascript">alert("Error Nº '.$num_error2.'");</script>';
+			echo '<script language="javascript">alert("Descripcion: '.$descripcion_error2.'");</script>';
+		}
+		
+		//----------------------------------------------------------------------------------
+
+		while ($row = $command->fetch())
+		{
+			echo "entro al wile de generos ";
+			$id_genero = ($row['id_genero']);
+			$object = $this->generosDAO->buscarPorID($id_genero);
+			var_dump($object);
+			array_push($array, $object);
+		}
+		$generos= $array;
+
+	}//fin buscar genero x id pelicula
 	//
 	//
 	//
@@ -209,10 +244,6 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 			
 			$command->bindParam(':id', $dato->getId_api());
 			$command->execute();
-
-
-
-			
 
 			while ($row = $command->fetch())
 			{

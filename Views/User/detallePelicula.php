@@ -33,54 +33,52 @@
 <div class="grid"> <!-- contenedor principal -->
   <div class="a h3-align-center li_borde_trasparente">
     <?php echo '
-      <h4 class="label-blanco" font-weight: bold>' . $mov->original_title . ' (' . substr($mov->release_date, 0, 4) . ')</h4>
+      <h4 class="label-blanco" font-weight: bold>' . $mov->getNombre() .'</h4>
     ';
     ?>
     
   </div> <!-- cada uno de los ítems del grid -->
   <div class="b li_borde_trasparente ">
     <?php echo '
-    <img src="http://image.tmdb.org/t/p/w500'. $mov->poster_path . '" class="img-responsive"  style="width:400" height="400"  alt="Image "> ';
+    <img src="http://image.tmdb.org/t/p/w500'. $mov->getImagen() . '" class="img-responsive"  style="width:400" height="400"  alt="Image "> ';
     ?>
   </div>
+
   <div class="c li_borde_trasparente ">
     
     <?php
       echo '
         <h2>Sinopsis</h2>
         
-          <p>'.$mov->overview.'</p>
+          <p>'.$mov->getDescripcion().'</p>
         
         <br>
         <h2>Ficha Tecnica</h2>
         <li>
-          <p>Genero/s:';?> <?php foreach ($mov->genre_ids as $key) {  echo $key.' '; } ?> </p> <!-- muestra los id de los generos-->
+          <p>Genero/s:';?> <?php foreach ($generos as $key) {  echo $key->getName().'-'; } ?> </p> <!-- muestra los id de los generos-->
          
         </li>
         <br>
         <?php
         echo '
         <li>
-          <p>Fecha de Estreno: '.$mov->release_date.'</p>
+          <p>Lenguaje Original: '.$mov->getId_api().'</p>
           
         </li>
         ';?>
         <br>
-        <?php
-        echo '
         <li>
-          <p>Lenguaje Original: '.$mov->original_language.'</p>
+          <select>
+        <?php foreach ($lista_funciones as $g) { var_dump($lista_funciones);?>
+            
+            <option value="<?php echo '$g->getId()';?>">
+              <?php echo $g->getIdCine()->getNombre();?>
+            </option>
+           <?php } ?>
+          </select>
           
         </li>
-        ';?>
-        <br>
-        <?php
-        echo '
-        <li>
-          <p>Valoración: '.$mov->vote_average.'</p>
-          
-        </li>
-        ';?>
+        
         <div class="or-seperator"></div>
         <br>
         <div>
@@ -220,7 +218,7 @@
       }
       .a { grid-area: head; margin-right: 70px; margin-left:70px;}
       .b { grid-area: menu;  height:600px; width:400px; margin-left:70px;}
-      .c { grid-area: main;  height:600px; width:850px;margin-right: 70px; padding: 30px;}
+      .c { grid-area: main;  height:750px; width:850px;margin-right: 70px; padding: 30px;}
       .d { grid-area: foot; background: orange; }
 
       .btn-abajo{

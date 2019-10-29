@@ -55,11 +55,20 @@ class FuncionController
 		{
 			
 			$peli_buscada=$this->DAOPeliculas->buscarPorID($id_pelicula);//le paso el ID de la pelicula de la API y me devuelve el objeto de esa pelicula en BD
+			var_dump($peli_buscada);
 			$funcion = new Funcion($id_cine,$peli_buscada->getId_api(),$hora,$fecha);
 			
 			 
 			$this->DAOFunciones->insertar($funcion);
 			$this->index();
 		}
+
+	//
+	//
+	public function devolverFuncionesXidPelicula($id_pelicula){
+		$arrayFunciones=$this->DAOFunciones->devolverFuncionesXidPelicula($id_pelicula);
+		return $arrayFunciones;
+
+	}
 
 }

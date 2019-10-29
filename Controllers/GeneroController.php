@@ -6,10 +6,14 @@ use models\Genre as Genre;
 class GeneroController
 {
 	private $generoDAO;
+
+        //------------------------CONSTRUCTOR-----------------------
 	function __construct()
 	{
 		$this->generoDAO = \DAO\GenerosDAO::getInstance();
 	}
+
+        //------------------------METODOS----------------------------
 
 	public function recibirGeneros(){
 		include "Config/API_tmdb.php";
@@ -42,11 +46,15 @@ class GeneroController
         }//foreach
 
         if ($err) {
-        echo "cURL Error #:" . $err;
+          echo "cURL Error #:" . $err;
         }
-        else return $arrayGenero;
+        else
+          return $arrayGenero;
 
 	}
+        //
+        //
+        //
 	public function guardar_Generos($arrayGeneros){
 		foreach ($arrayGeneros as $key) {
 			

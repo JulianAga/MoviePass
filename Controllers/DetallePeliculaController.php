@@ -20,22 +20,23 @@ class DetallePeliculaController
 	public function searchMovie ($movie_id)
 	{
 		
-		include "Config/API_tmdb.php";
-		include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
+		//traer las pelis de la BD y reemplazar el llamado a la API
+		$peliculasController = new Adm_PeliculasController();//creo instancia de peliculas controller
+		$mov=$peliculasController->buscarXiD_api($movie_id);//busco la pelicula x ID de api y devuelve obj pelicula
 
-	if ($nowplaying!=null){
-		foreach ($nowplaying->results as $mov) {
-			if ($mov->id == $movie_id){
+		$generos=array();
+		$generos=$mov->getCategoria();
 
-				//traer las pelis de la BD y reemplazar el llamado a la API
-				require(ROOT . '/Views/User/detallePelicula.php');
-				break;
 
-			}//if
+
+		$functController = new FuncionController();
+		$lista_funciones=$functController->devolverFuncionesXidPelicula($movie_id);
+
+		//var_dump($lista_funciones);
+		require(ROOT . '/Views/User/detallePelicula.php');
+				
 			
-		}//foreach
-
-	}//if general
+		
 		
 
 	}//fin buscar peli
