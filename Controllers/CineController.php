@@ -69,6 +69,24 @@ class CineController
             echo '<script language="javascript">alert("El ID del cine ya se encuentra registrado!");</script>';
             $this->index();
         }
+        else if(strlen($cine)>30 ) // Verifica que el nombre del cine no supere los 30 caracteres maximos usados en BD
+        {
+            
+            echo '<script language="javascript">alert("El Nombre del cine exede los 30 caracteres!");</script>';
+            $this->index();
+        }
+        else if(strlen($direccion)>30 ) // Verifica que la direccion del cine  no supere los 30 caracteres maximos usados en BD
+        {
+            
+            echo '<script language="javascript">alert("La direccion  del cine exede los 30 caracteres!");</script>';
+            $this->index();
+        }
+        else if($this->DAOCines->buscarPorNombre($newCine->getNombre() )!=null ) // Verifica que no exista otro Cine con el mismo nombre en BD
+        {
+            
+            echo '<script language="javascript">alert("El Nombre del cine ya se encuentra registrado!");</script>';
+            $this->index();
+        }
         else
         {
         $this->DAOCines->insertar($newCine);
@@ -88,16 +106,32 @@ class CineController
 	public function modifyCine($id,$cine,$habilitado,$direccion,$capacidad,$valor){
         
 
-        if ($habilitado==1)
-        	$cineMod = new cine ($cine,$direccion,$capacidad,$valor,1);
+
+        if (strlen($cine)>30){//verifico tamaño del nombre
+           echo '<script language="javascript">alert("El nombre del cine exede los 30 caracteres!");</script>';
+           $this->index();
+        }
+        else if(strlen($direccion)>30 ) // Verifica que la direccion del cine  no supere los 30 caracteres maximos usados en BD
+        {
+            
+            echo '<script language="javascript">alert("La direccion  del cine exede los 30 caracteres!");</script>';
+            $this->index();
+        }
+        else{//si esta todo bien , modifico el cine
+
+            if ($habilitado==1)
+            $cineMod = new cine ($cine,$direccion,$capacidad,$valor,1);
         else if($habilitado==0)
-        	$cineMod = new cine ($cine,$direccion,$capacidad,$valor,0);
+            $cineMod = new cine ($cine,$direccion,$capacidad,$valor,0);
 
         $cineMod->setID($id);
         $this->DAOCines->actualizar($cineMod);
         
         echo '<script language="javascript">alert("Cine modificado satisfactoriamente!");</script>'; //este tipo de mensaje no rompe el codigo
         $this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
+
+        }//fin else
+        
 
 
     }//fin modify cine

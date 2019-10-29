@@ -143,6 +143,45 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 
 	
 	//
+	public function buscarPorNombre($dato){
+		try 
+    	{
+    		
+			$object = null;
+
+			$query = 'SELECT * FROM '.$this->table.' WHERE nombre = :nombre_cine';
+
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);			
+
+			
+			$command->bindParam(':nombre_cine', $dato);
+			$command->execute();
+
+			while ($row = $command->fetch())
+			{
+				$capacidad = ($row['capacidad']);
+				$direccion = ($row['direccion']);
+				$nombre = ($row['nombre']);
+				$valor_entrada = ($row['valor_entrada']);
+				$habilitado = ($row['habilitado']);
+
+				$object = new \Models\cine($nombre, $direccion, $capacidad, $valor_entrada, $habilitado) ;
+
+				$object->setId($row['id_cine']);	
+			}
+
+
+			return $object;
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+		}		
+	}//fin buscar cine por nombre
 
 
 	public function deshabilitar($dato)
