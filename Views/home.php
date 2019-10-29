@@ -40,6 +40,8 @@
             <h1 class="text-center" style="color:white;">Cartelera</h1>
           </nav>
       </div>
+     
+     <!-- FILTRO GENERO   -->  
       <br>
       <!-- Recorre la lista de generos y los pone como opcion dentro del select -->
         <div class="li_borde_trasparente">
@@ -52,11 +54,23 @@
                   <option value="<?php echo $g->getId();?>"><?php echo $g->getName();?></option> 
                   <?php } ?>              
               </select>
+              <label class="label-blanco"> Fecha</label>
+              <input type="date" id="date" min="<?php echo date("Y-m-d");?>"  name="date">
               <input type="submit" name="enviar" id="enviar" >
           </form>
-        </div>
+          
+          <!-- FILTRO FECHA   --> 
+         
+      </div>
         <br>
       <div class="wrapperr">
+       
+      
+      
+      
+      
+      
+  
       <?php  foreach($movieList as $p) {?> <!-- Inicio foreach-->
         
         <form action="<?= ROOT_VIEW ?>/DetallePelicula/searchMovie" method="post"><!-- ENVIO FORMULARIO CON EL ID DE LA PELICULA PARA VERLA EN DETALLE-->

@@ -1,6 +1,6 @@
 <?php namespace DAO;
 
-
+//CLASE OBSOLETA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 use Models\Pelicula as Pelicula;
 use Models\Genre as Genero;
 use \Exception as Exception;

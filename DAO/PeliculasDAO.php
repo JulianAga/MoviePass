@@ -3,7 +3,8 @@
 use \Exception as Exception;
 use \PDOException as PDOException;
 use models\Pelicula as Pelicula;
-use DAO\PeliculasXgeneroDAO as PeliculasXgeneroDAO;
+use DAO\GenerosDAO as GenerosDAO;
+
 /**
  * 
  */
@@ -11,6 +12,22 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 {
 	//----------ATRIBUTOS------------------
 	private $table = 'Peliculas';
+	private $table2 = 'PeliculasXgenero';
+	private $generosDAO;
+	
+	public function __construct()
+	{			
+
+		//--------------------BD-----------------------------
+		$this->generosDAO= new GenerosDAO();
+		
+		
+	}	
+	
+	
+	
+	
+	
 	
 	//----------METODOS--------------------
 	public function insertar($dato){
@@ -23,7 +40,7 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 			VALUES 
 			(:duracion, :imagen, :lenguaje, :titulo, :descripcion, :id_api)';
 
-			$peliculasXgeneroDAO=new PeliculasXgeneroDAO();
+			
 			
 			$pdo = new Connection();
 			$connection = $pdo->Connect();
@@ -47,19 +64,41 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 
 			$command->execute();
 
-			$peliculasXgeneroDAO->insertar($dato);
+			$query = 'INSERT INTO '.$this->table2.' 
+			(id_pelicula, id_genero) 
+			VALUES 
+			(:id_pelicula, :id_genero)';
 
-			//-------------------CAPTURO ERRORES DE BD---------------------------------------
-		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
-		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
-		
-		if ($descripcion_error==null)
-			echo '<script language="javascript">alert("Peliculas Actualizadas..");</script>';
-		else{
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);
 
-			echo '<script language="javascript">alert("Error al actualizar peliculas de BD!");</script>';
-			echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
-			echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
+            $array= array();
+            $array= $dato->getCategoria();
+            foreach($array as $genero)
+            {
+                    $id_pelicula = $dato->getId_api();
+                    $id_genero = $genero;
+                    $command->bindParam(':id_pelicula', $id_pelicula);
+                    $command->bindParam(':id_genero', $id_genero);
+    
+    
+                    $command->execute();
+    
+               
+            }
+
+				//-------------------CAPTURO ERRORES DE BD---------------------------------------
+			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+			
+			if ($descripcion_error==null)
+				echo '<script language="javascript">alert("Peliculas Actualizadas..");</script>';
+			else{
+
+				echo '<script language="javascript">alert("Error al actualizar peliculas de BD!");</script>';
+				echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
+				echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
 		}
 		//----------------------------------------------------------------------------------
 
@@ -84,7 +123,6 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 	public function buscarPorID($dato){//buscar una pelicula por el ID de la API
 		try 
     	{
-    		$peliculasXgeneroDAO=new PeliculasXgeneroDAO();
 			$object = null;
 
 			$query = 'SELECT * FROM '.$this->table.' WHERE id_api = :id';
@@ -108,8 +146,34 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 				$descripcion = ($row['descripcion']);
 				$id_api = ($row['id_api']);
 				$habilitada = ($row['habilitada']);
-
-				$generos=$peliculasXgeneroDAO->buscarGeneroPorIdPelicula($dato);
+				
+            
+				$array=array();
+	
+				$query = 'SELECT * FROM '.$this->table2.' WHERE id_pelicula = :id';
+	
+				$pdo = new Connection();
+				$connection = $pdo->Connect();
+				$command = $connection->prepare($query);			
+	
+				
+				$command->bindParam(':id', $dato);
+				$command->execute();
+	
+				while ($row = $command->fetch())
+				{
+					$id_genero = ($row['id_genero']);
+					$object = $this->generosDAO->buscarPorID($id_genero);
+					
+					array_push($array, $object);
+				}
+	
+	
+				$generos= $array;
+				
+				
+				
+				
 				
 				$object = new \Models\Pelicula($id_api, $descripcion, $titulo, $duracion,$generos, $imagen, $lenguaje) ;
 					
