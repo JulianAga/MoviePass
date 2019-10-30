@@ -4,6 +4,11 @@ use models\cine as Cine;
 //use Controllers\CineController as CineController;
 use Repository\CinesRepository as CinesRepository;
 
+?>
+<!-- SWEET ALERT -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- SWEET ALERT -->
+<?php
 /**
  * 
  */
@@ -90,16 +95,19 @@ class CineController
         else
         {
         $this->DAOCines->insertar($newCine);
-        
-        echo '<script language="javascript">alert("Cine agregado satisfactoriamente!");</script>'; //este tipo de mensaje no rompe el codigo
+          //este tipo de mensaje no rompe el codigo
         $this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
+        ?><script> sweetAlert("Añadir", "Cine añadido correctamente!", "success")</script>
+            <?php
         }
     }//fin newcine
     //
     //
 	public function deleteCine($id_cine){
-        $this->DAOCines->borrar($id_cine);
+        $this->DAOCines->borrar($id_cine);         
         $this->index();
+        ?><script> sweetAlert("Eliminar", "Cine eliminado correctamente!", "success")</script>
+        <?php
 	}//fin delete cine
 	//
 	//

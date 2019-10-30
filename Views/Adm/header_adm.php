@@ -38,7 +38,14 @@ if( isset($_SESSION['Cliente_Logueado'])){
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 
+<!-- SWEET ALERT -->
+<script src="sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+<!-- SWEET ALERT -->
 
 
 </head> 

@@ -34,7 +34,6 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
         <main class="p-5">
         <div class="container position-relative align-middle">
         <h1 class="box_titulo box_transparente">CINES</h1>
-            
                 <table class="table box_transparente table_transparente">
                     <thead class="thead-dark">
                         <tr>
@@ -61,7 +60,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                     
                                     ?>
                             <tr>
-                                <td style="vertical-align:middle;"><input type="checkbox" name="userschecked[]" /></td>    
+                                <td style="vertical-align:middle;"></td>    
                                 <td style="vertical-align:middle;"><?php  echo $Cine->getNombre(); ?></td>
                                 <td style="vertical-align:middle;"><?php  echo $Cine->getDireccion(); ?></td>
                                 <td style="vertical-align:middle;"> <?php  echo $Cine->getCapacidad(); ?></td>
@@ -113,7 +112,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                             <div class="modal-footer">
                                                 <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
                                                 <button type="submit" class="boton_modificar">Agregar</button>
-                                            </div>
+                                              </div>
                                             </form>
                                           </div>
                                         </div>
@@ -436,7 +435,10 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
+    <script src="<?php echo "JS_PATH" ?>/sweetalert.min.js" type="javascript"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
 </body>
     
 

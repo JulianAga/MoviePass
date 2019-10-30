@@ -1,7 +1,4 @@
-<?php namespace Views
-
-
-  
+<?php namespace Views;
 
 ?>
 <?php
@@ -35,7 +32,9 @@ if( isset($_SESSION['Cliente_Logueado'])){
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-
+<!-- SWEET ALERT -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- SWEET ALERT -->
 
 
 </head> 
@@ -54,7 +53,7 @@ if( isset($_SESSION['Cliente_Logueado'])){
   <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
     <ul class="nav navbar-nav">
       <li class="nav-item"><a href="#cartelera" class="nav-link"><strong>Cartelera</strong></a></li>
-      <li class="nav-item"><a href="#" class="nav-link"><strong>Proximos Estrenos</strong></a></li>
+      <li class="nav-item"><a href="#proximosEstrenos"><strong>Proximos Estrenos</strong></a></li>
       <!-- BOTON DESPLEGABLE-->     
       <li class="nav-item dropdown">
         <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#"><strong>Localidad</strong><b class="caret"></b></a>
@@ -189,6 +188,7 @@ if( isset($_SESSION['Cliente_Logueado'])){
                               </div>
                           </div>
                       </div>
+                 
                       <div class="navbarr-footer">
                           <div class="navbarr-footer-content">
                               <div class="row">
