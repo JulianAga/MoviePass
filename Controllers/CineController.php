@@ -65,53 +65,61 @@ class CineController
 
         if ($newCine->getValor_entrada() == null || $newCine->getCapacidad() == null)
         {
-            echo '<script language="javascript">alert("El campo debe tener valores positivos!");</script>';
-            //$this->index();
-            header("Location:".ROOT_VIEW);
+            $this->index();
+            ?><script> sweetAlert("Error", "El campo debe tener valores positivos", "error")</script>
+            <?php
+            //header("Location:".ROOT_VIEW);
         }
         else if($this->DAOCines->buscarPorID($newCine->getID() )!=null ) // Verifica que no exista otro Cine con el mismo id en BD
         {
-            
-            echo '<script language="javascript">alert("El ID del cine ya se encuentra registrado!");</script>';
-           // $this->index();
-            header("Location:".ROOT_VIEW);
+            $this->index();
+            ?><script> sweetAlert("Error", "El ID del cine ya se encuentra registrado!", "error")</script>
+            <?php
+           // header("Location:".ROOT_VIEW);
         }
         else if(strlen($cine)>30 ) // Verifica que el nombre del cine no supere los 30 caracteres maximos usados en BD
         {
+            $this->index();
+            ?><script> sweetAlert("Error", "El nombre del cine excede los 30 caracteres!", "error")</script>
+            <?php
             
-            echo '<script language="javascript">alert("El Nombre del cine exede los 30 caracteres!");</script>';
-            //$this->index();
-            header("Location:".ROOT_VIEW);
+           // header("Location:".ROOT_VIEW);
         }
         else if(strlen($direccion)>30 ) // Verifica que la direccion del cine  no supere los 30 caracteres maximos usados en BD
         {
-            
-            echo '<script language="javascript">alert("La direccion  del cine exede los 30 caracteres!");</script>';
-            //$this->index();
-            header("Location:".ROOT_VIEW);
+            $this->index();
+            ?><script> sweetAlert("Error", "La dirección del cine excede los 30 caracteres!", "error")</script>
+            <?php
+
+            //header("Location:".ROOT_VIEW);
         }
         else if($this->DAOCines->buscarPorNombre($newCine->getNombre() )!=null ) // Verifica que no exista otro Cine con el mismo nombre en BD
-        {
-            
-            echo '<script language="javascript">alert("El Nombre del cine ya se encuentra registrado!");</script>';
-            header("Location:".ROOT_VIEW);
-            //$this->index();
+        { 
+            $this->index();
+            ?><script> sweetAlert("Error", "El cine ingresado ya existe", "error")</script>
+            <?php
+        
+            //header("Location:".ROOT_VIEW);
+           
+         
         }
         else
         {
         $this->DAOCines->insertar($newCine);
           //este tipo de mensaje no rompe el codigo
         $this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
-        ?><script> sweetAlert("Añadir", "Cine añadido correctamente!", "success")</script>
+        ?><script> sweetAlert("Exito!", "Cine añadido correctamente!", "success")</script>
             <?php
         }
     }//fin newcine
     //
     //
 	public function deleteCine($id_cine){
+     
+     
         $this->DAOCines->borrar($id_cine);         
-        $this->index();
-        ?><script> sweetAlert("Eliminar", "Cine eliminado correctamente!", "success")</script>
+         $this->index();
+        ?><script> sweetAlert("Exito!", "Cine eliminado correctamente!", "success")</script>
         <?php
 	}//fin delete cine
 	//
@@ -121,16 +129,25 @@ class CineController
 
 
         if (strlen($cine)>30){//verifico tamaño del nombre
-           echo '<script language="javascript">alert("El nombre del cine exede los 30 caracteres!");</script>';
-           //$this->index();
-           header("Location:".ROOT_VIEW);
+            $this->index();
+            ?><script> sweetAlert("Error", "El nombre del cine excede los 30 caracteres!", "error")</script>
+            <?php
+        
+          // header("Location:".ROOT_VIEW);
         }
         else if(strlen($direccion)>30 ) // Verifica que la direccion del cine  no supere los 30 caracteres maximos usados en BD
         {
+            $this->index();
+            ?><script> sweetAlert("Error", "La dirección del cine excede los 30 caracteres!", "error")</script>
+            <?php
             
-            echo '<script language="javascript">alert("La direccion  del cine exede los 30 caracteres!");</script>';
-            //$this->index();
-            header("Location:".ROOT_VIEW);
+            //header("Location:".ROOT_VIEW);
+        }
+        else if(($this->DAOCines->buscarPorNombre($cine)!=null) && ($this->DAOCines->buscarPorNombre($cine)->getID()!=$id)) // Verifica que no exista otro Cine con el mismo nombre en BD
+        { 
+            $this->index();
+            ?><script> sweetAlert("Error", "El cine ingresado ya existe", "error")</script>
+            <?php
         }
         else{//si esta todo bien , modifico el cine
 
@@ -141,10 +158,11 @@ class CineController
 
         $cineMod->setID($id);
         $this->DAOCines->actualizar($cineMod);
-        
-        echo '<script language="javascript">alert("Cine modificado satisfactoriamente!");</script>'; //este tipo de mensaje no rompe el codigo
+        $this->index();
+        ?><script> sweetAlert("Modificar", "Cine modificado satisfactoriamente!", "success")</script>
+            <?php //este tipo de mensaje no rompe el codigo
        // $this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
-        header("Location:".ROOT_VIEW);
+        //header("Location:".ROOT_VIEW);
 
         }//fin else
         
@@ -169,7 +187,8 @@ class CineController
         }
         else{
             
-            echo '<script language="javascript">alert("No hay Cines cargados en BD!");</script>';
+            ?><script> sweetAlert("BD", "No hay cines cargados en la base de datos!", "error")</script>
+            <?php
             return null;
         }
     }//traer todos

@@ -8,6 +8,12 @@
 	use DAO\SingletonAbstractDAO as SingletonAbstractDAO;
 
 	use Repository\DAOGenres as DAOGenres;
+
+	?>
+<!-- SWEET ALERT -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- SWEET ALERT -->
+<?php
 	
 
 
@@ -51,6 +57,7 @@
 
 				if($_SESSION['Login']->getRol()==1)//SI ES ADMIN LO LLEVA A SU PAG (falta configurar esto)
 				{
+					
 					//lo lleva al home ADM
 					//pasar por la controladora de ADM para levantar los datos de la bd
 					
@@ -122,9 +129,9 @@
 
 					else
 					{
-						echo "<script> if(alert('E-Mail y/o Contraseña icorrectos!'));</script>";
-						 
 						$this->index();
+						?><script> sweetAlert("Error!", "Email o contraseña incorrectos!", "error")</script>
+        				 <?php
 					}					
 				}
 				
