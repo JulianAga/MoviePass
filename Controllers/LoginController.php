@@ -68,7 +68,12 @@
 					
 					//lo lleva al home CLIENTE
 					//paso por la controladora de Home y desde ahi lo redirijo a la vista
-					$movieList = $this->DAOFunciones->traerTodos();
+					$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
+				$functionController=new FuncionController();//intancia de controladora de funciones
+				$generoYfecha=$functionController->filtroGenero_Fecha($genre,$date,$functionList);//llamo a los filtros genero y fecha
+				
+				$movieList=array_shift($generoYfecha);
+				$genresArray=array_shift($generoYfecha);
 					require(ROOT . '/Views/home.php');
 
 					
@@ -77,128 +82,16 @@
 
 			else
 			{
-				
-				//FILTRO GENEROS
 				$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
-				$arrayPeliculas=array();
-				foreach ($functionList as $key) {//recorro la lista de funciones 
+				$functionController=new FuncionController();//intancia de controladora de funciones
+				$generoYfecha=$functionController->filtroGenero_Fecha($genre,$date,$functionList);//llamo a los filtros genero y fecha
+				
+				$movieList=array_shift($generoYfecha);
+				$genresArray=array_shift($generoYfecha);
+				
 
-					array_push($arrayPeliculas,$key->getIdPelicula()); // las guardo en una lista para poder mostrarlas
-					
-				}//fin foreach
-				
-				$daoGenres=new DAOGenres();           //crea un objeto de dao genres
-				$genresArray=$daoGenres->GetAll();    //carga en la variable la lista con los generos 
-				
-				$movieList=array();
-				$toShow=array();
-				
-				if ($functionList !=null)//si no esta null la cartelera que llega desde movie DB, la recorro
-				{
-					
-					if(!empty($genre) && !empty($date))
-					{
-						foreach ($functionList as $f) 
-						{ 
-						
-							if( $date==$f->getDia() ) //verifica que la pelicula sea de el genero elegido 
-							{
-								if(!in_array($f,$movieList))
-								{
-									array_push($movieList,$f->getIdPelicula());
-								}
-							}
-							
-							
-						}
-						
-						
-						
-						foreach ($movieList as $p) 
-						{ 
-							foreach($p->getCategoria() as $categoria)
-							{
-								if( $genre==$categoria->getId() ) //verifica que la pelicula sea de el genero elegido 
-								{
-									if(!in_array($p,$toShow))
-									{
-										array_push($toShow,$p);
-									}
-									
-								}
-							}
-							
-						}
-					}
-					else if (!empty($date) && empty($genre) )
-					{
-						echo 'sin genero y fecha';
-						
-						foreach ($functionList as $f) 
-						{ 
-						
-							if( $date==$f->getDia() ) //verifica que la pelicula sea de el genero elegido 
-							{
-								if(!in_array($f->getIdPelicula(),$toShow))
-								{
-									array_push($toShow,$f->getIdPelicula());
-								
-								}
-							}
-							
-							
-						}
-						
-					}
-					else if (!empty($genre) && empty($date))
-					{
-						foreach ($functionList as $f) 
-						{ 
-							
-							$p =$f->getIdPelicula();
-							
-							foreach($p->getCategoria() as $categoria)
-							{
-								if( $genre==$categoria->getId() ) //verifica que la pelicula sea de el genero elegido 
-								{
-									if(!in_array($p,$toShow))
-									{
-										array_push($toShow,$p);
-									}
-									
-								}
-							}
-							
-							
-							
-						}
-					}
-					else
-					{
-						foreach ($functionList as $f) 
-						{ 
-							$p =$f->getIdPelicula();
-							if(!in_array($p,$toShow))
-							{
-								array_push($toShow,$p);
-							}
-						
-						}
-					}
-
-					//FILTRO FECHA
-					
-					$movieList=$toShow;
-				}
-				//var_dump($movieList);
-			
-				
-				
-				
-				
-				
 				require(ROOT . '/Views/home.php');//SI NO HAY SESSION LO LLEVA A HOME (como no hay ninguna session lo lleva al home.php como anonimo)
-			}
+			}//fin else
 		}//fin index-------
 
 
@@ -263,8 +156,9 @@
 
 
 			echo '<script language="javascript">alert("Bienvenido '.$cuenta->getEmail(). '!");</script>';
-			//header("Location:".ROOT_VIEW); 
-			$this->index();
+			//header("Location:".ROOT_VIEW);
+			header("Location:".ROOT_VIEW);
+			//$this->index();
 
 		}//fin crear session**********
 

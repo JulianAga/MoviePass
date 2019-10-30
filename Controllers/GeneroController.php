@@ -45,20 +45,25 @@ class GeneroController
         	
         }//foreach
 
+
         if ($err) {
           echo "cURL Error #:" . $err;
         }
         else
           return $arrayGenero;
 
+
 	}
         //
         //
         //
 	public function guardar_Generos($arrayGeneros){
+
 		foreach ($arrayGeneros as $key) {
-			
-			$buscado= $this->generoDAO->buscarPorID($key);//busco en BD si existe ese genero. devuelve NULL si no encuentra
+		      // echo '<pre>';
+        //         var_dump($key);
+        //       echo '</pre>';
+			$buscado= $this->generoDAO->buscarPorID($key->getId());//busco en BD si existe ese genero. devuelve NULL si no encuentra
 			if($buscado==null){	//guardo solo los que no estan en BD
 			$this->generoDAO->insertar($key);	
 			}

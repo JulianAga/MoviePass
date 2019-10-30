@@ -21,7 +21,6 @@ class Adm_PeliculasController
 	function __construct()
 	{
 		$this->repositoryMovies= new MovieRepository();
-
 		$this->peliculaDAO = \DAO\PeliculasDAO::getInstance();
 		
 	}
@@ -95,7 +94,7 @@ public function recibirPeliculas(){
 
 	$generoController = new GeneroController();//creo instancia controladora de generos
 	$arrayGeneros=$generoController->recibirGeneros();//recibo todos los generos de la API
-
+	
 	$generoController->guardar_Generos($arrayGeneros);
 
 	foreach ($nowplaying->results as $m) {

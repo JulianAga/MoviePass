@@ -68,15 +68,16 @@
         ';?>
         <br>
         <li>
+          <p>Cines:
           <select>
-        <?php foreach ($lista_funciones as $g) { ?>
-            
-            <option value="<?php echo '$g->getIdCine()->getNombre()';?>">
-              <?php echo $g->getIdCine()->getNombre();?>
-            </option>
-           <?php } ?>
-          </select>
-          
+            <option value="" selected hidden>Seleccione Cine</option>
+          <?php foreach ($lista_funciones as $g) { ?>
+              <option value="<?php echo '$g->getIdCine()->getNombre()';?>">
+                <?php echo $g->getIdCine()->getNombre();?>
+              </option>
+             <?php } ?>
+            </select>
+          </p>
         </li>
         
         <div class="or-seperator"></div>
