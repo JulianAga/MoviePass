@@ -81,8 +81,8 @@ create table Funciones
 (
 	id_cine int,
     id_pelicula int,
-    dia time,
-    horario date,
+    dia date,
+    horario time,
     constraint pk_id_cine_id_pelicula primary key (id_cine,id_pelicula),
     constraint fk_id_cine foreign key (id_cine) references Cines (id_cine) ,
     constraint fk_id_peliculas foreign key (id_pelicula) references Peliculas (id_api)

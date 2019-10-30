@@ -164,6 +164,7 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 
 			while ($row = $command->fetch())
 			{
+				
 				$duracion = ($row['duracion']);
 				$imagen = ($row['imagen']);
 				$lenguaje = ($row['lenguaje']);
@@ -213,16 +214,17 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 		}
 		
 		//----------------------------------------------------------------------------------
-
+		
 		while ($row = $command->fetch())
 		{
-			echo "entro al wile de generos ";
 			$id_genero = ($row['id_genero']);
+			
 			$object = $this->generosDAO->buscarPorID($id_genero);
-			var_dump($object);
+			
 			array_push($array, $object);
 		}
 		$generos= $array;
+		return $generos;
 
 	}//fin buscar genero x id pelicula
 	//

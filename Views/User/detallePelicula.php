@@ -62,16 +62,16 @@
         <?php
         echo '
         <li>
-          <p>Lenguaje Original: '.$mov->getId_api().'</p>
+          <p>Lenguaje Original: '.$mov->getLenguaje().'</p>
           
         </li>
         ';?>
         <br>
         <li>
           <select>
-        <?php foreach ($lista_funciones as $g) { var_dump($lista_funciones);?>
+        <?php foreach ($lista_funciones as $g) { ?>
             
-            <option value="<?php echo '$g->getId()';?>">
+            <option value="<?php echo '$g->getIdCine()->getNombre()';?>">
               <?php echo $g->getIdCine()->getNombre();?>
             </option>
            <?php } ?>

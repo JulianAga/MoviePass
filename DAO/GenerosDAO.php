@@ -104,7 +104,6 @@ class GenerosDAO extends SingletonAbstractDAO implements IDAO
 		try 
     	{
     		
-    		
 			$object = null;
 
 			$query = 'SELECT * FROM '.$this->table.' WHERE id_genero = :id';
@@ -114,7 +113,7 @@ class GenerosDAO extends SingletonAbstractDAO implements IDAO
 			$command = $connection->prepare($query);			
 
 			
-			//$id_genre=$dato->id;
+			$id_genre=$dato;
 			$command->bindParam(':id', $id_genre);
 			$command->execute();
 

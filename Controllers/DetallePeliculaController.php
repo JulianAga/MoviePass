@@ -27,7 +27,7 @@ class DetallePeliculaController
 		$generos=array();
 		$generos=$mov->getCategoria();
 
-
+		//var_dump($generos);
 
 		$functController = new FuncionController();
 		$lista_funciones=$functController->devolverFuncionesXidPelicula($movie_id);
