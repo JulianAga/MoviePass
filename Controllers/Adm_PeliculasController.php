@@ -21,7 +21,6 @@ class Adm_PeliculasController
 	function __construct()
 	{
 		$this->repositoryMovies= new MovieRepository();
-
 		$this->peliculaDAO = \DAO\PeliculasDAO::getInstance();
 		
 	}

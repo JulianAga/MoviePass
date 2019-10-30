@@ -56,7 +56,8 @@
               </select>
               <label class="label-blanco"> Fecha</label>
               <input type="date" id="date" min="<?php echo date("Y-m-d");?>"  name="date">
-              <input type="submit" name="enviar" id="enviar" >
+                
+              <button type="submit" name="enviar" id="enviar">Filtrar</button>
           </form>
           
           <!-- FILTRO FECHA   --> 
