@@ -94,7 +94,7 @@ public function recibirPeliculas(){
 
 	$generoController = new GeneroController();//creo instancia controladora de generos
 	$arrayGeneros=$generoController->recibirGeneros();//recibo todos los generos de la API
-
+	
 	$generoController->guardar_Generos($arrayGeneros);
 
 	foreach ($nowplaying->results as $m) {

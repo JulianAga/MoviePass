@@ -103,7 +103,7 @@ class GenerosDAO extends SingletonAbstractDAO implements IDAO
 	public function buscarPorID($dato){
 		try 
     	{
-    		
+    		//var_dump($dato);
 			$object = null;
 
 			$query = 'SELECT * FROM '.$this->table.' WHERE id_genero = :id';

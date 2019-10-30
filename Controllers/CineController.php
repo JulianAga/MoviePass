@@ -61,45 +61,52 @@ class CineController
         if ($newCine->getValor_entrada() == null || $newCine->getCapacidad() == null)
         {
             echo '<script language="javascript">alert("El campo debe tener valores positivos!");</script>';
-            $this->index();
+            //$this->index();
+            header("Location:".ROOT_VIEW);
         }
         else if($this->DAOCines->buscarPorID($newCine->getID() )!=null ) // Verifica que no exista otro Cine con el mismo id en BD
         {
             
             echo '<script language="javascript">alert("El ID del cine ya se encuentra registrado!");</script>';
-            $this->index();
+           // $this->index();
+            header("Location:".ROOT_VIEW);
         }
         else if(strlen($cine)>30 ) // Verifica que el nombre del cine no supere los 30 caracteres maximos usados en BD
         {
             
             echo '<script language="javascript">alert("El Nombre del cine exede los 30 caracteres!");</script>';
-            $this->index();
+            //$this->index();
+            header("Location:".ROOT_VIEW);
         }
         else if(strlen($direccion)>30 ) // Verifica que la direccion del cine  no supere los 30 caracteres maximos usados en BD
         {
             
             echo '<script language="javascript">alert("La direccion  del cine exede los 30 caracteres!");</script>';
-            $this->index();
+            //$this->index();
+            header("Location:".ROOT_VIEW);
         }
         else if($this->DAOCines->buscarPorNombre($newCine->getNombre() )!=null ) // Verifica que no exista otro Cine con el mismo nombre en BD
         {
             
             echo '<script language="javascript">alert("El Nombre del cine ya se encuentra registrado!");</script>';
-            $this->index();
+            header("Location:".ROOT_VIEW);
+            //$this->index();
         }
         else
         {
         $this->DAOCines->insertar($newCine);
         
         echo '<script language="javascript">alert("Cine agregado satisfactoriamente!");</script>'; //este tipo de mensaje no rompe el codigo
-        $this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
+        header("Location:".ROOT_VIEW);
+        //$this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
         }
     }//fin newcine
     //
     //
 	public function deleteCine($id_cine){
         $this->DAOCines->borrar($id_cine);
-        $this->index();
+        header("Location:".ROOT_VIEW);
+       // $this->index();
 	}//fin delete cine
 	//
 	//
@@ -109,13 +116,15 @@ class CineController
 
         if (strlen($cine)>30){//verifico tamaño del nombre
            echo '<script language="javascript">alert("El nombre del cine exede los 30 caracteres!");</script>';
-           $this->index();
+           //$this->index();
+           header("Location:".ROOT_VIEW);
         }
         else if(strlen($direccion)>30 ) // Verifica que la direccion del cine  no supere los 30 caracteres maximos usados en BD
         {
             
             echo '<script language="javascript">alert("La direccion  del cine exede los 30 caracteres!");</script>';
-            $this->index();
+            //$this->index();
+            header("Location:".ROOT_VIEW);
         }
         else{//si esta todo bien , modifico el cine
 
@@ -128,7 +137,8 @@ class CineController
         $this->DAOCines->actualizar($cineMod);
         
         echo '<script language="javascript">alert("Cine modificado satisfactoriamente!");</script>'; //este tipo de mensaje no rompe el codigo
-        $this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
+       // $this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
+        header("Location:".ROOT_VIEW);
 
         }//fin else
         
