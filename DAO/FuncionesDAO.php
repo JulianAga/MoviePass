@@ -150,7 +150,89 @@ public function devolverFuncionesXidPelicula($dato){
 	return $arrayFunciones; //retorno lista de funciones
 
 }//fin devolver funciones x id pelicula
-    
-    
-}
+//
+//
+//
+public function devolverFuncionesXCine($dato){
+	$cineDAO= new CinesDAO();
+	$peliDAO= new PeliculasDAO();
+
+	$arrayFunciones = array();
+
+	$query= 'SELECT * FROM ' .$this->table. ' where id_cine=:id';
+
+	$pdo = new Connection();
+	$connection = $pdo->Connect();
+	$command = $connection->prepare($query);
+	$command->bindParam(':id', $dato);
+
+	$command->execute();
+
+	//-------------------CAPTURO ERRORES DE BD---------------------------------------
+		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+		
+		if ($descripcion_error!=null){
+			echo '<script language="javascript">alert("Error al devolver funciones X Cine de BD");</script>';
+			echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
+			echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
+		}
+		//----------------------------------------------------------------------------------
+
+	while ($row = $command->fetch())
+	{
+		$id_cine = ($row['id_cine']);
+		$id_pelicula = ($row['id_pelicula']);
+		$dia = ($row['dia']);
+		$horario = ($row['horario']);
+		
+
+		$object = new \Models\Funcion($cineDAO->buscarPorID($id_cine),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
+		
+		array_push($arrayFunciones, $object);
+
+	}
+
+	return $arrayFunciones; //retorno lista de funciones
+
+
+}//fin devolver funciones x cine
+//
+//
+//
+public function verificarPeliculaEnCartelera($id_cine,$id_pelicula,$fecha){
+	$cineDAO= new CinesDAO();
+	$peliDAO= new PeliculasDAO();
+	$arrayFunciones = array();
+
+	$query='SELECT * FROM '.$this->table. ' WHERE '.$this->table. '.dia="'.$fecha.  '" AND '.$this->table.'.id_pelicula='.$id_pelicula;
+	echo $query;
+	$pdo = new Connection();
+	$connection = $pdo->Connect();
+	$command = $connection->prepare($query);
+
+	$command->execute();
+
+	//-------------------CAPTURO ERRORES DE BD---------------------------------------
+		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+		
+		if ($row = $command->fetch()){
+			echo '<script language="javascript">alert("Funcion ya existente en Cine");</script>';
+			return true;
+			
+		}
+		else
+			return false;
+	//----------------------------------------------------------------------------------
+
+	
+
+
+}//fin verificar pelicula en cartelera
+//
+//
+//    
+
+}// fin class-----
     ?>

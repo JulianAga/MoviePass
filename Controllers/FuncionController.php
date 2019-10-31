@@ -55,16 +55,34 @@ class FuncionController
 		public function addFuncion($id_pelicula, $id_cine, $fecha, $hora)
 		{
 			//verificar que la pelicula no este ya en cartelera en ese cine
+			echo '<pre>';
+			var_dump($hora+15);
+			echo "</pre>";
+			$flag=$this->DAOFunciones->verificarPeliculaEnCartelera($id_cine,$id_pelicula,$fecha);//verifica si la pelicula se proyecta ese dia en ese cine. DEVUELVE TRUE SI YA HAY FUNCION ESE DIA Y FALSE SI NO LO HAY
+			echo $flag;
+
+			
+			if($flag==false){//si ese dia no hay ninguna funcion, creo la funcion
+				
+				//$funcionesXcine=$this->DAOFunciones->devolverFuncionesXCine($id_cine);
+				//verificar los 15 minutos MINIMO entre pelicula y pelicula
+				$peli_buscada=$this->DAOPeliculas->buscarPorID($id_pelicula);//le paso el ID de la pelicula de la API y me devuelve el objeto de esa pelicula en BD
+				$funcion = new Funcion($id_cine,$peli_buscada->getId_api(),$hora,$fecha);
+				$this->DAOFunciones->insertar($funcion);
+				//header("Location:".ROOT_VIEW);
+				$this->index();
+
+			}//if
+
+			else{//si ese dia hay funcion de esa pelicula en ese cine, error
+				$this->index();
+
+			}//else
 
 
-			$peli_buscada=$this->DAOPeliculas->buscarPorID($id_pelicula);//le paso el ID de la pelicula de la API y me devuelve el objeto de esa pelicula en BD
+
 			
-			$funcion = new Funcion($id_cine,$peli_buscada->getId_api(),$hora,$fecha);
-			
-			 
-			$this->DAOFunciones->insertar($funcion);
-			$this->index();
-		}
+		}//fin add funcion
 
 	//
 	//
