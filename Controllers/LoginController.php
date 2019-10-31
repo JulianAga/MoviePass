@@ -137,9 +137,10 @@
 				
 				else
 				{					
-						echo "<script> if(alert('El E-Mail ingresado no se encuentra Registrado'));</script>";
-						
-						$this->index();										
+										
+						$this->index();	
+						?><script> sweetAlert("Error!", "El email ingresado no se encuentra registrado", "error")</script>
+        				 <?php									
 									
 				}
 				
@@ -147,8 +148,9 @@
 
 			else//entra si la session LOGIN EXISTE... 
 			{				
-				echo "<script> if(alert('ERROR! Usuario actualmente logueado'));</script>";
-				$this->index();				
+				$this->index();
+				?><script> sweetAlert("Error!", "Usuario actualmente logueado!", "error")</script>
+        				 <?php				
 			}//fin else general
 			
 		}//fin verificar session**********
@@ -162,10 +164,12 @@
 			$_SESSION['Cliente_Logueado']=$cliente;
 
 
-			echo '<script language="javascript">alert("Bienvenido '.$cuenta->getEmail(). '!");</script>';
+			//echo '<script language="javascript">alert("Bienvenido '.$cuenta->getEmail(). '!");</script>';
 			//header("Location:".ROOT_VIEW);
-			header("Location:".ROOT_VIEW);
-			//$this->index();
+			//header("Location:".ROOT_VIEW);
+			$this->index();
+			?><script> sweetAlert("Bienvenido <?php echo " ". $cliente->getNombre() . " " . $cliente->getApellido(); ?>!", "", "success")</script>
+        				 <?php
 
 		}//fin crear session**********
 
@@ -184,8 +188,9 @@
 
 			else
 			{
-				echo '<script language="javascript">alert("Ningun usuario logueado!");</script>';
 				$this->index();
+				?><script> sweetAlert("Error!", "Ningún usuario logueado", "error")</script>
+        				 <?php
 
 			}			
 
@@ -204,7 +209,8 @@
 		    } 
 		    catch (Exception $e) 
 		    {
-		    	echo "<script>alert('Error al buscar datos del Login en BBDD'));</script>";
+				?><script> sweetAlert("Error!", "Error al buscar datos del login en la base de datos", "error")</script>
+        				 <?php
 		    }
 
 			if ($buscado == null)
@@ -219,7 +225,8 @@
 			    }
 			    catch (Exception $e) 
 			    {
-			    	echo "<script>alert('Error al insertar nuevo Usuario  en BBDD'));</script>";
+					?><script> sweetAlert("Error!", "Error al insertar un nuevo usuario en la base de datos", "error")</script>
+        				 <?php
 			    }				
 				
 				if ($pass1 == $pass2)//verifico que coincidan las pass
@@ -232,17 +239,20 @@
 
 						//$this->RepositoryCuentas->Add($nuevaCuenta);//agrego la cuenta completa a Json
 						$this->DAOCuentas->insertarCuenta($nuevaCuenta);//agrego la cuenta completa a la BD
-						echo "<script> if(alert('Usuario Registrado !'));</script>";
+						?><script> sweetAlert("Exito!", "Usuario correctamente registrado", "success")</script>
+        				 <?php
 						$this->crearSesion($nuevaCuenta);//creo la sesion y lo redirijo al index
 				    } 
 				    catch (Exception $e) 
 				    {
-				    	echo "<script>alert('Error al insertar Cuenta en BBDD'));</script>";
+				    	?><script> sweetAlert("Error!", "Error al insertar la cuenta en la base de datos", "error")</script>
+        				 <?php
 				    }
 				}
 				else
 				{
-					echo "<script> if(alert('Las contraseñas no coinciden'));</script>";
+					?><script> sweetAlert("Error!", "Las contraseñas no coinciden", "error")</script>
+        				 <?php
 					header("Location:".ROOT_VIEW); 
 				}
 				
@@ -250,11 +260,14 @@
 			
 			else
 			{
-					echo "<script> if(alert('El Email ya se encuentra Registrado..'));</script>";
-					header("Location:".ROOT_VIEW); 
+				$this->index();
+				?><script> sweetAlert("Error!", "El email ya se encuentra registrado", "error")</script>
+				<?php
+									
+				//header("Location:".ROOT_VIEW); 
 			}
 
-			$this->index();//llamo a la vista
+		//	$this->index();//llamo a la vista
 		}//fin nuevo*****
 
 
