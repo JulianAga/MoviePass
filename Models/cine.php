@@ -1,5 +1,6 @@
 <?php namespace Models;
 
+$caracteresMax = 30;
 class Cine {
 
     private $ID;
@@ -19,6 +20,8 @@ class Cine {
         $this->habilitado = $habilitado;
     }
 
+
+
     public function getID (){
         return $this->ID;
     }
@@ -32,7 +35,10 @@ class Cine {
     }
 
     public function setNombre ($nombre){
+        if(strlen($nombre)<30)
+        {
         $this->nombre = $nombre;
+        }
     }
 
     public function getDireccion (){
@@ -40,7 +46,10 @@ class Cine {
     }
 
     public function setDireccion ($direccion){
+        if(strlen($direccion)<30)
+        {
         $this->direccion = $direccion;
+        }
     }
 
     public function getCapacidad(){
@@ -48,7 +57,7 @@ class Cine {
     }
 
     public function setCapacidad($capacidad){
-        if($capacidad > 0)
+        if($capacidad > 0 && $capacidad < 1000)
         {
         $this->capacidad = $capacidad;
         }
@@ -59,7 +68,7 @@ class Cine {
     }
 
     public function setValor_entrada($valor_entrada){
-        if($valor_entrada > 0)
+        if($valor_entrada > 0 && $valor_entrada < 5000)
         {
         $this->valor_entrada = $valor_entrada;
         }
@@ -72,6 +81,9 @@ class Cine {
     
     public function setHabilitado($habilitado)
     {
+        if($habilitado == true || $habilitado == false)
+        {
         $this->habilitado = $habilitado;
+        }
     }
 }

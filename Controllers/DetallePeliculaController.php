@@ -34,11 +34,7 @@ class DetallePeliculaController
 
 		//var_dump($lista_funciones);
 		require(ROOT . '/Views/User/detallePelicula.php');
-				
-			
 		
-		
-
 	}//fin buscar peli
 
 
