@@ -111,31 +111,31 @@ if( isset($_SESSION['Cliente_Logueado'])){
             <form action="<?= ROOT_VIEW ?>/Login/nuevo_usuario" method="post">
               <p class="hint-text">Completá con tus datos y registrate!</p>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Nombre" name="nombre" required="required">
+                <input type="text" class="form-control" placeholder="Nombre" name="nombre" maxlength="25" required="required">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Apellido" name="apellido" required="required">
+                <input type="text" class="form-control" placeholder="Apellido" name="apellido" maxlength="25" required="required">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="D.N.I" name="dni" required="required">
+                <input type="text" class="form-control" placeholder="D.N.I" name="dni" maxlength="10" required="required">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Telefono" name="telefono"required="required">
+                <input type="text" class="form-control" placeholder="Telefono" name="telefono" maxlength="15" required="required">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Dirección" name="direccion"required="required">
+                <input type="text" class="form-control" placeholder="Dirección" name="direccion" maxlength="30" required="required">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Ciudad" name="ciudad" required="required">
+                <input type="text" class="form-control" placeholder="Ciudad" name="ciudad" maxlength="20" required="required">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="E-mail" name="email" required="required">
+                <input type="text" class="form-control" placeholder="E-mail" name="email" maxlength="30" required="required">
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" placeholder="Contraseña" name="pass1"required="required">
+                <input type="password" class="form-control" placeholder="Contraseña" name="pass1" maxlength="30" required="required">
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" placeholder="Confirmar Contraseña" name="pass2"required="required">
+                <input type="password" class="form-control" placeholder="Confirmar Contraseña" maxlength="30" name="pass2"required="required">
               </div>
               <div class="form-group">
                 <label class="checkbox-inline"><input type="checkbox" required="required">Acepto los <a href="#">Terminos y Condiciones</a></label>
