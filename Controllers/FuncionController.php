@@ -97,7 +97,14 @@ class FuncionController
 	//
 	public function filtroGenero_Fecha($genre, $date,$functionList){
 		//FILTRO GENEROS
-				
+				date_default_timezone_set ( "America/Argentina/Buenos_Aires" );
+				foreach($functionList as $f)
+				{
+					if($f->getDia()<date("Y-m-d "))
+					{
+						unset($functionList[array_search($f,$functionList)]);
+					}
+				}
 				$arrayPeliculas=array();
 				$arrayToReturn=array();
 				foreach ($functionList as $key) {//recorro la lista de funciones 
