@@ -206,7 +206,7 @@ public function verificarPeliculaEnCartelera($id_cine,$id_pelicula,$fecha){
 	$arrayFunciones = array();
 
 	$query='SELECT * FROM '.$this->table. ' WHERE '.$this->table. '.dia="'.$fecha.  '" AND '.$this->table.'.id_pelicula='.$id_pelicula;
-	echo $query;
+	//echo $query;
 	$pdo = new Connection();
 	$connection = $pdo->Connect();
 	$command = $connection->prepare($query);
