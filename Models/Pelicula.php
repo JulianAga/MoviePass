@@ -73,7 +73,16 @@ class Pelicula
     }
     public function setDuracion($duracion)
     {
-        $this->duracion = $duracion;
+        
+        if($duracion != null)
+        {
+            $this->duracion = $duracion;
+        }
+
+        else
+        {
+            $this->duracion = 120;
+        }
     }
     
      public function getCategoria()

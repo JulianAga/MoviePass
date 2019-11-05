@@ -14,14 +14,24 @@ class Funcion
 	
 	//--------------CONSTRUCTOR--------------
 	public function __construct($id_cine,$id_pelicula,$horario,$dia){
-		$this->id_cine = $id_cine;
-		$this->id_pelicula = $id_pelicula;
-		$this->horario = $horario;
-		$this->dia = $dia;
+		$this->setIdCine($id_cine);
+		$this->setIdPelicula($id_pelicula);
+		$this->setHorario($horario);
+		$this->setDia($dia);
 
 	}
 
 	//---------------GETERS SETERS------------
+
+	function validar_fecha_espanol($fecha){
+		$valores = explode('/', $fecha);
+		if(count($valores) == 3 && checkdate($valores[1], $valores[0], $valores[2])){
+			return true;
+		}
+		return false;
+	}
+
+	
 	public function getID()
 	{
 		return $this->id_funcion;
@@ -64,6 +74,7 @@ class Funcion
 
 	public function setDia($dia)
 	{
+		//if (validar_fecha_espanol($dia))
 		$this->dia = $dia;
 	}
 
