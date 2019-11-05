@@ -55,14 +55,12 @@ class FuncionController
 		public function addFuncion($id_pelicula, $id_cine, $fecha, $hora)
 		{
 			//verificar que la pelicula no este ya en cartelera en ese cine
-			echo '<pre>';
-			var_dump($hora+15);
-			echo "</pre>";
+			
 			$flag=$this->DAOFunciones->verificarPeliculaEnCartelera($id_cine,$id_pelicula,$fecha);//verifica si la pelicula se proyecta ese dia en ese cine. DEVUELVE TRUE SI YA HAY FUNCION ESE DIA Y FALSE SI NO LO HAY
-			echo $flag;
+			$flag2= $this->validarHorario($id_cine,$fecha,$hora,$id_pelicula);
 
 			
-			if($flag==false){//si ese dia no hay ninguna funcion, creo la funcion
+			if($flag==false && $flag2== true){//si ese dia no hay ninguna funcion, creo la funcion
 				
 				//$funcionesXcine=$this->DAOFunciones->devolverFuncionesXCine($id_cine);
 				//verificar los 15 minutos MINIMO entre pelicula y pelicula
@@ -211,6 +209,58 @@ class FuncionController
 				array_push($arrayToReturn,$movieList);
 				array_push($arrayToReturn,$genresArray);
 				return $arrayToReturn;
+	}
+
+
+	public function validarHorario($cine,$date,$time,$id_pelicula)
+	{
+		$functionList= $this->DAOFunciones->traerTodos();
+		$peli_buscada=$this->DAOPeliculas->buscarPorID($id_pelicula);
+		
+		$datetime=date_create($time); //crea un time con la hora que quiere agregar
+		
+		$duracionInsertada=$peli_buscada->getDuracion(); //busca la duracion de la pelicula q quiere asignar
+		$finishInsertada=date_create($time); //crea un  time para agregarle la duracion
+		date_add($finishInsertada,date_interval_create_from_date_string($duracionInsertada." minutes")); //le agrega a la hora asignada la duracino para tener a que hora terminaria la pelicula
+		if($functionList==null)
+		{
+			return true;				//si no hay funciones la agrega de una
+		}
+		else
+		{
+			
+			
+			foreach($functionList as $function) // recorre las funciones
+			{
+				
+				
+				if($function->getIdCine()->getId()== $cine && $date == $function->getDia()) //si la funcion es en el cine y en el dia que se quiere agregar la nueva pelicula entra
+				{
+					
+					
+					$horario=date_create($function->getHorario());	//crea un time con el horario
+					$film= $function->getIdPelicula();	//asigna la pelicula de la funcion
+					
+					$finishTime=date_create($function->getHorario()); // crea un time con el horario en donde empieza la pelicula de la funcion
+					$duracion= $film->getDuracion(); // busca la duracion de la pelicula de la funcion
+					$duracion=$duracion+15; //le agrega los 15 min pedidos entre funciones
+					date_add($finishTime,date_interval_create_from_date_string($duracion." minutes")); //suma al horario de inico de la pelicula para tener a q hora termina la pelicula de la funcion
+					date_format($finishTime,"G:i");
+					/*echo 'intentado: '.date_format($datetime,"G:i");
+					echo 'horario: '.date_format($horario,"G:i");						
+					echo 'finish time es: '.date_format($finishTime,"G:i");
+					echo 'finishInsertada time es: '.date_format($finishInsertada,"G:i");*/
+					if(($datetime > $horario && $datetime <$finishTime) | ($finishInsertada > $horario && $finishInsertada < $finishTime))  //verifica q le pelicula no se pise con otras funciones
+					{
+						
+						return false;
+					}
+				}
+			}
+			
+			return true;
+		}
+		
 	}
 
 }
