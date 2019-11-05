@@ -103,13 +103,18 @@ class CineController
            
          
         }
-        else
-        {
-        $this->DAOCines->insertar($newCine);
-          //este tipo de mensaje no rompe el codigo
-        $this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
-        ?><script> sweetAlert("Exito!", "Cine añadido correctamente!", "success")</script>
-            <?php
+        else{
+            $flag=$this->DAOCines->insertar($newCine);
+              //este tipo de mensaje no rompe el codigo
+            $this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
+            if ($flag==true){
+                ?><script> sweetAlert("Exito!", "Cine añadido correctamente!", "success")</script>
+                <?php
+            }
+            else{
+                ?><script> sweetAlert("Error!", "No se pudo agregar el Cine!", "error")</script>
+                <?php
+            }
         }
     }//fin newcine
     //
@@ -117,10 +122,17 @@ class CineController
 	public function deleteCine($id_cine){
      
      
-        $this->DAOCines->borrar($id_cine);         
+        $flag=$this->DAOCines->borrar($id_cine);         
          $this->index();
-        ?><script> sweetAlert("Exito!", "Cine eliminado correctamente!", "success")</script>
-        <?php
+         if ($flag==true){
+            ?><script> sweetAlert("Exito!", "Cine eliminado correctamente!", "success")</script>
+            <?php
+         }
+         else{
+            ?><script> sweetAlert("Error!", "El Cine contiene funciones activas!", "error")</script>
+            <?php
+         }
+        
 	}//fin delete cine
 	//
 	//
@@ -153,16 +165,22 @@ class CineController
 
             if ($habilitado==1)
             $cineMod = new cine ($cine,$direccion,$capacidad,$valor,1);
-        else if($habilitado==0)
-            $cineMod = new cine ($cine,$direccion,$capacidad,$valor,0);
+            else if($habilitado==0)
+                $cineMod = new cine ($cine,$direccion,$capacidad,$valor,0);
 
-        $cineMod->setID($id);
-        $this->DAOCines->actualizar($cineMod);
-        $this->index();
-        ?><script> sweetAlert("Modificar", "Cine modificado satisfactoriamente!", "success")</script>
-            <?php //este tipo de mensaje no rompe el codigo
-       // $this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
-        //header("Location:".ROOT_VIEW);
+            $flag;
+            $cineMod->setID($id);
+            $flag=$this->DAOCines->actualizar($cineMod);
+            $this->index();
+            if($flag==true){
+                ?><script> sweetAlert("Modificar", "Cine modificado satisfactoriamente!", "success")</script>
+                <?php
+            }
+            else{
+                ?><script> sweetAlert("Error", "Error al modificar Cine!", "error")</script>
+                <?php
+            }
+         
 
         }//fin else
         

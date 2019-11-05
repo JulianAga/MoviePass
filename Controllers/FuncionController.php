@@ -55,11 +55,11 @@ class FuncionController
 		public function addFuncion($id_pelicula, $id_cine, $fecha, $hora)
 		{
 			//verificar que la pelicula no este ya en cartelera en ese cine
-			echo '<pre>';
-			var_dump($hora+15);
-			echo "</pre>";
+			// echo '<pre>';
+			
+			// echo "</pre>";
 			$flag=$this->DAOFunciones->verificarPeliculaEnCartelera($id_cine,$id_pelicula,$fecha);//verifica si la pelicula se proyecta ese dia en ese cine. DEVUELVE TRUE SI YA HAY FUNCION ESE DIA Y FALSE SI NO LO HAY
-			echo $flag;
+			
 
 			
 			if($flag==false){//si ese dia no hay ninguna funcion, creo la funcion

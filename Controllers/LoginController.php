@@ -63,7 +63,7 @@
 					
 					//$cineController = new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
 					//$arrayCines=$cineController->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
-
+					$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
 					$cineController= new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
 					$arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD
 					
@@ -76,11 +76,11 @@
 					//lo lleva al home CLIENTE
 					//paso por la controladora de Home y desde ahi lo redirijo a la vista
 					$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
-				$functionController=new FuncionController();//intancia de controladora de funciones
-				$generoYfecha=$functionController->filtroGenero_Fecha($genre,$date,$functionList);//llamo a los filtros genero y fecha
+					$functionController=new FuncionController();//intancia de controladora de funciones
+					$generoYfecha=$functionController->filtroGenero_Fecha($genre,$date,$functionList);//llamo a los filtros genero y fecha
 				
-				$movieList=array_shift($generoYfecha);
-				$genresArray=array_shift($generoYfecha);
+					$movieList=array_shift($generoYfecha);
+					$genresArray=array_shift($generoYfecha);
 					require(ROOT . '/Views/home.php');
 
 					
@@ -89,15 +89,15 @@
 
 			else
 			{
-				$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
-				$functionController=new FuncionController();//intancia de controladora de funciones
-				$generoYfecha=$functionController->filtroGenero_Fecha($genre,$date,$functionList);//llamo a los filtros genero y fecha
-				
-				$movieList=array_shift($generoYfecha);
-				$genresArray=array_shift($generoYfecha);
-				
+					$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
+					$functionController=new FuncionController();//intancia de controladora de funciones
+					$generoYfecha=$functionController->filtroGenero_Fecha($genre,$date,$functionList);//llamo a los filtros genero y fecha
+					
+					$movieList=array_shift($generoYfecha);
+					$genresArray=array_shift($generoYfecha);
+					
 
-				require(ROOT . '/Views/home.php');//SI NO HAY SESSION LO LLEVA A HOME (como no hay ninguna session lo lleva al home.php como anonimo)
+					require(ROOT . '/Views/home.php');//SI NO HAY SESSION LO LLEVA A HOME (como no hay ninguna session lo lleva al home.php como anonimo)
 			}//fin else
 		}//fin index-------
 
