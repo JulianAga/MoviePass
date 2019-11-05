@@ -70,10 +70,10 @@
         <li>
           <p>Cines:
           <select>
-            <option value="" selected hidden>Seleccione Cine</option>
+            <option readonly selected>Seleccione Cine</option>
           <?php foreach ($lista_funciones as $g) { ?>
               <option value="<?php echo '$g->getIdCine()->getNombre()';?>">
-                <?php echo $g->getIdCine()->getNombre();?>
+                <?php echo $g->getIdCine()->getNombre().' - '.$g->getDia().' - '.$g->getHorario();?>
               </option>
              <?php } ?>
             </select>
@@ -219,7 +219,7 @@
       }
       .a { grid-area: head; margin-right: 70px; margin-left:70px;}
       .b { grid-area: menu;  height:600px; width:400px; margin-left:70px;}
-      .c { grid-area: main;  height:750px; width:850px;margin-right: 70px; padding: 30px;}
+      .c { grid-area: main;  height:600px; width:850px;margin-right: 70px; padding: 30px;}
       .d { grid-area: foot; background: orange; }
 
       .btn-abajo{
