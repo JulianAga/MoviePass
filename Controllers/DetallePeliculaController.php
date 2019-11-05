@@ -30,8 +30,15 @@ class DetallePeliculaController
 
 		//var_dump($generos);
 
+
 		//$functController = new FuncionController();
 		$lista_funciones=$this->DAOFunciones->devolverFuncionesXidPelicula($movie_id);
+
+		$functController = new FuncionController();
+		
+
+		$lista_funciones=$functController->devolverFuncionesXidPelicula($movie_id);
+
 
 		//var_dump($lista_funciones);
 		require(ROOT . '/Views/User/detallePelicula.php');

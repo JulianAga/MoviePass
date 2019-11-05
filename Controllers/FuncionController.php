@@ -70,7 +70,7 @@ class FuncionController
 			echo $flag;
 			echo $flag2;
 			
-			if($flag==false && $flag2== true){//si ese dia no hay ninguna funcion, creo la funcion
+			if($flag==true && $flag2== true){//si ese dia no hay ninguna funcion, creo la funcion
 				
 				//$funcionesXcine=$this->DAOFunciones->devolverFuncionesXCine($id_cine);
 				//verificar los 15 minutos MINIMO entre pelicula y pelicula
@@ -123,6 +123,8 @@ class FuncionController
 	//
 	//
 	public function devolverFuncionesXidPelicula($id_pelicula){
+		echo $id_pelicula;
+		var_dump($this->DAOFunciones);
 		$arrayFunciones=$this->DAOFunciones->devolverFuncionesXidPelicula($id_pelicula);
 		return $arrayFunciones;
 

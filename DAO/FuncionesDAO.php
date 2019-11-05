@@ -108,6 +108,7 @@ class FuncionesDAO extends SingletonAbstractDAO
 //
 public function devolverFuncionesXidPelicula($dato){
 
+
 	
 	$cineDAO= new CinesDAO();
 	$peliDAO= new PeliculasDAO();
