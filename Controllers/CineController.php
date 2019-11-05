@@ -89,9 +89,7 @@ class CineController
         {
             $this->index();
             ?><script> sweetAlert("Error", "La dirección del cine excede los 30 caracteres!", "error")</script>
-            <?php
-
-            //header("Location:".ROOT_VIEW);
+            <?php 
         }
         else if($this->DAOCines->buscarPorNombre($newCine->getNombre() )!=null ) // Verifica que no exista otro Cine con el mismo nombre en BD
         { 
@@ -99,9 +97,18 @@ class CineController
             ?><script> sweetAlert("Error", "El cine ingresado ya existe", "error")</script>
             <?php
         
-            //header("Location:".ROOT_VIEW);
-           
-         
+        }
+        else if($capacidad < 0 ) // Verifica que la capacidad del cine sea positiva
+        {
+            $this->index();
+            ?><script> sweetAlert("Error", "La capacidad debe ser positiva!", "error")</script>
+            <?php 
+        }
+        else if($capacidad > 1000) // Verifica que la capacidad del cine sea positiva
+        {
+            $this->index();
+            ?><script> sweetAlert("Error", "La capacidad debe ser menor a 1000!", "error")</script>
+            <?php 
         }
         else{
             $flag=$this->DAOCines->insertar($newCine);

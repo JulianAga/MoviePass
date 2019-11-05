@@ -41,6 +41,7 @@ class Cliente
 	}
 	public function setNombre($nombre)
 	{
+		if(strlen($nombre)<25 && strlen($nombre)>2)
 		$this->nombre = $nombre;
 	}
 
@@ -50,6 +51,7 @@ class Cliente
 	}
 	public function setApellido($apellido)
 	{
+		if(strlen($apellido)<25 && strlen($apellido)>2)
 		$this->apellido = $apellido;
 	}
 	public function getDni()
@@ -58,6 +60,7 @@ class Cliente
 	}
 	public function setDni($dni)
 	{
+		if(strlen($dni)<10 && strlen($dni)>6)
 		$this->dni = $dni;
 	}
 	public function getTelefono ()
@@ -66,6 +69,7 @@ class Cliente
 	}
 	public function setTelefono($telefono)
 	{
+		if(strlen($telefono)<15 && strlen($telefono)>2)
 		$this->telefono = $telefono;
 	}
 	public function getDireccion ()
@@ -74,6 +78,7 @@ class Cliente
 	}
 	public function setDireccion($direccion)
 	{
+		if(strlen($direccion)<30 && strlen($direccion)>2)
 		$this->direccion = $direccion;
 	}
 	public function getCiudad()
@@ -82,6 +87,7 @@ class Cliente
 	}
 	public function setCiudad($ciudad)
 	{
+		if(strlen($ciudad)<30 && strlen($ciudad)>2)
 		$this->ciudad = $ciudad;
 	}
 	public function getNumeroTarjeta()

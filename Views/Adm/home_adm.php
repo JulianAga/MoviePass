@@ -409,10 +409,15 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
         }
 
 
+
         }
         .modal-backdrop {
           display: none;
         }
+
+        
+        
+
     </style>
 
 
