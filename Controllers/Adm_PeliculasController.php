@@ -20,7 +20,7 @@ class Adm_PeliculasController
 	
 	function __construct()
 	{
-		$this->repositoryMovies= new MovieRepository();
+		//$this->repositoryMovies= new MovieRepository();
 		$this->peliculaDAO = \DAO\PeliculasDAO::getInstance();
 		
 	}
@@ -126,11 +126,21 @@ public function recibirPeliculas(){
 //
 //
 //
-public function addMovie($id_pelicula){
+public function traerTodos(){
 
-	
-	echo "entro a addmovie  ";
-	var_dump($id_pelicula);
+	$arrayPeliculas= array();
+    $arrayPeliculas=$this->peliculaDAO->traerTodos();
+
+        if($arrayPeliculas!=null){
+
+            return $arrayPeliculas;
+        }
+        else{
+            
+            ?><script> sweetAlert("BD", "No hay Peliculas cargados en la base de datos!", "error")</script>
+            <?php
+            return null;
+        }
 
 }//fin addmovie
 //
@@ -145,6 +155,7 @@ public function buscarXiD_api($id_api){
 //
 //
 //
+
 
 
 

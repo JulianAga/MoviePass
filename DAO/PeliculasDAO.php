@@ -288,6 +288,47 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 	//
 	//
 	public function traerTodos(){
+		try 
+    	{
+			$objects = array();
+
+			$query = 'SELECT * FROM '.$this->table;
+
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);
+
+			$command->execute();
+
+			
+
+			while ($row = $command->fetch())
+			{
+				$duracion = ($row['duracion']);
+				$imagen = ($row['imagen']);
+				$lenguaje = ($row['lenguaje']);
+				$titulo = ($row['titulo']);
+				$descripcion = ($row['descripcion']);
+				$id_api = ($row['id_api']);
+				$habilitada = ($row['habilitada']);
+
+				$object = new \Models\Pelicula($id_api, $descripcion, $titulo, $duracion,null, $imagen, $lenguaje);
+
+				array_push($objects, $object);
+
+			}
+			
+			return $objects; //retorno lista de Peliculas
+
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+    	}
+
+
 
 	}//fin traer todos
 }

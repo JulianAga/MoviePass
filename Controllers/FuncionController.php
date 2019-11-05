@@ -35,9 +35,11 @@ class FuncionController
                 if($_SESSION['Login']->getRol()==1)//SI ES ADMIN LO LLEVA A SU PAG
                 {
                     //lo lleva al home ADM
-                $functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD  
-                $cineController = new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
-				$arrayCines=$cineController->traerTodos();//levanto todos los cines de la BD
+                    $movieController = new Adm_PeliculasController();
+					$movieList=$this->DAOPeliculas->traerTodos();//le paso la lista de peliculas de la BD propia
+	                $functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD  
+	                $cineController = new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
+					$arrayCines=$cineController->traerTodos();//levanto todos los cines de la BD
 				   require(ROOT . '/Views/Adm/home_adm.php');//no esta hecho aun
                     
                 }
@@ -89,8 +91,7 @@ class FuncionController
 			
 		}//fin add funcion
 	public function deleteFunction($id_cine,$id_pelicula){
-		var_dump($id_cine);
-		var_dump($id_pelicula);
+		
 		if ( ($id_cine!=null)&&($id_pelicula!=null) ){
 			$flag=$this->DAOFunciones->borrar($id_cine,$id_pelicula);
 			if($flag==true){

@@ -61,10 +61,12 @@
 					//lo lleva al home ADM
 					//pasar por la controladora de ADM para levantar los datos de la bd
 					
-					//$cineController = new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
-					//$arrayCines=$cineController->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
+					
+					$movieList=$this->DAOPeliculas->traerTodos();
+					
 					$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
-					$cineController= new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
+					
+
 					$arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD
 					
 					require(ROOT . '/Views/Adm/home_adm.php');//
