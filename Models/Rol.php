@@ -12,8 +12,8 @@ class Rol
 	function __construct($nombre,$descripcion)
 
 	{
-		$this->nombre = $nombre;
-		$this->descripcion = $descripcion;
+		$this->nombre = setNombre($nombre);
+		$this->descripcion = setDescripcion($descripcion);
 		
 	}
 

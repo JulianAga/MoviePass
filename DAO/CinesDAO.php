@@ -17,7 +17,7 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 		try 
     	{
     		
-
+    		$flag;
 			$query = 'INSERT INTO '.$this->table.' 
 			(capacidad, direccion, nombre , valor_entrada , habilitado) 
 			VALUES 
@@ -42,6 +42,16 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 
 			$command->execute();
 
+			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+			
+			if ($num_error==null){
+			$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
+
+			}
+			else
+				$flag=false;//si dio error al borrar de BD retorno false
+
     	}
     	catch (PDOException $ex) {
 			throw $ex;
@@ -49,6 +59,7 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
     	catch (Exception $e) {
 			throw $e;
     	}
+    	return $flag;
 
 	}//FIN INSERTAR
 	//
@@ -184,12 +195,16 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 	}//fin buscar cine por nombre
 
 
-	public function deshabilitar($dato)
-	{
+	public function deshabilitar($dato){
+			$flag;
 			$cine = buscarPorID($dato);
 			$cine->setHabilitado(false);
-			actualizar($cine);
-			echo '<script language="javascript">alert("Cine deshabilitado");</script>';
+
+			$flag=actualizar($cine);
+			if($flag==true){
+				echo '<script language="javascript">alert("Cine deshabilitado");</script>';
+			}
+			
 	}
 
 	//
@@ -198,9 +213,8 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 		
 		try 
     	{
+    	$flag;
 		$query = 'DELETE FROM '.$this->table.' WHERE id_cine = :id';
-
-
 		$pdo = new Connection();
 		$connection = $pdo->Connect();
 		$command = $connection->prepare($query);
@@ -213,14 +227,13 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
 		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 		
-		if ($descripcion_error==null)
-			echo '<script>swal("Hello world!") </script>';
-		else{
+		if ($num_error==null){
+			$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
 
-			echo '<script language="javascript">alert("Error al eliminar Cine de BD");</script>';
-			echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
-			echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
 		}
+		else
+			$flag=false;//si dio error al borrar de BD retorno false 
+		
 		//----------------------------------------------------------------------------------
 
     	}
@@ -233,6 +246,7 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 			throw $e;
     	}
 
+    	return $flag;
 	}//fin borrar
 	//
 	//
@@ -242,7 +256,7 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
     	{
     		//table=clientes
     		
-
+    		$flag;
 			$query= 'UPDATE '.$this->table.'
 					SET capacidad = :capacidad, 
 						direccion = :direccion,
@@ -276,6 +290,20 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 
 			$command->execute();
 
+			//-------------------CAPTURO ERRORES DE BD---------------------------------------
+			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+		
+		
+			if ($num_error==null){
+				$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
+
+			}
+			else
+				$flag=false;//si dio error al borrar de BD retorno false 
+		
+		//----------------------------------------------------------------------------------
+
     	}
     	catch (PDOException $ex) {
     		echo '<script language="javascript">alert("Error al modificar Cine en BD");</script>'; //este tipo de mensaje no rompe el codigo
@@ -285,6 +313,7 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
     		echo '<script language="javascript">alert("Error al modificar Cine en BD");</script>'; //este tipo de mensaje no rompe el codigo
 			throw $e;
     	}
+    	return $flag;
 
 	}// fin actualizar
 	//
