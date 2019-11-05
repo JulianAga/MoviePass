@@ -14,10 +14,10 @@ class Funcion
 	
 	//--------------CONSTRUCTOR--------------
 	public function __construct($id_cine,$id_pelicula,$horario,$dia){
-		$this->id_cine = setIdCine($id_cine);
-		$this->id_pelicula = setIdPelicula($id_pelicula);
-		$this->horario = setHorario($horario);
-		$this->dia = setDia($dia);
+		$this->setIdCine($id_cine);
+		$this->setIdPelicula($id_pelicula);
+		$this->setHorario($horario);
+		$this->setDia($dia);
 
 	}
 

@@ -13,11 +13,11 @@ class Cine {
     function __construct ($nombre,$direccion,$capacidad,$valor_entrada,$habilitado){
 
         $this->ID = null;
-        $this->nombre = setNombre($nombre);
-        $this->direccion = setDireccion($direccion);
-        $this->capacidad = setCapacidad($capacidad);
-        $this->valor_entrada = setValor_entrada($valor_entrada);
-        $this->habilitado = setHabilitado($habilitado);
+        $this->setNombre($nombre);
+        $this->setDireccion($direccion);
+        $this->setCapacidad($capacidad);
+        $this->setValor_entrada($valor_entrada);
+        $this->setHabilitado($habilitado);
     }
 
 
