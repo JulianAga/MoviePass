@@ -74,7 +74,7 @@ class Funcion
 
 	public function setDia($dia)
 	{
-		if (validar_fecha_espanol($dia))
+		//if (validar_fecha_espanol($dia))
 		$this->dia = $dia;
 	}
 
