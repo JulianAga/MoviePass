@@ -41,6 +41,7 @@ class Cuenta
  
     public function setEmail($email)
     {
+        if(strlen($email)<30 && strlen($email)>2)
         $this->email = $email;
     }
 
@@ -53,6 +54,7 @@ class Cuenta
  
     public function setPassword($password)
     {
+        if(strlen($password)<30 && strlen($password)>2)
         $this->password = $password;
     }
 
