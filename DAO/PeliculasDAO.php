@@ -67,14 +67,11 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
 			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 			
-			if ($descripcion_error==null)
-				echo '<script language="javascript">alert("Peliculas guardadas..");</script>';
-			else{
-
+			if ($descripcion_error!=null)
 				echo '<script language="javascript">alert("Error al guardar peliculas  BD!");</script>';
 				echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
 				echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
-			}
+			
 			//----------------------------------------------------------------------------------
 
 
@@ -102,14 +99,11 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
 			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 			
-			if ($descripcion_error==null)
-				echo '<script language="javascript">alert("Peliculas x genero guardadas..");</script>';
-			else{
-
+			if ($descripcion_error!=null)
 				echo '<script language="javascript">alert("Error al guardar peliculas x genero de BD!");</script>';
 				echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
 				echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
-			}
+			
 			//----------------------------------------------------------------------------------
     
                
