@@ -14,6 +14,7 @@ class Adm_PeliculasController
 
 	private $cineDAO;
 	private $peliculaDAO;
+	private $DAOFunciones;
 
 
 	//------------------------CONSTRUCTOR-----------------
@@ -22,6 +23,8 @@ class Adm_PeliculasController
 	{
 		//$this->repositoryMovies= new MovieRepository();
 		$this->peliculaDAO = \DAO\PeliculasDAO::getInstance();
+		$this->DAOFunciones=\DAO\FuncionesDAO::getInstance();
+      
 		
 	}
 
@@ -38,6 +41,9 @@ public function index (){
 				{
 					//lo lleva al home ADM
 					$cineController = new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
+					$movieList=$this->peliculaDAO->traerTodos();
+					
+					$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
 					$arrayCines=$cineController->traerTodos();//levanto todos los cines de la BD
 
 					require(ROOT . '/Views/Adm/home_adm.php');//llamo a la vista

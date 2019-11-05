@@ -67,7 +67,8 @@ class FuncionController
 			$flag=$this->DAOFunciones->verificarPeliculaEnCartelera($id_cine,$id_pelicula,$fecha);//verifica si la pelicula se proyecta ese dia en ese cine. DEVUELVE TRUE SI YA HAY FUNCION ESE DIA Y FALSE SI NO LO HAY
 			/*echo $flag;*/
 			$flag2= $this->validarHorario($id_cine,$fecha,$hora,$id_pelicula);
-
+			echo $flag;
+			echo $flag2;
 			
 			if($flag==false && $flag2== true){//si ese dia no hay ninguna funcion, creo la funcion
 				
@@ -80,8 +81,15 @@ class FuncionController
 				$this->index();
 
 			}//if
+			else if ($flag2==false){
+				?><script> sweetAlert("Error", "Horario no disponible", "error")</script>
+            	<?php
+				$this->index();
 
+			}
 			else{//si ese dia hay funcion de esa pelicula en ese cine, error
+				?><script> sweetAlert("Error", "Pelicula en cartelera", "error")</script>
+            	<?php
 				$this->index();
 
 			}//else

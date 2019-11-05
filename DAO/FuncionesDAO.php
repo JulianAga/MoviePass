@@ -42,11 +42,10 @@ class FuncionesDAO extends SingletonAbstractDAO
 			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
 			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 		
-		if ($descripcion_error==null)
-			echo '<script language="javascript">alert("Funcion Agregada!");</script>';
-		else{
-
+		if ($descripcion_error!=null){
 			echo '<script language="javascript">alert("Error al guardar Funcion en  BD. Error Nº '.$num_error.' Descripcion: '.$descripcion_error.' ");</script>';
+		
+		
 		}
 		//-----------------------------------------------------
 
@@ -218,7 +217,7 @@ public function verificarPeliculaEnCartelera($id_cine,$id_pelicula,$fecha){
 		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 		
 		if ($row = $command->fetch()){
-			echo '<script language="javascript">alert("Funcion ya existente en Cine");</script>';
+			
 			return true;
 			
 		}

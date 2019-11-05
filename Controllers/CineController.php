@@ -17,10 +17,15 @@ class CineController
 
 //----------------ATRIBUTOS-----------------------
 	 private $DAOCines;
+     private $DAOFunciones;
+     private $DAOPeliculas;
+
 //----------------CONSTRUCTOR---------------------
 	function __construct()
 	{
 		$this->DAOCines=\DAO\CinesDAO::getInstance();
+        $this->DAOFunciones=\DAO\FuncionesDAO::getInstance();
+        $this->DAOPeliculas=\DAO\PeliculasDAO::getInstance();
        
 	}
 
@@ -35,6 +40,9 @@ class CineController
                 if($_SESSION['Login']->getRol()==1)//SI ES ADMIN LO LLEVA A SU PAG (falta configurar esto)
                 {
                     //lo lleva al home ADM
+                    $movieList=$this->DAOPeliculas->traerTodos();
+                    
+                    $functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
                     $arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
                     require(ROOT . '/Views/Adm/home_adm.php');//
                     
@@ -180,7 +188,7 @@ class CineController
             $flag=$this->DAOCines->actualizar($cineMod);
             $this->index();
             if($flag==true){
-                ?><script> sweetAlert("Modificar", "Cine modificado satisfactoriamente!", "success")</script>
+                ?><script> sweetAlert("Modificado", "Cine modificado satisfactoriamente!", "success")</script>
                 <?php
             }
             else{
