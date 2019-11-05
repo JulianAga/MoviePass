@@ -134,20 +134,21 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                             </button>
                                           </div>
                                           <div class="modal-body">
-                                          <form method="post" action="<?= ROOT_VIEW ?>/Funcion/modifyFunction">
+                                          <form method="post" action="<?= ROOT_VIEW ?>/Funcion/deleteFunction">
 
                                                         <div class="form-group">
                                                             <label>Cine</label>
-                                                            <input type="text" class="form-control" name="cine" maxlength="30" value="<?php echo $Cine->getNombre();?>" readonly/>
+                                                            <input type="hidden" class="form-control" name="cine" maxlength="30" value="<?php echo $Cine->getID();?>" />
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Funciones</label>
-                                                            <select name="habilitado">
+                                                            <select name="peliculaYcine">
                                                                 <option disabled selected>Lista de Funciones</option>
                                                                 <?php foreach ($functionList as $funct) { ?>
                                                                     <?php if ($Cine->getID() == $funct->getIdCine()->getID() ){ ?>
 
-                                                                    <option  name="funcion">
+                                                                    <option  name="funcion" value="<?php echo $funct->getIdPelicula()->getId_api();?>"> <!-- paso el id de la api por parametro-->
+
                                                                         <?php echo $funct->getIdPelicula()->getNombre().' - '. $funct->getDia().' - '.$funct->getHorario(); ?>
                                                                     </option>
                                                                     
@@ -157,27 +158,15 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                                             </select>   
                                                         </div>
 
-                                                        <div class="form-group">
-                                                            <label>Valor de Entrada</label>
-                                                            <input type="number" class="form-control" min="0" max="5000" name="valor" value="<?php echo $Cine->getValor_entrada();?>" required>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label>Horario</label>
-                                                            <input type="time" class="form-control" min="1" name="capacidad" value="<?php echo $Cine->getCapacidad();?>" required>
-                                                        </div>
+                                                        
                                           
 
                                                     </div>
 
                                                     <div class="modal-footer">
                                                         <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
-                                                        <button type="submit" class="boton_modificar">Modificar</button>
+                                                        <button type="submit" class="boton_eliminar">Eliminar Funcion</button>
 
-                                                        <form method="post" action="<?= ROOT_VIEW ?>/Funcion/deleteFunction">
-                                                            <button type="submit" class="boton_eliminar">Eliminar Funcion</button>
-
-                                                        </form>
                                                     </div>
                                             </form>
                                           </div>

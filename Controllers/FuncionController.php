@@ -4,7 +4,11 @@ use models\cine as Cine;
 use models\Funcion as Funcion;
 use Repository\DAOGenres as DAOGenres;
 //use Repository\CinesRepository as CinesRepository;
-
+?>
+<!-- SWEET ALERT -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- SWEET ALERT -->
+<?php
 /**
  * 
  */
@@ -28,10 +32,10 @@ class FuncionController
             {
                 
 
-                if($_SESSION['Login']->getRol()==1)//SI ES ADMIN LO LLEVA A SU PAG (falta configurar esto)
+                if($_SESSION['Login']->getRol()==1)//SI ES ADMIN LO LLEVA A SU PAG
                 {
                     //lo lleva al home ADM
-                   
+                $functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD  
                 $cineController = new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
 				$arrayCines=$cineController->traerTodos();//levanto todos los cines de la BD
 				   require(ROOT . '/Views/Adm/home_adm.php');//no esta hecho aun
@@ -83,6 +87,28 @@ class FuncionController
 
 			
 		}//fin add funcion
+	public function deleteFunction($id_cine,$id_pelicula){
+		var_dump($id_cine);
+		var_dump($id_pelicula);
+		if ( ($id_cine!=null)&&($id_pelicula!=null) ){
+			$flag=$this->DAOFunciones->borrar($id_cine,$id_pelicula);
+			if($flag==true){
+				?><script> sweetAlert("Exito", "Funcion eliminada exitosamente!", "success")</script>
+            	<?php
+            	$this->index();
+			}
+			else{
+				?><script> sweetAlert("Error", "Error al borrar la funcion", "error")</script>
+            	<?php
+            	$this->index();
+			}
+
+		}//fin if
+			
+
+
+
+	}//fin modify function
 
 	//
 	//

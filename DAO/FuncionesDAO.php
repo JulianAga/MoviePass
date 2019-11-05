@@ -232,7 +232,47 @@ public function verificarPeliculaEnCartelera($id_cine,$id_pelicula,$fecha){
 }//fin verificar pelicula en cartelera
 //
 //
-//    
+//
+public function borrar($idCine,$idPelicula){
+	
+	try 
+    	{
+    	$flag;
+		$query = 'DELETE FROM '.$this->table.' WHERE id_cine = :id AND id_pelicula = :idPelicula';
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+
+
+
+		$command->bindParam(':id', $idCine);
+		$command->bindParam(':idPelicula', $idPelicula);
+		$command->execute();
+		//-------------------CAPTURO ERRORES DE BD---------------------------------------
+		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+		
+		if ($num_error==null){
+			$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
+
+		}
+		else
+			$flag=false;//si dio error al borrar de BD retorno false 
+		
+		//----------------------------------------------------------------------------------
+
+    	}
+    	catch (PDOException $ex) {
+    		echo '<script language="javascript">alert("Error al eliminar Cine: PDO EXCEPTION");</script>';
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+    		echo '<script language="javascript">alert("Error al eliminar Cine: EXCEPTION");</script>';
+			throw $e;
+    	}
+
+    	return $flag;
+}//fin borrar
 
 }// fin class-----
     ?>
