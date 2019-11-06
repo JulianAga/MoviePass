@@ -62,10 +62,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                             <td style="vertical-align:middle;"><?php  echo $Cine->getNombre(); ?></td>
                             <td style="vertical-align:middle;"><?php  echo $Cine->getDireccion(); ?></td>
 
-                            <td style="vertical-align:middle;"> <?php  echo $Cine->getCapacidad(); ?></td>
-                            <td style="vertical-align:middle;"><?php  echo $Cine->getValor_entrada(); ?></td>
-
-
+    
                             <td></td>
 
                             
@@ -86,51 +83,27 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                       <div class="modal-body">
 
                                     <form method="post" action="<?= ROOT_VIEW ?>">
-                                                    <div class="form-group">
-                                                        <label>sala</label>
-                                                        <select name="sala">
-                                                            <option disabled>Seleccione Sala...
-                                                            </option>
-
-                                                                 
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>Id del Cine</label>
-                                                        <input type="text" class="form-control" name="id_cine" value="<?php echo $Cine->getID();?>" readonly/>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>Cantidad</label>
-                                                        <input type="text" class="form-control" name="id_cine" value="" readonly/>
-                                                    </div>
-
-                                        <div class="modal-footer">
-
-                                    <form method="post" action="<?= ROOT_VIEW ?>/Sala/addSala">
-                                        <div class="form-group">
-                                            <label>Cine </label>
-                                            <input type="text" class="form-control" name="nombre_cine" readonly value="<?php echo $Cine->getNombre();?>" disabled/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Nombre</label>
-                                            <input type="text" class="form-control" name="nombre_sala"/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Capacidad</label>
-                                            <input type="number" min="1" max="1000" class="form-control" name="id_cine" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Valor Entrada</label>
-                                            <input type="number" min="0" max="1000" class="form-control" name="valor_entrada" />
-                                        </div>
                                         
-                                           <input type="hidden" value="<?php echo $Cine->getID();?>" name="objCine" />
-                                        
-                                                    
+                                        <form method="post" action="<?= ROOT_VIEW ?>/Sala/addSala">
+                                            <div class="form-group">
+                                                <label>Cine </label>
+                                                <input type="text" class="form-control" name="nombre_cine" readonly value="<?php echo $Cine->getNombre();?>" disabled/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Nombre</label>
+                                                <input type="text" class="form-control" name="nombre_sala"/>
+                                            </div>
 
+                                            <div class="form-group">
+                                                <label>Capacidad</label>
+                                                <input type="number" min="1" max="1000" class="form-control" name="id_cine" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Valor Entrada</label>
+                                                <input type="number" min="0" max="1000" class="form-control" name="valor_entrada" />
+                                            </div>
+                                            
+                                               <input type="hidden" value="<?php echo $Cine->getID();?>" name="objCine" />
                                           <div class="modal-footer">
 
                                             <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
@@ -281,16 +254,6 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                                     <div class="form-group">
                                                         <label>Direccion</label>
                                                         <input type="text" class="form-control" name="direccion" maxlength="30" value="<?php echo $Cine->getDireccion();?>" required>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>Valor de Entrada</label>
-                                                        <input type="number" class="form-control" min="0" max="5000"name="valor" value="<?php echo $Cine->getValor_entrada();?>" required>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>Salas</label>
-                                                        <input type="number" class="form-control" min="1" max="1000"name="capacidad" value="<?php echo $Cine->getCapacidad();?>" required>
                                                     </div>
                                       
 
@@ -565,4 +528,3 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
 
 </html>
-<?php //require(ROOT . "Vistas/footer.php"); ?>  
