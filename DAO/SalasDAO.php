@@ -1,6 +1,9 @@
 <?php namespace DAO;
 
 use models\Cine as Cine;
+use DAO\CinesDAO as CinesDAO;
+use DAO\PeliculasDAO as PeliculasDAO;
+use DAO\SalasDAO as SalasDAO;
 use \Exception as Exception;
 use \PDOException as PDOException;
 
@@ -69,6 +72,43 @@ class SalasDAO extends SingletonAbstractDAO implements IDAO{
 	}//fin insertarDevolverID
 	
 	public function buscarPorID($dato){
+		try 
+    	{
+    		
+    		$cineDAO= new CinesDAO();
+			$object = null;
+
+			$query = 'SELECT * FROM '.$this->table.' WHERE id_sala = :id';
+
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);			
+
+			$command->bindParam(':id', $dato);
+			$command->execute();
+
+			while ($row = $command->fetch())
+			{
+				
+				$nombre = ($row['nombre']);
+				$capacidad = ($row['capacidad']);
+				$valor_entrada = ($row['valor_entrada']);
+				$id_cine = ($row['id_cine']);
+	
+
+				$object = new \Models\Sala($capacidad,$valor_entrada,$nombre,$cineDAO->buscarPorID($id_cine) );
+
+				$object->setId($row['id_sala']);	
+			}
+
+			return $object;
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+		}
 
 	}//fin buscarPorID
 	
@@ -81,6 +121,45 @@ class SalasDAO extends SingletonAbstractDAO implements IDAO{
 	}//fin actualizar
 	
 	public function traerTodos(){
+		try 
+    	{
+    		
+			$salasDAO= new SalasDAO();
+			$cineDAO= new CinesDAO();
+			
+			$array = array();
+
+			$query = 'SELECT * FROM '.$this->table;
+
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);
+
+			$command->execute();
+
+			while ($row = $command->fetch())
+			{
+				$id_sala = ($row['id_sala']);
+				$nombre = ($row['nombre']);
+				$capacidad = ($row['capacidad']);
+				$valor_entrada = ($row['valor_entrada']);
+				$id_cine = ($row['id_cine']);
+				
+				$object = new \Models\Sala($capacidad,$valor_entrada,$nombre,$cineDAO->buscarPorID($id_cine) );
+				$object->setId($id_sala);
+				array_push($array, $object);
+
+			}
+
+			return $array; //retorno lista de funciones
+
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+    	}
 
 	}//fin traerTodos
 

@@ -2,6 +2,7 @@
 
 class Sala{
 	//----------------ATRIBUTOS---------------------
+	private $id;
 	private $capacidad;
 	private $funciones=array();
 	private $nombre;
@@ -22,6 +23,12 @@ class Sala{
 	}
 	//-----------------GETERS AND SETERS-------------
 
+	public function getId(){
+		return $this->id;
+	}
+	public function setId($id){
+		$this->id=$id;
+	}
 	public function getCapacidad(){
 		return $this->capacidad;
 	}

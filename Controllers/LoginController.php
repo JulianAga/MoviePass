@@ -28,6 +28,7 @@
 		private $DAORoles;
 		private $DAOCines;
 		private $DAOFunciones;
+		private $DAOSalas;
 		
 
 		public function __construct()
@@ -43,6 +44,7 @@
 			$this->DAOCines=\DAO\CinesDAO::getInstance();
 			$this->DAOFunciones=\DAO\FuncionesDAO::getInstance();
 			$this->DAOPeliculas=\DAO\PeliculasDAO::getInstance();
+			$this->DAOSalas=\DAO\SalasDAO::getInstance();
 			
 		}	
 
@@ -66,7 +68,7 @@
 					
 					$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
 					
-
+					$salaList=$this->DAOSalas->traerTodos();
 					$arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD
 					
 					require(ROOT . '/Views/Adm/home_adm.php');//

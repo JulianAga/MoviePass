@@ -21,15 +21,13 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
 <link rel="stylesheet" href="/MoviePass/Views/css/header2.css"><!-- ARCHIVO CSS-->
 
-<!-- ESTA LIBRERIA DE BOOSTRAP LA COMENTE PORQE AFECTA A LA BARRA DE NAVEGACION PRINCIPAL
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
--->
 
 
 
 </head> 
 
 <body class="fondo_home_adm">
+    <!------------ MUESTRA DE ERRORES PROVENIENTES DE LA CONTROLADORA------->
     <?php if ($arrayAlertExito!=null) { ?>
             
             <script> sweetAlert("Exito","<?php echo $arrayAlertExito; ?>", "success")</script>
@@ -38,6 +36,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
     <?php if ($arrayAlertError!=null) { ?>
             <script> sweetAlert("Error", "<?php echo $arrayAlertError; ?>", "error")</script>
              <?php } ?>
+    <!-------------------------------------- - ------------------------------>
     <header>
         <?php include_once("header_adm.php"); ?> <!-- llamado a la barra nav de home-->
     </header>
@@ -71,8 +70,6 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                             <td style="vertical-align:middle;"></td>    
                             <td style="vertical-align:middle;"><?php  echo $Cine->getNombre(); ?></td>
                             <td style="vertical-align:middle;"><?php  echo $Cine->getDireccion(); ?></td>
-
-    
                             <td></td>
 
                             
@@ -91,9 +88,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                         </button>
                                       </div>
                                       <div class="modal-body">
-
-                                    <form method="post" action="<?= ROOT_VIEW ?>">
-                                        
+                                    
                                         <form method="post" action="<?= ROOT_VIEW ?>/Sala/addSala">
                                             <div class="form-group">
                                                 <label>Cine </label>
@@ -103,7 +98,6 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                                 <label>Nombre</label>
                                                 <input type="text" class="form-control" name="nombre_sala"/>
                                             </div>
-
                                             <div class="form-group">
                                                 <label>Capacidad</label>
                                                 <input type="number" min="1" max="1000" class="form-control" name="id_cine" />
@@ -112,10 +106,8 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                                 <label>Valor Entrada</label>
                                                 <input type="number" min="0" max="1000" class="form-control" name="valor_entrada" />
                                             </div>
-                                            
                                                <input type="hidden" value="<?php echo $Cine->getID();?>" name="objCine" />
                                           <div class="modal-footer">
-
                                             <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
                                             <button type="submit" class="boton_modificar">Agregar</button>
                                           </div>
@@ -141,34 +133,46 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                       </div>
                                       <div class="modal-body">
                                     <form method="post" action="<?= ROOT_VIEW ?>/Funcion/addFuncion">
-                                                    <div class="form-group">
-                                                        <label>Pelicula</label>
-                                                        <select name="id_pelicula" class="form-control">
-                                                            <option disabled>Seleccione Pelicula...
-                                                            </option>
+                                        <div class="form-group">
+                                            <label>Pelicula</label>
+                                            <select name="id_pelicula" class="form-control">
+                                                <option disabled>Seleccione Pelicula...
+                                                </option>
+                                                
+                                                    <?php foreach ($movieList as $key ) { ?>
+                                                        <option required value="<?php echo $key->getId_api(); ?>" name="id_pelicula"> <?php echo $key->getNombre(); ?>
                                                             
-                                                                <?php foreach ($movieList as $key ) { ?>
-                                                                    <option value="<?php echo $key->getId_api(); ?>" name="id_pelicula"> <?php echo $key->getNombre(); ?>
-                                                                        
-                                                                    </option>
-                                                                <?php } ?>  
-                                                        </select>
-                                                    </div>
+                                                        </option>
+                                                    <?php } ?>  
+                                            </select>
+                                        </div>
 
-                                                    <div class="form-group">
-                                                        <label>Id del Cine</label>
-                                                        <input type="text" class="form-control" name="id_cine" value="<?php echo $Cine->getID();?>" readonly/>
-                                                    </div>
-                                       
-                                                    <div class="form-group">
-                                                        <label>Fecha</label>
-                                                        <input type="date" class="form-control" id="date" min="<?php echo date("Y-m-d");?>"  name="fecha" required>
-                                                    </div>
+                                        <div class="form-group">
+                                            <label>Cine</label>
+                                            <input type="text" class="form-control" name="id_cine" value="<?php echo $Cine->getNombre();?>" disabled readonly/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Salas</label>
+                                            <select required type="number" name="sala" id="">
+                                              <option value="1">Seleccione Sala...</option>
+                                              <?php foreach ($salaList as $key) { ?>
 
-                                                    <div class="form-group">
-                                                        <label>Horario</label>
-                                                        <input type="time" class="form-control" name="hora" required>
-                                                    </div>
+                                                  <option value="<?php echo $key->getId(); ?>">
+                                                      <?php echo $key->getNombre(); ?>
+                                                  </option>
+                                             <?php } ?>
+                                            </select>
+                                        </div>
+                           
+                                        <div class="form-group">
+                                            <label>Fecha</label>
+                                            <input type="date" class="form-control" id="date" min="<?php echo date("Y-m-d");?>"  name="fecha" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Horario</label>
+                                            <input type="time" class="form-control" name="hora" required>
+                                        </div>
                                         <div class="modal-footer">
                                             <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
                                             <button type="submit" class="boton_modificar">Agregar</button>
@@ -195,32 +199,31 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                       <div class="modal-body">
                                       <form method="post" action="<?= ROOT_VIEW ?>/Funcion/deleteFunction">
 
-                                                    <div class="form-group">
-                                                        <label>Cine</label>
-                                                        <input type="hidden" class="form-control" name="cine" maxlength="30" value="<?php echo $Cine->getID();?>" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Funciones</label>
-                                                        <select name="peliculaYcine">
-                                                            <option disabled selected>Lista de Funciones</option>
-                                                            <?php foreach ($functionList as $funct) { ?>
-                                                                <?php if ($Cine->getID() == $funct->getIdCine()->getID() ){ ?>
+                                        <div class="form-group">
+                                            <label>Cine</label>
+                                            <input type="hidden" class="form-control" name="cine" maxlength="30" value="<?php echo $Cine->getID();?>" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Funciones</label>
+                                            <select name="peliculaYcine">
+                                                <option disabled selected>Lista de Funciones</option>
+                                                <?php foreach ($functionList as $funct) { ?>
+                                                    <?php if ($Cine->getID() == $funct->getSala()->getCine()->getID() ){ ?>
 
-                                                                <option  name="funcion" value="<?php echo $funct->getIdPelicula()->getId_api();?>"> <!-- paso el id de la api por parametro-->
-                                                                    <?php echo $funct->getIdPelicula()->getNombre().' - '. $funct->getDia().' - '.$funct->getHorario(); ?>
-                                                                </option>
-                                                                
-                                                            <?php } } //fin if y foreach ?>
-                                                            
-                                                            
-                                                        </select>   
-                                                    </div>
-                                                </div>
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
-                                                    <button type="submit" class="boton_eliminar">Eliminar Funcion</button>
-                                                </div>
+                                                    <option  name="funcion" value="<?php echo $funct->getIdPelicula()->getId_api();?>"> <!-- paso el id de la api por parametro-->
+                                                        <?php echo $funct->getIdPelicula()->getNombre().' - '. $funct->getDia().' - '.$funct->getHorario(); ?>
+                                                    </option>
+                                                    
+                                                <?php } } //fin if y foreach ?>
+                                                
+                                                
+                                            </select>   
+                                        </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="boton_eliminar">Eliminar Funcion</button>
+                                        </div>
                                         </form>
                                       </div>
                                     </div>
@@ -243,36 +246,32 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                         </button>
                                       </div>
                                       <form method="post" action="<?= ROOT_VIEW ?>/Cine/modifyCine">
+                                         <div class="form-group">
+                                            <label>Id del Cine</label>
+                                            <input type="text" class="form-control" name="ID" value="<?php echo $Cine->getID();?>" readonly/>
+                                        </div>
 
-                                                     <div class="form-group">
-                                                        <label>Id del Cine</label>
-                                                        <input type="text" class="form-control" name="ID" value="<?php echo $Cine->getID();?>" readonly/>
-                                                    </div>
+                                        <div class="form-group">
+                                            <label>Nombre del Cine</label>
+                                            <input type="text" class="form-control" name="cine" maxlength="30" value="<?php echo $Cine->getNombre();?>" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Estado </label>
+                                            <select name="habilitado">
+                                                <option value="1" name="habilitado"<?php if ($Cine->getHabilitado()==true){?> selected <?php }?> >Habilitado</option>
+                                                <option value="0" name="habilitado"<?php if ($Cine->getHabilitado()==false){?> selected <?php }?> >Deshabilitado</option>
+                                            </select>   
+                                        </div>
 
-                                                    <div class="form-group">
-                                                        <label>Nombre del Cine</label>
-                                                        <input type="text" class="form-control" name="cine" maxlength="30" value="<?php echo $Cine->getNombre();?>" required/>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Estado </label>
-                                                        <select name="habilitado">
-                                                            <option value="1" name="habilitado"<?php if ($Cine->getHabilitado()==true){?> selected <?php }?> >Habilitado</option>
-                                                            <option value="0" name="habilitado"<?php if ($Cine->getHabilitado()==false){?> selected <?php }?> >Deshabilitado</option>
-                                                        </select>   
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>Direccion</label>
-                                                        <input type="text" class="form-control" name="direccion" maxlength="30" value="<?php echo $Cine->getDireccion();?>" required>
-                                                    </div>
-                                      
-
-                                                </div>
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
-                                                    <button type="submit" class="boton_modificar">Modificar</button>
-                                                </div>
+                                        <div class="form-group">
+                                            <label>Direccion</label>
+                                            <input type="text" class="form-control" name="direccion" maxlength="30" value="<?php echo $Cine->getDireccion();?>" required>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="boton_modificar">Modificar</button>
+                                    </div>
 
                                           <div class="modal-body">
                                             <div class="form-group">
@@ -303,7 +302,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                 </div>
                             </td>
                             
-                            <!-- BOTON ELIMINAR CINE Y CONFIRMACION-->
+                            <!------------- BOTON ELIMINAR CINE Y CONFIRMACION--------------------------->
                             <td style="vertical-align:middle;">
                                 <form method="post" id="eliminar" action="<?= ROOT_VIEW ?>/Cine/deleteCine">
                                     <button name="eliminar" value="<?php echo $Cine->getID();?>" class="boton_eliminar">Eliminar</button>     
@@ -342,25 +341,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                     </div>
 
 
-                    <div class="form-group">
-                        <label>Valor de Entrada</label>
-                        <input type="number" class="form-control" min="0" max="5000"name="valor" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Salas</label>
-                        <select type="number" name="sala" id="">
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                          <option value="6">6</option>
-                          <option value="7">7</option>
-
-                        </select>
-
-                    </div>
+                    
       
 
 

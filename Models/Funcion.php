@@ -7,14 +7,14 @@ class Funcion
 	//---------------ATRIBUTOS--------------
 	private $id_funcion;
 
-	private $id_cine;
+	private $sala;
 	private $id_pelicula;
 	private $horario;
 	private $dia;
 	
 	//--------------CONSTRUCTOR--------------
-	public function __construct($id_cine,$id_pelicula,$horario,$dia){
-		$this->setIdCine($id_cine);
+	public function __construct($sala,$id_pelicula,$horario,$dia){
+		$this->setSala($sala);
 		$this->setIdPelicula($id_pelicula);
 		$this->setHorario($horario);
 		$this->setDia($dia);
@@ -42,9 +42,9 @@ class Funcion
 		return $this->id_pelicula;
 	}
 	
-	public function getIdCine ()
+	public function getSala ()
 	{
-		return $this->id_cine;
+		return $this->sala;
 	}
 	
 	public function getDia()
@@ -57,9 +57,9 @@ class Funcion
 		return $this->horario;
 	}
 
-	public function setIdCine ($id_cine)
+	public function setSala ($sala)
 	{
-		$this->id_cine = $id_cine;
+		$this->sala = $sala;
 	}
 
 	public function setIdPelicula($id_pelicula)

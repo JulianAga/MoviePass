@@ -5,6 +5,7 @@ use \Exception as Exception;
 use \PDOException as PDOException;
 use DAO\CinesDAO as CinesDAO;
 use DAO\PeliculasDAO as PeliculasDAO;
+use DAO\SalasDAO as SalasDAO;
 /**
  * 
  */
@@ -16,22 +17,27 @@ class FuncionesDAO extends SingletonAbstractDAO
 	public function insertar($dato){
 		try 
     	{
+    		?>
+    		<pre>
+    			<?php var_dump($dato); ?>
+    		</pre>
+    		<?php
 			$query = 'INSERT INTO '.$this->table.' 
-			(id_cine, id_pelicula, dia, horario) 
+			(id_sala, id_pelicula, dia, horario) 
 			VALUES 
-			(:id_cine, :id_pelicula, :dia, :horario)';
+			(:id_sala, :id_pelicula, :dia, :horario)';
 
 			$pdo = new Connection();
 			$connection = $pdo->Connect();
 			$command = $connection->prepare($query);
 
-			$id_cine = $dato->getIdCine();
+			$id_sala = $dato->getSala()->getId();
 			$id_pelicula = $dato->getIdPelicula();
             $dia = $dato->getDia();
 			$horario = $dato->getHorario();
             
 
-			$command->bindParam(':id_cine', $id_cine);
+			$command->bindParam(':id_sala', $id_sala);
 			$command->bindParam(':id_pelicula', $id_pelicula);
             $command->bindParam(':dia', $dia);
 			$command->bindParam(':horario', $horario);
@@ -67,7 +73,7 @@ class FuncionesDAO extends SingletonAbstractDAO
     public function traerTodos(){
 		try 
     	{
-			$cineDAO= new CinesDAO();
+			$salasDAO= new SalasDAO();
 			$peliDAO= new PeliculasDAO();
 			
 			$arrayFunciones = array();
@@ -82,13 +88,13 @@ class FuncionesDAO extends SingletonAbstractDAO
 
 			while ($row = $command->fetch())
 			{
-				$id_cine = ($row['id_cine']);
+				$id_sala = ($row['id_sala']);
 				$id_pelicula = ($row['id_pelicula']);
 				$dia = ($row['dia']);
 				$horario = ($row['horario']);
 				
 
-				$object = new \Models\Funcion($cineDAO->buscarPorID($id_cine),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
+				$object = new \Models\Funcion($salasDAO->buscarPorID($id_sala),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
 				array_push($arrayFunciones, $object);
 
 			}
@@ -110,7 +116,7 @@ public function devolverFuncionesXidPelicula($dato){
 
 
 	
-	$cineDAO= new CinesDAO();
+	$salaDAO= new SalasDAO();
 	$peliDAO= new PeliculasDAO();
 	$arrayFunciones = array();
 	$query = 'SELECT * FROM ' .$this->table.' inner join Peliculas ON ' .$this->table.'.id_pelicula=Peliculas.id_api WHERE '.$this->table. '.id_pelicula=:id'; //devuelve todas las funciones asociadas a una pelicula
@@ -135,13 +141,13 @@ public function devolverFuncionesXidPelicula($dato){
 
 	while ($row = $command->fetch())
 	{
-		$id_cine = ($row['id_cine']);
+		$id_sala = ($row['id_sala']);
 		$id_pelicula = ($row['id_pelicula']);
 		$dia = ($row['dia']);
 		$horario = ($row['horario']);
 		
 
-		$object = new \Models\Funcion($cineDAO->buscarPorID($id_cine),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
+		$object = new \Models\Funcion($salaDAO->buscarPorID($id_sala),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
 		
 		array_push($arrayFunciones, $object);
 
@@ -153,13 +159,13 @@ public function devolverFuncionesXidPelicula($dato){
 //
 //
 //
-public function devolverFuncionesXCine($dato){
-	$cineDAO= new CinesDAO();
+public function devolverFuncionesXsala($dato){
+	$salaDAO= new SalasDAO();
 	$peliDAO= new PeliculasDAO();
 
 	$arrayFunciones = array();
 
-	$query= 'SELECT * FROM ' .$this->table. ' where id_cine=:id';
+	$query= 'SELECT * FROM ' .$this->table. ' where id_sala=:id';
 
 	$pdo = new Connection();
 	$connection = $pdo->Connect();
@@ -181,13 +187,13 @@ public function devolverFuncionesXCine($dato){
 
 	while ($row = $command->fetch())
 	{
-		$id_cine = ($row['id_cine']);
+		$id_sala = ($row['id_sala']);
 		$id_pelicula = ($row['id_pelicula']);
 		$dia = ($row['dia']);
 		$horario = ($row['horario']);
 		
 
-		$object = new \Models\Funcion($cineDAO->buscarPorID($id_cine),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
+		$object = new \Models\Funcion($salaDAO->buscarPorID($id_sala),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
 		
 		array_push($arrayFunciones, $object);
 
@@ -201,8 +207,8 @@ public function devolverFuncionesXCine($dato){
 //
 //
 public function verificarPeliculaEnCartelera($id_cine,$id_pelicula,$fecha){
-	$cineDAO= new CinesDAO();
-	$peliDAO= new PeliculasDAO();
+	echo "entro a verificar pelicula en cartelera ";
+	
 	$arrayFunciones = array();
 
 	$query='SELECT * FROM '.$this->table. ' WHERE '.$this->table. '.dia="'.$fecha.  '" AND '.$this->table.'.id_pelicula='.$id_pelicula;
@@ -219,7 +225,7 @@ public function verificarPeliculaEnCartelera($id_cine,$id_pelicula,$fecha){
 		
 		if ($row = $command->fetch()){
 			
-			return true;
+			return true;//retorno true si encontro esa pelicula en cartelera
 			
 		}
 		else
@@ -233,19 +239,19 @@ public function verificarPeliculaEnCartelera($id_cine,$id_pelicula,$fecha){
 //
 //
 //
-public function borrar($idCine,$idPelicula){
+public function borrar($idSala,$idPelicula){
 	
 	try 
     	{
     	$flag;
-		$query = 'DELETE FROM '.$this->table.' WHERE id_cine = :id AND id_pelicula = :idPelicula';
+		$query = 'DELETE FROM '.$this->table.' WHERE id_sala = :id AND id_pelicula = :idPelicula';
 		$pdo = new Connection();
 		$connection = $pdo->Connect();
 		$command = $connection->prepare($query);
 
 
 
-		$command->bindParam(':id', $idCine);
+		$command->bindParam(':id', $idSala);
 		$command->bindParam(':idPelicula', $idPelicula);
 		$command->execute();
 		//-------------------CAPTURO ERRORES DE BD---------------------------------------

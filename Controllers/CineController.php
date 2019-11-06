@@ -20,6 +20,7 @@ class CineController
 	 private $DAOCines;
      private $DAOFunciones;
      private $DAOPeliculas;
+     private $DAOSalas;
 
 //----------------CONSTRUCTOR---------------------
 	function __construct()
@@ -27,6 +28,7 @@ class CineController
 		$this->DAOCines=\DAO\CinesDAO::getInstance();
         $this->DAOFunciones=\DAO\FuncionesDAO::getInstance();
         $this->DAOPeliculas=\DAO\PeliculasDAO::getInstance();
+        $this->DAOSalas=\DAO\SalasDAO::getInstance();
        
 	}
 
@@ -45,6 +47,7 @@ class CineController
                     
                     $functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
                     $arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
+                    $salaList=$this->DAOSalas->traerTodos();
                     $arrayAlertExito=$arrayAlertExito;
                     $arrayAlertError=$arrayAlertError;
                     require(ROOT . '/Views/Adm/home_adm.php');//

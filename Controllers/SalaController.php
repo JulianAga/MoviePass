@@ -38,6 +38,7 @@ class SalaController{
                 {
                     //lo lleva al home ADM
                     $movieList=$this->DAOPeliculas->traerTodos();
+                    $salaList=$this->DAOSalas->traerTodos();
                     
                     $functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
                     $arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
@@ -61,7 +62,7 @@ class SalaController{
             }
         }//fin index-------
 	public function addSala($nombre,$capacidad,$valor_entrada,$id_cine){
-
+		echo "entro a add sala ";
 
 		if($nombre!=null && $capacidad!=null && $valor_entrada!=null && $id_cine!=null){
 			$cine=$this->DAOCines->buscarPorID($id_cine);

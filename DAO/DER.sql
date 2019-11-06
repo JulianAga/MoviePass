@@ -51,12 +51,23 @@ insert into Cuentas (email,pass,id_rol,id_cliente) values ("cliente@hgmail.com",
 create table Cines
 (
 	id_cine int auto_increment,
-    capacidad int,
     direccion varchar(30),
     nombre varchar(30),
-    valor_entrada int,
     habilitado boolean,
     constraint pk_id_cine primary key (id_cine)
+);
+/*
+*/
+create table Salas
+(
+    id_sala int auto_increment,
+    nombre varchar(30),
+    capacidad smallint,
+    valor_entrada smallint,
+    id_cine int,
+
+    constraint pk_id_sala primary key (id_sala),
+    constraint fk_sala_id_cine foreign key (id_cine) references Cines (id_cine)
 );
 
 insert into Cines (capacidad,direccion, nombre,valor_entrada,habilitado) values (100,'palma 1132','galleguitos',300,true);
@@ -79,12 +90,12 @@ create table Peliculas
 */
 create table Funciones
 (
-	id_cine int,
+	id_sala int,
     id_pelicula int,
     dia date,
     horario time,
-    constraint pk_id_cine_id_pelicula primary key (id_cine,id_pelicula,dia),
-    constraint fk_id_cine foreign key (id_cine) references Cines (id_cine) ,
+    constraint pk_id_cine_id_pelicula primary key (id_sala,id_pelicula,dia),
+    constraint fk_id_sala foreign key (id_sala) references Salas (id_sala) ,
     constraint fk_id_peliculas foreign key (id_pelicula) references Peliculas (id_api)
 );
 insert into Funciones (id_cine,id_pelicula,dia,horario) values (10,301528,"2014-05-09",'23:00');

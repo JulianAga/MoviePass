@@ -18,11 +18,13 @@ class FuncionController
 //----------------ATRIBUTOS-----------------------
 	 private $DAOFunciones;
 	 private $DAOPeliculas;
+	 private $DAOSalas;
 //----------------CONSTRUCTOR---------------------
 	function __construct()
 	{
 		$this->DAOFunciones=\DAO\FuncionesDAO::getInstance();
 		$this->DAOPeliculas=\DAO\PeliculasDAO::getInstance();
+		$this->DAOSalas=\DAO\SalasDAO::getInstance();
 	}
 
 	public function index()
@@ -39,6 +41,7 @@ class FuncionController
 					$movieList=$this->DAOPeliculas->traerTodos();//le paso la lista de peliculas de la BD propia
 	                $functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD  
 	                $cineController = new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
+	                $salaList=$this->DAOSalas->traerTodos();
 					$arrayCines=$cineController->traerTodos();//levanto todos los cines de la BD
 				   require(ROOT . '/Views/Adm/home_adm.php');//no esta hecho aun
                     
@@ -58,24 +61,26 @@ class FuncionController
             }
 		}
 		
-		public function addFuncion($id_pelicula, $id_cine, $fecha, $hora)
+		public function addFuncion($id_pelicula, $id_sala, $fecha, $hora)
 		{
 			//verificar que la pelicula no este ya en cartelera en ese cine
 			/*echo '<pre>';
 			var_dump($hora+15);
 			echo "</pre>";*/
-			$flag=$this->DAOFunciones->verificarPeliculaEnCartelera($id_cine,$id_pelicula,$fecha);//verifica si la pelicula se proyecta ese dia en ese cine. DEVUELVE TRUE SI YA HAY FUNCION ESE DIA Y FALSE SI NO LO HAY
-			/*echo $flag;*/
-			$flag2= $this->validarHorario($id_cine,$fecha,$hora,$id_pelicula);
-			echo $flag;
-			echo $flag2;
+			$sala=$this->DAOSalas->buscarPorID($id_sala);//busco la sala por id y me devuelv el obj sala
 			
-			if($flag==true && $flag2== true){//si ese dia no hay ninguna funcion, creo la funcion
+			$flag=$this->DAOFunciones->verificarPeliculaEnCartelera($sala->getCine()->getID(),$id_pelicula,$fecha);//verifica si la pelicula se proyecta ese dia en ese cine. DEVUELVE TRUE SI YA HAY FUNCION ESE DIA Y FALSE SI NO LO HAY
+			/*echo $flag;*/
+			
+			$flag2= $this->validarHorario($sala->getCine()->getID(),$fecha,$hora,$id_pelicula);
+
+			
+			
+			if($flag==false && $flag2== true){//si ese dia no hay ninguna funcion, creo la funcion
 				
-				//$funcionesXcine=$this->DAOFunciones->devolverFuncionesXCine($id_cine);
 				//verificar los 15 minutos MINIMO entre pelicula y pelicula
 				$peli_buscada=$this->DAOPeliculas->buscarPorID($id_pelicula);//le paso el ID de la pelicula de la API y me devuelve el objeto de esa pelicula en BD
-				$funcion = new Funcion($id_cine,$peli_buscada->getId_api(),$hora,$fecha);
+				$funcion = new Funcion($sala, $peli_buscada->getId_api(), $hora, $fecha);
 				$this->DAOFunciones->insertar($funcion);
 				//header("Location:".ROOT_VIEW);
 				$this->index();
@@ -281,7 +286,7 @@ class FuncionController
 			{
 				
 				
-				if($function->getIdCine()->getId()== $cine && $date == $function->getDia()) //si la funcion es en el cine y en el dia que se quiere agregar la nueva pelicula entra
+				if($function->getSala()->getCine()->getID()== $cine && $date == $function->getDia()) //si la funcion es en el cine y en el dia que se quiere agregar la nueva pelicula entra
 				{
 					
 					

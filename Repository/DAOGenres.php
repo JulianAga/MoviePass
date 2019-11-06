@@ -1,5 +1,5 @@
 <?php
-/*
+
 namespace Repository;
 include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
 //include_once "api/api_genre_list.php";
@@ -98,5 +98,5 @@ class DAOGenres{
     }
 
 }
-*/
+
 ?>
