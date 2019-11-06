@@ -15,7 +15,9 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Home Administrador</title>
-
+<!-- SWEET ALERT -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- SWEET ALERT -->
 
 <link rel="stylesheet" href="/MoviePass/Views/css/header2.css"><!-- ARCHIVO CSS-->
 
@@ -28,6 +30,14 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 </head> 
 
 <body class="fondo_home_adm">
+    <?php if ($arrayAlertExito!=null) { ?>
+            
+            <script> sweetAlert("Exito","<?php echo $arrayAlertExito; ?>", "success")</script>
+        <?php } ?>
+
+    <?php if ($arrayAlertError!=null) { ?>
+            <script> sweetAlert("Error", "<?php echo $arrayAlertError; ?>", "error")</script>
+             <?php } ?>
     <header>
         <?php include_once("header_adm.php"); ?> <!-- llamado a la barra nav de home-->
     </header>
@@ -69,7 +79,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
     <!---------------BOTON AGREGAR SALAS ----------------------->
 
-    <td style="vertical-align:middle;">
+                            <td style="vertical-align:middle;">
                                 <button type="button" class="boton_modificar" data-toggle="modal" data-target="#addSalas<?php echo $Cine->getID();?>" data-whatever="@mdo">Agregar Salas</button>
                                 <div class="modal fade" style="background: rgba(0,0,0,.6);" id="addSalas<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog" role="document">

@@ -1,6 +1,7 @@
 <?php namespace Controllers;
 
 use models\cine as Cine;
+use Controllers\AlertasController as AlertasController;
 //use Controllers\CineController as CineController;
 use Repository\CinesRepository as CinesRepository;
 
@@ -30,7 +31,7 @@ class CineController
 	}
 
 //----------------METODOS--------------------------
-	public function index()
+	public function index($arrayAlertExito,$arrayAlertError)
         {
             
             if(isset($_SESSION['Login']))//Si hay session:
@@ -44,6 +45,8 @@ class CineController
                     
                     $functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
                     $arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
+                    $arrayAlertExito=$arrayAlertExito;
+                    $arrayAlertError=$arrayAlertError;
                     require(ROOT . '/Views/Adm/home_adm.php');//
                     
                 }
@@ -74,6 +77,7 @@ class CineController
         if ($newCine->getNombre() == null || $newCine->getDireccion() == null)
         {
             $this->index();
+
             ?><script> sweetAlert("Error", "Los campos deben estar completos!", "error")</script>
             <?php
             //header("Location:".ROOT_VIEW);
@@ -101,24 +105,29 @@ class CineController
         }
         else if($this->DAOCines->buscarPorNombre($newCine->getNombre() )!=null ) // Verifica que no exista otro Cine con el mismo nombre en BD
         { 
-            $this->index();
-            ?><script> sweetAlert("Error", "El cine ingresado ya existe", "error")</script>
-            <?php
+            $alertasController=new AlertasController();
+            $arrayAlertError=$alertasController->addAlertError("El cine ingresado ya existe");
+            $this->index(null,$arrayAlertError);
+            
         
         }
         
         else{
             $flag=$this->DAOCines->insertar($newCine);
               //este tipo de mensaje no rompe el codigo
-            $this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
+            $arrayAlertExito=null;
+            $arrayAlertError=null;
             if ($flag==true){
-                ?><script> sweetAlert("Exito!", "Cine añadido correctamente!", "success")</script>
-                <?php
+                $alertasController=new AlertasController();
+                $arrayAlertExito=$alertasController->addAlertExito("Cine añadido correctamente!");
+                
             }
             else{
-                ?><script> sweetAlert("Error!", "No se pudo agregar el Cine!", "error")</script>
-                <?php
+                $alertasController=new AlertasController();
+                $arrayAlertError=$alertasController->addAlertError("No se pudo agregar el Cine!");
+                
             }
+            $this->index($arrayAlertExito,$arrayAlertError); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
         }
     }//fin newcine
     //
