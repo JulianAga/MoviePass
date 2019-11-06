@@ -65,16 +65,16 @@ class CineController
         }//fin index-------
 	//
 	//
-	public function newCine($cine,$direccion,$valor,$capacidad){
+	public function newCine($cine,$direccion){
         
 
         
-        $newCine = new cine ($cine,$direccion,$capacidad,$valor,true);//creo el nuevo cine
+        $newCine = new cine ($cine,$direccion,true);//creo el nuevo cine
 
-        if ($newCine->getValor_entrada() == null || $newCine->getCapacidad() == null)
+        if ($newCine->getNombre() == null || $newCine->getDireccion() == null)
         {
             $this->index();
-            ?><script> sweetAlert("Error", "El campo debe tener valores positivos", "error")</script>
+            ?><script> sweetAlert("Error", "Los campos deben estar completos!", "error")</script>
             <?php
             //header("Location:".ROOT_VIEW);
         }
@@ -106,18 +106,7 @@ class CineController
             <?php
         
         }
-        else if($capacidad < 0 ) // Verifica que la capacidad del cine sea positiva
-        {
-            $this->index();
-            ?><script> sweetAlert("Error", "La capacidad debe ser positiva!", "error")</script>
-            <?php 
-        }
-        else if($capacidad > 1000) // Verifica que la capacidad del cine sea positiva
-        {
-            $this->index();
-            ?><script> sweetAlert("Error", "La capacidad debe ser menor a 1000!", "error")</script>
-            <?php 
-        }
+        
         else{
             $flag=$this->DAOCines->insertar($newCine);
               //este tipo de mensaje no rompe el codigo

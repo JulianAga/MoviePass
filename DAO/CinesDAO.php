@@ -15,28 +15,28 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 	//-------------METODOS--------------------
 	public function insertar($dato){
 		try 
+
     	{
+    		
     		
     		$flag;
 			$query = 'INSERT INTO '.$this->table.' 
-			(capacidad, direccion, nombre , valor_entrada , habilitado) 
+			(direccion, nombre ,  habilitado) 
 			VALUES 
-			(:capacidad, :direccion, :nombre, :valor_entrada, :habilitado)';
+			(:direccion, :nombre,  :habilitado)';
 
 			$pdo = new Connection();
 			$connection = $pdo->Connect();
 			$command = $connection->prepare($query);
 
-			$capacidad = $dato->getCapacidad();
+			
 			$direccion = $dato->getDireccion();
 			$nombre = $dato->getNombre();
-			$valor_entrada = $dato->getValor_entrada();
 			$habilitado = $dato->getHabilitado();
 
-			$command->bindParam(':capacidad', $capacidad);
+			
 			$command->bindParam(':direccion', $direccion);
 			$command->bindParam(':nombre', $nombre);
-			$command->bindParam(':valor_entrada', $valor_entrada);
 			$command->bindParam(':habilitado', $habilitado);
 
 
@@ -69,9 +69,9 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 		try 
     	{
 			$query = 'INSERT INTO '.$this->table.' 
-			( capacidad, direccion,nombre,valor_entrada ,habilitado) 
+			(  direccion,nombre,habilitado) 
 			VALUES 
-			( :capacidad, :direccion,:nombre,:valor_entrada ,:habilitado)';
+			( :direccion,:nombre ,:habilitado)';
 
 			$pdo = new Connection();
 			$connection = $pdo->Connect();
@@ -79,18 +79,16 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 
 			
 
-			$capacidad = $dato->getCapacidad();
+			
 			$direccion = $dato->getDireccion();
 			$nombre = $dato->getNombre();
-			$valor_entrada = $dato->getValor_entrada();
 			$habilitado = $dato->getHabilitado();
 
 			
 			
-			$command->bindParam(':capacidad', $capacidad);
+			
 			$command->bindParam(':direccion', $direccion);
 			$command->bindParam(':nombre', $nombre);
-			$command->bindParam(':valor_entrada', $valor_entrada);
 			$command->bindParam(':habilitado', $habilitado);
 			
 			
@@ -130,13 +128,12 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 
 			while ($row = $command->fetch())
 			{
-				$capacidad = ($row['capacidad']);
+				
 				$direccion = ($row['direccion']);
 				$nombre = ($row['nombre']);
-				$valor_entrada = ($row['valor_entrada']);
 				$habilitado = ($row['habilitado']);
 
-				$object = new \Models\cine($nombre, $direccion, $capacidad, $valor_entrada, $habilitado) ;
+				$object = new \Models\cine($nombre, $direccion, $habilitado) ;
 
 				$object->setId($row['id_cine']);	
 			}
@@ -172,13 +169,12 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 
 			while ($row = $command->fetch())
 			{
-				$capacidad = ($row['capacidad']);
+				
 				$direccion = ($row['direccion']);
 				$nombre = ($row['nombre']);
-				$valor_entrada = ($row['valor_entrada']);
 				$habilitado = ($row['habilitado']);
 
-				$object = new \Models\cine($nombre, $direccion, $capacidad, $valor_entrada, $habilitado) ;
+				$object = new \Models\cine($nombre, $direccion, $habilitado) ;
 
 				$object->setId($row['id_cine']);	
 			}
@@ -258,10 +254,9 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
     		
     		$flag;
 			$query= 'UPDATE '.$this->table.'
-					SET capacidad = :capacidad, 
+					SET  
 						direccion = :direccion,
 						nombre = :nombre,
-						valor_entrada = :valor_entrada,
 						habilitado = :habilitado
 						
 					WHERE id_cine = :id';
@@ -271,20 +266,17 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 			$command = $connection->prepare($query);
 
 			$id = $dato->getID();
-			$capacidad = $dato->getCapacidad();
+			
 			$direccion = $dato->getDireccion();
 			$nombre = $dato->getNombre();
-			$valor_entrada = $dato->getValor_entrada();
 			$habilitado = $dato->getHabilitado();
 					
 					
 
 
 			$command->bindParam(':id', $id);
-			$command->bindParam(':capacidad', $capacidad);
 			$command->bindParam(':direccion', $direccion);
 			$command->bindParam(':nombre', $nombre);
-			$command->bindParam(':valor_entrada', $valor_entrada);
 			$command->bindParam(':habilitado', $habilitado);
 			
 
@@ -336,13 +328,12 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 
 			while ($row = $command->fetch())
 			{
-				$capacidad = ($row['capacidad']);
+				
 				$direccion = ($row['direccion']);
 				$nombre = ($row['nombre']);
-				$valor_entrada = ($row['valor_entrada']);
 				$habilitado = ($row['habilitado']);
 
-				$object = new \Models\cine($nombre,$direccion,$capacidad,$valor_entrada,$habilitado);
+				$object = new \Models\cine($nombre,$direccion,$habilitado);
 
 				$object->setId($row['id_cine']);	
 
