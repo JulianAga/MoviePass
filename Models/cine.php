@@ -10,13 +10,11 @@ class Cine {
     private $valor_entrada;
     private $habilitado;
 
-    function __construct ($nombre,$direccion,$capacidad,$valor_entrada,$habilitado){
+    function __construct ($nombre,$direccion,$habilitado){
 
         $this->ID = null;
         $this->setNombre($nombre);
         $this->setDireccion($direccion);
-        $this->setCapacidad($capacidad);
-        $this->setValor_entrada($valor_entrada);
         $this->setHabilitado($habilitado);
     }
 
@@ -52,27 +50,7 @@ class Cine {
         }
     }
 
-    public function getCapacidad(){
-        return $this->capacidad;
-    }
-
-    public function setCapacidad($capacidad){
-        if($capacidad > 0 && $capacidad < 1000)
-        {
-        $this->capacidad = $capacidad;
-        }
-    }
-
-    public function getValor_entrada(){
-        return $this->valor_entrada;
-    }
-
-    public function setValor_entrada($valor_entrada){
-        if($valor_entrada > 0 && $valor_entrada < 5000)
-        {
-        $this->valor_entrada = $valor_entrada;
-        }
-    }
+    
     
     public function getHabilitado()
     {
