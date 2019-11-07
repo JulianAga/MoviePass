@@ -62,7 +62,7 @@ class SalaController{
             }
         }//fin index-------
 	public function addSala($nombre,$capacidad,$valor_entrada,$id_cine){
-		echo "entro a add sala ";
+		//echo "entro a add sala ";
 
 		if($this->DAOSalas->buscarPorNombre($nombre,$id_cine)!= null)//busca que no haya otro nombre de sala igual en el mismo cine
 		{

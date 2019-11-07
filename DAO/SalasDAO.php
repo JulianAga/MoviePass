@@ -115,6 +115,7 @@ class SalasDAO extends SingletonAbstractDAO implements IDAO{
 			try 
 			{
 				
+				$object = null;
 				$cineDAO= new CinesDAO();
 	
 				$query = 'SELECT * FROM '.$this->table.' WHERE nombre = :nombre and id_cine = :id_cine';
