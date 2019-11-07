@@ -85,6 +85,8 @@
 				
 					$movieList=array_shift($generoYfecha);
 					$genresArray=array_shift($generoYfecha);
+
+					var_dump($genresArray);
 					require(ROOT . '/Views/home.php');
 
 					
@@ -257,7 +259,7 @@
 				{
 					?><script> sweetAlert("Error!", "Las contraseñas no coinciden", "error")</script>
         				 <?php
-					header("Location:".ROOT_VIEW); 
+					
 				}
 				
 			}
@@ -276,7 +278,7 @@
 
 
 		
-	private function genreFilter($genre)
+	/*private function genreFilter($genre)
 	{
 		
 
@@ -304,7 +306,7 @@
 		}
 
 		return $movieList;
-	}
+	}*/
 		
 
 

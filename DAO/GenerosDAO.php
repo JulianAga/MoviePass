@@ -73,7 +73,7 @@ class GenerosDAO extends SingletonAbstractDAO implements IDAO
 				$idApi = ($row['id_genero']);
 				
 
-				$object = new \Models\Genre($nombre,$idApi);
+				$object = new \Models\Genre($idApi,$nombre);
 
 				array_push($objects, $object);
 
