@@ -2,7 +2,7 @@
 
 use models\cine as Cine;
 use models\Funcion as Funcion;
-use Repository\DAOGenres as DAOGenres;
+use DAO\GenerosDAO as GenerosDAO;
 //use Repository\CinesRepository as CinesRepository;
 ?>
 <!-- SWEET ALERT -->
@@ -155,9 +155,10 @@ class FuncionController
 					
 				}//fin foreach
 				
-				$daoGenres=new DAOGenres();           //crea un objeto de dao genres
-				$genresArray=$daoGenres->GetAll();    //carga en la variable la lista con los generos 
-				//var_dump($genresArray);
+				$daoGenres=new GenerosDAO();           //crea un objeto de dao genres
+				$genresArray=$daoGenres->traerTodos();    //carga en la variable la lista con los generos 
+				
+				
 				$movieList=array();
 				$toShow=array();
 				
