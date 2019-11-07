@@ -28,12 +28,6 @@ class AlertasController{
 
 	 }//fin add alert
 
-}//fin calss
-
-
-
-
-
-
+}//fin class
 
 ?>

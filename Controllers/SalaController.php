@@ -64,12 +64,16 @@ class SalaController{
 	public function addSala($nombre,$capacidad,$valor_entrada,$id_cine){
 		echo "entro a add sala ";
 
-		if($nombre!=null && $capacidad!=null && $valor_entrada!=null && $id_cine!=null){
+		if($this->DAOSalas->buscarPorNombre($nombre,$id_cine)!= null)//busca que no haya otro nombre de sala igual en el mismo cine
+		{
+			$this->index();
+			?><script> sweetAlert("Error", "El Nombre de sala ya existe en el cine!", "error")</script>
+            <?php
+		}
+		else if($nombre!=null && $capacidad!=null && $valor_entrada!=null && $id_cine!=null){
 			$cine=$this->DAOCines->buscarPorID($id_cine);
-			
-			$newSala = new Sala ($capacidad,$valor_entrada,$nombre,$cine);
-			
 
+			$newSala = new Sala ($capacidad,$valor_entrada,$nombre,$cine);
 			
 			$flag=$this->DAOSalas->insertar($newSala);
 			if($flag==true){
@@ -78,14 +82,15 @@ class SalaController{
 			?><script> sweetAlert("Exito", "Sala agregada!", "success")</script>
             <?php
 			}
-		}
 		
+		}	
 
 
 	}//fin add sala
 
 
-	
-}//fin class
 
+	
+		}//fin class
+	
 ?>

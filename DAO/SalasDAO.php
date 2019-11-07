@@ -3,7 +3,7 @@
 use models\Cine as Cine;
 use DAO\CinesDAO as CinesDAO;
 use DAO\PeliculasDAO as PeliculasDAO;
-use DAO\SalasDAO as SalasDAO;
+//use DAO\SalasDAO as SalasDAO;
 use \Exception as Exception;
 use \PDOException as PDOException;
 
@@ -109,9 +109,48 @@ class SalasDAO extends SingletonAbstractDAO implements IDAO{
     	catch (Exception $e) {
 			throw $e;
 		}
+	}// fin buscar por id
 
-	}//fin buscarPorID
+		public function buscarPorNombre($dato, $id_cine){
+			try 
+			{
+				
+				$cineDAO= new CinesDAO();
 	
+				$query = 'SELECT * FROM '.$this->table.' WHERE nombre = :nombre and id_cine = :id_cine';
+	
+				$pdo = new Connection();
+				$connection = $pdo->Connect();
+				$command = $connection->prepare($query);			
+	
+				$command->bindParam(':nombre', $dato);
+				$command->bindParam(':id_cine', $id_cine);
+
+				$command->execute();
+				
+				while ($row = $command->fetch())
+				{
+					
+					$nombre = ($row['nombre']);
+					$capacidad = ($row['capacidad']);
+					$valor_entrada = ($row['valor_entrada']);
+					$id_cine = ($row['id_cine']);
+		
+					$object = new \Models\Sala($capacidad,$valor_entrada,$nombre,$cineDAO->buscarPorID($id_cine)) ;
+	
+					$object->setId($row['id_sala']);	
+				}
+
+				return $object;
+			}
+			catch (PDOException $ex) {
+				throw $ex;
+			}
+			catch (Exception $e) {
+				throw $e;
+			}
+
+		}
 	public function borrar($dato){
 
 	}//fin borrar
