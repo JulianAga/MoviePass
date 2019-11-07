@@ -152,8 +152,43 @@ class SalasDAO extends SingletonAbstractDAO implements IDAO{
 			}
 
 		}
-	public function borrar($dato){
+	public function borrar($dato){  // SIN TESTEAR
+		try 
+    	{
+    	$flag;
+		$query = 'DELETE FROM '.$this->table.' WHERE id_sala = :id_sala';
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
 
+
+
+		$command->bindParam(':id_sala', $dato);
+		$command->execute();
+		//-------------------CAPTURO ERRORES DE BD---------------------------------------
+		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+		
+		if ($num_error==null){
+			$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
+
+		}
+		else
+			$flag=false;//si dio error al borrar de BD retorno false 
+		
+		//----------------------------------------------------------------------------------
+
+    	}
+    	catch (PDOException $ex) {
+    		echo '<script language="javascript">alert("Error al eliminar Sala: PDO EXCEPTION");</script>';
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+    		echo '<script language="javascript">alert("Error al eliminar Sala: EXCEPTION");</script>';
+			throw $e;
+    	}
+
+    	return $flag;
 	}//fin borrar
 	
 	public function actualizar($dato){
