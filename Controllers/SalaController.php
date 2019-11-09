@@ -88,6 +88,14 @@ class SalaController{
 
 	}//fin add sala
 
+	public function borrarSala($id_sala)
+	{
+		$this->DAOSalas->borrarSala($id_sala);
+
+		$this->index();
+	}//fin borrar sala
+	
+
 
 
 	

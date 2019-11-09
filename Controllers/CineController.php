@@ -73,8 +73,6 @@ class CineController
 	//
 	public function newCine($cine,$direccion){
         
-
-        
         $newCine = new cine ($cine,$direccion,true);//creo el nuevo cine
 
         if ($newCine->getNombre() == null || $newCine->getDireccion() == null)
