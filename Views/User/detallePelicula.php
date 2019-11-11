@@ -69,11 +69,11 @@
         <br>
         <li>
           <p>Cines:
-          <select>
-            <option readonly selected>Seleccione Cine</option>
+          <select required>
+            
           <?php foreach ($lista_funciones as $g) { ?>
               <option value="<?php echo '$g->getIdCine()->getNombre()';?>">
-                <?php echo $g->getIdCine()->getNombre().' - '.$g->getDia().' - '.$g->getHorario();?>
+                <?php echo $g->getSala()->getCine()->getNombre().' - '.$g->getSala()->getNombre().' - '.$g->getDia().' - '.$g->getHorario();?>
               </option>
              <?php } ?>
             </select>

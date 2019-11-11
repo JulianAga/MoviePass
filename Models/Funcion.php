@@ -8,7 +8,7 @@ class Funcion
 	private $id_funcion;
 
 	private $sala;
-	private $id_pelicula;
+	private $id_pelicula;//es obj pelicula
 	private $horario;
 	private $dia;
 	

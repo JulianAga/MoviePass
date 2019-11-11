@@ -186,12 +186,11 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                     <form method="post" action="<?= ROOT_VIEW ?>/Funcion/addFuncion">
                                         <div class="form-group">
                                             <label>Pelicula</label>
-                                            <select name="id_pelicula" class="form-control" required>
+                                            <select name="id_pelicula" class="form-control" >
                                                 
                                                 
-                                                    <?php foreach ($movieList as $key ) { ?>
-                                                        <option  value="<?php echo $key->getId_api(); ?>" name="id_pelicula"> <?php echo $key->getNombre(); ?>
-                                                            
+                                                    <?php foreach ($movieList as $key ) { ?> 
+                                                        <option  value="<?php echo $key->getId_api(); ?>" name="id_pelicula"> <?php echo $key->getNombre(); ?>    
                                                         </option>
                                                     <?php } ?>  
                                             </select>
@@ -206,11 +205,11 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                             <select required type="number" name="sala" id="" required>
                                               
                                               <?php foreach ($salaList as $key) { ?>
-
+                                                <?php if ($Cine->getID()== $key->getCine()->getID()) {?>
                                                   <option value="<?php echo $key->getId(); ?>">
                                                       <?php echo $key->getNombre(); ?>
                                                   </option>
-                                             <?php } ?>
+                                             <?php } }?>
                                             </select>
                                         </div>
                            
