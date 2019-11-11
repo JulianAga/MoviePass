@@ -63,7 +63,7 @@ if( isset($_SESSION['Cliente_Logueado'])){
   <!-- BARRA DE NAVEGACION -->
   <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
     <ul class="nav navbar-nav">
-      <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Adm_Peliculas/adm_cines" class="nav-link">ADM Cines</a></li>
+      <li class="nav-item"><a href="<?php echo VIEWS_PATH ?>Adm/cines_adm.php" class="nav-link">ADM Cines</a></li>
       <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Adm_Peliculas/metodo" class="nav-link">ADM Peliculas</a></li>
       <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Adm_Peliculas/recibirPeliculas" class="nav-link">Actualizar Peliculas API</a></li> 
     </ul>
