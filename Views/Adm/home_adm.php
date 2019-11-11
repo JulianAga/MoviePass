@@ -118,11 +118,62 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                 </div>
                             </td>
 
+
+                            <!---------------BOTON VER SALAS ----------------------->
+
+                            <td style="vertical-align:middle;">
+                                <button type="button" class="boton_modificar" data-toggle="modal" data-target="#addSalas<?php echo $Cine->getID();?>" data-whatever="@mdo">Ver Salas</button>
+                                <div class="modal fade" style="background: rgba(0,0,0,.6);" id="addSalas<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Ver Salas</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <table>
+                                            <thead><?php echo $Cine->getNombre();?></thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Cine</th>
+                                                <th>Direccion</th>
+                                                <th>  </th>
+                                                <th>  </th>
+                                                <th>  </th>
+                                                <th>  </th>
+                                            </tr>
+                                            <tbody>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </td>
+
     <!---------------BOTON AGREGAR FUNCION ----------------------->
                        
                             <td style="vertical-align:middle;">
-                                <button type="button" class="boton_modificar" data-toggle="modal" data-target="#addMovie<?php echo $Cine->getID();?>" data-whatever="@mdo">Agregar Funcion</button>
+                                <?php if ($movieList!= null && $salaList!= null){?>
+                                <button type="button" class="boton_modificar" data-toggle="modal" data-target="#addMovie<?php echo $Cine->getID();?>" data-whatever="@mdo">Agregar Funcion</button> <?php } ?>
+
+                                <?php if ($movieList== null || $salaList== null){?> <!-- DESHABILITO BOTON SI NO HAY SALAS O PELICULAS-- >
+                                <button type="button" class="boton_modificar" data-toggle="modal" data-target="#addMovie<?php echo $Cine->getID();?>" data-whatever="@mdo" disabled>Agregar Funcion</button> <?php } ?>
+
                                 <div class="modal fade" style="background: rgba(0,0,0,.6);" id="addMovie<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
                                   <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                       <div class="modal-header">
@@ -135,12 +186,11 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                     <form method="post" action="<?= ROOT_VIEW ?>/Funcion/addFuncion">
                                         <div class="form-group">
                                             <label>Pelicula</label>
-                                            <select name="id_pelicula" class="form-control">
-                                                <option disabled>Seleccione Pelicula...
-                                                </option>
+                                            <select name="id_pelicula" class="form-control" required>
+                                                
                                                 
                                                     <?php foreach ($movieList as $key ) { ?>
-                                                        <option required value="<?php echo $key->getId_api(); ?>" name="id_pelicula"> <?php echo $key->getNombre(); ?>
+                                                        <option  value="<?php echo $key->getId_api(); ?>" name="id_pelicula"> <?php echo $key->getNombre(); ?>
                                                             
                                                         </option>
                                                     <?php } ?>  
@@ -153,8 +203,8 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                         </div>
                                         <div class="form-group">
                                             <label>Salas</label>
-                                            <select required type="number" name="sala" id="">
-                                              <option value="1">Seleccione Sala...</option>
+                                            <select required type="number" name="sala" id="" required>
+                                              
                                               <?php foreach ($salaList as $key) { ?>
 
                                                   <option value="<?php echo $key->getId(); ?>">
@@ -183,6 +233,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                   </div>
                                 </div>
                             </td>
+
     <!----------------------- BOTON VER FUNCIONES  -------------------------------------->
                             <td style="vertical-align:middle;">
 
@@ -246,32 +297,6 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                         </button>
                                       </div>
                                       <form method="post" action="<?= ROOT_VIEW ?>/Cine/modifyCine">
-                                         <div class="form-group">
-                                            <label>Id del Cine</label>
-                                            <input type="text" class="form-control" name="ID" value="<?php echo $Cine->getID();?>" readonly/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Nombre del Cine</label>
-                                            <input type="text" class="form-control" name="cine" maxlength="30" value="<?php echo $Cine->getNombre();?>" required/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Estado </label>
-                                            <select name="habilitado">
-                                                <option value="1" name="habilitado"<?php if ($Cine->getHabilitado()==true){?> selected <?php }?> >Habilitado</option>
-                                                <option value="0" name="habilitado"<?php if ($Cine->getHabilitado()==false){?> selected <?php }?> >Deshabilitado</option>
-                                            </select>   
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Direccion</label>
-                                            <input type="text" class="form-control" name="direccion" maxlength="30" value="<?php echo $Cine->getDireccion();?>" required>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
-                                        <button type="submit" class="boton_modificar">Modificar</button>
-                                    </div>
 
                                           <div class="modal-body">
                                             <div class="form-group">
@@ -302,7 +327,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                 </div>
                             </td>
                             
-                            <!------------- BOTON ELIMINAR CINE Y CONFIRMACION--------------------------->
+            <!----------------------- BOTON ELIMINAR CINE Y CONFIRMACION------------------------------->
                             <td style="vertical-align:middle;">
                                 <form method="post" id="eliminar" action="<?= ROOT_VIEW ?>/Cine/deleteCine">
                                     <button name="eliminar" value="<?php echo $Cine->getID();?>" class="boton_eliminar">Eliminar</button>     

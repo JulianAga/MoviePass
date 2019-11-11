@@ -17,11 +17,7 @@ class FuncionesDAO extends SingletonAbstractDAO
 	public function insertar($dato){
 		try 
     	{
-    		?>
-    		<pre>
-    			<?php var_dump($dato); ?>
-    		</pre>
-    		<?php
+    		
 			$query = 'INSERT INTO '.$this->table.' 
 			(id_sala, id_pelicula, dia, horario) 
 			VALUES 
@@ -207,7 +203,7 @@ public function devolverFuncionesXsala($dato){
 //
 //
 public function verificarPeliculaEnCartelera($id_cine,$id_pelicula,$fecha){
-	echo "entro a verificar pelicula en cartelera ";
+	
 	
 	$arrayFunciones = array();
 

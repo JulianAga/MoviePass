@@ -82,11 +82,11 @@
 					$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
 					$functionController=new FuncionController();//intancia de controladora de funciones
 					$generoYfecha=$functionController->filtroGenero_Fecha($genre,$date,$functionList);//llamo a los filtros genero y fecha
-				
+					$salaList=$this->DAOSalas->traerTodos();
 					$movieList=array_shift($generoYfecha);
 					$genresArray=array_shift($generoYfecha);
 
-					var_dump($genresArray);
+					
 					require(ROOT . '/Views/home.php');
 
 					
