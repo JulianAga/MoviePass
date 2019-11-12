@@ -43,7 +43,7 @@
     <img src="http://image.tmdb.org/t/p/w500'. $mov->getImagen() . '" class="img-responsive"  style="width:400" height="400"  alt="Image "> ';
     ?>
   </div>
-
+  <form method="post" action="<?= ROOT_VIEW ?>/Compra/newCompra">
   <div class="c li_borde_trasparente ">
     
     <?php
@@ -69,10 +69,10 @@
         <br>
         <li>
           <p>Cines:
-          <select required>
+          <select required name="valores">
             
           <?php foreach ($lista_funciones as $g) { ?>
-              <option value="<?php echo '$g->getIdCine()->getNombre()';?>">
+              <option value="<?php  $_SESSION['Funcion']=$g;?>">
                 <?php echo $g->getSala()->getCine()->getNombre().' - '.$g->getSala()->getNombre().' - '.$g->getDia().' - '.$g->getHorario();?>
               </option>
              <?php } ?>
@@ -82,11 +82,9 @@
         
         <div class="or-seperator"></div>
         <br>
-        <div>
-          <form>
             <input type="submit" class="btn btn-primary btn-block btn-abajo" value="Comprar Entradas">
-          </form>
-        </div>
+        </form>
+        
       
     
  
@@ -219,7 +217,7 @@
       }
       .a { grid-area: head; margin-right: 70px; margin-left:70px;}
       .b { grid-area: menu;  height:600px; width:400px; margin-left:70px;}
-      .c { grid-area: main;  height:600px; width:850px;margin-right: 70px; padding: 30px;}
+      .c { grid-area: main;  height:550px; width:850px;margin-right: 70px; padding: 30px;}
       .d { grid-area: foot; background: orange; }
 
       .btn-abajo{
