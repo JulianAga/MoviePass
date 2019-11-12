@@ -42,7 +42,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
     </header>
         <main class="p-5">
         <div class="container position-relative align-middle">
-        <h1 class="box_titulo box_transparente">CINES</h1>
+        <h1 class="box_titulo box_transparente">Cines</h1>
                 <table class="table box_transparente table_transparente">
                     <thead class="thead-dark">
                         <tr>
@@ -122,8 +122,8 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                             <!---------------BOTON VER SALAS ----------------------->
 
                             <td style="vertical-align:middle;">
-                                <button type="button" class="boton_modificar" data-toggle="modal" data-target="#addSalas<?php echo $Cine->getID();?>" data-whatever="@mdo">Ver Salas</button>
-                                <div class="modal fade" style="background: rgba(0,0,0,.6);" id="addSalas<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <button type="button" class="boton_modificar" data-toggle="modal" data-target="#viewSalas<?php echo $Cine->getID();?>" data-whatever="@mdo">Ver Salas</button>
+                                <div class="modal fade" style="background: rgba(0,0,0,.6);" id="viewSalas<?php echo $Cine->getID();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                       <div class="modal-header">
@@ -133,35 +133,36 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                         </button>
                                       </div>
                                       <div class="modal-body">
-                                        <table>
-                                            <thead><?php echo $Cine->getNombre();?></thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Cine</th>
-                                                <th>Direccion</th>
-                                                <th>  </th>
-                                                <th>  </th>
-                                                <th>  </th>
-                                                <th>  </th>
-                                            </tr>
-                                            <tbody>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        
+                                        <form action="">
+                                        <?php
+                                      if ($movieList!= null && $salaList!= null){
+                                         foreach ($salaList as $sala) { ?>
+
+                                                <?php if($Cine->getID() == $sala->getCine()->getID()) { ?>
+                                                  <div class="form-group">
+                                                  <label>     Nombre: </label>
+                                                  <label>     <?php echo $sala->getNombre(); ?> </label>
+                                                  </div>
+                                                  <div class="form-group">
+                                                  <label>     Capacidad </label>
+                                                  <label><t>     <?php echo $sala->getCapacidad(); ?> </t></label>
+                                                  </div>
+                                                
+                                             <?php 
+                                            } } }?>
+                                            </form>
+                                        <div class="modal-footer">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                        </form>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                             </td>
+
+                                          
 
     <!---------------BOTON AGREGAR FUNCION ----------------------->
                        
