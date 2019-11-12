@@ -44,7 +44,19 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
     <main class="p-5">
         <div class="container position-relative align-middle">
         <h1 class="box_titulo box_transparente">Entradas</h1>
+
+        <?php foreach ($arrayCines as $cine) {?>
+        
+            
+      
                 <table class="table box_transparente table_transparente">
+                <thead class="thead-dark">
+                        <tr>
+                        <h2>   <?php echo $cine->getNombre();?> </h2>
+
+                            
+                        </tr>
+                    </thead>
                     <thead class="thead-dark">
                         <tr>
                             <th>Función</th>
@@ -55,7 +67,8 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($functionList as $funct) { ?>
+                    <?php foreach ($functionList as $funct) { 
+                        if ($funct->getSala()->getCine()->getID() == $cine->getID()){?>
                         <tr>
                         <td>
                         <?php echo $funct->getIdPelicula()->getNombre();?>
@@ -67,10 +80,10 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                         <?php echo $funct->getSala()->getCapacidad();?>
                         </td>
                         </tr>             
-                        <?php } ?>
+                        <?php }} ?>
 
 <!-- FIN DEL MAIN -->
-
+<?php }?>
 <style>
         .box_transparente{
             box-shadow:0 5px 5px 3px rgba(0, 0, 0, 0.5);
