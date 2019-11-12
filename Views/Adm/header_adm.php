@@ -52,7 +52,7 @@ if( isset($_SESSION['Cliente_Logueado'])){
 <body>
 <nav class="navbar navbar-default navbar-expand-lg navbar-light">
   <div class="navbar-header d-flex col">
-    <a class="navbar-brand" href="#">Movie<b>Pass</b></a>     
+    <a class="navbar-brand" href="<?= ROOT_VIEW ?>/Nav/index">Movie<b>Pass</b></a>     
     <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
       <span class="navbar-toggler-icon"></span>
       <span class="icon-bar"></span>
@@ -63,7 +63,7 @@ if( isset($_SESSION['Cliente_Logueado'])){
   <!-- BARRA DE NAVEGACION -->
   <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
     <ul class="nav navbar-nav">
-      <li class="nav-item"><a href="<?php echo VIEWS_PATH ?>Adm/cines_adm.php" class="nav-link">ADM Cines</a></li>
+      <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Nav/adm_cine"  class="nav-link">ADM Cines</a></li>
       <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Adm_Peliculas/metodo" class="nav-link">ADM Peliculas</a></li>
       <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Adm_Peliculas/recibirPeliculas" class="nav-link">Actualizar Peliculas API</a></li> 
     </ul>

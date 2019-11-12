@@ -1,8 +1,8 @@
 <?php namespace Views;
 use Controllers\FuncionController as FuncionController;
 use models\Cine as Cine;
-include "../../Config/API_tmdb.php";//llamado a la configuracion API the movie DB
-include "../../Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
+include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
+include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
 ?>
 
@@ -43,20 +43,31 @@ include "../../Api/api_now.php";// incluyo la API de peliculas actuales en carte
 
     <main class="p-5">
         <div class="container position-relative align-middle">
-        <h1 class="box_titulo box_transparente">CINES</h1>
+        <h1 class="box_titulo box_transparente">Entradas</h1>
                 <table class="table box_transparente table_transparente">
                     <thead class="thead-dark">
                         <tr>
-                            <th></th>
                             <th>Funcion</th>
                             <th>dia</th>
+                            <th>Entradas</th>
+
                             
                         </tr>
                     </thead>
                     <tbody>
-
-                   
-
+                    <?php foreach ($functionList as $funct) { ?>
+                        <tr>
+                        <td>
+                        <?php echo $funct->getIdPelicula()->getNombre();?>
+                        </td>
+                        <td>
+                        <?php echo $funct->getDia()." a las ". $funct->getHorario();?>
+                        </td>
+                        <td>
+                        <?php echo $funct->getSala()->getCapacidad();?>
+                        </td>
+                        </tr>             
+                        <?php } ?>
 
 <!-- FIN DEL MAIN -->
 
