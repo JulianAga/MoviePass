@@ -1,4 +1,4 @@
-<?php namespace Usuario
+<?php namespace Usuario;
 
   //$cuentaLogueada = $_SESSION['Login'] ;
 ?>

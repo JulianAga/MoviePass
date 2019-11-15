@@ -66,9 +66,10 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                             
                         </tr>
                     </thead>
-                    <tbody>
+                 
                     <?php foreach ($functionList as $funct) { 
                         if ($funct->getSala()->getCine()->getID() == $cine->getID()){?>
+                           <tbody>
                         <tr>
                         <td>
                         <?php echo $funct->getIdPelicula()->getNombre();?>
@@ -79,8 +80,10 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                         <td>
                         <?php echo $funct->getSala()->getCapacidad();?>
                         </td>
-                        </tr>             
+                        </tr>       
+                        </tbody>      
                         <?php }} ?>
+                
 
 <!-- FIN DEL MAIN -->
 <?php }?>
