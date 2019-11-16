@@ -66,8 +66,9 @@ class SalaController{
 
 		if($this->DAOSalas->buscarPorNombre($nombre,$id_cine)!= null)//busca que no haya otro nombre de sala igual en el mismo cine
 		{
-			$this->index();
 			$_SESSION['Error']="El Nombre de sala ya existe en el cine!";
+			$this->index();
+			
 		}
 		else if($nombre!=null && $capacidad!=null && $valor_entrada!=null && $id_cine!=null){
 			$cine=$this->DAOCines->buscarPorID($id_cine);
@@ -77,8 +78,9 @@ class SalaController{
 			$flag=$this->DAOSalas->insertar($newSala);
 			if($flag==true){
 
-			$this->index();
 			$_SESSION['Success']="Sala agregada!";
+			$this->index();
+			
 			}
 		
 		}	
@@ -88,7 +90,11 @@ class SalaController{
 
 	public function borrarSala($id_sala)
 	{
-		$this->DAOSalas->borrarSala($id_sala);
+		$flag=$this->DAOSalas->borrarSala($id_sala);
+		if ($flag==true)
+			$_SESSION['Success']="Sala eliminada!";
+		else
+			$_SESSION['Error']="No se pudo borrar la sala";
 
 		$this->index();
 	}//fin borrar sala

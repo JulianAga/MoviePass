@@ -47,7 +47,9 @@ class GeneroController
 
 
         if ($err) {
-          echo "cURL Error #:" . $err;
+            $msj="cURL Error #:" . $err;
+            $_SESSION['Error']=$msj;
+          
         }
         else
           return $arrayGenero;

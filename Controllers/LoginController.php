@@ -137,17 +137,18 @@
 
 					else
 					{
-						$this->index();
 						$_SESSION['Error']="Email o contraseña incorrectos!";
+						$this->index();
+						
 						
 					}					
 				}
 				
 				else
 				{					
-										
+						$_SESSION['Error']="El email ingresado no se encuentra registrado";				
 						$this->index();	
-						$_SESSION['Error']="El email ingresado no se encuentra registrado";
+						
 														
 									
 				}
@@ -156,8 +157,9 @@
 
 			else//entra si la session LOGIN EXISTE... 
 			{				
-				$this->index();
+				
 				$_SESSION['Error']="Usuario actualmente logueado!";
+				$this->index();
 								
 			}//fin else general
 			
@@ -175,9 +177,10 @@
 			//echo '<script language="javascript">alert("Bienvenido '.$cuenta->getEmail(). '!");</script>';
 			//header("Location:".ROOT_VIEW);
 			//header("Location:".ROOT_VIEW);
-			$this->index();
 			$msj="Bienvenido ". $cliente->getNombre() . " " . $cliente->getApellido()."!";
 			$_SESSION['Success']=$msj;
+			$this->index();
+			
 			
 
 		}//fin crear session**********
@@ -197,8 +200,9 @@
 
 			else
 			{
-				$this->index();
 				$_SESSION['Error']="Ningún usuario logueado";
+				$this->index();
+				
 
 			}			
 
@@ -217,7 +221,7 @@
 		    } 
 		    catch (Exception $e) 
 		    {
-		    	$_SESSION['BD']="Error al buscar datos del login en la base de datos";
+		    	$_SESSION['BD']="Error al buscar datos del login en la base de datos.Exception";
 				
 		    }
 
@@ -233,7 +237,7 @@
 			    }
 			    catch (Exception $e) 
 			    {
-			    	$_SESSION['Error']="Error al insertar un nuevo usuario en la base de datos";
+			    	$_SESSION['Error']="Error al insertar un nuevo usuario en la base de datos.Exception";
 			    }				
 				
 				if ($pass1 == $pass2)//verifico que coincidan las pass
@@ -251,7 +255,7 @@
 				    } 
 				    catch (Exception $e) 
 				    {
-				    	$_SESSION['Error']="Error al insertar la cuenta en la base de datos";
+				    	$_SESSION['Error']="Error al insertar la cuenta en la base de datos.Exception";
 				    	
 				    }
 				}
@@ -265,8 +269,9 @@
 			
 			else
 			{
-				$this->index();
 				$_SESSION['Error']="El email ya se encuentra registrado"; 
+				$this->index();
+				
 			}
 
 		

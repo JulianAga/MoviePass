@@ -30,6 +30,7 @@ require (API_PATH."api_now.php");// incluyo la API de peliculas actuales en cart
 
 <body class="body_parallax"> <!-- fondo_body/body_parallax es una clase css donbde esta el archivo de la imagen de fondo y otras configuraciones del fondo, esta al final de home.php en la secion de <style>-->
  
+
  <!------------ MUESTRA DE ERRORES PROVENIENTES DE LA CONTROLADORA------->
     <?php if (isset($_SESSION['Error']) ) {
    $msj=$_SESSION['Error']; ?>
@@ -46,9 +47,9 @@ require (API_PATH."api_now.php");// incluyo la API de peliculas actuales en cart
     <?php } ?>
     <!-- -->
     <?php if (isset($_SESSION['BD']) ) {
-       $msj2=$_SESSION['BD']; ?>
+       $msj3=$_SESSION['BD']; ?>
       
-        <script> sweetAlert("Error en BD", "<?php echo $msj2; ?>", "error")</script>
+        <script> sweetAlert("Error en BD", "<?php echo $msj3; ?>", "error")</script>
         <?php unset($_SESSION["BD"]);?>
     <?php } ?>
     <!-------------------------------------- - ------------------------------> 

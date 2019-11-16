@@ -23,12 +23,6 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 		
 		
 	}	
-	
-	
-	
-	
-	
-	
 	//----------METODOS--------------------
 	public function insertar($dato){
 		try 
@@ -67,10 +61,10 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
 			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 			
-			if ($descripcion_error!=null)
-				echo '<script language="javascript">alert("Error al guardar peliculas  BD!");</script>';
-				echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
-				echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
+			if ($descripcion_error!=null){
+				$msj="Error al guardar peliculas  BD. Error Nº: ".$num_error.". ".$descripcion_error;
+				$_SESSION['Error']=$msj;
+			}
 			
 			//----------------------------------------------------------------------------------
 
@@ -99,10 +93,10 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
 			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 			
-			if ($descripcion_error!=null)
-				echo '<script language="javascript">alert("Error al guardar peliculas x genero de BD!");</script>';
-				echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
-				echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
+			if ($descripcion_error!=null){
+				$msj="Error al guardar peliculas x genero de BD. Error Nº: ".$num_error.". ".$descripcion_error;
+				$_SESSION['Error']=$msj;
+			}
 			
 			//----------------------------------------------------------------------------------
     
@@ -149,9 +143,8 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 			
 			if ($descripcion_error!=null){
-				echo '<script language="javascript">alert("Error al recuperar peliculas de BD!");</script>';
-				echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
-				echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
+				$msj="Error al recuperar peliculas de BD. Error Nº: ".$num_error.". ".$descripcion_error;
+				$_SESSION['Error']=$msj;
 			}
 			
 				//----------------------------------------------------------------------------------
@@ -202,9 +195,8 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 		$descripcion_error2=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 		
 		if ($descripcion_error2!=null){
-			echo '<script language="javascript">alert("Error al recuperar peliculas x genero de BD!");</script>';
-			echo '<script language="javascript">alert("Error Nº '.$num_error2.'");</script>';
-			echo '<script language="javascript">alert("Descripcion: '.$descripcion_error2.'");</script>';
+			$msj="Error al recuperar peliculas x genero de BD. Error Nº: ".$num_error.". ".$descripcion_error;
+				$_SESSION['Error']=$msj;
 		}
 		
 		//----------------------------------------------------------------------------------

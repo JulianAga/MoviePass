@@ -33,7 +33,10 @@ class DAOGenres{
         curl_close($curl);
         $genreList= json_decode( $response,true );
         if ($err) {
-        echo "cURL Error #:" . $err;
+            $msj="Error en Genero.CURL Error #:" . $err;
+            $_SESSION['Error']=$msj;
+
+        
         }
         else return $genreList;
     }
@@ -57,7 +60,8 @@ class DAOGenres{
         }
         else
         {
-            echo 'esta vacia la lista';
+            $_SESSION['Error']="Esta vacia la lista de Generos";
+            
         }
 
         return $genreFounded;

@@ -49,8 +49,12 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 			$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
 
 			}
-			else
+			else{
 				$flag=false;//si dio error al borrar de BD retorno false
+				$msj="Error en BD. Nº: ".$num_error." .".$descripcion_error.".";
+				$_SESSION['BD']=$msj;
+				
+			}
 
     	}
     	catch (PDOException $ex) {
@@ -197,10 +201,6 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 			$cine->setHabilitado(false);
 
 			$flag=actualizar($cine);
-			if($flag==true){
-				echo '<script language="javascript">alert("Cine deshabilitado");</script>';
-			}
-			
 	}
 
 	//
@@ -227,18 +227,23 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 			$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
 
 		}
-		else
+		else{
 			$flag=false;//si dio error al borrar de BD retorno false 
+			$msj="Error en BD. Nº: ".$num_error." .".$descripcion_error.".";
+			$_SESSION['BD']=$msj;
+		}
 		
 		//----------------------------------------------------------------------------------
 
     	}
     	catch (PDOException $ex) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine: PDO EXCEPTION");</script>';
+    		$_SESSION['BD']="Error al eliminar Cine: PDO EXCEPTION";
+    		
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine: EXCEPTION");</script>';
+    		$_SESSION['BD']="Error al eliminar Cine: EXCEPTION";
+    		
 			throw $e;
     	}
 
@@ -291,18 +296,23 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 				$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
 
 			}
-			else
+			else{
+				$msj="Error en BD. Nº: ".$num_error." .".$descripcion_error.".";
+				$_SESSION['BD']=$msj;
 				$flag=false;//si dio error al borrar de BD retorno false 
+			}
 		
 		//----------------------------------------------------------------------------------
 
     	}
     	catch (PDOException $ex) {
-    		echo '<script language="javascript">alert("Error al modificar Cine en BD");</script>'; //este tipo de mensaje no rompe el codigo
+
+			$_SESSION['BD']="Error al modificar Cine en BD.PDOException";
+    		
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		echo '<script language="javascript">alert("Error al modificar Cine en BD");</script>'; //este tipo de mensaje no rompe el codigo
+    		$_SESSION['BD']="Error al modificar Cine en BD.EXCEPTION";
 			throw $e;
     	}
     	return $flag;

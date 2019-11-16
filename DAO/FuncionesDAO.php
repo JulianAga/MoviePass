@@ -45,9 +45,8 @@ class FuncionesDAO extends SingletonAbstractDAO
 			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 		
 		if ($descripcion_error!=null){
-			echo '<script language="javascript">alert("Error al guardar Funcion en  BD. Error Nº '.$num_error.' Descripcion: '.$descripcion_error.' ");</script>';
-		
-		
+			$msj="Error al guardar Funcion en  BD. Error Nº ".$num_error." Descripcion: ".$descripcion_error ;
+			$_SESSION['Error']=$msj;
 		}
 		//-----------------------------------------------------
 
@@ -129,9 +128,8 @@ public function devolverFuncionesXidPelicula($dato){
 		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 		
 		if ($descripcion_error!=null){
-			echo '<script language="javascript">alert("Error al eliminar Cine de BD");</script>';
-			echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
-			echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
+			$msj="Error al eliminar Cine de BD. Error Nº ".$num_error." Descripcion: ".$descripcion_error ;
+			$_SESSION['Error']=$msj;
 		}
 		//----------------------------------------------------------------------------------
 
@@ -175,9 +173,8 @@ public function devolverFuncionesXsala($dato){
 		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 		
 		if ($descripcion_error!=null){
-			echo '<script language="javascript">alert("Error al devolver funciones X Cine de BD");</script>';
-			echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
-			echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
+			$msj="Error al devolver funciones X Cine de BD. Error Nº ".$num_error." Descripcion: ".$descripcion_error ;
+			$_SESSION['Error']=$msj;
 		}
 		//----------------------------------------------------------------------------------
 
@@ -265,11 +262,14 @@ public function borrar($idSala,$idPelicula){
 
     	}
     	catch (PDOException $ex) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine: PDO EXCEPTION");</script>';
+
+			$_SESSION['Error']="Error al eliminar Cine: PDO EXCEPTION";
+    		
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine: EXCEPTION");</script>';
+    		$_SESSION['Error']="Error al eliminar Cine:EXCEPTION";
+
 			throw $e;
     	}
 

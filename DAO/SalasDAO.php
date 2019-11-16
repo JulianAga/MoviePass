@@ -53,8 +53,10 @@ class SalasDAO extends SingletonAbstractDAO implements IDAO{
 			$flag=true;//si se pudo insertar y no dio error de BD, asigno true para retornar
 
 			}
-			else
+			else{
+				$_SESSION['BD']="Error al buscar datos del login en la base de datos";
 				$flag=false;//si dio error al insertar de BD retorno false
+			}
 
     	}
     	catch (PDOException $ex) {
@@ -180,11 +182,12 @@ class SalasDAO extends SingletonAbstractDAO implements IDAO{
 
     	}
     	catch (PDOException $ex) {
-    		echo '<script language="javascript">alert("Error al eliminar Sala: PDO EXCEPTION");</script>';
+    		$_SESSION['BD']="Error al eliminar Sala: PDO EXCEPTION";
+    		
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		echo '<script language="javascript">alert("Error al eliminar Sala: EXCEPTION");</script>';
+    		$_SESSION['BD']="Error al eliminar Sala: EXCEPTION";
 			throw $e;
     	}
 
@@ -237,20 +240,6 @@ class SalasDAO extends SingletonAbstractDAO implements IDAO{
     	}
 
 	}//fin traerTodos
-
-	public function contarEntradas($id_sala)
-	{
-		$query = 'SELECT COUNT(id) FROM'."Entradas".'WHERE id_sala = '.$id_sala;
-
-		$pdo = new Connection();
-			$connection = $pdo->Connect();
-			$command = $connection->prepare($query);
-			
-			$entradasVendidas = $command->fetch();
-
-			return $entradasVendidas;
-
-	}
 
 }//fin class
 

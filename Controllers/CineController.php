@@ -77,25 +77,25 @@ class CineController
 
         if ($newCine->getNombre() == null || $newCine->getDireccion() == null)
         {
-            $this->index();
             $_SESSION['Error']="Los campos deben estar completos!";
+            $this->index();
 
         }
         else if($this->DAOCines->buscarPorID($newCine->getID() )!=null ) // Verifica que no exista otro Cine con el mismo id en BD
         {
-            $this->index();
             $_SESSION['Error']="El ID del cine ya se encuentra registrado!";
+            $this->index();
             
         }
         else if(strlen($cine)>30 ) // Verifica que el nombre del cine no supere los 30 caracteres maximos usados en BD
         {
-            $this->index();
             $_SESSION['Error']="El nombre del cine excede los 30 caracteres!";
+            $this->index();
         }
         else if(strlen($direccion)>30 ) // Verifica que la direccion del cine  no supere los 30 caracteres maximos usados en BD
         {
-            $this->index();
             $_SESSION['Error']="La dirección del cine excede los 30 caracteres!";
+            $this->index();
         }
         else if($this->DAOCines->buscarPorNombre($newCine->getNombre() )!=null ) // Verifica que no exista otro Cine con el mismo nombre en BD
         { 
@@ -143,19 +143,19 @@ class CineController
 
 
         if (strlen($cine)>30){//verifico tamaño del nombre
-            $this->index();
             $_SESSION['Error']="El nombre del cine excede los 30 caracteres!";
+            $this->index();
 
         }
         else if(strlen($direccion)>30 ) // Verifica que la direccion del cine  no supere los 30 caracteres maximos usados en BD
         {
-            $this->index();
             $_SESSION['Error']="La dirección del cine excede los 30 caracteres!";
+            $this->index();
         }
         else if(($this->DAOCines->buscarPorNombre($cine)!=null) && ($this->DAOCines->buscarPorNombre($cine)->getID()!=$id)) // Verifica que no exista otro Cine con el mismo nombre en BD
         { 
-            $this->index();
             $_SESSION['Error']="El cine ingresado ya existe";
+            $this->index();
         }
         else{//si esta todo bien , modifico el cine
 
@@ -167,13 +167,13 @@ class CineController
             $flag;
             $cineMod->setID($id);
             $flag=$this->DAOCines->actualizar($cineMod);
-            $this->index();
             if($flag==true){
                 $_SESSION['Success']="Cine modificado satisfactoriamente!";
             }
             else{
                 $_SESSION['Error']="Error al modificar Cine!";
             }
+            $this->index();
          
 
         }//fin else

@@ -46,12 +46,13 @@
     <?php } ?>
     <!-- -->
     <?php if (isset($_SESSION['BD']) ) {
-       $msj2=$_SESSION['BD']; ?>
+       $msj3=$_SESSION['BD']; ?>
       
-        <script> sweetAlert("Error en BD", "<?php echo $msj2; ?>", "error")</script>
+        <script> sweetAlert("Error en BD", "<?php echo $msj3; ?>", "error")</script>
         <?php unset($_SESSION["BD"]);?>
     <?php } ?>
     <!-------------------------------------- - ------------------------------> 
+     
 <br> <!-- espacios en blanco -->
 <br>
   <!-- INICIO CARTELERA   -->   

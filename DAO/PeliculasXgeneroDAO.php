@@ -154,23 +154,19 @@ class PeliculasXgeneroDAO extends SingletonAbstractDAO implements IDAO
 		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
 		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 		
-		if ($descripcion_error==null)
-			echo '<script language="javascript">alert("Cine Eliminado");</script>';
-		else{
-
-			echo '<script language="javascript">alert("Error al eliminar Cine de BD");</script>';
-			echo '<script language="javascript">alert("Error Nº '.$num_error.'");</script>';
-			echo '<script language="javascript">alert("Descripcion: '.$descripcion_error.'");</script>';
-		}
+		if ($descripcion_error!=null)
+			$msj="Error al eliminar Peliculas x Genero en BD.Nº Error: ".$num_error." ".$descripcion_error;
+			$_SESSION['Error']=$msj;
 		//----------------------------------------------------------------------------------
 
     	}
     	catch (PDOException $ex) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine: PDO EXCEPTION");</script>';
+    		$_SESSION['Error']="Error al eliminar Peliculas x Genero: PDO EXCEPTION";
+    		
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine: EXCEPTION");</script>';
+    		$_SESSION['Error']="Error al eliminar Peliculas x Genero:EXCEPTION";
 			throw $e;
     	}
 
@@ -219,11 +215,12 @@ class PeliculasXgeneroDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
-    		echo '<script language="javascript">alert("Error al modificar Cine en BD");</script>'; //este tipo de mensaje no rompe el codigo
+    		$_SESSION['Error']="Error al actualizar Peliculas x Genero. PDOException";
+    		
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		echo '<script language="javascript">alert("Error al modificar Cine en BD");</script>'; //este tipo de mensaje no rompe el codigo
+    		$_SESSION['Error']="Error al actualizar Peliculas x Genero.Exception";
 			throw $e;
     	}
 
