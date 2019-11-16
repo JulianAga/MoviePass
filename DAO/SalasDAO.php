@@ -238,6 +238,20 @@ class SalasDAO extends SingletonAbstractDAO implements IDAO{
 
 	}//fin traerTodos
 
+	public function contarEntradas($id_sala)
+	{
+		$query = 'SELECT COUNT(id) FROM'."Entradas".'WHERE id_sala = '.$id_sala;
+
+		$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);
+			
+			$entradasVendidas = $command->fetch();
+
+			return $entradasVendidas;
+
+	}
+
 }//fin class
 
 ?>
