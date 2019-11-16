@@ -40,6 +40,10 @@ class FuncionesDAO extends SingletonAbstractDAO
 
 			$command->execute();
 
+			$dato->setId($connection->lastInsertId());
+
+			return $dato;
+
 		//capturar errores de BD----------------------------
 			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
 			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
@@ -91,6 +95,8 @@ class FuncionesDAO extends SingletonAbstractDAO
 				
 
 				$object = new \Models\Funcion($salasDAO->buscarPorID($id_sala),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
+				
+				$object->setId($row['id_funcion']);
 				array_push($arrayFunciones, $object);
 
 			}
@@ -144,7 +150,7 @@ public function devolverFuncionesXidPelicula($dato){
 		
 
 		$object = new \Models\Funcion($salaDAO->buscarPorID($id_sala),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
-		
+		$object->setId($row['id_funcion']);
 		array_push($arrayFunciones, $object);
 
 	}
@@ -190,7 +196,7 @@ public function devolverFuncionesXsala($dato){
 		
 
 		$object = new \Models\Funcion($salaDAO->buscarPorID($id_sala),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
-		
+		$object->setId($row['id_funcion']);
 		array_push($arrayFunciones, $object);
 
 	}
