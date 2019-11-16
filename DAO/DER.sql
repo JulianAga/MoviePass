@@ -122,3 +122,50 @@ create table PeliculasXgenero
 
 insert into PeliculasXgenero (id_pelicula,id_genero) values (1,1);
 
+create table CuentasCredito
+(
+	id_cuenta_credito int auto_increment,
+    empresa varchar(30),
+    numero_tarjeta bigint,
+    constraint pk_id_cuenta_credito primary key (id_cuenta_credito),
+    constraint unq_numero_tarjeta unique (numero_tarjeta)
+);
+/*
+    COMPRAS
+*/
+create table Compras
+(
+	id_compra int auto_increment,
+    id_cuenta int,
+    fecha date,
+    descuento int,
+    subtotal int,
+    total int,
+    constraint pk_id_compra primary key (id_compra),
+    constraint fk_id_cuenta foreign key (id_cuenta) references Cuentas (id_cuenta)
+);
+
+create table Entradas
+(
+	id_entrada int auto_increment,
+    id_funcion int,
+    id_compra int,
+    numero_entrada int,
+    qr varchar(50),
+    constraint pk_id_entrada primary key (id_entrada),
+    constraint fk_id_funcion foreign key (id_funcion) references Funciones (id_funcion),
+    constraint fk_id_compra foreign key (id_compra) references Compras (id_compra)
+);
+
+create table PagoTC
+(
+	id_pagoTC int auto_increment,
+    id_compra int,
+    id_cuenta_credito int,
+    cod_aut bigint,
+    fecha date,
+    total int,
+    constraint pk_id_pagoTC primary key (id_pagoTC),
+    constraint fk_id_compra_pago foreign key (id_compra) references Compras (id_compra),
+    constraint fk_id_cuenta_credito foreign key (id_cuenta_credito) references CuentasCredito (id_cuenta_credito)
+);

@@ -3,6 +3,7 @@
 class Compra
 {
     private $id;
+    private $cuenta;
     private $entradas=array();
     private $fecha;
     private $descuento;
@@ -10,9 +11,10 @@ class Compra
     private $total;
 
 
-	public function __construct($entradas, $fecha,$descuento,$subtotal,$total)
+	public function __construct($cuenta,$entradas, $fecha,$descuento,$subtotal,$total)
 	{
-		$this->setCantidadEntradas($entradas);
+        $this->setCuenta($cuenta);
+        $this->setEntradas($entradas);
         $this->setFecha($fecha);
         $this->setDescuento($descuento);
         $this->setSubtotal($subtotal);
@@ -28,6 +30,17 @@ class Compra
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    public function getCuenta()
+    {
+        return $this->cuenta;
+    }
+
+ 
+    public function setCuenta($cuenta)
+    {
+        $this->cuenta = $cuenta;
     }
 
     public function getEntradas()
