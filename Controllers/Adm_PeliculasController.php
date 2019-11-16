@@ -145,8 +145,8 @@ public function traerTodos(){
         }
         else{
             
-            ?><script> sweetAlert("BD", "No hay Peliculas cargados en la base de datos!", "error")</script>
-            <?php
+            
+            $_SESSION['Error']="No hay Peliculas cargados en la base de datos!";
             return null;
         }
 

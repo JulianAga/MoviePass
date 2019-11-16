@@ -123,7 +123,8 @@
 			    }
 			    catch (Exception $e) 
 			    {
-			    	echo "<script>alert('Error al buscar datos del Login en JSON'));</script>";
+			    	
+			    	$_SESSION['Error']="Error al buscar datos del Login en BD";
 			    }
 
 				if ( $buscado !=null)//entra si encontro el mail
@@ -131,13 +132,14 @@
 					if ($passLogin==$buscado->getPassword())//verifica que el pass de la BD sea igual que el ingresado
 					{	
 						$this->crearSesion($buscado);//llamo a crear session(para modularizar) y le paso la CUENTA encontrada en BD
+
 					}
 
 					else
 					{
 						$this->index();
-						?><script> sweetAlert("Error!", "Email o contraseña incorrectos!", "error")</script>
-        				 <?php
+						$_SESSION['Error']="Email o contraseña incorrectos!";
+						
 					}					
 				}
 				
@@ -145,8 +147,8 @@
 				{					
 										
 						$this->index();	
-						?><script> sweetAlert("Error!", "El email ingresado no se encuentra registrado", "error")</script>
-        				 <?php									
+						$_SESSION['Error']="El email ingresado no se encuentra registrado";
+														
 									
 				}
 				
@@ -155,8 +157,8 @@
 			else//entra si la session LOGIN EXISTE... 
 			{				
 				$this->index();
-				?><script> sweetAlert("Error!", "Usuario actualmente logueado!", "error")</script>
-        				 <?php				
+				$_SESSION['Error']="Usuario actualmente logueado!";
+								
 			}//fin else general
 			
 		}//fin verificar session**********
@@ -174,8 +176,9 @@
 			//header("Location:".ROOT_VIEW);
 			//header("Location:".ROOT_VIEW);
 			$this->index();
-			?><script> sweetAlert("Bienvenido <?php echo " ". $cliente->getNombre() . " " . $cliente->getApellido(); ?>!", "", "success")</script>
-        				 <?php
+			$msj="Bienvenido ". $cliente->getNombre() . " " . $cliente->getApellido()."!";
+			$_SESSION['Success']=$msj;
+			
 
 		}//fin crear session**********
 
@@ -195,8 +198,7 @@
 			else
 			{
 				$this->index();
-				?><script> sweetAlert("Error!", "Ningún usuario logueado", "error")</script>
-        				 <?php
+				$_SESSION['Error']="Ningún usuario logueado";
 
 			}			
 
@@ -215,8 +217,8 @@
 		    } 
 		    catch (Exception $e) 
 		    {
-				?><script> sweetAlert("Error!", "Error al buscar datos del login en la base de datos", "error")</script>
-        				 <?php
+		    	$_SESSION['BD']="Error al buscar datos del login en la base de datos";
+				
 		    }
 
 			if ($buscado == null)
@@ -231,8 +233,7 @@
 			    }
 			    catch (Exception $e) 
 			    {
-					?><script> sweetAlert("Error!", "Error al insertar un nuevo usuario en la base de datos", "error")</script>
-        				 <?php
+			    	$_SESSION['Error']="Error al insertar un nuevo usuario en la base de datos";
 			    }				
 				
 				if ($pass1 == $pass2)//verifico que coincidan las pass
@@ -245,21 +246,19 @@
 
 						//$this->RepositoryCuentas->Add($nuevaCuenta);//agrego la cuenta completa a Json
 						$this->DAOCuentas->insertarCuenta($nuevaCuenta);//agrego la cuenta completa a la BD
-						?><script> sweetAlert("Exito!", "Usuario correctamente registrado", "success")</script>
-        				 <?php
+						$_SESSION['Success']="Usuario correctamente registrado";
 						$this->crearSesion($nuevaCuenta);//creo la sesion y lo redirijo al index
 				    } 
 				    catch (Exception $e) 
 				    {
-				    	?><script> sweetAlert("Error!", "Error al insertar la cuenta en la base de datos", "error")</script>
-        				 <?php
+				    	$_SESSION['Error']="Error al insertar la cuenta en la base de datos";
+				    	
 				    }
 				}
 				else
 				{
-					?><script> sweetAlert("Error!", "Las contraseñas no coinciden", "error")</script>
-        				 <?php
-					
+					$_SESSION['Error']="Las contraseñas no coinciden";
+					$this->index();
 				}
 				
 			}
@@ -267,13 +266,10 @@
 			else
 			{
 				$this->index();
-				?><script> sweetAlert("Error!", "El email ya se encuentra registrado", "error")</script>
-				<?php
-									
-				//header("Location:".ROOT_VIEW); 
+				$_SESSION['Error']="El email ya se encuentra registrado"; 
 			}
 
-		//	$this->index();//llamo a la vista
+		
 		}//fin nuevo*****
 
 

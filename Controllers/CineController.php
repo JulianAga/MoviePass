@@ -33,7 +33,7 @@ class CineController
 	}
 
 //----------------METODOS--------------------------
-	public function index($arrayAlertExito,$arrayAlertError)
+	public function index()
         {
             
             if(isset($_SESSION['Login']))//Si hay session:
@@ -78,37 +78,30 @@ class CineController
         if ($newCine->getNombre() == null || $newCine->getDireccion() == null)
         {
             $this->index();
+            $_SESSION['Error']="Los campos deben estar completos!";
 
-            ?><script> sweetAlert("Error", "Los campos deben estar completos!", "error")</script>
-            <?php
-            //header("Location:".ROOT_VIEW);
         }
         else if($this->DAOCines->buscarPorID($newCine->getID() )!=null ) // Verifica que no exista otro Cine con el mismo id en BD
         {
             $this->index();
-            ?><script> sweetAlert("Error", "El ID del cine ya se encuentra registrado!", "error")</script>
-            <?php
-           // header("Location:".ROOT_VIEW);
+            $_SESSION['Error']="El ID del cine ya se encuentra registrado!";
+            
         }
         else if(strlen($cine)>30 ) // Verifica que el nombre del cine no supere los 30 caracteres maximos usados en BD
         {
             $this->index();
-            ?><script> sweetAlert("Error", "El nombre del cine excede los 30 caracteres!", "error")</script>
-            <?php
-            
-           // header("Location:".ROOT_VIEW);
+            $_SESSION['Error']="El nombre del cine excede los 30 caracteres!";
         }
         else if(strlen($direccion)>30 ) // Verifica que la direccion del cine  no supere los 30 caracteres maximos usados en BD
         {
             $this->index();
-            ?><script> sweetAlert("Error", "La dirección del cine excede los 30 caracteres!", "error")</script>
-            <?php 
+            $_SESSION['Error']="La dirección del cine excede los 30 caracteres!";
         }
         else if($this->DAOCines->buscarPorNombre($newCine->getNombre() )!=null ) // Verifica que no exista otro Cine con el mismo nombre en BD
         { 
-            $alertasController=new AlertasController();
-            $arrayAlertError=$alertasController->addAlertError("El cine ingresado ya existe");
-            $this->index(null,$arrayAlertError);
+            
+            $_SESSION['Error']="El cine ingresado ya existe";
+            $this->index();
             
         
         }
@@ -116,19 +109,16 @@ class CineController
         else{
             $flag=$this->DAOCines->insertar($newCine);
               //este tipo de mensaje no rompe el codigo
-            $arrayAlertExito=null;
-            $arrayAlertError=null;
+            
             if ($flag==true){
-                $alertasController=new AlertasController();
-                $arrayAlertExito=$alertasController->addAlertExito("Cine añadido correctamente!");
                 
+                $_SESSION['Success']="Cine añadido correctamente!";  
             }
             else{
-                $alertasController=new AlertasController();
-                $arrayAlertError=$alertasController->addAlertError("No se pudo agregar el Cine!");
+                $_SESSION['Error']="No se pudo agregar el Cine!";
                 
             }
-            $this->index($arrayAlertExito,$arrayAlertError); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
+            $this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
         }
     }//fin newcine
     //
@@ -139,12 +129,10 @@ class CineController
         $flag=$this->DAOCines->borrar($id_cine);         
          $this->index();
          if ($flag==true){
-            ?><script> sweetAlert("Exito!", "Cine eliminado correctamente!", "success")</script>
-            <?php
+            $_SESSION['Success']="Cine eliminado correctamente!";
          }
          else{
-            ?><script> sweetAlert("Error!", "El Cine contiene funciones activas!", "error")</script>
-            <?php
+            $_SESSION['Error']="El Cine contiene funciones activas!";
          }
         
 	}//fin delete cine
@@ -156,24 +144,18 @@ class CineController
 
         if (strlen($cine)>30){//verifico tamaño del nombre
             $this->index();
-            ?><script> sweetAlert("Error", "El nombre del cine excede los 30 caracteres!", "error")</script>
-            <?php
-        
-          // header("Location:".ROOT_VIEW);
+            $_SESSION['Error']="El nombre del cine excede los 30 caracteres!";
+
         }
         else if(strlen($direccion)>30 ) // Verifica que la direccion del cine  no supere los 30 caracteres maximos usados en BD
         {
             $this->index();
-            ?><script> sweetAlert("Error", "La dirección del cine excede los 30 caracteres!", "error")</script>
-            <?php
-            
-            //header("Location:".ROOT_VIEW);
+            $_SESSION['Error']="La dirección del cine excede los 30 caracteres!";
         }
         else if(($this->DAOCines->buscarPorNombre($cine)!=null) && ($this->DAOCines->buscarPorNombre($cine)->getID()!=$id)) // Verifica que no exista otro Cine con el mismo nombre en BD
         { 
             $this->index();
-            ?><script> sweetAlert("Error", "El cine ingresado ya existe", "error")</script>
-            <?php
+            $_SESSION['Error']="El cine ingresado ya existe";
         }
         else{//si esta todo bien , modifico el cine
 
@@ -187,12 +169,10 @@ class CineController
             $flag=$this->DAOCines->actualizar($cineMod);
             $this->index();
             if($flag==true){
-                ?><script> sweetAlert("Modificado", "Cine modificado satisfactoriamente!", "success")</script>
-                <?php
+                $_SESSION['Success']="Cine modificado satisfactoriamente!";
             }
             else{
-                ?><script> sweetAlert("Error", "Error al modificar Cine!", "error")</script>
-                <?php
+                $_SESSION['Error']="Error al modificar Cine!";
             }
          
 
@@ -218,9 +198,7 @@ class CineController
             return $arrayCines;
         }
         else{
-            
-            ?><script> sweetAlert("BD", "No hay cines cargados en la base de datos!", "error")</script>
-            <?php
+            $_SESSION['Error']="No hay cines cargados en la base de datos!";
             return null;
         }
     }//traer todos

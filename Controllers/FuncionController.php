@@ -4,11 +4,7 @@ use models\cine as Cine;
 use models\Funcion as Funcion;
 use DAO\GenerosDAO as GenerosDAO;
 //use Repository\CinesRepository as CinesRepository;
-?>
-<!-- SWEET ALERT -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<!-- SWEET ALERT -->
-<?php
+
 /**
  * 
  */
@@ -87,14 +83,13 @@ class FuncionController
 
 			}//if
 			else if ($flag2==false){
-				?><script> sweetAlert("Error", "Horario no disponible", "error")</script>
-            	<?php
+				$_SESSION['Error']="Horario no disponible";
 				$this->index();
 
 			}
 			else{//si ese dia hay funcion de esa pelicula en ese cine, error
-				?><script> sweetAlert("Error", "Pelicula en cartelera", "error")</script>
-            	<?php
+				$_SESSION['Error']="Pelicula en cartelera";
+				
 				$this->index();
 
 			}//else
@@ -108,13 +103,11 @@ class FuncionController
 		if ( ($id_cine!=null)&&($id_pelicula!=null) ){
 			$flag=$this->DAOFunciones->borrar($id_cine,$id_pelicula);
 			if($flag==true){
-				?><script> sweetAlert("Exito", "Funcion eliminada exitosamente!", "success")</script>
-            	<?php
+				$_SESSION['Success']="Funcion eliminada exitosamente!";
             	$this->index();
 			}
 			else{
-				?><script> sweetAlert("Error", "Error al borrar la funcion", "error")</script>
-            	<?php
+				$_SESSION['Error']="Error al borrar la funcion";
             	$this->index();
 			}
 
@@ -128,8 +121,8 @@ class FuncionController
 	//
 	//
 	public function devolverFuncionesXidPelicula($id_pelicula){
-		echo $id_pelicula;
-		var_dump($this->DAOFunciones);
+		
+		
 		$arrayFunciones=$this->DAOFunciones->devolverFuncionesXidPelicula($id_pelicula);
 		return $arrayFunciones;
 

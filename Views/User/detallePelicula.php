@@ -26,6 +26,28 @@
 </head>
 
 <body class="body_parallax "> <!-- fondo_body/body_parallax es una clase css donbde esta el archivo de la imagen de fondo y otras configuraciones del fondo, esta al final de home.php en la secion de <style>-->
+  <!------------ MUESTRA DE ERRORES PROVENIENTES DE LA CONTROLADORA------->
+    <?php if (isset($_SESSION['Error']) ) {
+   $msj=$_SESSION['Error']; ?>
+   
+    <script> sweetAlert("Error!", "<?php echo $msj; ?>", "error")</script>
+    <?php unset($_SESSION["Error"]);?>
+    <?php } ?>
+    <!-- -->
+    <?php if (isset($_SESSION['Success']) ) {
+       $msj2=$_SESSION['Success']; ?>
+      
+        <script> sweetAlert("Exito!", "<?php echo $msj2; ?>", "success")</script>
+        <?php unset($_SESSION["Success"]);?>
+    <?php } ?>
+    <!-- -->
+    <?php if (isset($_SESSION['BD']) ) {
+       $msj2=$_SESSION['BD']; ?>
+      
+        <script> sweetAlert("Error en BD", "<?php echo $msj2; ?>", "error")</script>
+        <?php unset($_SESSION["BD"]);?>
+    <?php } ?>
+    <!-------------------------------------- - ------------------------------>
 
   <br> <!-- espacios en blanco -->
 

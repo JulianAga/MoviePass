@@ -67,8 +67,7 @@ class SalaController{
 		if($this->DAOSalas->buscarPorNombre($nombre,$id_cine)!= null)//busca que no haya otro nombre de sala igual en el mismo cine
 		{
 			$this->index();
-			?><script> sweetAlert("Error", "El Nombre de sala ya existe en el cine!", "error")</script>
-            <?php
+			$_SESSION['Error']="El Nombre de sala ya existe en el cine!";
 		}
 		else if($nombre!=null && $capacidad!=null && $valor_entrada!=null && $id_cine!=null){
 			$cine=$this->DAOCines->buscarPorID($id_cine);
@@ -79,8 +78,7 @@ class SalaController{
 			if($flag==true){
 
 			$this->index();
-			?><script> sweetAlert("Exito", "Sala agregada!", "success")</script>
-            <?php
+			$_SESSION['Success']="Sala agregada!";
 			}
 		
 		}	
