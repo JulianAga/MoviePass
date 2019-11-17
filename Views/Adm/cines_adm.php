@@ -26,14 +26,26 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
 <body class="fondo_home_adm">
      <!------------ MUESTRA DE ERRORES PROVENIENTES DE LA CONTROLADORA------->
-     <?php if ($arrayAlertExito!=null) { ?>
-            
-            <script> sweetAlert("Exito","<?php echo $arrayAlertExito; ?>", "success")</script>
-        <?php } ?>
-
-    <?php if ($arrayAlertError!=null) { ?>
-            <script> sweetAlert("Error", "<?php echo $arrayAlertError; ?>", "error")</script>
-             <?php } ?>
+    <?php if (isset($_SESSION['Error']) ) {
+   $msj=$_SESSION['Error']; ?>
+   
+    <script> sweetAlert("Error!", "<?php echo $msj; ?>", "error")</script>
+    <?php unset($_SESSION["Error"]);?>
+    <?php } ?>
+    <!-- -->
+    <?php if (isset($_SESSION['Success']) ) {
+       $msj2=$_SESSION['Success']; ?>
+      
+        <script> sweetAlert("Exito!", "<?php echo $msj2; ?>", "success")</script>
+        <?php unset($_SESSION["Success"]);?>
+    <?php } ?>
+    <!-- -->
+    <?php if (isset($_SESSION['BD']) ) {
+       $msj3=$_SESSION['BD']; ?>
+      
+        <script> sweetAlert("Error en BD", "<?php echo $msj3; ?>", "error")</script>
+        <?php unset($_SESSION["BD"]);?>
+    <?php } ?>
     <!-------------------------------------- - ------------------------------>
     <header>
         <?php include_once("header_adm.php"); ?> <!-- llamado a la barra nav de home-->

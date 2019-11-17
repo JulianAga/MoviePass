@@ -98,8 +98,11 @@
 									<ul class="card__meta">
 
 										<li><span>Genre:</span>
-										<a href="#">Action</a>
-										<a href="#">Triler</a></li>
+											<?php foreach ($generos as $key ) { ?>
+												<a><?php echo $key->getName();  ?></a>
+											<?php } ?>
+										
+										
 										<li><span>Release year:</span> 2017</li>
 										<li><span>Running time:</span> 120 min</li>
 										<li><span>Country:</span> <a href="#">USA</a> </li>
