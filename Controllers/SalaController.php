@@ -50,7 +50,7 @@ class SalaController{
                     
                     //lo lleva al home CLIENTE
                     
-                    require(ROOT . '/Views/User/home_usuario.php');
+                    require(ROOT . '/Views/User/home2.php');
                     
                 }
             }
@@ -58,7 +58,7 @@ class SalaController{
             else
             {
                 
-                require(ROOT . '/Views/home.php');//SI NO HAY SESSION LO LLEVA A HOME (como no hay ninguna session lo lleva al home.php como anonimo)
+                require(ROOT . '/Views/home2.php');//SI NO HAY SESSION LO LLEVA A HOME (como no hay ninguna session lo lleva al home.php como anonimo)
             }
         }//fin index-------
 	public function addSala($nombre,$capacidad,$valor_entrada,$id_cine){

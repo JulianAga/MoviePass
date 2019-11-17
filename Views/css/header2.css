@@ -36,7 +36,12 @@ body{
     }
     .navbar .navbar-brand b {
         font-weight: bold;
-        color: #33cabb;     
+        color: #ff55a5;
+
+    }
+    .navbar_B b{
+        font-weight: bold;
+        color: #ff55a5;
     }
     .navbar .form-inline {
         display: inline-block;

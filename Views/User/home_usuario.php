@@ -55,7 +55,7 @@ require (API_PATH."api_now.php");// incluyo la API de peliculas actuales en cart
     <!-------------------------------------- - ------------------------------> 
     
 <header>
-  <?php include_once(VIEWS_PATH."header.php"); ?> <!-- llamado a la barra nav de home-->
+  <?php include_once(VIEWS_PATH."header2.php"); ?> <!-- llamado a la barra nav de home-->
 </header>
 
 

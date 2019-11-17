@@ -36,7 +36,28 @@
 
 </head>
 <body class="body">
-	
+	<!------------ MUESTRA DE ERRORES PROVENIENTES DE LA CONTROLADORA------->
+    <?php if (isset($_SESSION['Error']) ) {
+   $msj=$_SESSION['Error']; ?>
+   
+    <script> sweetAlert("Error!", "<?php echo $msj; ?>", "error")</script>
+    <?php unset($_SESSION["Error"]);?>
+    <?php } ?>
+    <!-- -->
+    <?php if (isset($_SESSION['Success']) ) {
+       $msj2=$_SESSION['Success']; ?>
+      
+        <script> sweetAlert("Exito!", "<?php echo $msj2; ?>", "success")</script>
+        <?php unset($_SESSION["Success"]);?>
+    <?php } ?>
+    <!-- -->
+    <?php if (isset($_SESSION['BD']) ) {
+       $msj3=$_SESSION['BD']; ?>
+      
+        <script> sweetAlert("Error en BD", "<?php echo $msj3; ?>", "error")</script>
+        <?php unset($_SESSION["BD"]);?>
+    <?php } ?>
+    <!-------------------------------------- - ------------------------------>
 	<?php include_once(VIEWS_PATH."header2.php"); ?>
 
 	<!-- page title -->
@@ -54,10 +75,8 @@
 		</div>
 	</section>
 	<!-- end page title -->
-	
 
-	<!-- content -->
-	<section class="content">
+
 		<!-- filtro -->
 	<div class="filter">
 		<div class="container">
@@ -66,61 +85,33 @@
 				<div class="col-12">
 					<div class="filter__content">
 						<div class="filter__items">
-							<!-- item genero  -->
+							<!-- filtro generos  -->
 							<div class="filter__item" id="filter__genre">
-								<span class="filter__item-label">Genero:</span>
+								<div class="content-select">
+									<select name="genre" id="genre" class="select">
+						              <option value="" selected hidden>Todos</option>
+						                  <?php
+						                  foreach($genresArray as $g){?>
+						                  <option value="<?php echo $g->getId();?>"><?php echo $g->getName();?></option> 
+						                  <?php } ?>
 
-								<div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-genre" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<input type="button" value="Generos">
-									<span></span>
-								</div>
-								<ul class="filter__item-menu dropdown-menu scrollbar-dropdown" aria-labelledby="filter-genre">
-									
-									<?php
-					                  foreach($genresArray as $g){?>
-					                  <input type="checkbox" id="genero">
-					                  <li for="genero" value="<?php echo $g->getId();?>"><?php echo $g->getName();?></li> 
-					                <?php } ?>  
-								</ul>
+						              </select>
+						              <i></i> 
+					            </div>
 							</div>
-							<!-- end filtro genero -->
+							<!-- end filtro generos -->
 
-							<!-- filtro rating -->
-							<!-- <div class="filter__item" id="filter__rate">
-								<span class="filter__item-label">Rating:</span>
 
-								<div class="filter__item-btn dropdown-toggle" role="button" id="filter-rate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<div class="filter__range">
-										<div id="filter__imbd-start"></div>
-										<div id="filter__imbd-end"></div>
-									</div>
-									<span></span>
-								</div>
-
-								<div class="filter__item-menu filter__item-menu--range dropdown-menu" aria-labelledby="filter-rate">
-									<div id="filter__imbd"></div>
-								</div>
-							</div> -->
-							<!-- end filtro rating-->
-
-							<!-- filtro año -->
-							<!-- <div class="filter__item" id="filter__year">
-								<span class="filter__item-label">Año:</span>
-
-								<div class="filter__item-btn dropdown-toggle" role="button" id="filter-year" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<div class="filter__range">
-										<div id="filter__years-start"></div>
-										<div id="filter__years-end"></div>
-									</div>
-									<span></span>
-								</div>
-
-								<div class="filter__item-menu filter__item-menu--range dropdown-menu" aria-labelledby="filter-year">
-									<div id="filter__years"></div>
-								</div>
-							</div> -->
-							<!-- end filtro año -->
+							<!-- filtro fecha  -->
+							<div class="filter__item" id="filter__genre">
+								<div class="content-select">
+									<label class="label-font"> Fecha</label>
+              						<input type="date" id="date" min="<?php echo date("Y-m-d");?>"  name="date" date-border> 
+					            </div>
+							</div>
+							<!-- end filtro fecha -->
 						</div>
+
 						
 						<!-- boton aplicar filtro -->
 						<button class="filter__btn" type="submit" name="enviar" id="enviar">Aplicar Filtro</button>
@@ -132,15 +123,13 @@
 		</div>
 	</div>
 	<!-- end filtro -->
+
 	<!-- expected premiere -->
 	<div class="catalog">
 		<div class="container">
-			
 			<div class="row">
-				
 				<?php  foreach($movieList as $p) {?> <!-- Inicio foreach-->
 				<!-- card -->
-				
 					<div class="col-3 ">
 						<div class="card card--big ">
 							<div class="card hover">
@@ -150,14 +139,14 @@
 
 									<input type="hidden" id="movie_id" name="movie_id" value="<?php echo $p->getId_api();?>"/> <!-- le paso el id de pelicula-->
 								</form>
-								
-								
 							</div>
 							<div class="card__content">
 								<h3 class="card__title"><a href="#"><?php echo $p->getNombre(); ?></a></h3>
 								<span class="card__category">
-									<a href="#">Action</a>
-									<a href="#">Triler</a>
+									<?php foreach ($p->getCategoria() as $genre) { ?>
+										<a><?php echo $genre->getName(); ?></a>
+									<?php } ?>
+
 								</span>
 								<span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
 							</div>
@@ -167,13 +156,6 @@
 				
 					<!-- end card -->
 			<?php } //end foreach?>
-
-
-				<!-- section btn -->
-				<div class="col-12">
-					<a href="#" class="section__btn">Show more</a>
-				</div>
-				<!-- end section btn -->
 			</div>
 			
 		</div>
@@ -184,74 +166,10 @@
 
 	
 
-	
-
 	<!-- footer -->
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-				<!-- footer list -->
-				<div class="col-12 col-md-3">
-					<h6 class="footer__title">Descarga nuestras Apps</h6>
-					<ul class="footer__app">
-						<li><a href="#"><img src="/MoviePass/Views/img/Download_on_the_App_Store_Badge.svg" alt=""></a></li>
-						<li><a href="#"><img src="/MoviePass/Views/img/google-play-badge.png" alt=""></a></li>
-					</ul>
-				</div>
-				<!-- end footer list -->
+	<?php require(VIEWS_PATH."footer.php"); ?> <!-- llamado a la barra nav de home-->
+	<!-- end footer-->
 
-				<!-- footer list -->
-				<div class="col-6 col-sm-4 col-md-3">
-					<h6 class="footer__title">Recursos</h6>
-					<ul class="footer__list">
-						<li><a href="#">Sobre Nosotros</a></li>
-						<li><a href="#">Ayuda</a></li>
-					</ul>
-				</div>
-				<!-- end footer list -->
-
-				<!-- footer list -->
-				<div class="col-6 col-sm-4 col-md-3">
-					<h6 class="footer__title">Legal</h6>
-					<ul class="footer__list">
-						<li><a href="#">Terminos de uso</a></li>
-						<li><a href="#">Politica de Privacidad</a></li>
-						<li><a href="#">Seguridad</a></li>
-					</ul>
-				</div>
-				<!-- end footer list -->
-
-				<!-- footer list -->
-				<div class="col-12 col-sm-4 col-md-3">
-					<h6 class="footer__title">Contracto</h6>
-					<ul class="footer__list">
-						<li><a href="tel:+18002345678">+54 (223) 12312234-5678</a></li>
-						<li><a href="mailto:support@moviego.com">support@moviepass.com</a></li>
-					</ul>
-					<ul class="footer__social">
-						<li class="facebook"><a href="#"><i class="icon ion-logo-facebook"></i></a></li>
-						<li class="instagram"><a href="#"><i class="icon ion-logo-instagram"></i></a></li>
-						<li class="twitter"><a href="#"><i class="icon ion-logo-twitter"></i></a></li>
-						<li class="vk"><a href="#"><i class="icon ion-logo-vk"></i></a></li>
-					</ul>
-				</div>
-				<!-- end footer list -->
-
-				<!-- footer copyright -->
-				<div class="col-12">
-					<div class="footer__copyright">
-
-						<ul>
-							<li><a href="#">Terminos de uso</a></li>
-							<li><a href="#">Politica de privacidad</a></li>
-						</ul>
-					</div>
-				</div>
-				<!-- end footer copyright -->
-			</div>
-		</div>
-	</footer>
-	<!-- end footer -->
 	<script type="text/javascript">
 		
 	</script>
@@ -269,6 +187,104 @@
 	<script src="/MoviePass/Views/js/photoswipe.min.js"></script>
 	<script src="/MoviePass/Views/js/photoswipe-ui-default.min.js"></script>
 	<script src="/MoviePass/Views/js/main.js"></script>
+
+	<style type="text/css">
+		.content-input input,
+		.content-select select{
+			appearance: none;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+		}
+		.content-select select{
+			appearance: none;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+		}
+		/* Eliminamos la fecha que por defecto aparece en el desplegable */
+		.content-select select::-ms-expand {
+		    display: none;
+		}
+		.content-select{
+			max-width: 250px;
+			position: relative;
+		}
+ 
+ 		
+		.content-select select{
+			display: inline-block;
+			width: 100%;
+			cursor: pointer;
+		  	padding: 7px 10px;
+		  	height: 42px;
+		  	outline: 0; 
+		  	border: 0;
+			border-radius: 0;
+			background: #f0f0f0;
+			color: #7b7b7b;
+			font-size: 16px;
+  			color: #1e1b1c;
+			/*font-size: 1em;
+			color: #999;*/
+			/*font-family: 
+			'Quicksand', sans-serif;*/
+			font-family: 'Open Sans', sans-serif;
+			border:2px solid rgba(0,0,0,0.2);
+		    border-radius: 12px;
+		    position: relative;
+		    transition: all 0.25s ease;
+		}
+		 
+		.content-select select:hover{
+			/*background: #f2afce;*/
+			  background-image: -moz-linear-gradient(90deg, #ff55a5 10%, #ff5860 90%);
+			  background-image: -webkit-linear-gradient(90deg, #ff55a5 10%, #ff5860 90%);
+			  background-image: -ms-linear-gradient(90deg, #ff55a5 10%, #ff5860 90%);
+			  background-image: linear-gradient(90deg, #ff55a5 10%, #ff5860 90%);
+
+			  font-size: 16px;
+  			  color: #fff;
+		}
+		 
+		/* 
+		Creamos la fecha que aparece a la izquierda del select.
+		Realmente este elemento es un cuadrado que sólo tienen
+		dos bordes con color y que giramos con transform: rotate(-45deg);
+		*/
+		.content-select i{
+			position: absolute;
+			right: 20px;
+			top: calc(50% - 13px);
+			width: 16px;
+			height: 16px;
+			display: block;
+			
+			border-left:4px solid #ff55a5;
+			border-bottom:4px solid #ff55a5;
+
+			transform: rotate(-45deg); /* Giramos el cuadrado */
+			transition: all 0.25s ease;
+		}
+		 
+		.content-select:hover i{
+			margin-top: 3px;
+			border-left:4px solid #f6ecf1;
+			border-bottom:4px solid #f6ecf1;
+		}
+		.date-border{
+			border-left:4px solid #f6ecf1;
+			border-bottom:4px solid #f6ecf1;
+			border-radius: 12px;
+		}
+		.label-font{
+			font-size: 16px;
+  			color: #f6ecf1;
+			font-family: 'Open Sans', sans-serif;
+
+		}
+
+	</style>
+
+
 </body>
 
 </html>

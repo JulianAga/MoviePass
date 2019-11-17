@@ -95,7 +95,7 @@ class FuncionesDAO extends SingletonAbstractDAO
 
 				$object = new \Models\Funcion($salasDAO->buscarPorID($id_sala),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
 				
-				$object->setId($row['id_funcion']);
+				//$object->setId($row['id_funcion']);
 				array_push($arrayFunciones, $object);
 
 			}

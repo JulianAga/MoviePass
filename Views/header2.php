@@ -1,6 +1,26 @@
+
 <!DOCTYPE html>
 <html>
 <head>
+
+<?php
+//-----ESTO DEBE IR EN LA CONTROLADORA HOME
+if( isset($_SESSION['Login'])){
+  $cuenta_logueada=$_SESSION['Login'];
+  $cuenta_logueada->getEmail();
+}
+if( isset($_SESSION['Cliente_Logueado'])){
+  $cliente=$_SESSION['Cliente_Logueado'];
+  
+}
+//-----------------------------------------
+?>
+<!DOCTYPE html>
+
+<html>
+<head>
+
+
 	<!-- CSS -->
 	<link rel="stylesheet" href="/MoviePass/Views/css/bootstrap-reboot.min.css">
 	<link rel="stylesheet" href="/MoviePass/Views/css/bootstrap-grid.min.css">
@@ -12,11 +32,11 @@
 	<link rel="stylesheet" href="/MoviePass/Views/css/photoswipe.css">
 	<link rel="stylesheet" href="/MoviePass/Views/css/default-skin.css">
 	<link rel="stylesheet" href="/MoviePass/Views/css/main.css">
-<!-- 
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 
 	<!-- Favicons -->
 	<link rel="icon" type="image/png" href="/MoviePass/Views/icon/favicon-32x32.png" sizes="32x32">
@@ -40,6 +60,7 @@
 							</a>
 							<!-- end header logo -->
 
+
 							<!-- header nav -->
 							<ul class="header__nav">
 								<!-- dropdown -->
@@ -55,42 +76,153 @@
 							</ul>
 							<!-- end header nav -->
 
+
+							
+
 							<!-- header auth -->
 							<div class="header__auth">
-								<button class="header__search-btn" type="button">
-									<i class="icon ion-ios-search"></i>
-								</button>
-
-								<a data-toggle="modal" href="#modal-btn"class="header__sign-in"><span>Iniciar Sesion</span></a>		
-								<div class="modal">
-									  <div class="modal-header">
-									    <span class="close-btn">&times;</span>
-									    <h1>I am the Header</h1>
-									  </div>
-									  <div class="modal-content">
-									    <p>this is the text inside the modal</p>
-									  </div>
-									  <div class="modal-footer">
-									    <h2>I am the Footer</h2>
-									  </div>
-								</div>
-						    </div>
 								
-							</div>
-							<!-- end header auth -->
 
-							<!-- header menu btn -->
-							<button class="header__btn" type="button">
-								<span></span>
-								<span></span>
-								<span></span>
-							</button>
-							<!-- end header menu btn -->
+								<!--ENTRA SI HAY SESSION, CAMBIANDO LOS ICONOS DE LA BARRA -->
+					<?php   if( !isset($_SESSION['Login']) ) {  ?>
+								<a data-toggle="modal" data-target="#id01" class="header__sign-in"><span>Iniciar Sesion</span>
+								</a>
+								<!-- ventana modal sign in-->
+								<div id="id01" class="w3-modal w3-animate-opacity"  tabindex="-1">
+								    <div><!-- w3-modal-content w3-card-4--> 
+								      <div class="" data-bg=""> 
+										<div class="container">
+											<div class="row">
+												<div class="col-12">
+													<div class="sign__content">
+														<!-- authorization form -->
+														<form action="<?= ROOT_VIEW ?>/Login/verificarSesion" method="post" class="sign__form">
+															<span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright" style="color:white;">&times;</span>
+															<a href="index.html" class="sign__logo">
+																<img src="img/logo.svg" alt="">
+															</a>
+
+															<div class="sign__group form-group">
+																<input type="text" class="sign__input form-control" name="emailBuscado" placeholder="Email" required="required">
+															</div>
+
+															<div class="sign__group ">
+																<input type="password" class="sign__input" placeholder="Password" required="required" name="passLogin">
+															</div>
+
+															
+															
+															<button class="sign__btn" type="submit">Iniciar Sesion</button>
+
+															<span class="sign__text " data-toggle="modal" data-target="#id02" data-dismiss="modal">No tenes cuenta? <a>Registrate!</a>
+															</span>
+
+															<span class="sign__text"><a href="#">Olvidaste la contraseña?</a></span>
+														</form>
+														<!-- end authorization form -->
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								      
+								    </div>
+								</div>
+								<!-- end ventana modal sign in-->
+
+								<!-- sign up modal-->
+								<div id="id02" class="w3-modal">
+								    <div><!-- w3-modal-content w3-card-4-->
+								    	<div class="" data-bg="">
+											<div class="container">
+												<div class="row">
+													<div class="col-12">
+														<div class="sign__content">
+															<!-- registration form -->
+															<form action="<?= ROOT_VIEW ?>/Login/nuevo_usuario" method="post" class="sign__form">
+
+																<a href="index.html" class="sign__logo">
+																	<img src="img/logo.svg" alt="">
+																</a>
+
+																<div class="sign__group">
+																	<input type="text" class="sign__input" placeholder="Nombre" required="required" name="nombre" maxlength="25">
+																</div>
+
+																<div class="sign__group">
+																	<input type="text" class="sign__input" placeholder="Apellido" required="required" name="apellido" name="apellido" maxlength="25">
+																</div>
+
+																<div class="sign__group">
+																	<input type="text" class="sign__input" placeholder="D.N.I" required="required" name="dni" maxlength="10">
+																</div>
+
+																<div class="sign__group">
+																	<input type="text" class="sign__input" placeholder="Telefono" required="required" name="telefono" maxlength="15">
+																</div>
+
+																<div class="sign__group">
+																	<input type="text" class="sign__input" placeholder="Direccion" required="required" name="direccion" maxlength="30">
+																</div>
+
+																<div class="sign__group">
+																	<input type="text" class="sign__input" placeholder="Ciudad" required="required" name="ciudad" maxlength="30">
+																</div>
+
+																<div class="sign__group">
+																	<input type="text" class="sign__input" placeholder="Email" required="required" name="email" maxlength="30" >
+																</div>
+
+
+																<div class="sign__group">
+																	<input type="password" class="sign__input" placeholder="Contraseña" required="required" name="pass1" maxlength="30">
+																</div>
+
+																<div class="sign__group">
+																	<input type="password" class="sign__input" placeholder="Confirmar Contraseña" required="required" maxlength="30" name="pass2">
+																</div>
+
+																<div class="sign__group sign__group--checkbox">
+																	<input id="remember" name="remember" type="checkbox" checked="checked" required="required">
+																	<label for="remember">Acepto las <a href="#">Politicas de Privacidad</a></label>
+																</div>
+																
+																<button class="sign__btn" type="submit">Registrarme</button>
+															</form>
+															<!-- end registration form -->
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+								      
+								    </div>
+							    </div>
+							    <?php } ?>
+								<!-- end sign up modal-->
+								<!--ENTRA SI HAY SESSION, CAMBIANDO LOS ICONOS DE LA BARRA -->
+								<?php   if( isset($_SESSION['Login']) ) {  ?> 
+											
+											<form action="<?= ROOT_VIEW ?>/Login/cerrarSesion" method="post">
+												<button class="sign__btn" type="submit">Cerrar Session</button>
+											</form>
+												
+								<?php } ?>
+
+						    </div>
+						
+						</div>
+						<!-- end header auth -->
+
+							
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
 
 		<!-- header search -->
 		<form action="#" class="header__search">
@@ -107,6 +239,12 @@
 			</div>
 		</form>
 		<!-- end header search -->
+
+
+
+		
+
+
 	</header>
 	<!-- end header -->
 	<style type="text/css">
@@ -163,6 +301,7 @@
 	<script src="/MoviePass/Views/js/photoswipe.min.js"></script>
 	<script src="/MoviePass/Views/js/photoswipe-ui-default.min.js"></script>
 	<script src="/MoviePass/Views/js/main.js"></script>
+
 	<script type="text/javascript">
 		let modalBtn = document.getElementById("modal-btn")
 let modal = document.querySelector(".modal")
@@ -180,5 +319,8 @@ window.onclick = function(e){
 }
 		
 	</script>
+
+	
+
 </body>
 </html>

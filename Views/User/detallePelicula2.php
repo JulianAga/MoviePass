@@ -33,7 +33,28 @@
 </head>
 <body class="body">
 	<?php require(VIEWS_PATH."header2.php"); ?> <!-- llamado a la barra nav de home-->
-	
+	<!------------ MUESTRA DE ERRORES PROVENIENTES DE LA CONTROLADORA------->
+    <?php if (isset($_SESSION['Error']) ) {
+   $msj=$_SESSION['Error']; ?>
+   
+    <script> sweetAlert("Error!", "<?php echo $msj; ?>", "error")</script>
+    <?php unset($_SESSION["Error"]);?>
+    <?php } ?>
+    <!-- -->
+    <?php if (isset($_SESSION['Success']) ) {
+       $msj2=$_SESSION['Success']; ?>
+      
+        <script> sweetAlert("Exito!", "<?php echo $msj2; ?>", "success")</script>
+        <?php unset($_SESSION["Success"]);?>
+    <?php } ?>
+    <!-- -->
+    <?php if (isset($_SESSION['BD']) ) {
+       $msj3=$_SESSION['BD']; ?>
+      
+        <script> sweetAlert("Error en BD", "<?php echo $msj3; ?>", "error")</script>
+        <?php unset($_SESSION["BD"]);?>
+    <?php } ?>
+    <!-------------------------------------- - ------------------------------>
 
 	<!-- details -->
 	<section class="section details">
@@ -75,12 +96,25 @@
 									</div>
 
 									<ul class="card__meta">
+
 										<li><span>Genre:</span>
 										<a href="#">Action</a>
 										<a href="#">Triler</a></li>
 										<li><span>Release year:</span> 2017</li>
 										<li><span>Running time:</span> 120 min</li>
 										<li><span>Country:</span> <a href="#">USA</a> </li>
+
+										<li><span>Genero:</span>
+												<?php foreach ($generos as $key) { ?>
+											<a ><?php echo $key->getName();?></a>
+											<?php } ?>
+										</li>
+										<li><span>Duración:</span> 120 min</li>
+										<li><span>Idioma:</span>
+												
+											<a href="#"><?php echo $mov->getLenguaje();?></a> 
+										</li>
+
 									</ul>
 
 									<div class="card__description card__description--details">
@@ -95,6 +129,7 @@
 				<!-- end content -->
 
 				<!-- player -->
+
 				<div class="col-8 col-xl-4">
 					<video controls crossorigin playsinline poster="../../../cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="player">
 						<!-- Video files -->
@@ -102,6 +137,15 @@
 						<source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4" type="video/mp4" size="720">
 						<source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4" type="video/mp4" size="1080">
 						<source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1440p.mp4" type="video/mp4" size="1440">
+
+				<div class="col-6">
+					<video controls crossorigin playsinline poster="../../../cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="player">
+						<!-- Video files -->
+						<!-- <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" size="576">
+						<source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4" type="video/mp4" size="720">
+						<source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4" type="video/mp4" size="1080">
+						<source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1440p.mp4" type="video/mp4" size="1440"> -->
+
 
 						<!-- Caption files -->
 						<track kind="captions" label="English" srclang="en" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt"
@@ -116,6 +160,7 @@
 
 				<div class="col-12">
 					<div class="details__wrap">
+
 						<form action="<?= ROOT_VIEW ?>/DetallePelicula/searchMovie"  method="post">
 							
 							<button class="header__sign-in"><span>Comprar Entradas</span></button>
@@ -126,21 +171,57 @@
 						<div class="details__share">
 							<span class="details__share-title">Share with friends:</span>
 
+						<!-- availables -->
+						<div class="details__devices">
+							<span class="details__devices-title">Disponible en:</span>
+							<div class="content-select">
+								<select class="select">
+									<option value="" selected hidden>Elija su Funcion</option>
+							<?php foreach ($lista_funciones as $g) { ?>
+						              <option value="<?php  $_SESSION['Funcion']=$g;?>">
+						                <?php echo $g->getSala()->getCine()->getNombre().' - '.$g->getSala()->getNombre().' - '.$g->getDia().' - '.$g->getHorario();?>
+						              </option>
+					        <?php } ?>
+									
+								</select>
+								<i></i>
+							</div>
+						</div>
+						<!-- end availables -->
+
+						<!-- share -->
+						<div class="details__share">
+							<span class="details__share-title">Compartí con amigos:</span>
+
+
 							<ul class="details__share-list">
 								<li class="facebook"><a href="#"><i class="icon ion-logo-facebook"></i></a></li>
 								<li class="instagram"><a href="#"><i class="icon ion-logo-instagram"></i></a></li>
 								<li class="twitter"><a href="#"><i class="icon ion-logo-twitter"></i></a></li>
+
 								<li class="vk"><a href="#"><i class="icon ion-logo-vk"></i></a></li>
+
 							</ul>
 						</div>
 						<!-- end share -->
 					</div>
 				</div>
+
+				<!-- boton comprar  -->
+				<div class="col-12">
+					<form action="<?= ROOT_VIEW ?>/Compra/newCompra"  method="post">
+						<br>
+						<button class="filter__btn" type="submit" name="enviar" id="enviar">Comprar Entradas</button>
+					</form>
+				</div>
+				<!-- end boton comprar  -->
+
 			</div>
 		</div>
 		<!-- end details content -->
 	</section>
 	<!-- end details -->
+
 
 	
 
@@ -265,6 +346,11 @@
 		</div>
 	</div>
 
+	<!-- footer -->
+	<?php require(VIEWS_PATH."footer.php"); ?> <!-- llamado a la barra nav de home-->
+	<!-- end footer-->
+
+
 	<!-- JS -->
 	<script src="/MoviePass/Views/js/jquery-3.3.1.min.js"></script>
 	<script src="/MoviePass/Views/js/bootstrap.bundle.min.js"></script>
@@ -278,6 +364,103 @@
 	<script src="/MoviePass/Views/js/photoswipe.min.js"></script>
 	<script src="/MoviePass/Views/js/photoswipe-ui-default.min.js"></script>
 	<script src="/MoviePass/Views/js/main.js"></script>
+
+	<style type="text/css">
+		.content-input input,
+		.content-select select{
+			appearance: none;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+		}
+		.content-select select{
+			appearance: none;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+		}
+		/* Eliminamos la fecha que por defecto aparece en el desplegable */
+		.content-select select::-ms-expand {
+		    display: none;
+		}
+		.content-select{
+			max-width: 250px;
+			position: relative;
+		}
+ 
+ 		
+		.content-select select{
+			display: inline-block;
+			width: 100%;
+			cursor: pointer;
+		  	padding: 7px 10px;
+		  	height: 42px;
+		  	outline: 0; 
+		  	border: 0;
+			border-radius: 0;
+			background: #f0f0f0;
+			color: #7b7b7b;
+			font-size: 16px;
+  			color: #1e1b1c;
+			/*font-size: 1em;
+			color: #999;*/
+			/*font-family: 
+			'Quicksand', sans-serif;*/
+			font-family: 'Open Sans', sans-serif;
+			border:2px solid rgba(0,0,0,0.2);
+		    border-radius: 12px;
+		    position: relative;
+		    transition: all 0.25s ease;
+		}
+		 
+		.content-select select:hover{
+			/*background: #f2afce;*/
+			  background-image: -moz-linear-gradient(90deg, #ff55a5 10%, #ff5860 90%);
+			  background-image: -webkit-linear-gradient(90deg, #ff55a5 10%, #ff5860 90%);
+			  background-image: -ms-linear-gradient(90deg, #ff55a5 10%, #ff5860 90%);
+			  background-image: linear-gradient(90deg, #ff55a5 10%, #ff5860 90%);
+
+			  font-size: 16px;
+  			  color: #fff;
+		}
+		 
+		/* 
+		Creamos la fecha que aparece a la izquierda del select.
+		Realmente este elemento es un cuadrado que sólo tienen
+		dos bordes con color y que giramos con transform: rotate(-45deg);
+		*/
+		.content-select i{
+			position: absolute;
+			right: 20px;
+			top: calc(50% - 13px);
+			width: 16px;
+			height: 16px;
+			display: block;
+			
+			border-left:4px solid #ff55a5;
+			border-bottom:4px solid #ff55a5;
+
+			transform: rotate(-45deg); /* Giramos el cuadrado */
+			transition: all 0.25s ease;
+		}
+		 
+		.content-select:hover i{
+			margin-top: 3px;
+			border-left:4px solid #f6ecf1;
+			border-bottom:4px solid #f6ecf1;
+		}
+		.date-border{
+			border-left:4px solid #f6ecf1;
+			border-bottom:4px solid #f6ecf1;
+			border-radius: 12px;
+		}
+		.label-font{
+			font-size: 16px;
+  			color: #f6ecf1;
+			font-family: 'Open Sans', sans-serif;
+
+		}
+
+	</style>
+
 </body>
 
 </html>

@@ -48,8 +48,7 @@ class CineController
                     $functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
                     $arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
                     $salaList=$this->DAOSalas->traerTodos();
-                    $arrayAlertExito=$arrayAlertExito;
-                    $arrayAlertError=$arrayAlertError;
+                   
                     require(ROOT . '/Views/Adm/home_adm.php');//
                     
                 }
@@ -58,7 +57,7 @@ class CineController
                     
                     //lo lleva al home CLIENTE
                     
-                    require(ROOT . '/Views/User/home_usuario.php');
+                    require(ROOT . '/Views/User/home2.php');
                     
                 }
             }
@@ -66,7 +65,7 @@ class CineController
             else
             {
                 
-                require(ROOT . '/Views/home.php');//SI NO HAY SESSION LO LLEVA A HOME (como no hay ninguna session lo lleva al home.php como anonimo)
+                require(ROOT . '/Views/home2.php');//SI NO HAY SESSION LO LLEVA A HOME (como no hay ninguna session lo lleva al home.php como anonimo)
             }
         }//fin index-------
 	//
