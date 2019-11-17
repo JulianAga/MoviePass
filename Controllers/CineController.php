@@ -48,8 +48,7 @@ class CineController
                     $functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
                     $arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
                     $salaList=$this->DAOSalas->traerTodos();
-                    $arrayAlertExito=$arrayAlertExito;
-                    $arrayAlertError=$arrayAlertError;
+                   
                     require(ROOT . '/Views/Adm/home_adm.php');//
                     
                 }

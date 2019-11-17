@@ -123,15 +123,13 @@
 		</div>
 	</div>
 	<!-- end filtro -->
+
 	<!-- expected premiere -->
 	<div class="catalog">
 		<div class="container">
-			
 			<div class="row">
-				
 				<?php  foreach($movieList as $p) {?> <!-- Inicio foreach-->
 				<!-- card -->
-				
 					<div class="col-3 ">
 						<div class="card card--big ">
 							<div class="card hover">
@@ -141,14 +139,14 @@
 
 									<input type="hidden" id="movie_id" name="movie_id" value="<?php echo $p->getId_api();?>"/> <!-- le paso el id de pelicula-->
 								</form>
-								
-								
 							</div>
 							<div class="card__content">
 								<h3 class="card__title"><a href="#"><?php echo $p->getNombre(); ?></a></h3>
 								<span class="card__category">
-									<a href="#">Action</a>
-									<a href="#">Triler</a>
+									<?php foreach ($p->getCategoria() as $genre) { ?>
+										<a><?php echo $genre->getName(); ?></a>
+									<?php } ?>
+
 								</span>
 								<span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
 							</div>

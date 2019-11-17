@@ -33,17 +33,7 @@ if( isset($_SESSION['Cliente_Logueado'])){
 	<link rel="stylesheet" href="/MoviePass/Views/css/default-skin.css">
 	<link rel="stylesheet" href="/MoviePass/Views/css/main.css">
 
-<!-- 
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-
-
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -86,37 +76,6 @@ if( isset($_SESSION['Cliente_Logueado'])){
 							</ul>
 							<!-- end header nav -->
 
-							<!-- header auth -->
-							<div class="header__auth">
-								<button class="header__search-btn" type="button">
-									<i class="icon ion-ios-search"></i>
-								</button>
-
-								<a data-toggle="modal" href="#modal-btn"class="header__sign-in"><span>Iniciar Sesion</span></a>		
-								<div class="modal">
-									  <div class="modal-header">
-									    <span class="close-btn">&times;</span>
-									    <h1>I am the Header</h1>
-									  </div>
-									  <div class="modal-content">
-									    <p>this is the text inside the modal</p>
-									  </div>
-									  <div class="modal-footer">
-									    <h2>I am the Footer</h2>
-									  </div>
-								</div>
-						    </div>
-								
-							</div>
-							<!-- end header auth -->
-
-							<!-- header menu btn -->
-							<button class="header__btn" type="button">
-								<span></span>
-								<span></span>
-								<span></span>
-							</button>
-							<!-- end header menu btn -->
 
 							
 
