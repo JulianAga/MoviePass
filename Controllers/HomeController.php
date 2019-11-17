@@ -15,7 +15,7 @@
   				$cliente=$_SESSION['Cliente_Logueado'];
   
 			}
-            require_once(VIEWS_PATH."home.php");
+            require_once(VIEWS_PATH."home2.php");
         }//fin index
 
 

@@ -36,7 +36,28 @@
 
 </head>
 <body class="body">
-	
+	<!------------ MUESTRA DE ERRORES PROVENIENTES DE LA CONTROLADORA------->
+    <?php if (isset($_SESSION['Error']) ) {
+   $msj=$_SESSION['Error']; ?>
+   
+    <script> sweetAlert("Error!", "<?php echo $msj; ?>", "error")</script>
+    <?php unset($_SESSION["Error"]);?>
+    <?php } ?>
+    <!-- -->
+    <?php if (isset($_SESSION['Success']) ) {
+       $msj2=$_SESSION['Success']; ?>
+      
+        <script> sweetAlert("Exito!", "<?php echo $msj2; ?>", "success")</script>
+        <?php unset($_SESSION["Success"]);?>
+    <?php } ?>
+    <!-- -->
+    <?php if (isset($_SESSION['BD']) ) {
+       $msj3=$_SESSION['BD']; ?>
+      
+        <script> sweetAlert("Error en BD", "<?php echo $msj3; ?>", "error")</script>
+        <?php unset($_SESSION["BD"]);?>
+    <?php } ?>
+    <!-------------------------------------- - ------------------------------>
 	<?php include_once(VIEWS_PATH."header2.php"); ?>
 
 	<!-- page title -->
@@ -73,12 +94,7 @@
 
 							<!-- item genero  -->
 							<div class="filter__item" id="filter__genre">
-								<span class="filter__item-label">Genero:</span>
 
-								<div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-genre" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<input type="button" value="Generos">
-									<span></span>
-								</div>
 								<ul class="filter__item-menu dropdown-menu scrollbar-dropdown" aria-labelledby="filter-genre">
 									
 									<?php
@@ -90,41 +106,6 @@
 							</div>
 							<!-- end filtro genero -->
 
-							<!-- filtro rating -->
-							<!-- <div class="filter__item" id="filter__rate">
-								<span class="filter__item-label">Rating:</span>
-
-								<div class="filter__item-btn dropdown-toggle" role="button" id="filter-rate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<div class="filter__range">
-										<div id="filter__imbd-start"></div>
-										<div id="filter__imbd-end"></div>
-									</div>
-									<span></span>
-								</div>
-
-								<div class="filter__item-menu filter__item-menu--range dropdown-menu" aria-labelledby="filter-rate">
-									<div id="filter__imbd"></div>
-								</div>
-							</div> -->
-							<!-- end filtro rating-->
-
-							<!-- filtro año -->
-							<!-- <div class="filter__item" id="filter__year">
-								<span class="filter__item-label">Año:</span>
-
-								<div class="filter__item-btn dropdown-toggle" role="button" id="filter-year" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<div class="filter__range">
-										<div id="filter__years-start"></div>
-										<div id="filter__years-end"></div>
-									</div>
-									<span></span>
-								</div>
-
-								<div class="filter__item-menu filter__item-menu--range dropdown-menu" aria-labelledby="filter-year">
-									<div id="filter__years"></div>
-								</div>
-							</div> -->
-							<!-- end filtro año -->
 						</div>
 
 							<!-- filtro generos  -->
