@@ -90,11 +90,12 @@ create table Peliculas
 */
 create table Funciones
 (
-	id_sala int,
+	id_funcion int auto_increment,
+    id_sala int,
     id_pelicula int,
     dia date,
     horario time,
-    constraint pk_id_cine_id_pelicula primary key (id_sala,id_pelicula,dia),
+    constraint pk_id_cine_id_pelicula primary key (id_funcion),
     constraint fk_id_sala foreign key (id_sala) references Salas (id_sala) ,
     constraint fk_id_peliculas foreign key (id_pelicula) references Peliculas (id_api)
 );
