@@ -147,74 +147,12 @@
 		
 
 	<!-- footer -->
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-				<!-- footer list -->
-				<div class="col-12 col-md-3">
-					<h6 class="footer__title">Descarga nuestras Apps</h6>
-					<ul class="footer__app">
-						<li><a href="#"><img src="/MoviePass/Views/img/Download_on_the_App_Store_Badge.svg" alt=""></a></li>
-						<li><a href="#"><img src="/MoviePass/Views/img/google-play-badge.png" alt=""></a></li>
-					</ul>
-				</div>
-				<!-- end footer list -->
-
-				<!-- footer list -->
-				<div class="col-6 col-sm-4 col-md-3">
-					<h6 class="footer__title">Recursos</h6>
-					<ul class="footer__list">
-						<li><a href="#">Sobre Nosotros</a></li>
-						<li><a href="#">Ayuda</a></li>
-					</ul>
-				</div>
-				<!-- end footer list -->
-
-				<!-- footer list -->
-				<div class="col-6 col-sm-4 col-md-3">
-					<h6 class="footer__title">Legal</h6>
-					<ul class="footer__list">
-						<li><a href="#">Terminos de uso</a></li>
-						<li><a href="#">Politica de Privacidad</a></li>
-						<li><a href="#">Seguridad</a></li>
-					</ul>
-				</div>
-				<!-- end footer list -->
-
-				<!-- footer list -->
-				<div class="col-12 col-sm-4 col-md-3">
-					<h6 class="footer__title">Contracto</h6>
-					<ul class="footer__list">
-						<li><a href="tel:+18002345678">+54 (223) 12312234-5678</a></li>
-						<li><a href="mailto:support@moviego.com">support@moviepass.com</a></li>
-					</ul>
-					<ul class="footer__social">
-						<li class="facebook"><a href="#"><i class="icon ion-logo-facebook"></i></a></li>
-						<li class="instagram"><a href="#"><i class="icon ion-logo-instagram"></i></a></li>
-						<li class="twitter"><a href="#"><i class="icon ion-logo-twitter"></i></a></li>
-						<li class="vk"><a href="#"><i class="icon ion-logo-vk"></i></a></li>
-					</ul>
-				</div>
-				<!-- end footer list -->
-
-				<!-- footer copyright -->
-				<div class="col-12">
-					<div class="footer__copyright">
-
-						<ul>
-							<li><a href="#">Terminos de uso</a></li>
-							<li><a href="#">Politica de privacidad</a></li>
-						</ul>
-					</div>
-				</div>
-				<!-- end footer copyright -->
-			</div>
-		</div>
-	</footer>
-	<!-- end footer -->
+	<?php require(VIEWS_PATH."footer.php"); ?> <!-- llamado a la barra nav de home-->
+	<!-- end footer-->
 	<script type="text/javascript">
 		
 	</script>
+
 	<style type="text/css">
 		.content-input input,
 		.content-select select{

@@ -1,6 +1,20 @@
+<?php
+//-----ESTO DEBE IR EN LA CONTROLADORA HOME
+if( isset($_SESSION['Login'])){
+  $cuenta_logueada=$_SESSION['Login'];
+  $cuenta_logueada->getEmail();
+}
+if( isset($_SESSION['Cliente_Logueado'])){
+  $cliente=$_SESSION['Cliente_Logueado'];
+  
+}
+//-----------------------------------------
+?>
 <!DOCTYPE html>
+
 <html>
 <head>
+
 	<!-- CSS -->
 	<link rel="stylesheet" href="/MoviePass/Views/css/bootstrap-reboot.min.css">
 	<link rel="stylesheet" href="/MoviePass/Views/css/bootstrap-grid.min.css">
@@ -46,10 +60,10 @@
 
 							<!-- header auth -->
 							<div class="header__auth">
-								<button class="header__search-btn" type="button">
-									<i class="icon ion-ios-search"></i>
-								</button>
+								
 
+								<!--ENTRA SI HAY SESSION, CAMBIANDO LOS ICONOS DE LA BARRA -->
+					<?php   if( !isset($_SESSION['Login']) ) {  ?>
 								<a data-toggle="modal" data-target="#id01" class="header__sign-in"><span>Iniciar Sesion</span>
 								</a>
 								<!-- ventana modal sign in-->
@@ -164,39 +178,33 @@
 								      
 								    </div>
 							    </div>
-								<!-- end sign up modal-->		
-						    </div>	
+							    <?php } ?>
+								<!-- end sign up modal-->
+								<!--ENTRA SI HAY SESSION, CAMBIANDO LOS ICONOS DE LA BARRA -->
+								<?php   if( isset($_SESSION['Login']) ) {  ?> 
+											
+											<form action="<?= ROOT_VIEW ?>/Login/cerrarSesion" method="post">
+												<button class="sign__btn" type="submit">Cerrar Session</button>
+											</form>
+												
+								<?php } ?>
+
+						    </div>
+						
 						</div>
 						<!-- end header auth -->
 
-							<!-- header menu btn -->
-							<button class="header__btn" type="button">
-								<span></span>
-								<span></span>
-								<span></span>
-							</button>
-							<!-- end header menu btn -->
+							
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<!-- header search -->
-		<form action="#" class="header__search">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="header__search-content">
-							<input type="text" placeholder="Search for a movie, TV Series that you are looking for">
 
-							<button type="button">search</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</form>
-		<!-- end header search -->
+
+		
+
 	</header>
 	<!-- end header -->
 	<style type="text/css">

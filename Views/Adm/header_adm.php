@@ -37,6 +37,7 @@ if( isset($_SESSION['Cliente_Logueado'])){
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
+<link rel="stylesheet" href="/MoviePass/Views/css/header2.css">
 
 <!-- SWEET ALERT -->
 <script src="sweetalert2.all.min.js"></script>
@@ -52,7 +53,7 @@ if( isset($_SESSION['Cliente_Logueado'])){
 <body>
 <nav class="navbar navbar-default navbar-expand-lg navbar-light">
   <div class="navbar-header d-flex col">
-    <a class="navbar-brand" href="<?= ROOT_VIEW ?>/Nav/index">Movie<b>Pass</b></a>     
+    <a class="navbar-brand" href="<?= ROOT_VIEW ?>/Nav/index">Movie<b style="color: #ff55a5;">Pass</b></a>     
     <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
       <span class="navbar-toggler-icon"></span>
       <span class="icon-bar"></span>

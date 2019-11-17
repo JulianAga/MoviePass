@@ -4,7 +4,8 @@
 
 use Repository\CinesRepository as CinesRepository;
 use models\Cine as Cine;
-
+include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
+include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 ?>
 
 <!DOCTYPE html>
@@ -20,19 +21,38 @@ use models\Cine as Cine;
 
 <link rel="stylesheet" href="/MoviePass/Views/css/header2.css"><!-- ARCHIVO CSS-->
 
+
+
+
 </head> 
 
 <body class="fondo_home_adm">
-    <!------------ MUESTRA DE ERRORES PROVENIENTES DE LA CONTROLADORA------->
-    <?php if ($arrayAlertExito!=null) { ?>
-            
-            <script> sweetAlert("Exito","<?php echo $arrayAlertExito; ?>", "success")</script>
-        <?php } ?>
 
-    <?php if ($arrayAlertError!=null) { ?>
-            <script> sweetAlert("Error", "<?php echo $arrayAlertError; ?>", "error")</script>
-             <?php } ?>
-    <!-------------------------------------- - ------------------------------>
+
+     <!------------ MUESTRA DE ERRORES PROVENIENTES DE LA CONTROLADORA------->
+    <?php if (isset($_SESSION['Error']) ) {
+   $msj=$_SESSION['Error']; ?>
+   
+    <script> sweetAlert("Error!", "<?php echo $msj; ?>", "error")</script>
+    <?php unset($_SESSION["Error"]);?>
+    <?php } ?>
+    <!-- -->
+    <?php if (isset($_SESSION['Success']) ) {
+       $msj2=$_SESSION['Success']; ?>
+      
+        <script> sweetAlert("Exito!", "<?php echo $msj2; ?>", "success")</script>
+        <?php unset($_SESSION["Success"]);?>
+    <?php } ?>
+    <!-- -->
+    <?php if (isset($_SESSION['BD']) ) {
+       $msj3=$_SESSION['BD']; ?>
+      
+        <script> sweetAlert("Error en BD", "<?php echo $msj3; ?>", "error")</script>
+        <?php unset($_SESSION["BD"]);?>
+    <?php } ?>
+    <!-------------------------------------- - ------------------------------> 
+    
+    
     <header>
         <?php include_once("header_adm.php"); ?> <!-- llamado a la barra nav de home-->
     </header>
@@ -527,7 +547,11 @@ use models\Cine as Cine;
     }
   </style>
 
-    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="<?php echo "JS_PATH" ?>/sweetalert.min.js" type="javascript"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 </body>

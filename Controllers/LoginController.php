@@ -87,7 +87,7 @@
 					$genresArray=array_shift($generoYfecha);
 
 					
-					require(ROOT . '/Views/home.php');
+					require(ROOT . '/Views/home2.php');
 
 					
 				}
