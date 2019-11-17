@@ -2254,6 +2254,26 @@ ul {
 .filter__item-menu li:hover {
   color: #ff55a5;
 }
+
+
+.filter__item-menu select {
+  display: block;
+  line-height: 40px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 300;
+  cursor: pointer;
+  -webkit-transition: 0.4s ease;
+  -moz-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+.filter__item-menu select:hover {
+  color: #ff55a5;
+}
+
+
 .filter__item-menu.show {
   pointer-events: auto;
   opacity: 1;

@@ -56,8 +56,7 @@
 	<!-- end page title -->
 	
 
-	<!-- content -->
-	<section class="content">
+	
 		<!-- filtro -->
 	<div class="filter">
 		<div class="container">
@@ -66,61 +65,33 @@
 				<div class="col-12">
 					<div class="filter__content">
 						<div class="filter__items">
-							<!-- item genero  -->
+							<!-- filtro generos  -->
 							<div class="filter__item" id="filter__genre">
-								<span class="filter__item-label">Genero:</span>
+								<div class="content-select">
+									<select name="genre" id="genre" class="select">
+						              <option value="" selected hidden>Todos</option>
+						                  <?php
+						                  foreach($genresArray as $g){?>
+						                  <option value="<?php echo $g->getId();?>"><?php echo $g->getName();?></option> 
+						                  <?php } ?>
 
-								<div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-genre" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<input type="button" value="Generos">
-									<span></span>
-								</div>
-								<ul class="filter__item-menu dropdown-menu scrollbar-dropdown" aria-labelledby="filter-genre">
-									
-									<?php
-					                  foreach($genresArray as $g){?>
-					                  <input type="checkbox" id="genero">
-					                  <li for="genero" value="<?php echo $g->getId();?>"><?php echo $g->getName();?></li> 
-					                <?php } ?>  
-								</ul>
+						              </select>
+						              <i></i> 
+					            </div>
 							</div>
-							<!-- end filtro genero -->
+							<!-- end filtro generos -->
 
-							<!-- filtro rating -->
-							<!-- <div class="filter__item" id="filter__rate">
-								<span class="filter__item-label">Rating:</span>
 
-								<div class="filter__item-btn dropdown-toggle" role="button" id="filter-rate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<div class="filter__range">
-										<div id="filter__imbd-start"></div>
-										<div id="filter__imbd-end"></div>
-									</div>
-									<span></span>
-								</div>
-
-								<div class="filter__item-menu filter__item-menu--range dropdown-menu" aria-labelledby="filter-rate">
-									<div id="filter__imbd"></div>
-								</div>
-							</div> -->
-							<!-- end filtro rating-->
-
-							<!-- filtro año -->
-							<!-- <div class="filter__item" id="filter__year">
-								<span class="filter__item-label">Año:</span>
-
-								<div class="filter__item-btn dropdown-toggle" role="button" id="filter-year" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<div class="filter__range">
-										<div id="filter__years-start"></div>
-										<div id="filter__years-end"></div>
-									</div>
-									<span></span>
-								</div>
-
-								<div class="filter__item-menu filter__item-menu--range dropdown-menu" aria-labelledby="filter-year">
-									<div id="filter__years"></div>
-								</div>
-							</div> -->
-							<!-- end filtro año -->
+							<!-- filtro fecha  -->
+							<div class="filter__item" id="filter__genre">
+								<div class="content-select">
+									<label class="label-font"> Fecha</label>
+              						<input type="date" id="date" min="<?php echo date("Y-m-d");?>"  name="date" date-border> 
+					            </div>
+							</div>
+							<!-- end filtro fecha -->
 						</div>
+
 						
 						<!-- boton aplicar filtro -->
 						<button class="filter__btn" type="submit" name="enviar" id="enviar">Aplicar Filtro</button>
@@ -167,13 +138,6 @@
 				
 					<!-- end card -->
 			<?php } //end foreach?>
-
-
-				<!-- section btn -->
-				<div class="col-12">
-					<a href="#" class="section__btn">Show more</a>
-				</div>
-				<!-- end section btn -->
 			</div>
 			
 		</div>
@@ -181,10 +145,6 @@
 	
 	<!-- end expected premiere -->
 		
-
-	
-
-	
 
 	<!-- footer -->
 	<footer class="footer">
@@ -255,20 +215,102 @@
 	<script type="text/javascript">
 		
 	</script>
+	<style type="text/css">
+		.content-input input,
+		.content-select select{
+			appearance: none;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+		}
+		.content-select select{
+			appearance: none;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+		}
+		/* Eliminamos la fecha que por defecto aparece en el desplegable */
+		.content-select select::-ms-expand {
+		    display: none;
+		}
+		.content-select{
+			max-width: 250px;
+			position: relative;
+		}
+ 
+ 		
+		.content-select select{
+			display: inline-block;
+			width: 100%;
+			cursor: pointer;
+		  	padding: 7px 10px;
+		  	height: 42px;
+		  	outline: 0; 
+		  	border: 0;
+			border-radius: 0;
+			background: #f0f0f0;
+			color: #7b7b7b;
+			font-size: 16px;
+  			color: #1e1b1c;
+			/*font-size: 1em;
+			color: #999;*/
+			/*font-family: 
+			'Quicksand', sans-serif;*/
+			font-family: 'Open Sans', sans-serif;
+			border:2px solid rgba(0,0,0,0.2);
+		    border-radius: 12px;
+		    position: relative;
+		    transition: all 0.25s ease;
+		}
+		 
+		.content-select select:hover{
+			/*background: #f2afce;*/
+			  background-image: -moz-linear-gradient(90deg, #ff55a5 10%, #ff5860 90%);
+			  background-image: -webkit-linear-gradient(90deg, #ff55a5 10%, #ff5860 90%);
+			  background-image: -ms-linear-gradient(90deg, #ff55a5 10%, #ff5860 90%);
+			  background-image: linear-gradient(90deg, #ff55a5 10%, #ff5860 90%);
 
-	<!-- JS -->
-	<script src="/MoviePass/Views/js/jquery-3.3.1.min.js"></script>
-	<script src="/MoviePass/Views/js/bootstrap.bundle.min.js"></script>
-	<script src="/MoviePass/Views/js/owl.carousel.min.js"></script>
-	<script src="/MoviePass/Views/js/jquery.mousewheel.min.js"></script>
-	<script src="/MoviePass/Views/js/jquery.mCustomScrollbar.min.js"></script>
-	<script src="/MoviePass/Views/js/wNumb.js"></script>
-	<script src="/MoviePass/Views/js/nouislider.min.js"></script>
-	<script src="/MoviePass/Views/js/plyr.min.js"></script>
-	<script src="/MoviePass/Views/js/jquery.morelines.min.js"></script>
-	<script src="/MoviePass/Views/js/photoswipe.min.js"></script>
-	<script src="/MoviePass/Views/js/photoswipe-ui-default.min.js"></script>
-	<script src="/MoviePass/Views/js/main.js"></script>
+			  font-size: 16px;
+  			  color: #fff;
+		}
+		 
+		/* 
+		Creamos la fecha que aparece a la izquierda del select.
+		Realmente este elemento es un cuadrado que sólo tienen
+		dos bordes con color y que giramos con transform: rotate(-45deg);
+		*/
+		.content-select i{
+			position: absolute;
+			right: 20px;
+			top: calc(50% - 13px);
+			width: 16px;
+			height: 16px;
+			display: block;
+			
+			border-left:4px solid #ff55a5;
+			border-bottom:4px solid #ff55a5;
+
+			transform: rotate(-45deg); /* Giramos el cuadrado */
+			transition: all 0.25s ease;
+		}
+		 
+		.content-select:hover i{
+			margin-top: 3px;
+			border-left:4px solid #f6ecf1;
+			border-bottom:4px solid #f6ecf1;
+		}
+		.date-border{
+			border-left:4px solid #f6ecf1;
+			border-bottom:4px solid #f6ecf1;
+			border-radius: 12px;
+		}
+		.label-font{
+			font-size: 16px;
+  			color: #f6ecf1;
+			font-family: 'Open Sans', sans-serif;
+
+		}
+
+	</style>
+
 </body>
 
 </html>
