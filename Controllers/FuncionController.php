@@ -315,7 +315,7 @@ class FuncionController
 		$num = $this->DAOFunciones->contarEntradas($id_funcion);
 	//var_dump($num);
 	
-		echo $num;
+		return $num;
 
 	}
 

@@ -79,7 +79,10 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                         </tr>
                     </thead>
                  
-                    <?php foreach ($functionList as $funct) { 
+                    <?php 
+                    $i = -1;
+                    foreach ($functionList as $funct) {
+                        $i++;
                         if ($funct->getSala()->getCine()->getID() == $cine->getID()){?>
                            <tbody>
                         <tr>
@@ -90,16 +93,10 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                         <?php echo $funct->getDia()." a las ". $funct->getHorario();?>
                         </td>
                         <td>
-                        <?php echo $funct->getSala()->getCapacidad();?>
-                        </td>
-                        <td>
-               
-
-                              <form method="post" action="<?= ROOT_VIEW ?>/Funcion/contarEntradas">
-        
-                                <input name="id_funcion" readonly value="<?php echo $funct->getID();?>" hidden>
-                                <button type="submit"></button>
-                            </form>
+                        <?php echo $funct->getSala()->getCapacidad() - $arrayEntradas[$i];
+                      
+                        ?>
+                    
                         </td>
                         </tr>       
                         </tbody>      
