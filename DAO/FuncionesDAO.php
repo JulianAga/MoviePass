@@ -95,7 +95,7 @@ class FuncionesDAO extends SingletonAbstractDAO
 
 				$object = new \Models\Funcion($salasDAO->buscarPorID($id_sala),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
 				
-				//$object->setId($row['id_funcion']);
+				$object->setId($row['id_funcion']);
 				array_push($arrayFunciones, $object);
 
 			}
@@ -281,6 +281,43 @@ public function borrar($idSala,$idPelicula){
 
     	return $flag;
 }//fin borrar
+
+public function contarEntradas($id_funcion){  
+	try 
+	{
+	
+	$query = 'SELECT COUNT(id_entrada) FROM '.'Entradas'.' WHERE id_funcion = :id_funcion';
+	$pdo = new Connection();
+	$connection = $pdo->Connect();
+	$command = $connection->prepare($query);
+
+
+
+	$command->bindParam(':id_funcion', $id_funcion);
+
+	$command->execute();
+
+	$num = $command->fetch();
+
+		$entradas = $num['COUNT(id_entrada)'];
+	
+	}
+	
+	catch (PDOException $ex) {
+
+		$_SESSION['Error']="Error al contar entradas: PDO EXCEPTION";
+		
+		throw $ex;
+	}
+	catch (Exception $e) {
+		$_SESSION['Error']="Error al contar entradas:EXCEPTION";
+
+		throw $e;
+	}
+
+	return $entradas;
+
+	}
 
 }// fin class-----
     ?>

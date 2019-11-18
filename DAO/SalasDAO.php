@@ -18,10 +18,6 @@ class SalasDAO extends SingletonAbstractDAO implements IDAO{
 		try 
 
     	{
-    		
-    		
-			
-    		$flag;
 			$query = 'INSERT INTO '.$this->table.' 
 			(nombre, capacidad ,  valor_entrada , id_cine) 
 			VALUES 
@@ -240,6 +236,8 @@ class SalasDAO extends SingletonAbstractDAO implements IDAO{
     	}
 
 	}//fin traerTodos
+
+
 
 }//fin class
 

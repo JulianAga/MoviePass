@@ -309,4 +309,13 @@ class FuncionController
 		
 	}
 
+	public function contarEntradas($id_funcion)
+	{
+		$num = $this->DAOFunciones->contarEntradas($id_funcion);
+	//var_dump($num);
+	
+		echo $num;
+
+	}
+
 }
