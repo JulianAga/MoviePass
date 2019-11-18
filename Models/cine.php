@@ -6,8 +6,6 @@ class Cine {
     private $ID;
     private $nombre;
     private $direccion;
-    private $capacidad;
-    private $valor_entrada;
     private $habilitado;
 
     function __construct ($nombre,$direccion,$habilitado){

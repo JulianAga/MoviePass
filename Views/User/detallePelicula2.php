@@ -147,48 +147,51 @@
 					</video>
 				</div>
 				<!-- end player -->
-				<div class="col-12">
-					<div class="details__wrap">
+				<!-- compra entradas-->
+				
+					<div class="col-12">
+					  <div class="details__wrap">
 						<!-- availables -->
-						<div class="details__devices">
-							<span class="details__devices-title">Disponible en:</span>
-							<div class="content-select">
-								<select class="select">
-									<option value="" selected hidden>Elija su Funcion</option>
-							<?php foreach ($lista_funciones as $g) { ?>
-						              <option value="<?php  $_SESSION['Funcion']=$g;?>">
-						                <?php echo $g->getSala()->getCine()->getNombre().' | '.$g->getSala()->getNombre().' | '.$g->getDia().' | '.$g->getHorario();?>
-						              </option>
-					        <?php } ?>
-									
-								</select>
-								<i></i>
+							<div class="details__devices">
+								<span class="details__devices-title">Disponible en:</span>
+								<div class="content-select">
+									<form action="<?= ROOT_VIEW ?>/Compra/newCompra"  method="post">
+									<select class="select">
+										<option value="" selected hidden>Elija su Funcion</option>
+								<?php foreach ($lista_funciones as $g) { ?>
+							              <option value="<?php  $_SESSION['Funcion']=$g;?>">
+							                <?php echo $g->getSala()->getCine()->getNombre().' | '.$g->getSala()->getNombre().' | '.$g->getDia().' | '.$g->getHorario();?>
+							              </option>
+						        <?php } ?>
+										
+									</select>
+									<i></i>
+								</div>
 							</div>
-						</div>
-						<!-- end availables -->
+							<!-- end availables -->
+							<!-- share -->
+							<div class="details__share">
+								<span class="details__share-title">Compartí con amigos:</span>
 
-						<!-- share -->
-						<div class="details__share">
-							<span class="details__share-title">Compartí con amigos:</span>
-
-							<ul class="details__share-list">
-								<li class="facebook"><a href="#"><i class="icon ion-logo-facebook"></i></a></li>
-								<li class="instagram"><a href="#"><i class="icon ion-logo-instagram"></i></a></li>
-								<li class="twitter"><a href="#"><i class="icon ion-logo-twitter"></i></a></li>
-								
-							</ul>
-						</div>
-						<!-- end share -->
+								<ul class="details__share-list">
+									<li class="facebook"><a href="#"><i class="icon ion-logo-facebook"></i></a></li>
+									<li class="instagram"><a href="#"><i class="icon ion-logo-instagram"></i></a></li>
+									<li class="twitter"><a href="#"><i class="icon ion-logo-twitter"></i></a></li>
+									
+								</ul>
+							</div>
+							<!-- end share -->
+					   </div>
 					</div>
-				</div>
-				<!-- boton comprar  -->
-				<div class="col-12">
-					<form action="<?= ROOT_VIEW ?>/Compra/newCompra"  method="post">
-						<br>
-						<button class="filter__btn" type="submit" name="enviar" id="enviar">Comprar Entradas</button>
-					</form>
-				</div>
-				<!-- end boton comprar  -->
+					<!-- boton comprar  -->
+					<div class="col-12">
+							<br>
+							<button class="filter__btn" type="submit" name="enviar" id="enviar">Comprar Entradas</button>
+						
+					</div>
+				</form>
+				<!-- end compra entradas  -->
+
 			</div>
 		</div>
 		<!-- end details content -->
