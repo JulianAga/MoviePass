@@ -92,6 +92,15 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                         <td>
                         <?php echo $funct->getSala()->getCapacidad();?>
                         </td>
+                        <td>
+               
+
+                              <form method="post" action="<?= ROOT_VIEW ?>/Funcion/contarEntradas">
+        
+                                <input name="id_funcion" readonly value="<?php echo $funct->getID();?>" hidden>
+                                <button type="submit"></button>
+                            </form>
+                        </td>
                         </tr>       
                         </tbody>      
                         <?php }} ?>

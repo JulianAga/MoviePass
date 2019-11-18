@@ -16,10 +16,7 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 	public function insertar($dato){
 		try 
 
-    	{
-    		
-    		
-    		$flag;
+    	{	
 			$query = 'INSERT INTO '.$this->table.' 
 			(direccion, nombre ,  habilitado) 
 			VALUES 
