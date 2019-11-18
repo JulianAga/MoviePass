@@ -9,12 +9,12 @@ use DAO\FuncionesDAO as FuncionesDAO;
 /**
  * 
  */
-class EntradasDAO extends SingletonAbstractDAO implements IDAO
+class EntradasDAO extends SingletonAbstractDAO
 {
 	//-------------ATRIBUTOS--------------
 	private $table = 'Entradas';
 	//-------------METODOS--------------------
-	public function insertar(Entrada $dato,$id_compra){
+	public function insertar($dato,$id_compra){
 		try 
     	{
     	
@@ -287,7 +287,37 @@ class EntradasDAO extends SingletonAbstractDAO implements IDAO
 //
 //	
 
+public function ultimaEntrada($id_funcion)
+{
+	$numero_entrada=null;
+	$query = 'call '.'sp_retornarUltimaEntrada(:id_funcionE)';
+	$pdo = new Connection();
+	$connection = $pdo->Connect();
+	$command = $connection->prepare($query);
+
+
+	$command->bindParam(':id_funcionE', $id_funcion);
+
+
+	$command->execute();
+
+	while ($row = $command->fetch())
+	{
+			$numero_entrada=$row['numero_entrada'];
+	}
 	
+	$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+	$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+	
+	if ($num_error==null){
+	$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
+	
+	}
+	else
+		echo "error ".$descripcion_error;//si dio error al borrar de BD retorno false
+	
+	return $numero_entrada;
+}
 }//fin class----------------
 
 
