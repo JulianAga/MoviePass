@@ -137,9 +137,10 @@ class CineController
 	}//fin delete cine
 	//
 	//
-	public function modifyCine($id,$cine,$habilitado,$direccion,$capacidad,$valor){
+	public function modifyCine($id,$habilitado,$cine,$direccion){
         
-
+        echo $id;
+        echo $cine;
 
         if (strlen($cine)>30){//verifico tamaño del nombre
             $_SESSION['Error']="El nombre del cine excede los 30 caracteres!";
@@ -159,9 +160,9 @@ class CineController
         else{//si esta todo bien , modifico el cine
 
             if ($habilitado==1)
-            $cineMod = new cine ($cine,$direccion,$capacidad,$valor,1);
+            $cineMod = new cine ($cine,$direccion,1);
             else if($habilitado==0)
-                $cineMod = new cine ($cine,$direccion,$capacidad,$valor,0);
+                $cineMod = new cine ($cine,$direccion,0);
 
             $flag;
             $cineMod->setID($id);

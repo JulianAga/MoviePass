@@ -157,7 +157,7 @@
 									<option value="" selected hidden>Elija su Funcion</option>
 							<?php foreach ($lista_funciones as $g) { ?>
 						              <option value="<?php  $_SESSION['Funcion']=$g;?>">
-						                <?php echo $g->getSala()->getCine()->getNombre().' - '.$g->getSala()->getNombre().' - '.$g->getDia().' - '.$g->getHorario();?>
+						                <?php echo $g->getSala()->getCine()->getNombre().' | '.$g->getSala()->getNombre().' | '.$g->getDia().' | '.$g->getHorario();?>
 						              </option>
 					        <?php } ?>
 									

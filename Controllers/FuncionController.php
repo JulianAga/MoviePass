@@ -79,6 +79,7 @@ class FuncionController
 				$funcion = new Funcion($sala, $peli_buscada->getId_api(), $hora, $fecha);
 				$this->DAOFunciones->insertar($funcion);
 				//header("Location:".ROOT_VIEW);
+				$_SESSION['Success']="Función agregada!";
 				$this->index();
 
 			}//if

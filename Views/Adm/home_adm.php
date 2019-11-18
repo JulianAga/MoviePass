@@ -62,7 +62,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                 <table class="table box_transparente table_transparente">
                     <thead class="thead-dark">
                         <tr>
-                            <th></th>
+                            <!-- <th></th> -->
                             <th>Cine</th>
                             <th>Direccion</th>
                             <th>  </th>
@@ -83,9 +83,9 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                         
                         ?>
                         <tr>
-                            <td style="vertical-align:middle;"></td>    
-                            <td style="vertical-align:middle;"><?php  echo $Cine->getNombre(); ?></td>
-                            <td style="vertical-align:middle;"><?php  echo $Cine->getDireccion(); ?></td>
+                            <!-- <td style="vertical-align:middle;" ></td> -->    
+                            <td style="vertical-align:middle;" WIDTH="150"><?php  echo $Cine->getNombre(); ?></td>
+                            <td style="vertical-align:middle;" WIDTH="150"><?php  echo $Cine->getDireccion(); ?></td>
                             <td></td>
 
                             
@@ -316,6 +316,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
 
                                           <div class="modal-body">
                                             <div class="form-group">
+                                              <input type="hidden" name="id" value="<?php echo $Cine->getID();?>">
                                                 <label>Estado </label>
                                                 <select name="habilitado">
                                                     <option value="1" name="habilitado"<?php if ($Cine->getHabilitado()==true){?> selected <?php }?> >Habilitado</option>
@@ -329,6 +330,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                             <div class="form-group">
                                                 <label>Direccion</label>
                                                 <input type="text" class="form-control" name="direccion" maxlength="30" value="<?php echo $Cine->getDireccion();?>" required>
+
                                             </div>
                                            </div>
                                             <div class="modal-footer">
@@ -354,7 +356,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                     </tbody>
                 </table>
 
-<!----------------   Boton Añadir Cines   ------------------->
+<!----------------   BOTON AÑADIN CINES  ------------------->
                 
 <button type="button" class="boton_cancelar" data-toggle="modal" data-target="#AddCineModal" data-whatever="@mdo">Añadir cine</button>
 
@@ -369,35 +371,27 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
       </div>
       <div class="modal-body">
       <form method="post" action="<?= ROOT_VIEW ?>/Cine/newCine">
-                     
+          <div class="form-group">
+              <label>Nombre del Cine</label>
+              <input type="text" class="form-control" maxlength="30"name="cine" required/>
+          </div>
 
-                    <div class="form-group">
-                        <label>Nombre del Cine</label>
-                        <input type="text" class="form-control" maxlength="30"name="cine" required/>
-                    </div>
+          <div class="form-group">
+              <label>Direccion</label>
+              <input type="text" class="form-control" name="direccion" maxlength="30" required>
+          </div>
+      </div>
 
-                    <div class="form-group">
-                        <label>Direccion</label>
-                        <input type="text" class="form-control" name="direccion" maxlength="30" required>
-                    </div>
-
-
-                    
-      
-
-
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="boton_modificar">Agregar Cine</button>
+      <div class="modal-footer">
+          <button type="button" class="boton_cancelar" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="boton_modificar">Agregar Cine</button>
         </form>
       </div>
     </div>
   </div>
 </div>
 
-                           <!--------  Fin Boton Añadir Cines   ----------->
+<!--------  END AÑADIR CINES   ----------->
                 </div>
             </form>
             
@@ -413,7 +407,6 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                 </div>
             <?php } ?>
         </div>
-        
     </main>
         
     
