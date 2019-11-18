@@ -148,7 +148,7 @@ public function devolverFuncionesXidPelicula($dato){
 		
 
 		$object = new \Models\Funcion($salaDAO->buscarPorID($id_sala),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
-		$object->setId($row['id_funcion']);
+		//$object->setId($row['id_funcion']);
 		array_push($arrayFunciones, $object);
 
 	}

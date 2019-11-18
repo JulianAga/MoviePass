@@ -32,7 +32,13 @@
 
 </head>
 <body class="body">
-	<?php require(VIEWS_PATH."header2.php"); ?> <!-- llamado a la barra nav de home-->
+
+	<!-- barra nav-->
+	
+		<?php require(VIEWS_PATH."header2.php"); ?> <!-- llamado a la barra nav de home-->
+	
+	
+	<!-- end barra nav-->
 	<!------------ MUESTRA DE ERRORES PROVENIENTES DE LA CONTROLADORA------->
     <?php if (isset($_SESSION['Error']) ) {
    $msj=$_SESSION['Error']; ?>
@@ -59,7 +65,8 @@
 	<!-- details -->
 	<section class="section details">
 		<!-- details background -->
-		<div class="details__bg" data-bg="/MoviePass/Views/img/home/home__bg.jpg"></div>
+		<div class="details__bg" data-bg="/MoviePass/Views/img/home/home__bg.jpg">
+		</div>
 		<!-- end details background -->
 
 		<!-- details content -->
@@ -97,29 +104,19 @@
 
 									<ul class="card__meta">
 
-										<li><span>Genre:</span>
+										<li><span>Generos:</span>
 											<?php foreach ($generos as $key ) { ?>
 												<a><?php echo $key->getName();  ?></a>
 											<?php } ?>
 										
 										
-										<li><span>Release year:</span> 2017</li>
-										<li><span>Running time:</span> 120 min</li>
-										<li><span>Country:</span> <a href="#">USA</a> </li>
-
-										<li><span>Genero:</span>
-												<?php foreach ($generos as $key) { ?>
-											<a ><?php echo $key->getName();?></a>
-											<?php } ?>
-										</li>
+										<li><span>Año Lanzamiento:</span> 2017</li>
 										<li><span>Duración:</span> 120 min</li>
-										<li><span>Idioma:</span>
-												
-											<a href="#"><?php echo $mov->getLenguaje();?></a> 
+										<li>
+											<span>Idioma:</span> 
+											<a href="#"><?php echo $mov->getLenguaje();?></a>
 										</li>
-
 									</ul>
-
 									<div class="card__description card__description--details">
 										<?php echo $mov->getDescripcion() ?> 
 									</div>
@@ -132,15 +129,6 @@
 				<!-- end content -->
 
 				<!-- player -->
-
-				<div class="col-8 col-xl-4">
-					<video controls crossorigin playsinline poster="../../../cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="player">
-						<!-- Video files -->
-						<source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" size="576">
-						<source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4" type="video/mp4" size="720">
-						<source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4" type="video/mp4" size="1080">
-						<source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1440p.mp4" type="video/mp4" size="1440">
-
 				<div class="col-6">
 					<video controls crossorigin playsinline poster="../../../cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="player">
 						<!-- Video files -->
@@ -148,7 +136,6 @@
 						<source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4" type="video/mp4" size="720">
 						<source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4" type="video/mp4" size="1080">
 						<source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1440p.mp4" type="video/mp4" size="1440"> -->
-
 
 						<!-- Caption files -->
 						<track kind="captions" label="English" srclang="en" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt"
@@ -160,20 +147,8 @@
 					</video>
 				</div>
 				<!-- end player -->
-
 				<div class="col-12">
 					<div class="details__wrap">
-
-						<form action="<?= ROOT_VIEW ?>/DetallePelicula/searchMovie"  method="post">
-							
-							<button class="header__sign-in"><span>Comprar Entradas</span></button>
-						</form>
-						
-
-						<!-- share -->
-						<div class="details__share">
-							<span class="details__share-title">Share with friends:</span>
-
 						<!-- availables -->
 						<div class="details__devices">
 							<span class="details__devices-title">Disponible en:</span>
@@ -196,20 +171,16 @@
 						<div class="details__share">
 							<span class="details__share-title">Compartí con amigos:</span>
 
-
 							<ul class="details__share-list">
 								<li class="facebook"><a href="#"><i class="icon ion-logo-facebook"></i></a></li>
 								<li class="instagram"><a href="#"><i class="icon ion-logo-instagram"></i></a></li>
 								<li class="twitter"><a href="#"><i class="icon ion-logo-twitter"></i></a></li>
-
-								<li class="vk"><a href="#"><i class="icon ion-logo-vk"></i></a></li>
-
+								
 							</ul>
 						</div>
 						<!-- end share -->
 					</div>
 				</div>
-
 				<!-- boton comprar  -->
 				<div class="col-12">
 					<form action="<?= ROOT_VIEW ?>/Compra/newCompra"  method="post">
@@ -218,136 +189,12 @@
 					</form>
 				</div>
 				<!-- end boton comprar  -->
-
 			</div>
 		</div>
 		<!-- end details content -->
 	</section>
 	<!-- end details -->
 
-
-	
-
-	<!-- footer -->
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-				<!-- footer list -->
-				<div class="col-12 col-md-3">
-					<h6 class="footer__title">Download Our App</h6>
-					<ul class="footer__app">
-						<li><a href="#"><img src="/MoviePass/Views/img/Download_on_the_App_Store_Badge.svg" alt=""></a></li>
-						<li><a href="#"><img src="/MoviePass/Views/img/google-play-badge.png" alt=""></a></li>
-					</ul>
-				</div>
-				<!-- end footer list -->
-
-				<!-- footer list -->
-				<div class="col-6 col-sm-4 col-md-3">
-					<h6 class="footer__title">Resources</h6>
-					<ul class="footer__list">
-						<li><a href="#">About Us</a></li>
-						<li><a href="#">Pricing Plan</a></li>
-						<li><a href="#">Help</a></li>
-					</ul>
-				</div>
-				<!-- end footer list -->
-
-				<!-- footer list -->
-				<div class="col-6 col-sm-4 col-md-3">
-					<h6 class="footer__title">Legal</h6>
-					<ul class="footer__list">
-						<li><a href="#">Terms of Use</a></li>
-						<li><a href="#">Privacy Policy</a></li>
-						<li><a href="#">Security</a></li>
-					</ul>
-				</div>
-				<!-- end footer list -->
-
-				<!-- footer list -->
-				<div class="col-12 col-sm-4 col-md-3">
-					<h6 class="footer__title">Contact</h6>
-					<ul class="footer__list">
-						<li><a href="tel:+18002345678">+1 (800) 234-5678</a></li>
-						<li><a href="mailto:support@moviego.com">support@flixgo.com</a></li>
-					</ul>
-					<ul class="footer__social">
-						<li class="facebook"><a href="#"><i class="icon ion-logo-facebook"></i></a></li>
-						<li class="instagram"><a href="#"><i class="icon ion-logo-instagram"></i></a></li>
-						<li class="twitter"><a href="#"><i class="icon ion-logo-twitter"></i></a></li>
-						<li class="vk"><a href="#"><i class="icon ion-logo-vk"></i></a></li>
-					</ul>
-				</div>
-				<!-- end footer list -->
-
-				<!-- footer copyright -->
-				<div class="col-12">
-					<div class="footer__copyright">
-						<small><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></small>
-
-						<ul>
-							<li><a href="#">Terms of Use</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-						</ul>
-					</div>
-				</div>
-				<!-- end footer copyright -->
-			</div>
-		</div>
-	</footer>
-	<!-- end footer -->
-
-	<!-- Root element of PhotoSwipe. Must have class pswp. -->
-	<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-		<!-- Background of PhotoSwipe. 
-		It's a separate element, as animating opacity is faster than rgba(). -->
-		<div class="pswp__bg"></div>
-
-		<!-- Slides wrapper with overflow:hidden. -->
-		<div class="pswp__scroll-wrap">
-
-			<!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
-			<!-- don't modify these 3 pswp__item elements, data is added later on. -->
-			<div class="pswp__container">
-				<div class="pswp__item"></div>
-				<div class="pswp__item"></div>
-				<div class="pswp__item"></div>
-			</div>
-
-			<!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-			<div class="pswp__ui pswp__ui--hidden">
-
-				<div class="pswp__top-bar">
-
-					<!--  Controls are self-explanatory. Order can be changed. -->
-
-					<div class="pswp__counter"></div>
-
-					<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-					<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-					<!-- Preloader -->
-					<div class="pswp__preloader">
-						<div class="pswp__preloader__icn">
-							<div class="pswp__preloader__cut">
-								<div class="pswp__preloader__donut"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-
-				<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
-
-				<div class="pswp__caption">
-					<div class="pswp__caption__center"></div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- footer -->
 	<?php require(VIEWS_PATH."footer.php"); ?> <!-- llamado a la barra nav de home-->
