@@ -14,7 +14,12 @@ class ComprasDAO extends SingletonAbstractDAO implements IDAO
 	//-------------ATRIBUTOS--------------
 	private $table = 'Compras';
 	//-------------METODOS--------------------
-	public function insertar(Compra $dato){
+
+	public function insertarDevolverID($dato){}
+	public function actualizar($dato){}
+	
+	
+	public function insertar($dato){
 		try 
     	{
     		$entradasdao = EntradasDAO::getInstance();
@@ -35,7 +40,7 @@ class ComprasDAO extends SingletonAbstractDAO implements IDAO
             $subtotal = $dato->getSubtotal();
             $total = $dato->getTotal();
 
-			$command->bindParam(':id_cuenta', $fecha);
+			$command->bindParam(':id_cuenta', $id_cuenta);
 			$command->bindParam(':fecha', $fecha);
 			$command->bindParam(':descuento', $descuento);
             $command->bindParam(':subtotal', $subtotal);
@@ -46,13 +51,13 @@ class ComprasDAO extends SingletonAbstractDAO implements IDAO
             
 			$dato->setId($connection->lastInsertId());
 			
-			$entradas=$dato->getEntradas();
+			/*$entradas=$dato->getEntradas();
 			foreach($entradas as $e)
 			{
 				$entradasdao->insertar($e,$dato->getId());
-			}
+			}*/
             
-            return $dato;
+            
 
 
 			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
@@ -60,12 +65,12 @@ class ComprasDAO extends SingletonAbstractDAO implements IDAO
 			
 			if ($num_error==null){
 			$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
-
+				
 			}
 			else
-				$flag=false;//si dio error al borrar de BD retorno false
+				echo $descripcion_error;//si dio error al borrar de BD retorno false
 
-
+			return $dato;
     	}
     	catch (PDOException $ex) {
 			throw $ex;
@@ -282,6 +287,7 @@ class ComprasDAO extends SingletonAbstractDAO implements IDAO
 	}//fin traer todos
 //
 //	
+
 
 	
 }//fin class----------------

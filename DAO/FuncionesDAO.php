@@ -91,10 +91,10 @@ class FuncionesDAO extends SingletonAbstractDAO
 				$id_pelicula = ($row['id_pelicula']);
 				$dia = ($row['dia']);
 				$horario = ($row['horario']);
-				
+				$id=($row['id_funcion']);
 
 				$object = new \Models\Funcion($salasDAO->buscarPorID($id_sala),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
-				
+				$object->setID($id);
 				//$object->setId($row['id_funcion']);
 				array_push($arrayFunciones, $object);
 
@@ -145,10 +145,10 @@ public function devolverFuncionesXidPelicula($dato){
 		$id_pelicula = ($row['id_pelicula']);
 		$dia = ($row['dia']);
 		$horario = ($row['horario']);
-		
+		$id=($row['id_funcion']);
 
 		$object = new \Models\Funcion($salaDAO->buscarPorID($id_sala),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
-		//$object->setId($row['id_funcion']);
+		$object->setID($row['id_funcion']);
 		array_push($arrayFunciones, $object);
 
 	}
@@ -190,10 +190,9 @@ public function devolverFuncionesXsala($dato){
 		$id_pelicula = ($row['id_pelicula']);
 		$dia = ($row['dia']);
 		$horario = ($row['horario']);
-		
 
 		$object = new \Models\Funcion($salaDAO->buscarPorID($id_sala),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
-		$object->setId($row['id_funcion']);
+		$object->setID($row['id_funcion']);
 		array_push($arrayFunciones, $object);
 
 	}

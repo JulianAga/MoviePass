@@ -15,6 +15,8 @@ class CompraController
 	private $DAOCines;
 	private $DAOFunciones;
 	private $DAOSalas;
+	private $DAOCompras;
+	private $DAOEntradas;
 	//----------------CONSTRUCTOR--------------------
 	function __construct()
 	{
@@ -24,6 +26,8 @@ class CompraController
 		$this->DAOFunciones=\DAO\FuncionesDAO::getInstance();
 		$this->DAOPeliculas=\DAO\PeliculasDAO::getInstance();
 		$this->DAOSalas=\DAO\SalasDAO::getInstance();
+		$this->DAOCompras=\DAO\ComprasDAO::getInstance();
+		$this->DAOEntradas=\DAO\EntradasDAO::getInstance();
 	}
 	//----------------METODOS--------------------
 
@@ -33,10 +37,63 @@ public function index(){
 //
 //
 //
-public function newCompra(){
+public function newCompra($cantidad_entradas){
 
-	$function=$_SESSION['Funcion'];//tomo el obj funcion de la sesion !PROVISORIO!
-	require(ROOT . '/Views/User/detalleCompra.php');
+	if(isset($_SESSION['Login']))
+	{
+		//tomo el obj funcion de la sesion !PROVISORIO!
+		
+		$user=$_SESSION['Login'];
+		$function=$_SESSION['Funcion'];
+		//compra
+		$cantidad_entradas=2;
+		$subtotal=$function->getSala()->getValor_Entrada()*$cantidad_entradas;
+		$fechaActual = date('Y-m-d');
+		$descuento = 0;
+		$total=$subtotal;
+		
+		
+		$compra= new \Models\Compra($user,null,$fechaActual,$descuento,$subtotal,$total);
+		$compra =$this->DAOCompras->insertar($compra);
+
+		//entrada
+		$ultima_entrada=$this->DAOEntradas->ultimaEntrada($function->getID()); // valor de la ultima entrada en bd
+		
+		echo ($ultima_entrada+$cantidad_entradas);
+		if(($ultima_entrada+$cantidad_entradas) > $function->getSala()->getCapacidad())
+		{
+			//aca tira error
+			echo "error entradas no disponibles";
+		}
+		else
+		{
+	
+			for ($i = 0; $i < $cantidad_entradas; $i++) //genero la cantidad de entradas pasadas por parametro
+			{
+				$ultima_entrada=$this->DAOEntradas->ultimaEntrada($function->getID()); // valor de la ultima entrada en bd
+				$qr="qr";
+					
+				if($ultima_entrada== null) //busco la ultima entrada vendida y retorno, si es null(todavia no hay entradas para esa funcion) es 0
+				{
+					$ultima_entrada=0;
+				}
+				
+				$numero_entrada=$ultima_entrada+1; //agrego +1 al la ultima entrada guardada
+				$entrada= new \Models\Entrada($numero_entrada,$function,$qr);
+				$entrada =$this->DAOEntradas->insertar($entrada,$compra->getId());
+				
+				//require(ROOT . '/Views/User/detalleCompra.php');
+				
+			}
+		}
+		
+	}
+	else
+	{
+		
+		
+	}
+	
 	
 
 }//new compra
