@@ -170,3 +170,44 @@ create table PagoTC
     constraint fk_id_compra_pago foreign key (id_compra) references Compras (id_compra),
     constraint fk_id_cuenta_credito foreign key (id_cuenta_credito) references CuentasCredito (id_cuenta_credito)
 );
+
+
+
+//PROCEDURESSSS
+
+DELIMITER $$
+create procedure sp_totalPorCine(in idCineI int,in fechaIN date,In fechaOUT date)
+begin
+	select
+	count(numero_entrada)*valor_entrada as totalVendido,
+	fecha
+	from
+	compras inner join entradas on compras.id_compra=entradas.id_compra inner join funciones on entradas.id_funcion= funciones.id_funcion inner join salas on funciones.id_sala=salas.id_sala inner join cines on cines.id_cine=salas.id_cine
+	group by cines.id_cine
+	having cines.id_cine=idCineI and compras.fecha BETWEEN fechaIN AND fechaOUT; 
+end$$
+
+
+DELIMITER $$
+create procedure sp_totalPorPelicula(in idPeliculaI int,in fechaIN date,IN fechaOUT date)
+begin
+	select
+	monto.id_compra,
+	sum(monto.cantidad*salas.valor_entrada) as totalVendido
+	from
+	funciones inner join salas on funciones.id_sala=salas.id_sala inner join (select
+	entradas.id_funcion,
+	count(*) as cantidad,
+	compras.id_compra,
+	compras.fecha
+	from
+	compras inner join entradas on compras.id_compra=entradas.id_compra
+	group by compras.id_compra) as monto on funciones.id_funcion= monto.id_funcion
+	where funciones.id_pelicula=idPeliculaI and monto.fecha BETWEEN fechaIN AND fechaOUT;
+end$$
+
+DELIMITER $$
+create procedure sp_retornarUltimaEntrada(in id_funcionE int)
+begin
+select entradas.numero_entrada from Entradas where id_funcion = id_funcionE order by entradas.numero_entrada desc limit 1;
+end$$
