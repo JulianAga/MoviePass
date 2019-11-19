@@ -241,7 +241,7 @@ public function borrar($idSala,$idPelicula){
 	
 	try 
     	{
-    	$flag;
+    	$flag = false;
 		$query = 'DELETE FROM '.$this->table.' WHERE id_sala = :id AND id_pelicula = :idPelicula';
 		$pdo = new Connection();
 		$connection = $pdo->Connect();

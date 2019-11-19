@@ -88,20 +88,31 @@ class SalaController{
 
 	}//fin add sala
 
-	public function borrarSala($id_sala)
+	public function borrar($id_sala)
 	{
-		$flag=$this->DAOSalas->borrarSala($id_sala);
+		
+		$functionList = $this->DAOFunciones->traerTodos();
+		$tieneFunciones = false;
+		foreach ($functionList as $function) {
+			if($function->getSala()->getID() == $id_sala)
+			$tieneFunciones = true;
+		}
+		
+		if($tieneFunciones == false) // si la sala no tiene funciones activas
+		{
+		$flag=$this->DAOSalas->borrar($id_sala);
 		if ($flag==true)
 			$_SESSION['Success']="Sala eliminada!";
 		else
 			$_SESSION['Error']="No se pudo borrar la sala";
+		}
+		else if ($tieneFunciones == true)// si la sala tiene funciones activas
+		{
+			$_SESSION['Error']="La sala tiene funciones activas";
+		}
 
 		$this->index();
-	}//fin borrar sala
-	
-
-
-
+}//fin borrar sala
 	
 		}//fin class
 	

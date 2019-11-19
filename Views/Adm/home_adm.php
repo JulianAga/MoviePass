@@ -112,15 +112,15 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                             </div>
                                             <div class="form-group">
                                                 <label>Nombre</label>
-                                                <input type="text" class="form-control" name="nombre_sala"/>
+                                                <input type="text" class="form-control" name="nombre_sala" required/>
                                             </div>
                                             <div class="form-group">
                                                 <label>Capacidad</label>
-                                                <input type="number" min="1" max="1000" class="form-control" name="id_cine" />
+                                                <input type="number" min="1" max="1000" class="form-control" name="capacidad" required/>
                                             </div>
                                             <div class="form-group">
                                                 <label>Valor Entrada</label>
-                                                <input type="number" min="0" max="1000" class="form-control" name="valor_entrada" />
+                                                <input type="number" min="0" max="1000" class="form-control" name="valor_entrada" required/>
                                             </div>
                                                <input type="hidden" value="<?php echo $Cine->getID();?>" name="objCine" />
                                           <div class="modal-footer">
@@ -149,10 +149,13 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                         </button>
                                       </div>
                                       <div class="modal-body">
-                                        <form action="">
+                                   
                                         <?php
+                                             
                                       if ($movieList!= null && $salaList!= null){
                                          foreach ($salaList as $sala) { ?>
+                                         
+                                         <form action="<?= ROOT_VIEW ?>/Sala/borrar">
 
                                                 <?php if($Cine->getID() == $sala->getCine()->getID()) { ?>
                                                   <div class="form-group">
@@ -162,6 +165,11 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                                   <div class="form-group">
                                                   <label>     Capacidad </label>
                                                   <label><t>     <?php echo $sala->getCapacidad(); ?> </t></label>
+                                                  </div>
+                                                  <input type="text" name="id_sala" value="<?php echo $sala->getID(); ?>" hidden>
+
+                                                  <div>
+                                                    <button type="submit" class="boton_modificar">eliminar</button>
                                                   </div>
                                                 
                                              <?php 
