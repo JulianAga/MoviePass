@@ -164,7 +164,7 @@
 				</div>
 				<!-- end credit card-->
 				<div class="col-12">
-					<h1 class="details__title">Total a Pagar</h1>
+					<h1 class="details__title">Total a Pagar: <a style="color: #ff55a5;"><?php echo $function->getSala()->getValor_Entrada() * $cantidad_entradas; ?></a></h1>
 				</div>
 			
 		  </div>	<!-- ROW-->
