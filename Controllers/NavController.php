@@ -64,7 +64,7 @@ use Repository\DAOGenres as DAOGenres;
         {
             
             $funcionController = new FuncionController();
-			$movieList=$this->DAOPeliculas->traerTodos();
+			$arrayPeliculas=$this->DAOPeliculas->traerTodos();
 			$salaList=$this->DAOSalas->traerTodos();
 			
 			$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD

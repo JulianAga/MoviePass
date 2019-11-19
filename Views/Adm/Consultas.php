@@ -60,8 +60,7 @@
         <button type="submit" name="enviar" id="enviar">Consultar</button>
     
     </form>
-    <br>
-    <br>
+    
     <form action="<?= ROOT_VIEW ?>/Adm_Peliculas/testPeliculas"  method="post">
         
         <select name="idPeliculaI" id="idPeliculaI" >

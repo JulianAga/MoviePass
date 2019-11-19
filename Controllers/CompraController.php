@@ -119,6 +119,7 @@ public function newCompra($cantidad_entradas){
 	{
 		
 		//si no hay session le pido iniciar session FALTA HACER
+		$_SESSION['Error']="Ningun usuario Logueado!";
 		header("Location:".ROOT_VIEW);
 		
 	}

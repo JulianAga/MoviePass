@@ -177,7 +177,7 @@
         
     
     <!-- footer -->
-	<?php //require(VIEWS_PATH."footer.php"); ?> <!-- llamado a la barra nav de home-->
+	<?php require(VIEWS_PATH."footer.php"); ?> <!-- llamado a la barra nav de home-->
 <!-- end footer-->
 
 
