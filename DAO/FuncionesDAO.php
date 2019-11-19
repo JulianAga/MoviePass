@@ -99,7 +99,7 @@ class FuncionesDAO extends SingletonAbstractDAO
 				array_push($arrayFunciones, $object);
 
 			}
-			var_dump($arrayFunciones);
+			
 			return $arrayFunciones; //retorno lista de funciones
 
     	}

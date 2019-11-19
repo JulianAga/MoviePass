@@ -52,7 +52,7 @@
 							<!-- card cover -->
 							<div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-5">
 								<div class="card__cover">
-									<img src="http://image.tmdb.org/t/p/w500<?php //echo $mov->getImagen() ;?>" alt="">
+									<img src="http://image.tmdb.org/t/p/w500<?php echo $function->getIdPelicula()->getImagen() ;?>" alt="">
 								</div>
 							</div>
 							<!-- end card cover -->
@@ -60,30 +60,40 @@
 							<!-- card content -->
 							<div class="col-12 col-sm-8 col-md-8 col-lg-9 col-xl-7">
 								<div class="card__content">
-									<div class="card__wrap">
-										<span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
-
-										<ul class="card__list">
-											<li>FHD</li>
-											<li>16+</li>
-										</ul>
-									</div>
+									
 
 									<ul class="card__meta">
-
-										<li><span>Generos:</span>
-											
-										
-										
-										<li><span>Año Lanzamiento:</span> 2017</li>
-										<li><span>Duración:</span> 120 min</li>
 										<li>
-											<span>Idioma:</span> 
-											<a href="#"><?php //echo $mov->getLenguaje();?></a>
+											<span>Cine:</span>
+											<a href="#"><?php echo $function->getSala()->getCine()->getNombre();?></a>
 										</li>
+										<li>
+											<span>Sala:</span> 
+											<a href="#"><?php echo $function->getSala()->getNombre();?></a>
+										</li>
+
+										<li>
+											<span>Pelicula:</span>
+											<a href="#"><?php echo $function->getIdPelicula()->getNombre();?></a>
+										</li>
+										<li>
+											<span>Fecha:</span>
+											<a href="#"><?php echo $function->getDia();?></a>
+										</li>
+										<li>
+											<span>Cantidad de Entradas:</span>
+											<a href="#"><?php echo $cantidad_entradas;?></a>
+										</li>
+																				<li>
+											<span>Total a Pagar:</span>
+											<a href="#"><?php echo $cantidad_entradas;?></a>
+										</li>
+										
+										
 									</ul>
 									<div class="card__description card__description--details">
 										<?php //echo $mov->getDescripcion() ?> 
+										
 									</div>
 								</div>
 							</div>
@@ -92,6 +102,7 @@
 					</div>
 				</div>
 				<!-- end content -->
+
 				<!-- credit card -->
 				<div class="col-6">
 					<form class="credit-card">
@@ -123,9 +134,7 @@
 					      </div>
 					      <div class="year">
 					        <select name="Year">
-					          <option value="2016">2016</option>
-					          <option value="2017">2017</option>
-					          <option value="2018">2018</option>
+					          
 					          <option value="2019">2019</option>
 					          <option value="2020">2020</option>
 					          <option value="2021">2021</option>
@@ -154,6 +163,9 @@
 					</form>
 				</div>
 				<!-- end credit card-->
+				<div class="col-12">
+					<h1 class="details__title">Total a Pagar</h1>
+				</div>
 			
 		  </div>	<!-- ROW-->
 		</div><!-- CONTEINER-->
