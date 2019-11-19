@@ -113,6 +113,51 @@ class FuncionesDAO extends SingletonAbstractDAO
 	}//fin traer todos
 //
 //
+	public function buscarPorID($id){
+		try 
+    	{
+			$salasDAO= new SalasDAO();
+			$peliDAO= new PeliculasDAO();
+			
+			$arrayFunciones = array();
+
+			$query = 'SELECT * FROM '.$this->table. ' where id_funcion=:id';
+
+			$pdo = new Connection();
+			$connection = $pdo->Connect();
+			$command = $connection->prepare($query);
+			$command->bindParam(':id', $id);
+
+			$command->execute();
+
+			while ($row = $command->fetch())
+			{
+				$id_sala = ($row['id_sala']);
+				$id_pelicula = ($row['id_pelicula']);
+				$dia = ($row['dia']);
+				$horario = ($row['horario']);
+				$id=($row['id_funcion']);
+
+				$object = new \Models\Funcion($salasDAO->buscarPorID($id_sala),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
+				
+				$object->setId($row['id_funcion']);
+				
+
+			}
+			
+			return $object; //retorno  de funciones
+
+    	}
+    	catch (PDOException $ex) {
+			throw $ex;
+    	}
+    	catch (Exception $e) {
+			throw $e;
+    	}
+
+	}//fin traer todos
+//
+//
 public function devolverFuncionesXidPelicula($dato){
 
 

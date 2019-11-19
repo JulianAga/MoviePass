@@ -1,5 +1,4 @@
 <?php namespace Views;
-
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +36,7 @@
 </head>
 <body class="body">
 	<!------------ MUESTRA DE ERRORES PROVENIENTES DE LA CONTROLADORA------->
+	<?php if (isset($_SESSION['Funcion']) ){ unset($_SESSION['Funcion']);}  ?>
     <?php if (isset($_SESSION['Error']) ) {
    $msj=$_SESSION['Error']; ?>
    

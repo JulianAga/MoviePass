@@ -148,18 +148,18 @@
 				</div>
 				<!-- end player -->
 				<!-- compra entradas-->
-				
+				<form action="<?= ROOT_VIEW ?>/Compra/preCompra"  method="post">
 					<div class="col-12">
 					  <div class="details__wrap">
 						<!-- availables -->
 							<div class="details__devices">
 								<span class="details__devices-title">Disponible en:</span>
 								<div class="content-select">
-									<form action="<?= ROOT_VIEW ?>/Compra/preCompra"  method="post">
-									<select class="select">
+									
+									<select name="id"class="select">
 										<option value="" selected hidden>Elija su Funcion</option>
 								<?php foreach ($lista_funciones as $g) { ?>
-							              <option value="<?php  $_SESSION['Funcion']=$g;?>">
+							              <option value="<?php echo $g->getID();?>">
 							                <?php echo $g->getSala()->getCine()->getNombre().' | '.$g->getSala()->getNombre().' | '.$g->getDia().' | '.$g->getHorario();?>
 							              </option>
 						        <?php } ?>

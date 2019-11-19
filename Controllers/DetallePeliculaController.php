@@ -33,7 +33,7 @@ class DetallePeliculaController
 
 		//$functController = new FuncionController();
 		$lista_funciones=$this->DAOFunciones->devolverFuncionesXidPelicula($movie_id);
-
+		 //var_dump($lista_funciones);
 		
 
 

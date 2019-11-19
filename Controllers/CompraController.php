@@ -37,8 +37,10 @@ public function index(){
 //
 //
 //
-public function preCompra(){
-	$function=$_SESSION['Funcion'];
+public function preCompra($id){
+	$function=$this->DAOFunciones->buscarPorID($id);
+	$_SESSION['Funcion']=$function;
+	
 	require(ROOT . '/Views/User/detalleCompra.php');
 
 }//end precompra
