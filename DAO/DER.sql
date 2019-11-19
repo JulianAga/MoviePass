@@ -178,7 +178,8 @@ create table PagoTC
 DELIMITER $$
 create procedure sp_totalPorCine(in idCineI int,in fechaIN date,In fechaOUT date)
 begin
-	select
+	   SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+    select
 	count(numero_entrada)*valor_entrada as totalVendido,
 	fecha
 	from
@@ -191,7 +192,8 @@ end$$
 DELIMITER $$
 create procedure sp_totalPorPelicula(in idPeliculaI int,in fechaIN date,IN fechaOUT date)
 begin
-	select
+	SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+    select
 	monto.id_compra,
 	sum(monto.cantidad*salas.valor_entrada) as totalVendido
 	from
