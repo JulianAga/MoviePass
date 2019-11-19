@@ -75,10 +75,10 @@ public function newCompra($cantidad_entradas){
 		}
 		else//entra si hay capacidad disponible
 		{
-			echo " entro al ese ";
+			
 			for ($i = 0; $i < $cantidad_entradas; $i++) //genero la cantidad de entradas pasadas por parametro
 			{ 
-				echo " entro al for ";
+				
 				$ultima_entrada=$this->DAOEntradas->ultimaEntrada($function->getID()); // valor de la ultima entrada en bd
 				$qr="qr";
 					
