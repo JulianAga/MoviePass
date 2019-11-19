@@ -153,10 +153,17 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                         </div>
                                         <div class="form-group">
                                             <label>Salas</label>
+<<<<<<< Updated upstream
                                             <select required type="number" name="sala" id="">
                                               <option value="1">Seleccione Sala...</option>
                                               <?php foreach ($salaList as $key) { ?>
 
+=======
+                                            <select required type="number" name="id_sala" id="" required>
+                                              
+                                              <?php foreach ($salaList as $key) {?>
+                                                <?php if ($Cine->getID()== $key->getCine()->getID()) {?>
+>>>>>>> Stashed changes
                                                   <option value="<?php echo $key->getId(); ?>">
                                                       <?php echo $key->getNombre(); ?>
                                                   </option>
