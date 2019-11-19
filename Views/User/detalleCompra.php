@@ -71,7 +71,7 @@
                                                 <li>16+</li>
                                             </ul>
                                         </div>
-                                        <form action="<?= ROOT_VIEW ?>/Compra/newCompra">
+                                        <form method="post" action="<?= ROOT_VIEW ?>/Compra/newCompra">
                                             <ul class="card__meta">
                                                 <li>
                                                     <span>Cine:</span>
@@ -92,7 +92,7 @@
                                                 <li>
                                                     <span>Cantidad de entradas:</span> 
                                                     <div class="content-select">
-                                                       <select class="select " required>
+                                                       <select class="select " name="cantidad_entradas" required>
                                                             <option value="1">1</option>
                                                             <option value="2">2</option>
                                                             <option value="3">3</option>
