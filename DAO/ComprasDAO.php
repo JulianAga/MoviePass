@@ -287,7 +287,77 @@ class ComprasDAO extends SingletonAbstractDAO implements IDAO
 	}//fin traer todos
 //
 //	
+public function valoresPorPelicula($idPeliculaI, $fechaIN, $fechaOUT)
+{
+	$valor=null;
+	$query = 'call '.'sp_totalPorPelicula(:idPeliculaI, :fechaIN, :fechaOUT)';
+	
+	
+	$pdo = new Connection();
+	$connection = $pdo->Connect();
+	$command = $connection->prepare($query);
 
+
+	$command->bindParam(':idPeliculaI', $idPeliculaI);
+	$command->bindParam(':fechaIN', $fechaIN);
+	$command->bindParam(':fechaOUT', $fechaOUT);
+
+
+	$command->execute();
+
+	while ($row = $command->fetch())
+	{
+			$valor=$row['totalVendido'];
+	}
+	
+	$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+	$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+	
+	if ($num_error==null){
+	$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
+	
+	}
+	else
+		echo "error ".$descripcion_error;//si dio error al borrar de BD retorno false
+	
+	return $valor;
+}
+
+public function valoresPorCine($idCineI, $fechaIN, $fechaOUT)
+{
+	$valor=null;
+	$query = 'call '.'sp_totalPorCine(:idCineI, :fechaIN, :fechaOUT)';
+	
+	
+	$pdo = new Connection();
+	$connection = $pdo->Connect();
+	$command = $connection->prepare($query);
+
+
+	$command->bindParam(':idCineI', $idCineI);
+	$command->bindParam(':fechaIN', $fechaIN);
+	$command->bindParam(':fechaOUT', $fechaOUT);
+
+
+	$command->execute();
+
+	while ($row = $command->fetch())
+	{
+			$valor=$row['totalVendido'];
+	}
+	
+	$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+	$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+	
+	if ($num_error==null){
+	$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
+	
+	}
+	else
+		echo "error ".$descripcion_error;//si dio error al borrar de BD retorno false
+	
+	return $valor;
+}
 
 	
 }//fin class----------------
