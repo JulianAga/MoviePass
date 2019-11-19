@@ -83,11 +83,7 @@
 										<li>
 											<span>Cantidad de Entradas:</span>
 											<a href="#"><?php echo $cantidad_entradas;?></a>
-										</li>
-																				<li>
-											<span>Total a Pagar:</span>
-											<a href="#"><?php echo $cantidad_entradas;?></a>
-										</li>
+										
 										
 										
 									</ul>
