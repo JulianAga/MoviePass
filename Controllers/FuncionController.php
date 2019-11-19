@@ -68,7 +68,7 @@ class FuncionController
 			$flag=$this->DAOFunciones->verificarPeliculaEnCartelera($sala->getCine()->getID(),$id_pelicula,$fecha);//verifica si la pelicula se proyecta ese dia en ese cine. DEVUELVE TRUE SI YA HAY FUNCION ESE DIA Y FALSE SI NO LO HAY
 			/*echo $flag;*/
 			
-			$flag2= $this->validarHorario($sala->getCine()->getID(),$fecha,$hora,$id_pelicula);
+			$flag2= $this->validarHorario($id_sala,$fecha,$hora,$id_pelicula);
 
 			
 			
@@ -259,7 +259,7 @@ class FuncionController
 	}
 
 
-	public function validarHorario($cine,$date,$time,$id_pelicula)
+	public function validarHorario($sala,$date,$time,$id_pelicula)
 	{
 		$functionList= $this->DAOFunciones->traerTodos();
 		$peli_buscada=$this->DAOPeliculas->buscarPorID($id_pelicula);
@@ -281,7 +281,7 @@ class FuncionController
 			{
 				
 				
-				if($function->getSala()->getCine()->getID()== $cine && $date == $function->getDia()) //si la funcion es en el cine y en el dia que se quiere agregar la nueva pelicula entra
+				if($function->getSala()->getId()== $sala && $date == $function->getDia()) //si la funcion es en el cine y en el dia que se quiere agregar la nueva pelicula entra
 				{
 					
 					

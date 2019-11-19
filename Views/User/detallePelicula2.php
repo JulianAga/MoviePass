@@ -155,7 +155,7 @@
 							<div class="details__devices">
 								<span class="details__devices-title">Disponible en:</span>
 								<div class="content-select">
-									<form action="<?= ROOT_VIEW ?>/Compra/newCompra"  method="post">
+									<form action="<?= ROOT_VIEW ?>/Compra/preCompra"  method="post">
 									<select class="select">
 										<option value="" selected hidden>Elija su Funcion</option>
 								<?php foreach ($lista_funciones as $g) { ?>
