@@ -58,7 +58,21 @@ use Repository\DAOGenres as DAOGenres;
             }
         }
             require(ROOT . '/Views/Adm/cines_adm.php');
-		}
+        }
+        
+        public function Consultas()
+        {
+            
+            $funcionController = new FuncionController();
+			$movieList=$this->DAOPeliculas->traerTodos();
+			$salaList=$this->DAOSalas->traerTodos();
+			
+			$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
+            $arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
+            
+            require(ROOT . '/Views/Adm/Consultas.php');
+
+        }
 		
 		public function index()
         {

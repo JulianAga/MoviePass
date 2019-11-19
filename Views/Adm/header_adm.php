@@ -67,6 +67,8 @@ if( isset($_SESSION['Cliente_Logueado'])){
       <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Login/index" class="nav-link">Home Adm</a></li>
       <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Nav/adm_cine"  class="nav-link">Cines Adm</a></li>
       <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Adm_Peliculas/recibirPeliculas" class="nav-link">Actualizar Peliculas API</a></li> 
+      <li class="nav-item"><a href="<?= ROOT_VIEW ?>/Nav/Consultas" class="nav-link">Consultas</a></li> 
+   
     </ul>
     
     <ul class="nav navbar-nav navbar-right ml-auto">
