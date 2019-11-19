@@ -27,7 +27,7 @@ class Adm_PeliculasController
 		$this->peliculaDAO = \DAO\PeliculasDAO::getInstance();
 		$this->DAOFunciones=\DAO\FuncionesDAO::getInstance();
 		$this->DAOSalas=\DAO\SalasDAO::getInstance();
-		$this->DAOCines=\DAO\CinesDAO::getInstance();
+		$this->DAOCines= new \DAO\CinesDAO();
 		$this->DAOCompras=\DAO\ComprasDAO::getInstance();
 		
 	}
