@@ -53,6 +53,9 @@
         <label><?php echo $valor?><label>
     <?php }?>
     <style>
+        body{
+            color:white;
+        }
         .box_transparente{
             box-shadow:0 5px 5px 3px rgba(0, 0, 0, 0.5);
         }
