@@ -43,13 +43,15 @@
     <header>
         <?php include_once("header_adm.php"); ?> <!-- llamado a la barra nav de home-->
     </header>
-    <form action="<?= ROOT_VIEW ?>/Adm_Peliculas/testCines"  method="post">
+    <div class="centrar-div">
+        <form action="<?= ROOT_VIEW ?>/Adm_Peliculas/testCines"  method="post">
+        
         
         <select name="idCinesI" id="idCinesI" >
             <option value="" selected hidden>Cines</option>
                 <?php
                 foreach($arrayCines as $c){?>
-            <option value="<?php echo $c->getID();?>"><?php echo $c->getNombre();?></option> 
+            <option style="color: white;" value="<?php echo $c->getID();?>"><?php echo $c->getNombre();?></option> 
                 <?php } ?>              
         </select>
         
@@ -58,11 +60,12 @@
         <button type="submit" name="enviar" id="enviar">Consultar</button>
     
     </form>
-
+    <br>
+    <br>
     <form action="<?= ROOT_VIEW ?>/Adm_Peliculas/testPeliculas"  method="post">
         
         <select name="idPeliculaI" id="idPeliculaI" >
-            <option value="" selected hidden>Peliculas</option>
+            <option value="" style="color: white;" selected hidden>Peliculas</option>
                 <?php
                 foreach($arrayPeliculas as $p){?>
             <option value="<?php echo $p->getId_api();?>"><?php echo $p->getNombre();?></option> 
@@ -74,15 +77,22 @@
         <button type="submit" name="enviar" id="enviar">Consultar</button>
     
     </form>
-    <label>VALOR<label>
+    
+    </div>
+    <label><h3 style="color: white;">VALOR</h3><label>
     <?php if(isset($valor)){ ?>
         
-        <label><?php echo $valor?><label>
+        <label><h3 style="color: white;"><?php echo $valor?></h3><label>
     <?php }?>
+    
     <style>
-        body{
-            color:white;
+        .centrar-div{
+            /*IMPORTANTE*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
         }
+        
         .box_transparente{
             box-shadow:0 5px 5px 3px rgba(0, 0, 0, 0.5);
         }
