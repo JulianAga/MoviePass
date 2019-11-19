@@ -16,7 +16,8 @@ class Adm_PeliculasController
 	private $peliculaDAO;
 	private $DAOFunciones;
 	private $DAOSalas;
-
+	//private $DAOCines;
+	private $DAOCompras;
 
 	//------------------------CONSTRUCTOR-----------------
 	
@@ -26,7 +27,8 @@ class Adm_PeliculasController
 		$this->peliculaDAO = \DAO\PeliculasDAO::getInstance();
 		$this->DAOFunciones=\DAO\FuncionesDAO::getInstance();
 		$this->DAOSalas=\DAO\SalasDAO::getInstance();
-      
+		$this->CinesDAO= new \DAO\CinesDAO();
+		$this->DAOCompras=\DAO\ComprasDAO::getInstance();
 		
 	}
 
@@ -159,7 +161,41 @@ public function buscarXiD_api($id_api){
 	$objPelicula=$this->peliculaDAO->buscarPorID($id_api);
 	return $objPelicula;
 
-}//fin buscar por id api
+}
+/*
+public function testCines($idCinesI,$fechaIN,$fechaOUT)
+{
+	$arrayPeliculas=$this->peliculaDAO->traerTodos();
+	$arrayCines=$this->CinesDAO->traerTodos();
+	$valor=$this->DAOCompras->valoresPorCine($idCinesI,$fechaIN,$fechaOUT);
+
+	require(ROOT . '/Views/Adm/Consultas.php');
+	
+	
+}
+
+public function testPeliculas($idPeliculaI,$fechaIN,$fechaOUT)
+{
+	$arrayCines=$this->CinesDAO->traerTodos();
+	$arrayPeliculas=$this->peliculaDAO->traerTodos();
+	$valor=$this->DAOCompras->valoresPorPelicula($idPeliculaI,$fechaIN,$fechaOUT);
+
+	require(ROOT . '/Views/Adm/Consultas.php');
+	
+	
+}
+
+
+
+public function test()
+{
+	$arrayCines=$this->CinesDAO->traerTodos();
+	$arrayPeliculas=$this->peliculaDAO->traerTodos();
+	require(ROOT . '/Views/Adm/Consultas.php');*/
+}
+
+
+//fin buscar por id api
 //
 //
 //
@@ -172,7 +208,7 @@ public function buscarXiD_api($id_api){
 
 
 
-}//fin class------------
+//fin class------------
 
 
 
