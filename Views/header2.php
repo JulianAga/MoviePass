@@ -240,12 +240,10 @@ if( isset($_SESSION['Cliente_Logueado'])){
 		</form>
 		<!-- end header search -->
 
-
-
-		
-
-
 	</header>
+	<!-- <br> -->
+
+
 	<!-- end header -->
 	<style type="text/css">
 		.modal {

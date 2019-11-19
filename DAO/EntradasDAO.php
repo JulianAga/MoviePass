@@ -168,11 +168,13 @@ class EntradasDAO extends SingletonAbstractDAO
 
     	}
     	catch (PDOException $ex) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine: PDO EXCEPTION");</script>';
+    		$_SESSION['Error']="Error al eliminar Cine: PDO EXCEPTION";
+    		
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine: EXCEPTION");</script>';
+    		$_SESSION['Error']="Error al eliminar Cine: EXCEPTION";
+    		
 			throw $e;
     	}
 
@@ -313,8 +315,12 @@ public function ultimaEntrada($id_funcion)
 	$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
 	
 	}
-	else
-		echo "error ".$descripcion_error;//si dio error al borrar de BD retorno false
+	else{
+		$msj="Error en BD".$descripcion_error;
+		$_SESSION['Error']=$msj;
+		
+	}
+		
 	
 	return $numero_entrada;
 }

@@ -67,7 +67,7 @@ public function newCompra($cantidad_entradas){
 		//entrada
 		$ultima_entrada=$this->DAOEntradas->ultimaEntrada($function->getID()); // valor de la ultima entrada en bd
 		
-		echo ($ultima_entrada+$cantidad_entradas);
+		//echo ($ultima_entrada+$cantidad_entradas);
 		if(($ultima_entrada+$cantidad_entradas) > $function->getSala()->getCapacidad())//entra si no hay mas capacidad
 		{
 			//aca tira error
@@ -75,9 +75,10 @@ public function newCompra($cantidad_entradas){
 		}
 		else//entra si hay capacidad disponible
 		{
-	
+			echo " entro al ese ";
 			for ($i = 0; $i < $cantidad_entradas; $i++) //genero la cantidad de entradas pasadas por parametro
-			{
+			{ 
+				echo " entro al for ";
 				$ultima_entrada=$this->DAOEntradas->ultimaEntrada($function->getID()); // valor de la ultima entrada en bd
 				$qr="qr";
 					
@@ -90,15 +91,22 @@ public function newCompra($cantidad_entradas){
 				$entrada= new \Models\Entrada($numero_entrada,$function,$qr);
 				$entrada =$this->DAOEntradas->insertar($entrada,$compra->getId());
 				
-				//require(ROOT . '/Views/User/detalleCompra.php');
 				
-			}
-		}
+				
+			}//end for
+
+			//si no hay session lo llevo a home
+			require(ROOT . '/Views/User/pagoCompra.php');
+
+
+		}//end else
 		
-	}
+	}//end if
 	else
 	{
 		
+		//si no hay session le pido iniciar session FALTA HACER
+		header("Location:".ROOT_VIEW);
 		
 	}
 

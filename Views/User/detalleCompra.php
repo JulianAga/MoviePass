@@ -10,6 +10,8 @@
 <body>
 	<header>
         <?php require(VIEWS_PATH."header2.php"); ?> <!-- llamado a la barra nav de home-->
+        
+
     </header>
     <!------------ MUESTRA DE ERRORES PROVENIENTES DE LA CONTROLADORA------->
     <?php if (isset($_SESSION['Error']) ) {
