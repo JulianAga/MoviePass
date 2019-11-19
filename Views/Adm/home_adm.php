@@ -219,7 +219,7 @@ include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
                                         </div>
                                         <div class="form-group">
                                             <label>Salas</label>
-                                            <select required type="number" name="sala" id="" required>
+                                            <select required type="number" name="id_sala" id="" required>
                                               
                                               <?php foreach ($salaList as $key) { ?>
                                                 <?php if ($Cine->getID()== $key->getCine()->getID()) {?>
