@@ -44,6 +44,13 @@ public function preCompra($id){
 	require(ROOT . '/Views/User/detalleCompra.php');
 
 }//end precompra
+public function pagoCreditCard($cant_entradas){
+	$cantidad_entradas=$cant_entradas;
+	
+	$function=$_SESSION['Funcion'];
+	require(ROOT . '/Views/User/pagoCompra.php');
+
+}
 //
 //
 //
@@ -102,8 +109,8 @@ public function newCompra($cantidad_entradas){
 			}//end for
 
 			//si no hay session lo llevo a home
-			require(ROOT . '/Views/User/pagoCompra.php');
-
+			$_SESSION['Success']="Compra Exitosa!";
+			header("Location:".ROOT_VIEW);
 
 		}//end else
 		

@@ -55,8 +55,8 @@ if( isset($_SESSION['Cliente_Logueado'])){
 					<div class="col-12">
 						<div class="header__content">
 							<!-- header logo -->
-							<a href="index.html" class="header__logo">
-								<img src="img/logo.svg" alt="">
+							<a  class="header__logo">
+								<img src="/MoviePass/Views/img/logo.svg" alt="">
 							</a>
 							<!-- end header logo -->
 

@@ -101,11 +101,11 @@
 
 				<!-- credit card -->
 				<div class="col-6">
-					<form class="credit-card">
+					<form method="post" class="credit-card" action="<?= ROOT_VIEW ?>/Compra/newCompra">
 					  <div class="form-header">
 					    <h4 class="title">Tarjeta de Credito</h4>
 					  </div>
-					 
+					 <input type="hidden" value="<?php echo $cantidad_entradas;?>" name="cant_entradas">
 					  <div class="form-body">
 					    <!-- Card Number -->
 					    <input type="text" class="card-number" placeholder="Numero Tarjeta">

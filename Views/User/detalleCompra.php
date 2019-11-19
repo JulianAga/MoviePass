@@ -71,7 +71,7 @@
                                                 <li>16+</li>
                                             </ul>
                                         </div>
-                                        <form method="post" action="<?= ROOT_VIEW ?>/Compra/newCompra">
+                                        <form method="post" action="<?= ROOT_VIEW ?>/Compra/pagoCreditCard">
                                             <ul class="card__meta">
                                                 <li>
                                                     <span>Cine:</span>
