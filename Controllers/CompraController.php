@@ -54,7 +54,7 @@ public function newCompra($cantidad_entradas){
 		$function=$_SESSION['Funcion'];
 
 		//compra
-		
+		$cantidad_entradas=2;
 		$subtotal=$function->getSala()->getValor_Entrada()*$cantidad_entradas;
 		$fechaActual = date('Y-m-d');
 		$descuento = 0;
@@ -67,7 +67,7 @@ public function newCompra($cantidad_entradas){
 		//entrada
 		$ultima_entrada=$this->DAOEntradas->ultimaEntrada($function->getID()); // valor de la ultima entrada en bd
 		
-		
+		echo ($ultima_entrada+$cantidad_entradas);
 		if(($ultima_entrada+$cantidad_entradas) > $function->getSala()->getCapacidad())//entra si no hay mas capacidad
 		{
 			//aca tira error
