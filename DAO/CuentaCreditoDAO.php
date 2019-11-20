@@ -58,9 +58,11 @@ class CuentaCreditoDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
+			$_SESSION['BD']="Error al insertar CuentaCredito  en BD.PDOException";
 			throw $ex;
     	}
     	catch (Exception $e) {
+			$_SESSION['BD']="Error al insertar CuentaCredito  en BD.PDOException";
 			throw $e;
     	}
     	return $flag;
@@ -105,9 +107,11 @@ class CuentaCreditoDAO extends SingletonAbstractDAO implements IDAO
 			return $object;
     	}
     	catch (PDOException $ex) {
+			$_SESSION['BD']="Error al buscar por ID CuentaCredito  en BD.PDOException";
 			throw $ex;
     	}
     	catch (Exception $e) {
+			$_SESSION['BD']="Error al buscar por ID CuentaCredito  en BD.PDOException";
 			throw $e;
 		}		
 	}//fin buscar cuenta por id de cliente
@@ -148,11 +152,11 @@ class CuentaCreditoDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine: PDO EXCEPTION");</script>';
+			$_SESSION['BD']="Error al borrar CuentaCredito  en BD.PDOException";
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine: EXCEPTION");</script>';
+			$_SESSION['BD']="Error al borrar CuentaCredito  en BD.PDOException";
 			throw $e;
     	}
 
@@ -207,11 +211,11 @@ class CuentaCreditoDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
-    		echo '<script language="javascript">alert("Error al modificar Cine en BD");</script>'; //este tipo de mensaje no rompe el codigo
+			$_SESSION['BD']="Error al actualizar CuentaCredito  en BD.PDOException";
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		echo '<script language="javascript">alert("Error al modificar Cine en BD");</script>'; //este tipo de mensaje no rompe el codigo
+			$_SESSION['BD']="Error al actualizar CuentaCredito  en BD.PDOException";
 			throw $e;
     	}
     	return $flag;
@@ -251,9 +255,11 @@ class CuentaCreditoDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
+			$_SESSION['BD']="Error al traer todos CuentaCredito  en BD.PDOException";
 			throw $ex;
     	}
     	catch (Exception $e) {
+			$_SESSION['BD']="Error al traer todos CuentaCredito  en BD.PDOException";
 			throw $e;
     	}
 

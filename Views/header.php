@@ -1,6 +1,4 @@
-<?php namespace Views;
 
-?>
 <?php
 
 //-----ESTO DEBE IR EN LA CONTROLADORA HOME

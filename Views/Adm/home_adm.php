@@ -1,13 +1,3 @@
-
-<?php 
-
-
-use Repository\CinesRepository as CinesRepository;
-use models\Cine as Cine;
-include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
-include "Api/api_now.php";// incluyo la API de peliculas actuales en cartelera
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

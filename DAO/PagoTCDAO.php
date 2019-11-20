@@ -51,21 +51,14 @@ class PagoTCDAO extends SingletonAbstractDAO implements IDAO
             
             return $dato;
 
-            $num_error=$command->errorInfo()[1];//tomo el error que produce la query
-			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
-			
-			if ($num_error==null){
-			$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
-
-			}
-			else
-				$flag=false;//si dio error al borrar de BD retorno false
-
     	}
     	catch (PDOException $ex) {
+			$_SESSION['BD']="Error al insertar pagoTC  en BD.PDOException";
+			
 			throw $ex;
     	}
     	catch (Exception $e) {
+			$_SESSION['BD']="Error al insertar pagoTC  en BD.PDOException";
 			throw $e;
     	}
     	return $flag;
@@ -113,9 +106,11 @@ class PagoTCDAO extends SingletonAbstractDAO implements IDAO
 			return $object;
     	}
     	catch (PDOException $ex) {
+			$_SESSION['BD']="Error al buscar por ID PagoTC  en BD.PDOException";
 			throw $ex;
     	}
     	catch (Exception $e) {
+			$_SESSION['BD']="Error al buscar por ID PagoTC  en BD.PDOException";
 			throw $e;
 		}		
 	}//fin buscar cuenta por id de cliente
@@ -156,11 +151,11 @@ class PagoTCDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine: PDO EXCEPTION");</script>';
+    		$_SESSION['BD']="Error al borrar PagoTC  en BD.PDOException";
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine: EXCEPTION");</script>';
+    		$_SESSION['BD']="Error al borrar PagoTC  en BD.PDOException";
 			throw $e;
     	}
 
@@ -223,11 +218,11 @@ class PagoTCDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
-    		echo '<script language="javascript">alert("Error al modificar Cine en BD");</script>'; //este tipo de mensaje no rompe el codigo
+    		$_SESSION['BD']="Error al actualizar PagoTC  en BD.PDOException";
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		echo '<script language="javascript">alert("Error al modificar Cine en BD");</script>'; //este tipo de mensaje no rompe el codigo
+    		$_SESSION['BD']="Error al actualizar PagoTC en BD.PDOException";
 			throw $e;
     	}
     	return $flag;
@@ -273,9 +268,11 @@ class PagoTCDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
+			$_SESSION['BD']="Error al traer todos PagoTC  en BD.PDOException";
 			throw $ex;
     	}
     	catch (Exception $e) {
+			$_SESSION['BD']="Error al traer todos PagoTC  en BD.PDOException";
 			throw $e;
     	}
 

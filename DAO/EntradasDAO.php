@@ -46,9 +46,11 @@ class EntradasDAO extends SingletonAbstractDAO
 	
     	}
     	catch (PDOException $ex) {
+			$_SESSION['BD']="Error al insertar Entrada en BD.PDOException";
 			throw $ex;
     	}
     	catch (Exception $e) {
+			$_SESSION['BD']="Error al insertar Entrada en BD.PDOException";
 			throw $e;
     	}
 	}//FIN INSERTAR
@@ -87,9 +89,11 @@ class EntradasDAO extends SingletonAbstractDAO
 			return $object;
     	}
     	catch (PDOException $ex) {
+			$_SESSION['BD']="Error al buscar por ID Entrada en BD.PDOException";
 			throw $ex;
     	}
     	catch (Exception $e) {
+			$_SESSION['BD']="Error al buscar por ID Entrada en BD.PDOException";
 			throw $e;
 		}		
     }//fin 
@@ -129,9 +133,11 @@ class EntradasDAO extends SingletonAbstractDAO
 			return $array;
     	}
     	catch (PDOException $ex) {
+			$_SESSION['BD']="Error al buscar por ID Compra en BD.PDOException";
 			throw $ex;
     	}
     	catch (Exception $e) {
+			$_SESSION['BD']="Error al buscar por ID Compra en BD.PDOException";
 			throw $e;
 		}		
 	}//fin 
@@ -168,12 +174,12 @@ class EntradasDAO extends SingletonAbstractDAO
 
     	}
     	catch (PDOException $ex) {
-    		$_SESSION['Error']="Error al eliminar Cine: PDO EXCEPTION";
+    		$_SESSION['Error']="Error al etraer todas Entradas: PDO EXCEPTION";
     		
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		$_SESSION['Error']="Error al eliminar Cine: EXCEPTION";
+    		$_SESSION['Error']="Error al eliminar Entrada: EXCEPTION";
     		
 			throw $e;
     	}
@@ -279,9 +285,11 @@ class EntradasDAO extends SingletonAbstractDAO
 			return $array;
     	}
     	catch (PDOException $ex) {
+			$_SESSION['BD']="Error al traer todas Entradas en BD.PDOException";
 			throw $ex;
     	}
     	catch (Exception $e) {
+			$_SESSION['BD']="Error al traer todas Entradas en BD.PDOException";
 			throw $e;
     	}
 
@@ -291,43 +299,45 @@ class EntradasDAO extends SingletonAbstractDAO
 
 public function ultimaEntrada($id_funcion)
 {
-	$numero_entrada=null;
-	$query = 'call '.'sp_retornarUltimaEntrada(:id_funcionE)';
-	$pdo = new Connection();
-	$connection = $pdo->Connect();
-	$command = $connection->prepare($query);
-
-
-	$command->bindParam(':id_funcionE', $id_funcion);
-
-
-	$command->execute();
-
-	while ($row = $command->fetch())
-	{
-			$numero_entrada=$row['numero_entrada'];
-	}
+	try 
+    {
 	
-	$num_error=$command->errorInfo()[1];//tomo el error que produce la query
-	$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
-	
-	if ($num_error==null){
-	$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
-	
-	}
-	else{
-		$msj="Error en BD".$descripcion_error;
-		$_SESSION['Error']=$msj;
+		$numero_entrada=null;
+		$query = 'call '.'sp_retornarUltimaEntrada(:id_funcionE)';
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+
+
+		$command->bindParam(':id_funcionE', $id_funcion);
+
+
+		$command->execute();
+
+		while ($row = $command->fetch())
+		{
+				$numero_entrada=$row['numero_entrada'];
+		}
 		
-	}
+		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 		
-	
-	return $numero_entrada;
-}
+		
+		return $numero_entrada;
+	}
+	catch (PDOException $ex) {
+		$_SESSION['BD']="Error al buscar ultima Entrada  en BD.PDOException";
+		throw $ex;
+	}
+	catch (Exception $e) {
+		$_SESSION['BD']="Error al buscar ultima Entrada  en BD.PDOException";
+		throw $e;
+	}
+
 }//fin class----------------
 
 
-
+}
 
 
 ?>

@@ -1,8 +1,3 @@
-<?php namespace Usuario;
-
-  //$cuentaLogueada = $_SESSION['Login'] ;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

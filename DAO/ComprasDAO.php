@@ -63,19 +63,20 @@ class ComprasDAO extends SingletonAbstractDAO implements IDAO
 			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
 			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 			
-			if ($num_error==null){
-			$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
+			if ($num_error!=null){
+				$msj="Error en BD. Nº: ".$num_error." .".$descripcion_error.".";
+				$_SESSION['BD']=$msj;
 				
 			}
-			else
-				echo $descripcion_error;//si dio error al borrar de BD retorno false
-
+			
 			return $dato;
     	}
     	catch (PDOException $ex) {
+			$_SESSION['BD']="Error al insertar Compra en BD.PDOException";
 			throw $ex;
     	}
     	catch (Exception $e) {
+			$_SESSION['BD']="Error al insertar Compra en BD.EXCEPTION";
 			throw $e;
     	}
     	return $flag;
@@ -120,9 +121,11 @@ class ComprasDAO extends SingletonAbstractDAO implements IDAO
 			return $object;
     	}
     	catch (PDOException $ex) {
+			$_SESSION['BD']="Error al buscar compra por ID en BD.PDOException";
 			throw $ex;
     	}
     	catch (Exception $e) {
+			$_SESSION['BD']="Error al buscar compra por ID en BD.PDOException";
 			throw $e;
 		}		
 	}//fin buscar cuenta por id de cliente
@@ -159,11 +162,11 @@ class ComprasDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine: PDO EXCEPTION");</script>';
+    		$_SESSION['BD']="Error al borrar Compra en BD.PDOException";
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine: EXCEPTION");</script>';
+    		$_SESSION['BD']="Error al borrar Compra en BD.PDOException";
 			throw $e;
     	}
 
@@ -278,9 +281,11 @@ class ComprasDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
+			$_SESSION['BD']="Error al traer todas las Compra en BD.PDOException";
 			throw $ex;
     	}
     	catch (Exception $e) {
+			$_SESSION['BD']="Error al traer todas las Compra en BD.PDOException";
 			throw $e;
     	}
 
@@ -289,74 +294,95 @@ class ComprasDAO extends SingletonAbstractDAO implements IDAO
 //	
 public function valoresPorPelicula($idPeliculaI, $fechaIN, $fechaOUT)
 {
-	$valor=null;
-	$query = 'call '.'sp_totalPorPelicula(:idPeliculaI, :fechaIN, :fechaOUT)';
-	
-	
-	$pdo = new Connection();
-	$connection = $pdo->Connect();
-	$command = $connection->prepare($query);
-
-
-	$command->bindParam(':idPeliculaI', $idPeliculaI);
-	$command->bindParam(':fechaIN', $fechaIN);
-	$command->bindParam(':fechaOUT', $fechaOUT);
-
-
-	$command->execute();
-
-	while ($row = $command->fetch())
+	try 
 	{
-			$valor=$row['totalVendido'];
+		$valor=null;
+		$query = 'call '.'sp_totalPorPelicula(:idPeliculaI, :fechaIN, :fechaOUT)';
+		
+		
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+
+
+		$command->bindParam(':idPeliculaI', $idPeliculaI);
+		$command->bindParam(':fechaIN', $fechaIN);
+		$command->bindParam(':fechaOUT', $fechaOUT);
+
+
+		$command->execute();
+
+		while ($row = $command->fetch())
+		{
+				$valor=$row['totalVendido'];
+		}
+		
+		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+		
+		if ($num_error==null){
+		$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
+		
+		}
+		else
+			echo "error ".$descripcion_error;//si dio error al borrar de BD retorno false
+		
+		return $valor;
+
 	}
-	
-	$num_error=$command->errorInfo()[1];//tomo el error que produce la query
-	$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
-	
-	if ($num_error==null){
-	$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
-	
+	catch (PDOException $ex) {
+		$_SESSION['BD']="Error al traer valores por pelicula en Compra en BD.PDOException";
+		throw $ex;
 	}
-	else
-		echo "error ".$descripcion_error;//si dio error al borrar de BD retorno false
-	
-	return $valor;
+	catch (Exception $e) {
+		$_SESSION['BD']="Error al traer valores por pelicula en Compra en BD.PDOException";
+		throw $e;
+	}
 }
 
 public function valoresPorCine($idCineI, $fechaIN, $fechaOUT)
 {
-	$valor=null;
-	$query = 'call '.'sp_totalPorCine(:idCineI, :fechaIN, :fechaOUT)';
-	
-	
-	$pdo = new Connection();
-	$connection = $pdo->Connect();
-	$command = $connection->prepare($query);
-
-
-	$command->bindParam(':idCineI', $idCineI);
-	$command->bindParam(':fechaIN', $fechaIN);
-	$command->bindParam(':fechaOUT', $fechaOUT);
-
-
-	$command->execute();
-
-	while ($row = $command->fetch())
+	try 
 	{
-			$valor=$row['totalVendido'];
+		$valor=null;
+		$query = 'call '.'sp_totalPorCine(:idCineI, :fechaIN, :fechaOUT)';
+		
+		
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+
+
+		$command->bindParam(':idCineI', $idCineI);
+		$command->bindParam(':fechaIN', $fechaIN);
+		$command->bindParam(':fechaOUT', $fechaOUT);
+
+
+		$command->execute();
+
+		while ($row = $command->fetch())
+		{
+				$valor=$row['totalVendido'];
+		}
+		
+		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+		
+		if ($num_error!=null){
+			$_SESSION['BD']="Error al insertar Compra en BD.PDOException";	
+		}
+			
+		return $valor;
+
 	}
-	
-	$num_error=$command->errorInfo()[1];//tomo el error que produce la query
-	$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
-	
-	if ($num_error==null){
-	$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
-	
+	catch (PDOException $ex) {
+		$_SESSION['BD']="Error al traer valores por cine en Compra en BD.PDOException";
+		throw $ex;
 	}
-	else
-		echo "error ".$descripcion_error;//si dio error al borrar de BD retorno false
-	
-	return $valor;
+	catch (Exception $e) {
+		$_SESSION['BD']="Error al traer valores por cine en Compra en BD.PDOException";
+		throw $e;
+	}
 }
 
 	
