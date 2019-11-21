@@ -61,15 +61,21 @@ class GeneroController
         //
 	public function guardar_Generos($arrayGeneros){
 
-		foreach ($arrayGeneros as $key) {
-		      // echo '<pre>';
-        //         var_dump($key);
-        //       echo '</pre>';
-			$buscado= $this->generoDAO->buscarPorID($key->getId());//busco en BD si existe ese genero. devuelve NULL si no encuentra
-			if($buscado==null){	//guardo solo los que no estan en BD
-			$this->generoDAO->insertar($key);	
-			}
+                try
+		{
+                        foreach ($arrayGeneros as $key) {
+                        
+                                $buscado= $this->generoDAO->buscarPorID($key->getId());//busco en BD si existe ese genero. devuelve NULL si no encuentra
+                                if($buscado==null){	//guardo solo los que no estan en BD
+                                $this->generoDAO->insertar($key);	
+                                }
+                        }
 		}
+		catch(PDOException $ex)
+		{
+			$_SESSION['Error']="Error al guardar generos";
+		}
+              
 
 	}
 }//fin class

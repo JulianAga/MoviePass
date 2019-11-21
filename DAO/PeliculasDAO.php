@@ -57,17 +57,6 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 
 
 			$command->execute();
-			//-------------------CAPTURO ERRORES DE BD---------------------------------------
-			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
-			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
-			
-			if ($descripcion_error!=null){
-				$msj="Error al guardar peliculas  BD. Error Nº: ".$num_error.". ".$descripcion_error;
-				$_SESSION['Error']=$msj;
-			}
-			
-			//----------------------------------------------------------------------------------
-
 
 			$query = 'INSERT INTO '.$this->table2.' 
 			(id_pelicula, id_genero) 
@@ -89,18 +78,7 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 
 
                 $command->execute();
-             //-------------------CAPTURO ERRORES DE BD---------------------------------------
-			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
-			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
-			
-			if ($descripcion_error!=null){
-				$msj="Error al guardar peliculas x genero de BD. Error Nº: ".$num_error.". ".$descripcion_error;
-				$_SESSION['Error']=$msj;
-			}
-			
-			//----------------------------------------------------------------------------------
-    
-               
+          
             }//fin foreach
 
 				
@@ -138,17 +116,7 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 			
 			$command->bindParam(':id', $dato);
 			$command->execute();
-			//-------------------CAPTURO ERRORES DE BD---------------------------------------
-			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
-			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
-			
-			if ($descripcion_error!=null){
-				$msj="Error al recuperar peliculas de BD. Error Nº: ".$num_error.". ".$descripcion_error;
-				$_SESSION['Error']=$msj;
-			}
-			
-				//----------------------------------------------------------------------------------
-
+		
 			while ($row = $command->fetch())
 			{
 				
@@ -162,7 +130,7 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 				
             	$generos = $this->buscarGenerosXidPelicula($dato);
 				
-				//var_dump($generos);
+			
 				$object = new \Models\Pelicula($id_api, $descripcion, $titulo, $duracion,$generos, $imagen, $lenguaje) ;
 				
 			}//while 
@@ -190,17 +158,7 @@ class PeliculasDAO extends SingletonAbstractDAO implements IDAO
 		
 		$command->bindParam(':id', $dato);
 		$command->execute();
-		//-------------------CAPTURO ERRORES DE BD---------------------------------------
-		$num_error2=$command->errorInfo()[1];//tomo el error que produce la query
-		$descripcion_error2=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
-		
-		if ($descripcion_error2!=null){
-			$msj="Error al recuperar peliculas x genero de BD. Error Nº: ".$num_error.". ".$descripcion_error;
-				$_SESSION['Error']=$msj;
-		}
-		
-		//----------------------------------------------------------------------------------
-		
+	
 		while ($row = $command->fetch())
 		{
 			$id_genero = ($row['id_genero']);

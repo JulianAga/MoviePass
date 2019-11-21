@@ -53,12 +53,12 @@ class PagoTCDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
-			$_SESSION['BD']="Error al insertar pagoTC  en BD.PDOException";
+		
 			
 			throw $ex;
     	}
     	catch (Exception $e) {
-			$_SESSION['BD']="Error al insertar pagoTC  en BD.PDOException";
+			
 			throw $e;
     	}
     	return $flag;
@@ -106,11 +106,11 @@ class PagoTCDAO extends SingletonAbstractDAO implements IDAO
 			return $object;
     	}
     	catch (PDOException $ex) {
-			$_SESSION['BD']="Error al buscar por ID PagoTC  en BD.PDOException";
+			
 			throw $ex;
     	}
     	catch (Exception $e) {
-			$_SESSION['BD']="Error al buscar por ID PagoTC  en BD.PDOException";
+			
 			throw $e;
 		}		
 	}//fin buscar cuenta por id de cliente
@@ -151,11 +151,11 @@ class PagoTCDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
-    		$_SESSION['BD']="Error al borrar PagoTC  en BD.PDOException";
+    		
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		$_SESSION['BD']="Error al borrar PagoTC  en BD.PDOException";
+    		
 			throw $e;
     	}
 
@@ -218,11 +218,11 @@ class PagoTCDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
-    		$_SESSION['BD']="Error al actualizar PagoTC  en BD.PDOException";
+    		
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		$_SESSION['BD']="Error al actualizar PagoTC en BD.PDOException";
+    	
 			throw $e;
     	}
     	return $flag;
@@ -268,11 +268,11 @@ class PagoTCDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
-			$_SESSION['BD']="Error al traer todos PagoTC  en BD.PDOException";
+		
 			throw $ex;
     	}
     	catch (Exception $e) {
-			$_SESSION['BD']="Error al traer todos PagoTC  en BD.PDOException";
+
 			throw $e;
     	}
 

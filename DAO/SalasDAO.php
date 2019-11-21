@@ -50,7 +50,7 @@ class SalasDAO extends SingletonAbstractDAO implements IDAO{
 
 			}
 			else{
-				$_SESSION['BD']="Error al buscar datos del login en la base de datos";
+				
 				$flag=false;//si dio error al insertar de BD retorno false
 			}
 
@@ -178,12 +178,11 @@ class SalasDAO extends SingletonAbstractDAO implements IDAO{
 
     	}
     	catch (PDOException $ex) {
-    		$_SESSION['BD']="Error al eliminar Sala: PDO EXCEPTION";
     		
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		$_SESSION['BD']="Error al eliminar Sala: EXCEPTION";
+    		
 			throw $e;
     	}
 

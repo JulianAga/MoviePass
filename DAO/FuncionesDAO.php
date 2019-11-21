@@ -42,19 +42,7 @@ class FuncionesDAO extends SingletonAbstractDAO
 
 			$dato->setId($connection->lastInsertId());
 
-			return $dato;
-
-		//capturar errores de BD----------------------------
-			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
-			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
-		
-		if ($descripcion_error!=null){
-			$msj="Error al guardar Funcion en  BD. Error Nº ".$num_error." Descripcion: ".$descripcion_error ;
-			$_SESSION['Error']=$msj;
-		}
-		//-----------------------------------------------------
-
-    	
+			return $dato;	
 
     	}//fin if 
     	catch (PDOException $ex) {
@@ -160,89 +148,101 @@ class FuncionesDAO extends SingletonAbstractDAO
 //
 public function devolverFuncionesXidPelicula($dato){
 
-
-	
-	$salaDAO= new SalasDAO();
-	$peliDAO= new PeliculasDAO();
-	$arrayFunciones = array();
-	$query = 'SELECT * FROM ' .$this->table.' inner join Peliculas ON ' .$this->table.'.id_pelicula=Peliculas.id_api WHERE '.$this->table. '.id_pelicula=:id'; //devuelve todas las funciones asociadas a una pelicula
-
-	$pdo = new Connection();
-	$connection = $pdo->Connect();
-	$command = $connection->prepare($query);
-	$command->bindParam(':id', $dato);
-
-	$command->execute();
-
-	//-------------------CAPTURO ERRORES DE BD---------------------------------------
-		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
-		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
-		
-		if ($descripcion_error!=null){
-			$msj="Error al eliminar Cine de BD. Error Nº ".$num_error." Descripcion: ".$descripcion_error ;
-			$_SESSION['Error']=$msj;
-		}
-		//----------------------------------------------------------------------------------
-
-	while ($row = $command->fetch())
+	try
 	{
-		$id_sala = ($row['id_sala']);
-		$id_pelicula = ($row['id_pelicula']);
-		$dia = ($row['dia']);
-		$horario = ($row['horario']);
-		$id=($row['id_funcion']);
-
-		$object = new \Models\Funcion($salaDAO->buscarPorID($id_sala),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
-		$object->setID($row['id_funcion']);
-		array_push($arrayFunciones, $object);
-
+		$salaDAO= new SalasDAO();
+		$peliDAO= new PeliculasDAO();
+		$arrayFunciones = array();
+		$query = 'SELECT * FROM ' .$this->table.' inner join Peliculas ON ' .$this->table.'.id_pelicula=Peliculas.id_api WHERE '.$this->table. '.id_pelicula=:id'; //devuelve todas las funciones asociadas a una pelicula
+	
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+		$command->bindParam(':id', $dato);
+	
+		$command->execute();
+	
+		while ($row = $command->fetch())
+		{
+			$id_sala = ($row['id_sala']);
+			$id_pelicula = ($row['id_pelicula']);
+			$dia = ($row['dia']);
+			$horario = ($row['horario']);
+			$id=($row['id_funcion']);
+	
+			$object = new \Models\Funcion($salaDAO->buscarPorID($id_sala),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
+			$object->setID($row['id_funcion']);
+			array_push($arrayFunciones, $object);
+	
+		}
+	
+		return $arrayFunciones; //retorno lista de funciones
 	}
+	catch (PDOException $ex) {
 
-	return $arrayFunciones; //retorno lista de funciones
+		throw $ex;
+	}
+	catch (Exception $e) {
+
+		throw $e;
+	}
+	
 
 }//fin devolver funciones x id pelicula
 //
 //
 //
 public function devolverFuncionesXsala($dato){
-	$salaDAO= new SalasDAO();
-	$peliDAO= new PeliculasDAO();
-
-	$arrayFunciones = array();
-
-	$query= 'SELECT * FROM ' .$this->table. ' where id_sala=:id';
-
-	$pdo = new Connection();
-	$connection = $pdo->Connect();
-	$command = $connection->prepare($query);
-	$command->bindParam(':id', $dato);
-
-	$command->execute();
-
-	//-------------------CAPTURO ERRORES DE BD---------------------------------------
-		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
-		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
-		
-		if ($descripcion_error!=null){
-			$msj="Error al devolver funciones X Cine de BD. Error Nº ".$num_error." Descripcion: ".$descripcion_error ;
-			$_SESSION['Error']=$msj;
-		}
-		//----------------------------------------------------------------------------------
-
-	while ($row = $command->fetch())
+	
+	try
 	{
-		$id_sala = ($row['id_sala']);
-		$id_pelicula = ($row['id_pelicula']);
-		$dia = ($row['dia']);
-		$horario = ($row['horario']);
-
-		$object = new \Models\Funcion($salaDAO->buscarPorID($id_sala),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
-		$object->setID($row['id_funcion']);
-		array_push($arrayFunciones, $object);
-
+		$salaDAO= new SalasDAO();
+		$peliDAO= new PeliculasDAO();
+	
+		$arrayFunciones = array();
+	
+		$query= 'SELECT * FROM ' .$this->table. ' where id_sala=:id';
+	
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+		$command->bindParam(':id', $dato);
+	
+		$command->execute();
+	
+		//-------------------CAPTURO ERRORES DE BD---------------------------------------
+			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+			
+			if ($descripcion_error!=null){
+				$msj="Error al devolver funciones X Cine de BD. Error Nº ".$num_error." Descripcion: ".$descripcion_error ;
+				$_SESSION['Error']=$msj;
+			}
+			//----------------------------------------------------------------------------------
+	
+		while ($row = $command->fetch())
+		{
+			$id_sala = ($row['id_sala']);
+			$id_pelicula = ($row['id_pelicula']);
+			$dia = ($row['dia']);
+			$horario = ($row['horario']);
+	
+			$object = new \Models\Funcion($salaDAO->buscarPorID($id_sala),$peliDAO->buscarPorID($id_pelicula),$horario,$dia);
+			$object->setID($row['id_funcion']);
+			array_push($arrayFunciones, $object);
+	
+		}
+	
+		return $arrayFunciones; //retorno lista de funciones
 	}
+	catch (PDOException $ex) {
 
-	return $arrayFunciones; //retorno lista de funciones
+		throw $ex;
+	}
+	catch (Exception $e) {
+
+		throw $e;
+	}
 
 
 }//fin devolver funciones x cine
@@ -251,30 +251,41 @@ public function devolverFuncionesXsala($dato){
 //
 public function verificarPeliculaEnCartelera($id_cine,$id_pelicula,$fecha){
 	
+	try
+	{
+		$arrayFunciones = array();
+
+		$query='SELECT * FROM '.$this->table. ' WHERE '.$this->table. '.dia="'.$fecha.  '" AND '.$this->table.'.id_pelicula='.$id_pelicula;
+		//echo $query;
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+
+		$command->execute();
+
+		//-------------------CAPTURO ERRORES DE BD---------------------------------------
+			$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+			$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+			
+			if ($row = $command->fetch()){
+				
+				return true;//retorno true si encontro esa pelicula en cartelera
+				
+			}
+			else
+				return false;
+		//----------------------------------------------------------------------------------
+
+	}
+	catch (PDOException $ex) {
+
+		throw $ex;
+	}
+	catch (Exception $e) {
+
+		throw $e;
+	}
 	
-	$arrayFunciones = array();
-
-	$query='SELECT * FROM '.$this->table. ' WHERE '.$this->table. '.dia="'.$fecha.  '" AND '.$this->table.'.id_pelicula='.$id_pelicula;
-	//echo $query;
-	$pdo = new Connection();
-	$connection = $pdo->Connect();
-	$command = $connection->prepare($query);
-
-	$command->execute();
-
-	//-------------------CAPTURO ERRORES DE BD---------------------------------------
-		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
-		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
-		
-		if ($row = $command->fetch()){
-			
-			return true;//retorno true si encontro esa pelicula en cartelera
-			
-		}
-		else
-			return false;
-	//----------------------------------------------------------------------------------
-
 	
 
 
@@ -313,12 +324,9 @@ public function borrar($idSala,$idPelicula){
     	}
     	catch (PDOException $ex) {
 
-			$_SESSION['Error']="Error al eliminar Cine: PDO EXCEPTION";
-    		
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		$_SESSION['Error']="Error al eliminar Cine:EXCEPTION";
 
 			throw $e;
     	}
@@ -349,12 +357,10 @@ public function contarEntradas($id_funcion){
 	
 	catch (PDOException $ex) {
 
-		$_SESSION['Error']="Error al contar entradas: PDO EXCEPTION";
-		
 		throw $ex;
 	}
 	catch (Exception $e) {
-		$_SESSION['Error']="Error al contar entradas:EXCEPTION";
+
 
 		throw $e;
 	}

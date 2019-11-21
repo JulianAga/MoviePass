@@ -46,11 +46,11 @@ class EntradasDAO extends SingletonAbstractDAO
 	
     	}
     	catch (PDOException $ex) {
-			$_SESSION['BD']="Error al insertar Entrada en BD.PDOException";
+			
 			throw $ex;
     	}
     	catch (Exception $e) {
-			$_SESSION['BD']="Error al insertar Entrada en BD.PDOException";
+			
 			throw $e;
     	}
 	}//FIN INSERTAR
@@ -89,11 +89,11 @@ class EntradasDAO extends SingletonAbstractDAO
 			return $object;
     	}
     	catch (PDOException $ex) {
-			$_SESSION['BD']="Error al buscar por ID Entrada en BD.PDOException";
+			
 			throw $ex;
     	}
     	catch (Exception $e) {
-			$_SESSION['BD']="Error al buscar por ID Entrada en BD.PDOException";
+			
 			throw $e;
 		}		
     }//fin 
@@ -133,11 +133,11 @@ class EntradasDAO extends SingletonAbstractDAO
 			return $array;
     	}
     	catch (PDOException $ex) {
-			$_SESSION['BD']="Error al buscar por ID Compra en BD.PDOException";
+			
 			throw $ex;
     	}
     	catch (Exception $e) {
-			$_SESSION['BD']="Error al buscar por ID Compra en BD.PDOException";
+		
 			throw $e;
 		}		
 	}//fin 
@@ -174,13 +174,10 @@ class EntradasDAO extends SingletonAbstractDAO
 
     	}
     	catch (PDOException $ex) {
-    		$_SESSION['Error']="Error al etraer todas Entradas: PDO EXCEPTION";
-    		
+
 			throw $ex;
     	}
-    	catch (Exception $e) {
-    		$_SESSION['Error']="Error al eliminar Entrada: EXCEPTION";
-    		
+    	catch (Exception $e) {	
 			throw $e;
     	}
 
@@ -285,11 +282,11 @@ class EntradasDAO extends SingletonAbstractDAO
 			return $array;
     	}
     	catch (PDOException $ex) {
-			$_SESSION['BD']="Error al traer todas Entradas en BD.PDOException";
+			
 			throw $ex;
     	}
     	catch (Exception $e) {
-			$_SESSION['BD']="Error al traer todas Entradas en BD.PDOException";
+			
 			throw $e;
     	}
 
@@ -326,11 +323,11 @@ public function ultimaEntrada($id_funcion)
 		return $numero_entrada;
 	}
 	catch (PDOException $ex) {
-		$_SESSION['BD']="Error al buscar ultima Entrada  en BD.PDOException";
+		
 		throw $ex;
 	}
 	catch (Exception $e) {
-		$_SESSION['BD']="Error al buscar ultima Entrada  en BD.PDOException";
+		
 		throw $e;
 	}
 

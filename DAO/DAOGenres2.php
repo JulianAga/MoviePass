@@ -186,13 +186,11 @@ class DAOGenres extends SingletonAbstractDAO
 
     	}
     	catch (PDOException $ex) {
-    		$_SESSION['BD']="Error al eliminar Cine: PDO EXCEPTION";
-    		
+
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		$_SESSION['BD']="Error al eliminar Cine: EXCEPTION";
-    		
+
 			throw $e;
     	}
 
