@@ -93,13 +93,44 @@ class DAOGenres{
                 array_push($this->List, $genre);
 
             
-            }
-
-
-            
+            } 
         }
         
     }
+
+    public function delete($id){
+		$this->retrieveData();
+		$newList = array();
+		foreach ($this->List as $genre) {
+			if($genre->getCode() != $id){
+				array_push($newList, $genre);
+			}
+		}
+
+		$this->List = $newList;
+		$this->saveData();
+    }
+    
+    public function add(Beer $newGenre){
+		$this->retrieveData();
+		array_push($this->List, $newGenre);
+		$this->saveData();
+    }
+    
+    public function saveData(){
+		$arrayToEncode = array();
+
+		foreach ($this->List as $genre) {
+			$valueArray['id'] = $genre->getId();
+			$valueArray['name'] = $genre->getName();
+			
+
+			array_push($arrayToEncode, $valueArray);
+
+		}
+		$jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
+		file_put_contents('Data/Genres.json', $jsonContent);
+	}
 
 }
 
