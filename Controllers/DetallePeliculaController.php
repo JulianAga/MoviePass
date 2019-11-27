@@ -20,24 +20,22 @@ class DetallePeliculaController
 
 	public function searchMovie ($movie_id)
 	{
+		try
+		{
+			//traer las pelis de la BD y reemplazar el llamado a la API
+			$peliculasController = new Adm_PeliculasController();//creo instancia de peliculas controller
+			$mov=$peliculasController->buscarXiD_api($movie_id);//busco la pelicula x ID de api y devuelve obj pelicula
+
+			$generos=array();
+			$generos=$mov->getCategoria();
+			
+			$lista_funciones=$this->DAOFunciones->devolverFuncionesXidPelicula($movie_id);
+		}
+		catch(PDOException $ex)
+		{
+			$_SESSION['Error']="Error al devolver peliculas por id";
+		}
 		
-		//traer las pelis de la BD y reemplazar el llamado a la API
-		$peliculasController = new Adm_PeliculasController();//creo instancia de peliculas controller
-		$mov=$peliculasController->buscarXiD_api($movie_id);//busco la pelicula x ID de api y devuelve obj pelicula
-
-		$generos=array();
-		$generos=$mov->getCategoria();
-
-		//var_dump($generos);
-
-
-		//$functController = new FuncionController();
-		$lista_funciones=$this->DAOFunciones->devolverFuncionesXidPelicula($movie_id);
-		 //var_dump($lista_funciones);
-		
-
-
-		//var_dump($lista_funciones);
 		require(ROOT . '/Views/User/detallePelicula2.php');
 		
 	}//fin buscar peli

@@ -43,11 +43,20 @@ class CineController
                 if($_SESSION['Login']->getRol()==1)//SI ES ADMIN LO LLEVA A SU PAG (falta configurar esto)
                 {
                     //lo lleva al home ADM
-                    $movieList=$this->DAOPeliculas->traerTodos();
                     
-                    $functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
-                    $arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
-                    $salaList=$this->DAOSalas->traerTodos();
+                    try
+                    {
+                        $movieList=$this->DAOPeliculas->traerTodos();
+                    
+                        $functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
+                        $arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
+                        $salaList=$this->DAOSalas->traerTodos();
+                    }
+                    catch(PDOException $ex)
+                    {
+                        $_SESSION['Error']="Error al traer todo (index CineController)";
+                    }
+                    
                    
                     require(ROOT . '/Views/Adm/home_adm.php');//
                     
@@ -72,111 +81,129 @@ class CineController
 	//
 	public function newCine($cine,$direccion){
         
-        $newCine = new cine ($cine,$direccion,true);//creo el nuevo cine
+        try
+        {
+            $newCine = new cine ($cine,$direccion,true);//creo el nuevo cine
 
-        if ($newCine->getNombre() == null || $newCine->getDireccion() == null)
-        {
-            $_SESSION['Error']="Los campos deben estar completos!";
-            $this->index();
-
-        }
-        else if($this->DAOCines->buscarPorID($newCine->getID() )!=null ) // Verifica que no exista otro Cine con el mismo id en BD
-        {
-            $_SESSION['Error']="El ID del cine ya se encuentra registrado!";
-            $this->index();
-            
-        }
-        else if(strlen($cine)>30 ) // Verifica que el nombre del cine no supere los 30 caracteres maximos usados en BD
-        {
-            $_SESSION['Error']="El nombre del cine excede los 30 caracteres!";
-            $this->index();
-        }
-        else if(strlen($direccion)>30 ) // Verifica que la direccion del cine  no supere los 30 caracteres maximos usados en BD
-        {
-            $_SESSION['Error']="La dirección del cine excede los 30 caracteres!";
-            $this->index();
-        }
-        else if($this->DAOCines->buscarPorNombre($newCine->getNombre() )!=null ) // Verifica que no exista otro Cine con el mismo nombre en BD
-        { 
-            
-            $_SESSION['Error']="El cine ingresado ya existe";
-            $this->index();
-            
-        
-        }
-        
-        else{
-            $flag=$this->DAOCines->insertar($newCine);
-              //este tipo de mensaje no rompe el codigo
-            
-            if ($flag==true){
-                
-                $_SESSION['Success']="Cine añadido correctamente!";  
+            if ($newCine->getNombre() == null || $newCine->getDireccion() == null)
+            {
+                $_SESSION['Error']="Los campos deben estar completos!";
+                $this->index();
             }
-            else{
-                $_SESSION['Error']="No se pudo agregar el Cine!";
-                
+            else if($this->DAOCines->buscarPorID($newCine->getID() )!=null ) // Verifica que no exista otro Cine con el mismo id en BD
+            {
+                $_SESSION['Error']="El ID del cine ya se encuentra registrado!";
+                $this->index();     
             }
-            $this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
+            else if(strlen($cine)>30 ) // Verifica que el nombre del cine no supere los 30 caracteres maximos usados en BD
+            {
+                $_SESSION['Error']="El nombre del cine excede los 30 caracteres!";
+                $this->index();
+            }
+            else if(strlen($direccion)>30 ) // Verifica que la direccion del cine  no supere los 30 caracteres maximos usados en BD
+            {
+                $_SESSION['Error']="La dirección del cine excede los 30 caracteres!";
+                $this->index();
+            }
+            else if($this->DAOCines->buscarPorNombre($newCine->getNombre() )!=null ) // Verifica que no exista otro Cine con el mismo nombre en BD
+            { 
+                
+                $_SESSION['Error']="El cine ingresado ya existe";
+                $this->index();        
+            }
+            
+            else
+            {
+                $flag=$this->DAOCines->insertar($newCine);
+                //este tipo de mensaje no rompe el codigo
+                
+                if ($flag==true){
+                    
+                    $_SESSION['Success']="Cine añadido correctamente!";  
+                }
+                else{
+                    $_SESSION['Error']="No se pudo agregar el Cine!";
+                    
+                }
+                $this->index(); //llamo al index de esta clase para redirigirlo a la vista que  sea correspondiente
+            }
         }
+        catch(PDOException $ex)
+        {
+            $_SESSION['Error']="Error al agregar un nuevo cine";
+        }
+        
+        
     }//fin newcine
     //
     //
 	public function deleteCine($id_cine){
      
-     
-        $flag=$this->DAOCines->borrar($id_cine);         
-         $this->index();
-         if ($flag==true){
-            $_SESSION['Success']="Cine eliminado correctamente!";
-         }
-         else{
-            $_SESSION['Error']="El Cine contiene funciones activas!";
-         }
+        try
+        {
+            $flag=$this->DAOCines->borrar($id_cine);         
+            $this->index();
+            if ($flag==true){
+               $_SESSION['Success']="Cine eliminado correctamente!";
+            }
+            else{
+               $_SESSION['Error']="El Cine contiene funciones activas!";
+            }
+        }
+        catch(PDOException $ex)
+        {
+            $_SESSION['Error']="Error al borrar cine";
+        }
+        
         
 	}//fin delete cine
 	//
 	//
 	public function modifyCine($id,$habilitado,$cine,$direccion){
         
-        echo $id;
-        echo $cine;
-
-        if (strlen($cine)>30){//verifico tamaño del nombre
-            $_SESSION['Error']="El nombre del cine excede los 30 caracteres!";
-            $this->index();
-
-        }
-        else if(strlen($direccion)>30 ) // Verifica que la direccion del cine  no supere los 30 caracteres maximos usados en BD
+         try
         {
-            $_SESSION['Error']="La dirección del cine excede los 30 caracteres!";
-            $this->index();
-        }
-        else if(($this->DAOCines->buscarPorNombre($cine)!=null) && ($this->DAOCines->buscarPorNombre($cine)->getID()!=$id)) // Verifica que no exista otro Cine con el mismo nombre en BD
-        { 
-            $_SESSION['Error']="El cine ingresado ya existe";
-            $this->index();
-        }
-        else{//si esta todo bien , modifico el cine
-
-            if ($habilitado==1)
-            $cineMod = new cine ($cine,$direccion,1);
-            else if($habilitado==0)
-                $cineMod = new cine ($cine,$direccion,0);
-
-            $flag;
-            $cineMod->setID($id);
-            $flag=$this->DAOCines->actualizar($cineMod);
-            if($flag==true){
-                $_SESSION['Success']="Cine modificado satisfactoriamente!";
+            if (strlen($cine)>30){//verifico tamaño del nombre
+                $_SESSION['Error']="El nombre del cine excede los 30 caracteres!";
+                $this->index();
+    
             }
-            else{
-                $_SESSION['Error']="Error al modificar Cine!";
+            else if(strlen($direccion)>30 ) // Verifica que la direccion del cine  no supere los 30 caracteres maximos usados en BD
+            {
+                $_SESSION['Error']="La dirección del cine excede los 30 caracteres!";
+                $this->index();
             }
-            $this->index();
-         
-
-        }//fin else
+            else if(($this->DAOCines->buscarPorNombre($cine)!=null) && ($this->DAOCines->buscarPorNombre($cine)->getID()!=$id)) // Verifica que no exista otro Cine con el mismo nombre en BD
+            { 
+                $_SESSION['Error']="El cine ingresado ya existe";
+                $this->index();
+            }
+            else{//si esta todo bien , modifico el cine
+    
+                if ($habilitado==1)
+                $cineMod = new cine ($cine,$direccion,1);
+                else if($habilitado==0)
+                    $cineMod = new cine ($cine,$direccion,0);
+    
+                $flag;
+                $cineMod->setID($id);
+                $flag=$this->DAOCines->actualizar($cineMod);
+                if($flag==true){
+                    $_SESSION['Success']="Cine modificado satisfactoriamente!";
+                }
+                else{
+                    $_SESSION['Error']="Error al modificar Cine!";
+                }
+                $this->index();
+             
+    
+            }//fin else
+        }
+        catch(PDOException $ex)
+        {
+            $_SESSION['Error']="Error al modificar cine";
+        }
+       
         
 
 
@@ -190,17 +217,25 @@ class CineController
     //
     public function traerTodos(){
         
-        $arrayCines= array();
-        $arrayCines=$this->DAOCines->traerTodos();
+        try
+        {
+            $arrayCines= array();
+            $arrayCines=$this->DAOCines->traerTodos();
 
-        if($arrayCines!=null){
+            if($arrayCines!=null){
 
-            return $arrayCines;
+                return $arrayCines;
+            }
+            else{
+                $_SESSION['Error']="No hay cines cargados en la base de datos!";
+                return null;
+            }
         }
-        else{
-            $_SESSION['Error']="No hay cines cargados en la base de datos!";
-            return null;
+        catch(PDOException $ex)
+        {
+            $_SESSION['Error']="Error al traer todos los cines (traerTodos CineController)";
         }
+        
     }//traer todos
     //
     //

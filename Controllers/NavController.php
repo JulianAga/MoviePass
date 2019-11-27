@@ -41,34 +41,49 @@ use Repository\DAOGenres as DAOGenres;
 
         public function adm_cine()
         {
-            $funcionController = new FuncionController();
-			$movieList=$this->DAOPeliculas->traerTodos();
-			$salaList=$this->DAOSalas->traerTodos();
-			
-			$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
-            $arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
-            
-            if ($functionList != NULL)
+            try
             {
-                $arrayEntradas = array();
-            foreach ($functionList as $function) 
-            {
-              //$arrayId[] = $function->getID();
-            $arrayEntradas[] = $this->DAOFunciones->contarEntradas($function->getID());
+                $funcionController = new FuncionController();
+                $movieList=$this->DAOPeliculas->traerTodos();
+                $salaList=$this->DAOSalas->traerTodos();
+                
+                $functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
+                $arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
+                
+                if ($functionList != NULL)
+                {
+                    $arrayEntradas = array();
+                    foreach ($functionList as $function) 
+                    {
+                    //$arrayId[] = $function->getID();
+                    $arrayEntradas[] = $this->DAOFunciones->contarEntradas($function->getID());
+                    }
+                }
             }
-        }
+            catch(PDOException $ex)
+            {
+                $_SESSION['Error']="Error adm_cine nav controller";
+            }
+           
             require(ROOT . '/Views/Adm/cines_adm.php');
         }
         
         public function Consultas()
         {
+            try
+            {
+                $funcionController = new FuncionController();
+                $arrayPeliculas=$this->DAOPeliculas->traerTodos();
+                $salaList=$this->DAOSalas->traerTodos();
+                
+                $functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
+                $arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
+                }
+            catch(PDOException $ex)
+            {
+                $_SESSION['Error']="Error consultas nav controller ";
+            }
             
-            $funcionController = new FuncionController();
-			$arrayPeliculas=$this->DAOPeliculas->traerTodos();
-			$salaList=$this->DAOSalas->traerTodos();
-			
-			$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
-            $arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
             
             require(ROOT . '/Views/Adm/Consultas.php');
 
@@ -76,31 +91,38 @@ use Repository\DAOGenres as DAOGenres;
 		
 		public function index()
         {
-            
-            if(isset($_SESSION['Login']))//Si hay session:
+            try
             {
-                
-
-                if($_SESSION['Login']->getRol()==1)//SI ES ADMIN LO LLEVA A SU PAG (falta configurar esto)
-                {
-                    //lo lleva al home ADM
-                    $movieList=$this->DAOPeliculas->traerTodos();
-                    $salaList=$this->DAOSalas->traerTodos();
-                    
-                    $functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
-                    $arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
-                    require(ROOT . '/Views/Adm/home_adm.php');//
-                    
-                }
-                if($_SESSION['Login']->getRol()==2)// SI ES CLIENTE AL HOME DE CLIENTE (falta configurar esto)
+                if(isset($_SESSION['Login']))//Si hay session:
                 {
                     
-                    //lo lleva al home CLIENTE
-                    
-                    require(ROOT . '/Views/User/home2.php');
-                    
+    
+                    if($_SESSION['Login']->getRol()==1)//SI ES ADMIN LO LLEVA A SU PAG (falta configurar esto)
+                    {
+                        //lo lleva al home ADM
+                        $movieList=$this->DAOPeliculas->traerTodos();
+                        $salaList=$this->DAOSalas->traerTodos();
+                        
+                        $functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
+                        $arrayCines=$this->DAOCines->traerTodos();//levanto todos los cines de la BD antes de el llamado a la vista
+                        require(ROOT . '/Views/Adm/home_adm.php');//
+                        
+                    }
+                    if($_SESSION['Login']->getRol()==2)// SI ES CLIENTE AL HOME DE CLIENTE (falta configurar esto)
+                    {
+                        
+                        //lo lleva al home CLIENTE
+                        
+                        require(ROOT . '/Views/User/home2.php');
+                        
+                    }
                 }
             }
+            catch(PDOException $ex)
+            {
+                $_SESSION['Error']="Error index nav controller";
+            }
+            
 
 	}
 }

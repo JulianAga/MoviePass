@@ -1,10 +1,3 @@
-<?php namespace User;
-
-
-require ( CONFIG_API_PATH."API_tmdb.php");//llamado a la configuracion API the movie DB
-require (API_PATH."api_now.php");// incluyo la API de peliculas actuales en cartelera
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 

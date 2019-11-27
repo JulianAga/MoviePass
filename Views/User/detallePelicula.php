@@ -1,9 +1,3 @@
-<?php namespace User;
-
-
-//var_dump($mov);
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 

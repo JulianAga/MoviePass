@@ -58,9 +58,11 @@ class CuentaCreditoDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
+			
 			throw $ex;
     	}
     	catch (Exception $e) {
+			
 			throw $e;
     	}
     	return $flag;
@@ -105,9 +107,11 @@ class CuentaCreditoDAO extends SingletonAbstractDAO implements IDAO
 			return $object;
     	}
     	catch (PDOException $ex) {
+			
 			throw $ex;
     	}
     	catch (Exception $e) {
+			
 			throw $e;
 		}		
 	}//fin buscar cuenta por id de cliente
@@ -148,11 +152,11 @@ class CuentaCreditoDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine: PDO EXCEPTION");</script>';
+			
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		echo '<script language="javascript">alert("Error al eliminar Cine: EXCEPTION");</script>';
+			
 			throw $e;
     	}
 
@@ -207,11 +211,11 @@ class CuentaCreditoDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
-    		echo '<script language="javascript">alert("Error al modificar Cine en BD");</script>'; //este tipo de mensaje no rompe el codigo
+			
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		echo '<script language="javascript">alert("Error al modificar Cine en BD");</script>'; //este tipo de mensaje no rompe el codigo
+			
 			throw $e;
     	}
     	return $flag;
@@ -251,9 +255,11 @@ class CuentaCreditoDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
+			
 			throw $ex;
     	}
     	catch (Exception $e) {
+			
 			throw $e;
     	}
 

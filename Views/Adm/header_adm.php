@@ -1,9 +1,3 @@
-<?php namespace Views;
-
-
-  
-
-?>
 <?php
 
 if( isset($_SESSION['Login'])){

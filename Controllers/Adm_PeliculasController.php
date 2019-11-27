@@ -44,16 +44,22 @@ public function index (){
 				if($_SESSION['Login']->getRol()==1)//SI ES ADMIN LO LLEVA A SU PAG (falta configurar esto)
 				{
 					//lo lleva al home ADM
-					$cineController = new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
-					$movieList=$this->peliculaDAO->traerTodos();
-					 $salaList=$this->DAOSalas->traerTodos();
-					$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
-					$arrayCines=$cineController->traerTodos();//levanto todos los cines de la BD
+					try{
+						$cineController = new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
+						$movieList=$this->peliculaDAO->traerTodos();
+						 $salaList=$this->DAOSalas->traerTodos();
+						$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
+						$arrayCines=$cineController->traerTodos();//levanto todos los cines de la BD
+					}
+					catch(PDOException $ex){
+						$_SESSION['Error']="Error al cargar datos del home";
+					}
+					
 
 					require(ROOT . '/Views/Adm/home_adm.php');//llamo a la vista
 					
 				}
-				if($_SESSION['Login']->getRol()==2)// SI ES CLIENTE AL HOME DE CLIENTE (falta configurar esto)
+				if($_SESSION['Login']->getRol()==2)// SI ES CLIENTE AL HOME DE CLIENTE 
 				{
 					//lo lleva al home ADM
 					$cineController = new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
@@ -107,6 +113,7 @@ public function adm_cines(){
 //
 //
 //
+
 public function recibirPeliculas(){
 
 	include "Config/API_tmdb.php";//llamado a la configuracion API the movie DB
@@ -130,8 +137,16 @@ public function recibirPeliculas(){
 
 	
 		$newMovie = new Pelicula ($codigo,$descripcion,$titulo,$duracion,$genero,$imagen,$lenguaje);//creo objeto con los datos de la API
+			
+		try
+		{
+			$buscado=$this->peliculaDAO->buscarPorID($newMovie->getId_api() );//Busco en la BD si existe esa pelicula
+		}
+		catch(PDOException $ex)
+		{
+			$_SESSION['Error']="Error al buscar pelicula por id";
+		}
 		
-		$buscado=$this->peliculaDAO->buscarPorID($newMovie->getId_api() );//Busco en la BD si existe esa pelicula
 		if($buscado==null){
 		//guarda solo las peliculas que NO estan en la BD
 			
@@ -149,35 +164,58 @@ public function recibirPeliculas(){
 public function traerTodos(){
 
 	$arrayPeliculas= array();
-    $arrayPeliculas=$this->peliculaDAO->traerTodos();
+	try
+	{
+		$arrayPeliculas=$this->peliculaDAO->traerTodos();
+	}
+	catch(PDOException $ex)
+	{
+		$_SESSION['Error']="Error al traer todas las peliculas";
+	}
+	
 
-        if($arrayPeliculas!=null){
+	if($arrayPeliculas!=null){
 
-            return $arrayPeliculas;
-        }
-        else{
-            
-            
-            $_SESSION['Error']="No hay Peliculas cargados en la base de datos!";
-            return null;
-        }
+		return $arrayPeliculas;
+	}
+	else{
+		
+		
+		$_SESSION['Error']="No hay Peliculas cargados en la base de datos!";
+		return null;
+	}
 
 }//fin addmovie
 //
 //
 public function buscarXiD_api($id_api){
 
+	try
+	{
+		$objPelicula=$this->peliculaDAO->buscarPorID($id_api);
+	}
+	catch(PDOException $ex)
+	{
+		$_SESSION['Error']="Error al buscar peliculas por id";
+	}
 	
-	$objPelicula=$this->peliculaDAO->buscarPorID($id_api);
 	return $objPelicula;
 
 }
 
 public function testCines($idCinesI,$fechaIN,$fechaOUT)
 {
-	$arrayPeliculas=$this->peliculaDAO->traerTodos();
-	$arrayCines=$this->DAOCines->traerTodos();
-	$valor=$this->DAOCompras->valoresPorCine($idCinesI,$fechaIN,$fechaOUT);
+	try
+	{
+		$arrayPeliculas=$this->peliculaDAO->traerTodos();
+		$arrayCines=$this->DAOCines->traerTodos();
+		$valor=$this->DAOCompras->valoresPorCine($idCinesI,$fechaIN,$fechaOUT);
+	}
+	catch(PDOException $ex)
+	{
+		$_SESSION['Error']="Error al calcular valores de venta por Cine";
+	}
+	
 
 	require(ROOT . '/Views/Adm/Consultas.php');
 	
@@ -186,9 +224,17 @@ public function testCines($idCinesI,$fechaIN,$fechaOUT)
 
 public function testPeliculas($idPeliculaI,$fechaIN,$fechaOUT)
 {
-	$arrayCines=$this->DAOCines->traerTodos();
-	$arrayPeliculas=$this->peliculaDAO->traerTodos();
-	$valor=$this->DAOCompras->valoresPorPelicula($idPeliculaI,$fechaIN,$fechaOUT);
+	try
+	{
+		$arrayCines=$this->DAOCines->traerTodos();
+		$arrayPeliculas=$this->peliculaDAO->traerTodos();
+		$valor=$this->DAOCompras->valoresPorPelicula($idPeliculaI,$fechaIN,$fechaOUT);
+	}
+	catch(PDOException $ex)
+	{
+		$_SESSION['Error']="Error al calcular valores de venta por Pelicula";
+	}
+	
 
 	require(ROOT . '/Views/Adm/Consultas.php');
 	
@@ -199,8 +245,16 @@ public function testPeliculas($idPeliculaI,$fechaIN,$fechaOUT)
 
 public function test()
 {
-	$arrayCines=$this->DAOCines->traerTodos();
-	$arrayPeliculas=$this->peliculaDAO->traerTodos();
+	try
+	{
+		$arrayCines=$this->DAOCines->traerTodos();
+		$arrayPeliculas=$this->peliculaDAO->traerTodos();
+	}
+	catch(PDOException $ex)
+	{
+		$_SESSION['Error']="Error al traer todas los cines y peliculas";
+	}
+	
 	require(ROOT . '/Views/Adm/Consultas.php');
 }
 

@@ -48,8 +48,6 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 			}
 			else{
 				$flag=false;//si dio error al borrar de BD retorno false
-				$msj="Error en BD. Nº: ".$num_error." .".$descripcion_error.".";
-				$_SESSION['BD']=$msj;
 				
 			}
 
@@ -226,21 +224,18 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 		}
 		else{
 			$flag=false;//si dio error al borrar de BD retorno false 
-			$msj="Error en BD. Nº: ".$num_error." .".$descripcion_error.".";
-			$_SESSION['BD']=$msj;
+			
 		}
 		
 		//----------------------------------------------------------------------------------
 
     	}
     	catch (PDOException $ex) {
-    		$_SESSION['BD']="Error al eliminar Cine: PDO EXCEPTION";
-    		
+    	
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		$_SESSION['BD']="Error al eliminar Cine: EXCEPTION";
-    		
+
 			throw $e;
     	}
 
@@ -294,8 +289,7 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 
 			}
 			else{
-				$msj="Error en BD. Nº: ".$num_error." .".$descripcion_error.".";
-				$_SESSION['BD']=$msj;
+				
 				$flag=false;//si dio error al borrar de BD retorno false 
 			}
 		
@@ -303,13 +297,10 @@ class CinesDAO extends SingletonAbstractDAO implements IDAO
 
     	}
     	catch (PDOException $ex) {
-
-			$_SESSION['BD']="Error al modificar Cine en BD.PDOException";
-    		
+		
 			throw $ex;
     	}
     	catch (Exception $e) {
-    		$_SESSION['BD']="Error al modificar Cine en BD.EXCEPTION";
 			throw $e;
     	}
     	return $flag;

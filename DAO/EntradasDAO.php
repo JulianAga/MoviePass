@@ -46,9 +46,11 @@ class EntradasDAO extends SingletonAbstractDAO
 	
     	}
     	catch (PDOException $ex) {
+			
 			throw $ex;
     	}
     	catch (Exception $e) {
+			
 			throw $e;
     	}
 	}//FIN INSERTAR
@@ -87,9 +89,11 @@ class EntradasDAO extends SingletonAbstractDAO
 			return $object;
     	}
     	catch (PDOException $ex) {
+			
 			throw $ex;
     	}
     	catch (Exception $e) {
+			
 			throw $e;
 		}		
     }//fin 
@@ -129,9 +133,11 @@ class EntradasDAO extends SingletonAbstractDAO
 			return $array;
     	}
     	catch (PDOException $ex) {
+			
 			throw $ex;
     	}
     	catch (Exception $e) {
+		
 			throw $e;
 		}		
 	}//fin 
@@ -168,13 +174,10 @@ class EntradasDAO extends SingletonAbstractDAO
 
     	}
     	catch (PDOException $ex) {
-    		$_SESSION['Error']="Error al eliminar Cine: PDO EXCEPTION";
-    		
+
 			throw $ex;
     	}
-    	catch (Exception $e) {
-    		$_SESSION['Error']="Error al eliminar Cine: EXCEPTION";
-    		
+    	catch (Exception $e) {	
 			throw $e;
     	}
 
@@ -279,9 +282,11 @@ class EntradasDAO extends SingletonAbstractDAO
 			return $array;
     	}
     	catch (PDOException $ex) {
+			
 			throw $ex;
     	}
     	catch (Exception $e) {
+			
 			throw $e;
     	}
 
@@ -291,43 +296,45 @@ class EntradasDAO extends SingletonAbstractDAO
 
 public function ultimaEntrada($id_funcion)
 {
-	$numero_entrada=null;
-	$query = 'call '.'sp_retornarUltimaEntrada(:id_funcionE)';
-	$pdo = new Connection();
-	$connection = $pdo->Connect();
-	$command = $connection->prepare($query);
-
-
-	$command->bindParam(':id_funcionE', $id_funcion);
-
-
-	$command->execute();
-
-	while ($row = $command->fetch())
-	{
-			$numero_entrada=$row['numero_entrada'];
-	}
+	try 
+    {
 	
-	$num_error=$command->errorInfo()[1];//tomo el error que produce la query
-	$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
-	
-	if ($num_error==null){
-	$flag=true;//si se pudo borrar y no dio error de BD, asigno true para retornar
-	
-	}
-	else{
-		$msj="Error en BD".$descripcion_error;
-		$_SESSION['Error']=$msj;
+		$numero_entrada=null;
+		$query = 'call '.'sp_retornarUltimaEntrada(:id_funcionE)';
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+
+
+		$command->bindParam(':id_funcionE', $id_funcion);
+
+
+		$command->execute();
+
+		while ($row = $command->fetch())
+		{
+				$numero_entrada=$row['numero_entrada'];
+		}
 		
-	}
+		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
 		
-	
-	return $numero_entrada;
-}
+		
+		return $numero_entrada;
+	}
+	catch (PDOException $ex) {
+		
+		throw $ex;
+	}
+	catch (Exception $e) {
+		
+		throw $e;
+	}
+
 }//fin class----------------
 
 
-
+}
 
 
 ?>
