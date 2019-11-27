@@ -43,6 +43,10 @@
     <header>
         <?php include_once("header_adm.php"); ?> <!-- llamado a la barra nav de home-->
     </header>
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="centrar-div">
         <form action="<?= ROOT_VIEW ?>/Adm_Peliculas/testCines"  method="post">
         
@@ -78,11 +82,13 @@
     </form>
     
     </div>
-    <label><h3 style="color: white;">VALOR</h3><label>
+    <div class="centrar-div">
+    <label><h3 style="color: white;">VALOR: </h3></label>
     <?php if(isset($valor)){ ?>
         
-        <label><h3 style="color: white;"><?php echo $valor?></h3><label>
+        <label><h3 style="color: white;"><?php echo $valor ?></h3></label>
     <?php }?>
+    </div>
     
     <style>
         .centrar-div{

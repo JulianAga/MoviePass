@@ -55,18 +55,28 @@ public function index (){
 				}
 				if($_SESSION['Login']->getRol()==2)// SI ES CLIENTE AL HOME DE CLIENTE (falta configurar esto)
 				{
-					
+					//lo lleva al home ADM
+					$cineController = new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
+					$movieList=$this->peliculaDAO->traerTodos();
+					 $salaList=$this->DAOSalas->traerTodos();
+					$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
+					$arrayCines=$cineController->traerTodos();//levanto todos los cines de la BD
 					//lo lleva al home CLIENTE
 					
-					require(ROOT . '/Views/home.php');
+					require(ROOT . '/Views/home2.php');
 					
 				}
 			}
 
 			else
 			{
-				
-				require(ROOT . '/Views/home.php');//SI NO HAY SESSION LO LLEVA A HOME (como no hay ninguna session lo lleva al home.php como anonimo)
+				//lo lleva al home ADM
+					$cineController = new CineController();//creo objeto de otra controladora para usar sus metodos desde esta
+					$movieList=$this->peliculaDAO->traerTodos();
+					 $salaList=$this->DAOSalas->traerTodos();
+					$functionList = $this->DAOFunciones->traerTodos(); //traigo todas las funciones de la BD
+					$arrayCines=$cineController->traerTodos();//levanto todos los cines de la BD
+				require(ROOT . '/Views/home2.php');//SI NO HAY SESSION LO LLEVA A HOME (como no hay ninguna session lo lleva al home.php como anonimo)
 			}
 
 }//fin index
