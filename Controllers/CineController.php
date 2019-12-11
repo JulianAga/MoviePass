@@ -142,13 +142,13 @@ class CineController
         try
         {
             $flag=$this->DAOCines->borrar($id_cine);         
-            $this->index();
             if ($flag==true){
                $_SESSION['Success']="Cine eliminado correctamente!";
             }
             else{
-               $_SESSION['Error']="El Cine contiene funciones activas!";
+               $_SESSION['Error']="El Cine contiene funciones o salas activas!";
             }
+            $this->index(); 
         }
         catch(PDOException $ex)
         {
