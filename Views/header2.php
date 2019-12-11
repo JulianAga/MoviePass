@@ -65,7 +65,7 @@ if( isset($_SESSION['Cliente_Logueado'])){
 							<ul class="header__nav">
 								<!-- dropdown -->
 								<li class="header__nav-item">
-									<a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuHome" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
+									<a class="dropdown-toggle header__nav-link" href="<?= ROOT_VIEW ?>/Home" role="button" id="dropdownMenuHome" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
 
 									
 								</li>

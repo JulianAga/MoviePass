@@ -229,6 +229,8 @@ public function testPeliculas($idPeliculaI,$fechaIN,$fechaOUT)
 		$arrayCines=$this->DAOCines->traerTodos();
 		$arrayPeliculas=$this->peliculaDAO->traerTodos();
 		$valor=$this->DAOCompras->valoresPorPelicula($idPeliculaI,$fechaIN,$fechaOUT);
+		$functionList=$this->DAOFunciones->traerTodos();
+		
 	}
 	catch(PDOException $ex)
 	{

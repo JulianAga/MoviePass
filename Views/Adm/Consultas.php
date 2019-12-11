@@ -68,8 +68,9 @@
         <select name="idPeliculaI" id="idPeliculaI" >
             <option value="" style="color: white;" selected hidden>Peliculas</option>
                 <?php
-                foreach($arrayPeliculas as $p){?>
-            <option value="<?php echo $p->getId_api();?>"><?php echo $p->getNombre();?></option> 
+                foreach($functionList as $p){?>
+
+            <option value="<?php echo $p->getIdPelicula()->getId_api();?>"><?php echo $p->getIdPelicula()->getNombre();?></option> 
                 <?php } ?>              
         </select>
         
@@ -85,7 +86,10 @@
     <?php if(isset($valor)){ ?>
         
         <label><h3 style="color: white;"><?php echo $valor ?></h3></label>
-    <?php }?>
+      
+    <?php }
+    else?>
+          <label><h3 style="color: white;"><?php echo "0";?></h3></label>
     </div>
     
     <style>
