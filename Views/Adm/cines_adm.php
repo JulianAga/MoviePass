@@ -56,7 +56,7 @@
                 <table class="table box_transparente table_transparente">
                 <thead class="thead-dark">
                         <tr>
-                        <h2>   <?php echo $cine->getNombre();?> </h2>
+                      <label for="cine" style="color:white">  <h2>   <?php echo $cine->getNombre();?> </h2> </label>
 
                             
                         </tr>

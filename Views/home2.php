@@ -125,7 +125,9 @@
 	<div class="catalog">
 		<div class="container">
 			<div class="row">
-				<?php  foreach($movieList as $p) {?> <!-- Inicio foreach-->
+				<?php if($movieList != null)
+				{ 
+				 foreach($movieList as $p) {?> <!-- Inicio foreach-->
 				<!-- card -->
 					<div class="col-3 ">
 						<div class="card card--big ">
@@ -153,6 +155,7 @@
 				
 					<!-- end card -->
 			<?php } //end foreach?>
+				<?php  } else echo "<label class='label-font'>No hay peliculas ingresadas</label>"; ?>
 			</div>
 			
 		</div>
