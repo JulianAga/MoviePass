@@ -89,7 +89,7 @@
 						              <option value="" selected hidden>Todos</option>
 						                  <?php
 						                  foreach($genresArray as $g){?>
-						                  <option value="<?php echo $g->getId();?>"><?php echo $g->getName();?></option> 
+						                  <option value="<?php echo $g->getId();?>" style="color:black"><?php echo $g->getName();?></option> 
 						                  <?php } ?>
 
 						              </select>
