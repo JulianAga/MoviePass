@@ -95,7 +95,7 @@ if( isset($_SESSION['Cliente_Logueado'])){
 														<!-- authorization form -->
 														<form action="<?= ROOT_VIEW ?>/Login/verificarSesion" method="post" class="sign__form">
 															<span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright" style="color:white;">&times;</span>
-															<a href="index.html" class="sign__logo">
+															<a class="sign__logo">
 																<img src="/MoviePass/Views/icon/favicon-32x32.png" alt="">
 															</a>
 
