@@ -61,7 +61,9 @@
         </select>
    </td>
    <td>
+   <span>Desde:</span>
         <input type="date" class="form-control" placeholder="Desde" name="fechaIN" id=1 required="required">
+        <span>Hasta:</span>
         <input type="date" class="form-control" placeholder="Hasta" name="fechaOUT" id=1 required="required">
         <button type="submit" name="enviar" id="enviar" class="boton_modificar">Consultar</button>
    
@@ -82,7 +84,9 @@
         </select>
         </td>
         <td>
+        <span> Desde:</span>
         <input type="date" class="form-control" placeholder="Desde" name="fechaIN" id=1 required="required">
+        <span> Hasta:</span>
         <input type="date" class="form-control" placeholder="Hasta" name="fechaOUT" id=1 required="required">
         <button type="submit" name="enviar" id="enviar" class="boton_modificar">Consultar</button>
         </td>
