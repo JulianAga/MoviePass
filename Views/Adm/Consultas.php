@@ -46,9 +46,12 @@
     <br>
     <br>
     <div class="centrar-div">
+    
         <form action="<?= ROOT_VIEW ?>/Adm_Peliculas/testCines"  method="post">
         
-        
+    <table class="table box_transparente table_transparente" border="3px">
+    <tr>
+    <td>
         <select name="idCinesI" id="idCinesI" >
             <option value="" selected hidden>Cines</option>
                 <?php
@@ -56,13 +59,17 @@
             <option style="color: white;" value="<?php echo $c->getID();?>"><?php echo $c->getNombre();?></option> 
                 <?php } ?>              
         </select>
-        
+   </td>
+   <td>
         <input type="date" class="form-control" placeholder="Desde" name="fechaIN" id=1 required="required">
         <input type="date" class="form-control" placeholder="Hasta" name="fechaOUT" id=1 required="required">
-        <button type="submit" name="enviar" id="enviar">Consultar</button>
-    
+        <button type="submit" name="enviar" id="enviar" class="boton_modificar">Consultar</button>
+   
     </form>
-    
+    </td>
+    </tr>
+    <tr>
+        <td>
     <form action="<?= ROOT_VIEW ?>/Adm_Peliculas/testPeliculas"  method="post">
         
         <select name="idPeliculaI" id="idPeliculaI" >
@@ -73,24 +80,32 @@
             <option value="<?php echo $p->getIdPelicula()->getId_api();?>"><?php echo $p->getIdPelicula()->getNombre();?></option> 
                 <?php } ?>              
         </select>
-        
+        </td>
+        <td>
         <input type="date" class="form-control" placeholder="Desde" name="fechaIN" id=1 required="required">
         <input type="date" class="form-control" placeholder="Hasta" name="fechaOUT" id=1 required="required">
-        <button type="submit" name="enviar" id="enviar">Consultar</button>
-    
+        <button type="submit" name="enviar" id="enviar" class="boton_modificar">Consultar</button>
+        </td>
     </form>
-    
+    </tr>
+    <tr>
+<td>
     </div>
     <div class="centrar-div">
-    <label><h3 style="color: white;">VALOR: </h3></label>
+    <label><h3 style="color: black;">Valor recaudado : </h3></label>
+    </td>
+      <td>
     <?php if(isset($valor)){ ?>
-        
-        <label><h3 style="color: white;"><?php echo $valor ?></h3></label>
+       
+        <label><h3 style="color: black;"><?php echo $valor ?></h3></label>
       
     <?php }
     else?>
-          <label><h3 style="color: white;"><?php echo "0";?></h3></label>
+          <label><h3 style="color: black;"><?php echo "0";?></h3></label>
     </div>
+    </td>
+</tr>
+    </table>
     
     <style>
         .centrar-div{
