@@ -4,15 +4,13 @@ class Entrada
 {
     private $id;
     private $numero_entrada;
-    private $qr;
     private $funcion;
 
 
-	public function __construct($numero_entrada, $funcion,$qr)
+	public function __construct($numero_entrada, $funcion)
 	{
 		$this->setNumeroEntrada($numero_entrada);
         $this->setFuncion($funcion);
-        $this->setQr($qr);
 	}
     
     public function getId()
@@ -46,17 +44,6 @@ class Entrada
     public function setFuncion($funcion)
     {
         $this->funcion = $funcion;
-    }
-
-    public function getQr()
-    {
-        return $this->qr;
-    }
-
- 
-    public function setQr($qr)
-    {
-        $this->qr = $qr;
     }
 
    

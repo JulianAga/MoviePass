@@ -1,6 +1,17 @@
 <?php namespace Controllers;
 
 
+use Models\Compra as Compra;
+use Models\QR as QR;
+use Models\Entrada as Entrada;
+use DAO\FuncionesDAO as FuncionesDAO;
+use DAO\CuentasDAO as CuentasDAO;
+use DAO\EntradasDAO as EntradasDAO;
+use DAO\CuentaCreditoDAO AS CuentaCreditoDAO;
+use DAO\ComprasDAO as ComprasDAO;
+use DAO\QRDAO as QRDAO;
+use Controllers\FuncionController as FuncionController;
+use Controllers\MailsController as MailsController;
 
 
 
@@ -17,6 +28,8 @@ class CompraController
 	private $DAOSalas;
 	private $DAOCompras;
 	private $DAOEntradas;
+	private $DAOQR;
+	private $mailsController;
 	//----------------CONSTRUCTOR--------------------
 	function __construct()
 	{
@@ -28,6 +41,8 @@ class CompraController
 		$this->DAOSalas=\DAO\SalasDAO::getInstance();
 		$this->DAOCompras=\DAO\ComprasDAO::getInstance();
 		$this->DAOEntradas=\DAO\EntradasDAO::getInstance();
+		$this->DAOQR=\DAO\QRDAO::getInstance();
+		$this->mailsController=new MailsController();
 	}
 	//----------------METODOS--------------------
 
@@ -104,7 +119,7 @@ public function newCompra($cantidad_entradas){
 				{ 
 					
 					$ultima_entrada=$this->DAOEntradas->ultimaEntrada($function->getID()); // valor de la ultima entrada en bd
-					$qr="qr";
+
 						
 					if($ultima_entrada== null) //busco la ultima entrada vendida y retorno, si es null(todavia no hay entradas para esa funcion) es 0
 					{
@@ -112,12 +127,20 @@ public function newCompra($cantidad_entradas){
 					}
 					
 					$numero_entrada=$ultima_entrada+1; //agrego +1 al la ultima entrada guardada
-					$entrada= new \Models\Entrada($numero_entrada,$function,$qr);
+
+					$entrada= new \Models\Entrada($numero_entrada,$function); 
 					$entrada =$this->DAOEntradas->insertar($entrada,$compra->getId());
+					$qr=new QR();
+					$qr->setEntrada($entrada);
+					$this->DAOQR->add($qr); 
 					
 					
 					
 				}//end for
+
+				$qrsToSend=$this->DAOQR->getPorCompra($compra);
+
+                $this->mailsController->enviarMailCompra($compra,$qrsToSend);
 
 				//si no hay session lo llevo a home
 				$_SESSION['Success']="Compra Exitosa!";

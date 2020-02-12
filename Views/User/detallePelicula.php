@@ -16,7 +16,7 @@
 <title>MoviePass</title>
 
   
-<?php require(VIEWS_PATH."header.php"); ?> <!-- llamado a la barra nav de home-->
+<?php require(VIEWS_PATH."header3.php"); ?> <!-- llamado a la barra nav de home-->
 </head>
 
 <body class="body_parallax "> <!-- fondo_body/body_parallax es una clase css donbde esta el archivo de la imagen de fondo y otras configuraciones del fondo, esta al final de home.php en la secion de <style>-->
