@@ -15,44 +15,57 @@ class GeneroController
 
         //------------------------METODOS----------------------------
 
-	public function recibirGeneros(){
-		include "Config/API_tmdb.php";
-        $curl = curl_init();
+        public function recibirGeneros()
+        {
+        
+                include "Config/API_tmdb.php";
+                //$curl = curl_init();
 
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => "http://api.themoviedb.org/3/genre/movie/list?language=en-US&api_key=".$apikey,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "GET",
-        CURLOPT_POSTFIELDS => "{}",
-        ));
+                /*curl_setopt_array($curl, array(
+                CURLOPT_URL => "https://api.themoviedb.org/3/genre/movie/list?api_key=2b3ba78ccc0274a444d8367fd978ae20&language=en-US",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "GET",
+                CURLOPT_POSTFIELDS => "{}",
+                ));*/
+                
+                $cm = curl_init();
+                curl_setopt($cm, CURLOPT_URL, "https://api.themoviedb.org/3/genre/movie/list?api_key=2b3ba78ccc0274a444d8367fd978ae20&language=en-US");
+                curl_setopt($cm, CURLOPT_RETURNTRANSFER, TRUE);
+                curl_setopt($cm, CURLOPT_HEADER, FALSE);
+                curl_setopt($cm, CURLOPT_HTTPHEADER, array("Accept: application/json"));
+                $response7 = curl_exec($cm);
+                $err = curl_error($cm);
+                curl_close($cm);
+                $genreList= json_decode($response7,true);
+                
+                $arrayGenero=array();
 
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-        curl_close($curl);
-        $genreList= json_decode( $response,true );
-        $arrayGenero=array();
+                foreach ($genreList as $key) 
+                {
+                        foreach ($key as $genre ) 
+                        {
+                                $genero= new Genre ($genre["id"],$genre["name"]);
+                                array_push($arrayGenero, $genero);
+                        }
 
-        foreach ($genreList as $key) {
-        	foreach ($key as $genre ) {
-        		$genero= new Genre ($genre["id"],$genre["name"]);
-        		array_push($arrayGenero, $genero);
-        	}
-
-        	
-        }//foreach
+                        
+                }//foreach
 
 
-        if ($err) {
-            $msj="cURL Error #:" . $err;
-            $_SESSION['Error']=$msj;
-          
-        }
-        else
-          return $arrayGenero;
+                if ($err) 
+                {
+                        $msj="cURL Error #:" . $err;
+                        $_SESSION['Error']=$msj;
+                        var_dump($msj);
+                }
+                else
+                {
+                        return $arrayGenero;
+                }
 
 
 	}
