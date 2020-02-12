@@ -5,7 +5,7 @@
 </head>
 <body>
 	<header>
-        <?php require(VIEWS_PATH."header2.php"); ?> <!-- llamado a la barra nav de home-->
+        <?php require(VIEWS_PATH."header3.php"); ?> <!-- llamado a la barra nav de home-->
         
 
     </header>
@@ -116,22 +116,6 @@
                         </div>
                     </div>
                     <!-- end content -->
-                    <!-- player -->
-                    <div class="col-6">
-                        <span class="details__devices-title">aca iria la seleccion de butacas.proximamente.....</span>
-                        <span class="details__devices-title">aca iria la seleccion de butacas.proximamente.....</span>
-                        <span class="details__devices-title">aca iria la seleccion de butacas.proximamente.....</span>
-                        <span class="details__devices-title">aca iria la seleccion de butacas.proximamente.....</span>
-                        <span class="details__devices-title">aca iria la seleccion de butacas.proximamente.....</span>
-                        <span class="details__devices-title">aca iria la seleccion de butacas.proximamente.....</span>
-                        <span class="details__devices-title">aca iria la seleccion de butacas.proximamente.....</span>
-                        <span class="details__devices-title">aca iria la seleccion de butacas.proximamente.....</span>
-                        <span class="details__devices-title">aca iria la seleccion de butacas.proximamente.....</span>
-                        <span class="details__devices-title">aca iria la seleccion de butacas.proximamente.....</span>
-
-
-                    </div>
-                    <!-- end player -->
             </div>
             <!-- end row principal-->
         </div>

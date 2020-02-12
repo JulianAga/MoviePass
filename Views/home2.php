@@ -55,7 +55,7 @@
         <?php unset($_SESSION["BD"]);?>
     <?php } ?>
     <!-------------------------------------- - ------------------------------>
-	<?php include_once(VIEWS_PATH."header2.php"); ?>
+	<?php include_once(VIEWS_PATH."header3.php"); ?>
 
 	<!-- page title -->
 	<section class="section section--first section--bg" data-bg="/MoviePass/Views/img/section/section.jpg">

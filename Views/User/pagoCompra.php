@@ -5,7 +5,7 @@
 </head>
 <body>
 	
-        <?php require(VIEWS_PATH."header2.php"); ?> <!-- llamado a la barra nav de home-->
+        <?php require(VIEWS_PATH."header3.php"); ?> <!-- llamado a la barra nav de home-->
         <?php //require(VIEWS_PATH."header.php"); ?> <!-- llamado a la barra nav de home--> <!-- PROVISORIO -->
 
         

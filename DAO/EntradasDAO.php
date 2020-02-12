@@ -19,9 +19,9 @@ class EntradasDAO extends SingletonAbstractDAO
     	{
     	
 			$query = 'INSERT INTO '.$this->table.' 
-			(numero_entrada, qr, id_funcion, id_compra) 
+			(numero_entrada, id_funcion, id_compra) 
 			VALUES 
-			(:numero_entrada, :qr, :id_funcion, :id_compra)';
+			(:numero_entrada, :id_funcion, :id_compra)';
 
 			$pdo = new Connection();
 			$connection = $pdo->Connect();
@@ -29,14 +29,12 @@ class EntradasDAO extends SingletonAbstractDAO
 
 			
 			$numero_entrada = $dato->getNumeroEntrada();
-            $qr = $dato->getQr();
             $id_funcion=$dato->getFuncion()->getID();
             
             
             $command->bindParam(':id_compra', $id_compra);
             $command->bindParam(':id_funcion', $id_funcion);
 			$command->bindParam(':numero_entrada', $numero_entrada);
-			$command->bindParam(':qr', $qr);
             
             $command->execute();
             
@@ -118,10 +116,9 @@ class EntradasDAO extends SingletonAbstractDAO
 			while ($row = $command->fetch())
 			{
 				$numero_entrada = ($row['numero_entrada']);
-				$qr = ($row['qr']);
                 $funcion = $funcionesdao->buscarPorID($row['id_funcion']);
 
-				$object = new Entrada($numero_entrada, $qr, $funcion) ;
+				$object = new Entrada($numero_entrada, $funcion) ;
 
 				$object->setId($row['id_entrada']);
 
@@ -268,10 +265,9 @@ class EntradasDAO extends SingletonAbstractDAO
 			while ($row = $command->fetch())
 			{
 				$numero_entrada = ($row['numero_entrada']);
-				$qr = ($row['qr']);
                 $funcion = $funcionesdao->buscarPorID($row['id_funcion']);
 
-				$object = new Entrada($numero_entrada, $qr, $funcion) ;
+				$object = new Entrada($numero_entrada, $funcion) ;
 
 				$object->setId($row['id_entrada']);
 
@@ -291,10 +287,8 @@ class EntradasDAO extends SingletonAbstractDAO
     	}
 
 	}//fin traer todos
-//
-//	
 
-public function ultimaEntrada($id_funcion)
+	public function ultimaEntrada($id_funcion)
 {
 	try 
     {
@@ -330,11 +324,59 @@ public function ultimaEntrada($id_funcion)
 		
 		throw $e;
 	}
-
-}//fin class----------------
-
-
 }
 
+/*
+public function getUltimaEntrada()
+{
+	$query = "SELECT max(id_entrada) as id_entrada FROM ". $this->tableName ;
+	$this->connection = Connection::GetInstance();
+	$resultSet = $connection->Execute($query);
 
-?>
+	try {
+		if(!empty($resultSet)){
+			return $resultSet[0]['id_entrada'];
+		}
+	} catch (\Throwable $th) {
+		throw $th;
+	}
+   
+}*/
+
+
+public function getUltimaEntrada()
+{
+	try 
+    {
+	
+		$numero_entrada=null;
+		$query = "SELECT max(id_entrada) as id_entrada FROM ". $this->tableName ;
+		$pdo = new Connection();
+		$connection = $pdo->Connect();
+		$command = $connection->prepare($query);
+
+
+		$command->execute();
+
+		while ($row = $command->fetch())
+		{
+				$numero_entrada=$row['numero_entrada'];
+		}
+		
+		$num_error=$command->errorInfo()[1];//tomo el error que produce la query
+		$descripcion_error=$command->errorInfo()[2];//tomo la descripcion del error que produce la query
+		
+		
+		return $numero_entrada;
+	}
+	catch (PDOException $ex) {
+		
+		throw $ex;
+	}
+	catch (Exception $e) {
+		
+		throw $e;
+	}
+}
+
+}

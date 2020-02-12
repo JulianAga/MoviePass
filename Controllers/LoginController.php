@@ -180,6 +180,7 @@
 			try
 			{
 				$_SESSION['Login']=$cuenta;//guardo el objeto CUENTA logueada en la session
+				$_SESSION['id_cuenta']=$cuenta->getId(); //guardo el id de la cuenta
 				$cliente=$this->DAOClientes->buscarPorID($cuenta->getCliente() );
 				$_SESSION['Cliente_Logueado']=$cliente;
 

@@ -17,6 +17,8 @@ define("CONFIG_API_PATH", "Config/");
 define("CSS_PATH", "/MoviePass/Views/css/");
 define("JS_PATH", FRONT_ROOT.VIEWS_PATH . "js/");
 define("IMG_PATH", VIEWS_PATH . "img/");
+define("QR_ROUTE", ROOT . "/QR");
+define("QR_IMG", ROOT . "/QR/temp/");
 ?>
 
 
