@@ -360,6 +360,36 @@ public function valoresPorCine($idCineI, $fechaIN, $fechaOUT)
 	}
 }
 
+public function buscarPorCompra($compra)
+{
+	$query = "SELECT * FROM ". $this->tableName." WHERE total=:total  and fecha=:fecha   and  id_cuenta=:id_cuenta ";
+	$parameters['total'] =$compra->getTotal();
+	$parameters['fecha'] = $compra->getFecha();
+	$parameters['id_cuenta'] = $compra->getCuenta()->getId();
+	try {
+		// $this->connection = Connection::GetInstance();
+		// $ResultSet=$this->connection->Execute($query, $parameters);
+		$pdo = new Connection();
+        $connection = $pdo->Connect();
+        $command = $connection->prepare($query, $parameters);
+        $ResultSet= $command->execute($query, $parameters);
+		if (!empty($ResultSet)) {
+			$compra = new Compra();
+			$purchase->setTotal($ResultSet[0]['total']);
+			$compra->setFecha($ResultSet[0]['fecha']);
+			$compra->setId($ResultSet[0]['id_compra']);
+
+			$cuentasDAO=new cuentasDAO();
+			$cuentas=$cuentasDAO->buscarCuentaPorID($ResultSet[0]['id_cuenta']);
+			$compra->setCuenta($cuenta);
+
+			return $compra;
+		}
+	} catch (\Throwable $th) {
+		throw $th;
+	}
+}
+
 	
 }//fin class----------------
 
