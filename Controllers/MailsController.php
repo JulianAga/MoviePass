@@ -15,7 +15,7 @@ class MailsController
 
     public function enviarMailCompra(Compra $compra,$qrMandar)
     {
-        //$cuenta = $this->cuentasDAO->buscarCuentaPorID($_SESSION['id_cuenta']);
+        $QRsFileNames=array();
         $cuenta= $compra->getCuenta();
         $mail = new PHPMailer(true);
         try{
@@ -38,7 +38,11 @@ class MailsController
          $i=0;  
         foreach ($qrMandar as $item) {                           
             $tag=$i++;
-            $mail->AddEmbeddedImage("QR/temp/qr-".$item.".png",$tag);
+            $filename="QR/temp/qr-".$item.".png";
+            $mail->AddEmbeddedImage($filename,$tag);
+            
+            array_push($QRsFileNames,$filename);
+            
            }
            $mail->Body    = '<BODY BGCOLOR="White">
 <body>
@@ -70,6 +74,11 @@ class MailsController
 
 
         $mail->send();
+
+        foreach($QRsFileNames as $tempFile)
+        {
+            unlink($tempFile);
+        }
         }
         catch (Exceptionn $e) {
             array_push($advices, DB_ERROR . $mail->ErrorInfo);
