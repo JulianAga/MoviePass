@@ -6,6 +6,7 @@ use \Exception as Exception;
 use \PDOException as PDOException;
 use DAO\ComprasDAO as ComprasDAO;
 use DAO\FuncionesDAO as FuncionesDAO;
+use DAO\QRDAO AS QRDAO;
 /**
  * 
  */
@@ -13,6 +14,8 @@ class EntradasDAO extends SingletonAbstractDAO
 {
 	//-------------ATRIBUTOS--------------
 	private $table = 'Entradas';
+	
+	
 	//-------------METODOS--------------------
 	public function insertar($dato,$id_compra){
 		try 
@@ -39,7 +42,6 @@ class EntradasDAO extends SingletonAbstractDAO
             $command->execute();
             
             $dato->setId($connection->lastInsertId());
-            
             return $dato;
 	
     	}
@@ -350,7 +352,7 @@ public function getUltimaEntrada()
     {
 	
 		$numero_entrada=null;
-		$query = "SELECT max(id_entrada) as id_entrada FROM ". $this->tableName ;
+		$query = "SELECT max(id_entrada) as id_entrada FROM ". $this->table ;
 		$pdo = new Connection();
 		$connection = $pdo->Connect();
 		$command = $connection->prepare($query);

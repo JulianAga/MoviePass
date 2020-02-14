@@ -92,9 +92,21 @@ public function newCompra($cantidad_entradas){
 			
 			$subtotal=$function->getSala()->getValor_Entrada()*$cantidad_entradas;
 			$fechaActual = date('Y-m-d');
-			$descuento = 0;
-			$total=$subtotal;
+			if($cantidad_entradas>=2)
+			{
+				if(date("l")=="Tuesday" || date("l")=="Wednesday")
+				{
+					$total=$subtotal*0.75;
+					$descuento=$subtotal-$total;
+				}
+			}
+			else
+			{
+				$descuento = 0;
+				$total=$subtotal;
+			}
 			
+			$qrsToSend=array();
 			
 			$compra= new \Models\Compra($user,null,$fechaActual,$descuento,$subtotal,$total);
 			$compra =$this->DAOCompras->insertar($compra);
@@ -104,7 +116,7 @@ public function newCompra($cantidad_entradas){
 			
 
 			//echo ($ultima_entrada+$cantidad_entradas);
-
+			
 			
 
 			if(($ultima_entrada+$cantidad_entradas) > $function->getSala()->getCapacidad())//entra si no hay mas capacidad
@@ -132,19 +144,20 @@ public function newCompra($cantidad_entradas){
 					$entrada =$this->DAOEntradas->insertar($entrada,$compra->getId());
 					$qr=new QR();
 					$qr->setEntrada($entrada);
-					$this->DAOQR->add($qr); 
 					
+					$id_qr=$this->DAOQR->add($qr);
+					
+					array_push($qrsToSend,$id_qr);
 					
 					
 				}//end for
 
-				$qrsToSend=$this->DAOQR->getPorCompra($compra);
+				
 
                 $this->mailsController->enviarMailCompra($compra,$qrsToSend);
-
 				//si no hay session lo llevo a home
 				$_SESSION['Success']="Compra Exitosa!";
-				header("Location:".ROOT_VIEW);
+				//header("Location:".ROOT_VIEW);
 
 			}//end else
 		
