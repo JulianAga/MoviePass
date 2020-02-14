@@ -92,13 +92,10 @@ public function newCompra($cantidad_entradas){
 			
 			$subtotal=$function->getSala()->getValor_Entrada()*$cantidad_entradas;
 			$fechaActual = date('Y-m-d');
-			if($cantidad_entradas>=2)
+			if($cantidad_entradas>=2 && ((date("l")=="Tuesday" || date("l")=="Wednesday")))
 			{
-				if(date("l")=="Tuesday" || date("l")=="Wednesday")
-				{
 					$total=$subtotal*0.75;
 					$descuento=$subtotal-$total;
-				}
 			}
 			else
 			{
@@ -121,8 +118,8 @@ public function newCompra($cantidad_entradas){
 
 			if(($ultima_entrada+$cantidad_entradas) > $function->getSala()->getCapacidad())//entra si no hay mas capacidad
 			{
-				//aca tira error
-				echo "error entradas no disponibles";
+				$_SESSION['Error']="Error entradas no disponibles!";
+				header("Location:".ROOT_VIEW);
 			}
 			else//entra si hay capacidad disponible
 			{

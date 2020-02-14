@@ -36,7 +36,7 @@ class MailsController
         $mail->isHTML(true);                                  // Set email format to HTML
         $mail->Subject = 'Gracias por tu compra en MoviePass.';
          $i=0;  
-        foreach ($qrMandar as $item) {                           //ACA ESTA EL ERROR DEL QR EN EL MAIL EL QRMANDAR ESTA VACIO PORQ NO ESTA EN LA BASE DE DATO LA TABLA Y EL DAO NO FUNCIONA
+        foreach ($qrMandar as $item) {                           
             $tag=$i++;
             $mail->AddEmbeddedImage("QR/temp/qr-".$item.".png",$tag);
            }
