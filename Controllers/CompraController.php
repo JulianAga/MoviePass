@@ -157,7 +157,7 @@ public function newCompra($cantidad_entradas){
                 $this->mailsController->enviarMailCompra($compra,$qrsToSend);
 				//si no hay session lo llevo a home
 				$_SESSION['Success']="Compra Exitosa!";
-				//header("Location:".ROOT_VIEW);
+				header("Location:".ROOT_VIEW);
 
 			}//end else
 		
