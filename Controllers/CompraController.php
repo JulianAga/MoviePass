@@ -144,15 +144,14 @@ public function newCompra($cantidad_entradas){
 					$entrada =$this->DAOEntradas->insertar($entrada,$compra->getId());
 					$qr=new QR();
 					$qr->setEntrada($entrada);
-					
 					$id_qr=$this->DAOQR->add($qr);
-					
+
 					array_push($qrsToSend,$id_qr);
 					
 					
 				}//end for
 
-				
+			//	$qrsToSend=$this->DAOQR->getPorCompra($compra);
 
                 $this->mailsController->enviarMailCompra($compra,$qrsToSend);
 				//si no hay session lo llevo a home
