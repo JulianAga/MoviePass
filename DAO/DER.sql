@@ -171,6 +171,13 @@ create table PagoTC
     constraint fk_id_cuenta_credito foreign key (id_cuenta_credito) references CuentasCredito (id_cuenta_credito)
 );
 
+create table QRs(
+    id int auto_increment,
+    id_entrada int, 
+    qr_image varchar(100),
+    constraint pk_QRs primary key(id),
+    constraint fk_id_entrada foreign key (id_entrada) REFERENCES Entradas (id_entrada));
+)
 
 
 //PROCEDURESSSS
