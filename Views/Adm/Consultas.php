@@ -56,7 +56,7 @@
             <option value="" selected hidden>Cines</option>
                 <?php
                 foreach($arrayCines as $c){?>
-            <option style="color: white;" value="<?php echo $c->getID();?>"><?php echo $c->getNombre();?></option> 
+            <option  value="<?php echo $c->getID();?>"><?php echo $c->getNombre();?></option> 
                 <?php } ?>              
         </select>
    </td>
